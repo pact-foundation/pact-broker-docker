@@ -2,9 +2,12 @@
 
 FROM phusion/baseimage
 
-RUN rm -rf /etc/nginx
+RUN apt-get update && apt-get install -y \
+  build-essential \
+  libsqlite3-dev \
+  ruby-full
 
-RUN apt-get update -q
+RUN gem install bundler
 
 RUN /usr/bin/workaround-docker-2267
 
@@ -12,9 +15,8 @@ EXPOSE 80
 ENV HOME /root
 CMD ["/sbin/my_init"]
 
-WORKDIR /tmp
-ADD Gemfile Gemfile
-RUN bundle install
+ADD ./app /app
 
-ADD ./ /app
-ADD ./container /
+WORKDIR /app
+ADD app/Gemfile Gemfile
+RUN bundle install

@@ -4,7 +4,7 @@ require 'sequel'
 require 'pact_broker'
 
 # Create a real database, and set the credentials for it here
-DATABASE_CREDENTIALS = {database: "pact_broker_database.sqlite3", adapter: "sqlite"}
+DATABASE_CREDENTIALS = {database: "pact_broker_database", adapter: "postgres", user: ENV['DB_USERNAME'], password: ENV['DB_PASSWORD'], host: ENV['DB_HOST'], database: ENV['DB_NAME']}
 
 app = PactBroker::App.new do | config |
   # change these from their default values if desired

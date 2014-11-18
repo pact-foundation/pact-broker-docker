@@ -4,7 +4,7 @@ FROM phusion/baseimage
 
 RUN apt-get update && apt-get install -y \
   build-essential \
-  libsqlite3-dev \
+  libpq-dev \
   ruby-full
 
 RUN gem install bundler
@@ -15,8 +15,11 @@ EXPOSE 80
 ENV HOME /root
 CMD ["/sbin/my_init"]
 
-ADD ./app /app
+ADD . /app
 
 WORKDIR /app
-ADD app/Gemfile Gemfile
+ADD Gemfile Gemfile
 RUN bundle install
+
+RUN mkdir /etc/service/app
+ADD boot_app.sh /etc/service/app/run

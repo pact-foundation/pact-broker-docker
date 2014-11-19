@@ -1,0 +1,1 @@
+VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port9292,tcp,,9292,,9292";

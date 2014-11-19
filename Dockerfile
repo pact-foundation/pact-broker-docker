@@ -11,7 +11,7 @@ RUN gem install bundler
 
 RUN /usr/bin/workaround-docker-2267
 
-EXPOSE 80
+EXPOSE 9292
 ENV HOME /root
 CMD ["/sbin/my_init"]
 

@@ -11,7 +11,7 @@ app = PactBroker::App.new do | config |
   # config.log_dir = "./log"
   # config.auto_migrate_db = true
   # config.use_hal_browser = true
-  config.database_connection = Sequel.connect(DATABASE_CREDENTIALS.merge(:logger => config.logger))
+  config.database_connection = Sequel.connect(DATABASE_CREDENTIALS.merge(logger: config.logger, encoding: 'utf8'))
 end
 
 run app

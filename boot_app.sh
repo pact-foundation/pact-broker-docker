@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 cd /app
-exec rackup >>/var/log/app.log 2>&1
+exec rackup -p 80 >>/var/log/app.log 2>&1

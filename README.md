@@ -9,14 +9,15 @@ This repository deploys Pact Broker using lightweight containers using Docker.
 ##Getting Started##
 1. [Install Docker](https://docs.docker.com/installation/)
 2. Prepare your environment
+
 	a. If running on OSX, run **fix_b2d_ports.sh** to forward the web port from the boot2docker vm. 	
 		**You need to shutdown boot2docker before you run this script.**
 	
 	b. Setup the pact broker connection to the database through the use of the following environment variables
-       * BROKER_DB_USERNAME
-       * BROKER_DB_PASSWORD
-       * BROKER_DB_HOST
-       * BROKER_DB_NAME
+       * PACT_BROKER_DATABASE_USERNAME
+       * PACT_BROKER_DATABASE_PASSWORD
+       * PACT_BROKER_DATABASE_HOST
+       * PACT_BROKER_DATABASE_NAME
 3. Build the pact broker environment by executing **build.sh**
 4. You're now ready to go!
 

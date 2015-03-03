@@ -9,10 +9,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN gem install bundler
 
-RUN /usr/bin/workaround-docker-2267
-
+EXPOSE 80
 ENV HOME /root
-CMD ["/sbin/my_init"]
+CMD ["/etc/service/app/run"]
 
 ADD . /app
 

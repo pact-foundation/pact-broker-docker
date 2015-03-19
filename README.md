@@ -27,3 +27,25 @@ This repository deploys Pact Broker using lightweight containers using Docker.
 * Currently, the application makes use of thin, but you can update the Gemfile to use any application server you like.
 * As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database. 
 * Apart from creating a postgres database no futher prepartion is required.
+
+
+##Publishing to Docker Hub##
+1. Login to docker hub from console
+
+```
+docker login
+```
+
+This will prompt for your docker hub credentials and email
+
+2. Build the docker image for the dius account
+
+```
+docker build -t=dius/pact_broker_img .
+```
+
+3. Publish to docker hub (dius organisation)
+
+```
+docker push dius/pact_broker_img
+```

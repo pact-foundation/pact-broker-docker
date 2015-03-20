@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build pact_broker image from docker file
-docker build -t=pact_broker_img .
+docker build -t=pact_broker .
 
 # Stop and remove any running broker_app container instances before updating
 docker ps -a | grep broker_app && \
@@ -18,7 +18,7 @@ if [ "$(uname)" == "Darwin" ]; then
     -e PACT_BROKER_DATABASE_HOST=$PACT_BROKER_DATABASE_HOST \
     -e PACT_BROKER_DATABASE_NAME=$PACT_BROKER_DATABASE_NAME \
     -w /app \
-    -d -p 8080:80 pact_broker_img
+    -d -p 8080:80 pact_broker
 else
   docker run --name broker_app \
     -e PACT_BROKER_DATABASE_USERNAME=$PACT_BROKER_DATABASE_USERNAME \
@@ -26,5 +26,5 @@ else
     -e PACT_BROKER_DATABASE_HOST=$PACT_BROKER_DATABASE_HOST \
     -e PACT_BROKER_DATABASE_NAME=$PACT_BROKER_DATABASE_NAME \
     -w /app \
-    -d -p 80:80 pact_broker_img
+    -d -p 80:80 pact_broker
 fi

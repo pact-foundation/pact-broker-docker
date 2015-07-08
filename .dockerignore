@@ -1,0 +1,6 @@
+.git
+.bundle
+.bin
+test.sh
+*.md
+.gitkeep

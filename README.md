@@ -45,11 +45,6 @@ This will prompt for your docker hub credentials and email
 2. Build the docker image for the dius account
 
 ```
-docker build -t=dius/pact_broker .
-```
-
-3. Publish to docker hub (dius organisation)
-
-```
-docker push dius/pact_broker:0.0.1
+docker login
+./script/build_and_push.sh #Note: have not tested this yet
 ```

@@ -1,7 +1,7 @@
 Dockerised Pact Broker
 ==================
 
-This repository deploys Pact Broker using lightweight containers using Docker.
+This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) using lightweight containers using Docker.
 
 ## Prerequisites
 

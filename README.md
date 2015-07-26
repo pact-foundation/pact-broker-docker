@@ -20,8 +20,7 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
        * PACT_BROKER_DATABASE_PASSWORD
        * PACT_BROKER_DATABASE_HOST
        * PACT_BROKER_DATABASE_NAME
-3. Build the pact broker environment by executing [script/test.sh](script/test.sh)
-4. You're now ready to go!
+3. Test the pact broker environment by executing [script/test.sh](script/test.sh)
 
 ## Notes
 

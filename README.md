@@ -16,10 +16,10 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
     **You need to shutdown boot2docker before you run this script.**
 
   b. Setup the pact broker connection to the database through the use of the following environment variables
-       * PACT_BROKER_DATABASE_USERNAME
-       * PACT_BROKER_DATABASE_PASSWORD
-       * PACT_BROKER_DATABASE_HOST
-       * PACT_BROKER_DATABASE_NAME
+    * PACT_BROKER_DATABASE_USERNAME
+    * PACT_BROKER_DATABASE_PASSWORD
+    * PACT_BROKER_DATABASE_HOST
+    * PACT_BROKER_DATABASE_NAME
 3. Test the pact broker environment by executing [script/test.sh](script/test.sh)
 
 ## Notes

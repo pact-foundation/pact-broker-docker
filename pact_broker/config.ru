@@ -10,6 +10,14 @@ class DatabaseLogger < SimpleDelegator
   end
 end
 
+if defined?(PhusionPassenger)
+  PhusionPassenger.on_event(:starting_worker_process) do |forked|
+    if forked
+      Sequel::DATABASES.each { |db| db.disconnect }
+    end
+  end
+end
+
 DATABASE_CREDENTIALS = {
   adapter: "postgres",
   user: ENV['PACT_BROKER_DATABASE_USERNAME'],

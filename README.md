@@ -22,7 +22,7 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 * Use `-p 80:80` to start the docker image, as some of the Rack middleware gets confused by receiving requests for other ports and will return a 404 otherwise (port forwarding does not rewrite headers).
 * On OSX, use `boot2docker ip` to get the IP of the VirtualBox, and connect on port 80.
 * ~~On OSX you need to use 8080 due to boot2docker's virtual box generally not having the right priviliges to start a new process listing to default web port.~~ This doesn't seem to be true/true anymore.
-* Currently, the application makes use of thin, but you can update the Gemfile to use any application server you like.
+* The application makes use of the phusion passenger application server.
 * As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database.
 * Apart from creating a postgres database no futher prepartion is required.
 

@@ -10,6 +10,7 @@ set -ex
 TAG="${1}"
 IMAGE_NAME="dius/pact_broker"
 
+docker pull ${IMAGE_NAME}
 docker build -t ${IMAGE_NAME}:${TAG} .
-docker tag ${IMAGE_NAME}:${TAG} ${IMAGE_NAME}:latest
+docker tag -f ${IMAGE_NAME}:${TAG} ${IMAGE_NAME}:latest
 docker push ${IMAGE_NAME}

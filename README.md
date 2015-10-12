@@ -41,5 +41,5 @@ This will prompt for your docker hub credentials and email
 
 ```
 docker login
-./script/build_and_push.sh #Note: have not tested this yet
+./script/build_and_push.sh # Note: have not tested this yet
 ```

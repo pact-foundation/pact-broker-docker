@@ -1,4 +1,12 @@
 #!/bin/bash
+# Prereq - you have set up a postgres database on your host machine and have allowed external connections.
+#          Read POSTGRESQL.md for instructions.
+# Prereq - you have exported the following environment variables with appropriate values for your database.
+# export PACT_BROKER_DATABASE_USERNAME=pact_broker
+# export PACT_BROKER_DATABASE_PASSWORD=pact_broker
+# export PACT_BROKER_DATABASE_NAME=pact_broker
+# export PACT_BROKER_DATABASE_HOST=192.168.0.XXX
+
 # Build pact_broker image from docker file and connect to the application
 set -e
 
@@ -13,7 +21,15 @@ docker ps -a | grep broker_app && \
   docker rm broker_app
 
 if [ "$(uname)" == "Darwin" ]; then
-  test_ip=$(boot2docker ip)
+  if [ "true" == "$(command -v boot2docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
+    test_ip=$(boot2docker ip)
+  else
+    if [ "true" == "$(command -v docker-machine > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
+      test_ip=$(docker-machine ip default)
+    else
+      echo "Cannot detect either boot2docker or docker-machine" && exit 1
+    fi
+  fi
 else
   test_ip='localhost'
 fi

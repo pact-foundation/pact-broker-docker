@@ -1,4 +1,4 @@
-Dockerised Pact Broker
+Dockerised Pact Broker [![Build Status](https://travis-ci.org/DiUS/pact_broker-docker.svg)](https://travis-ci.org/DiUS/pact_broker-docker)
 ==================
 
 This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) using lightweight containers using Docker.

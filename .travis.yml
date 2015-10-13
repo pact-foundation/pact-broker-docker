@@ -1,11 +1,18 @@
 sudo: required
 
+# Language and ruby version is not relevant because it runs inside
+# docker which has an specific ruby version installed in our Dockerfile
+# but left this here for the sake of Travis happiness
 language: ruby
 ruby:
   - "2.2"
 
 services:
   - docker
+
+# https://github.com/travis-ci/travis-ci/issues/4778
+before_install:
+  - sudo service docker restart; sleep 10; docker --version
 
 # add jq in packages once it becomes pre-allowed
 #  https://github.com/travis-ci/apt-package-whitelist/issues/1394
@@ -14,65 +21,35 @@ addons:
     packages:
       - pwgen
 
-# we will generate a temporal psql password for the lifetime of this test
+# Each of below environment variables will trigger a separate build
+# this way is possible to run the tests in different configurations
+# But: Because we are using `global` instead of leaving them here
+#      we need to put them under env: -> matrix:
+# env:
+#   - PACT_BROKER_PORT=80
+#   - PACT_BROKER_PORT=9999
+
+# Global environment variables apply to all configurations, i.e. we
+# don't care how the tested service behaves by varying this values
 env:
   global:
-    - PACT_BROKER_DATABASE_USERNAME=postgres
-    - PGUSER=postgres
-    - PACT_BROKER_DATABASE_NAME=pact
-    - PGDATABASE=pact
-    - PACT_BROKER_DATABASE_HOST=localhost
-    - PGPORT=5432
-    - PACT_PORT=80
-    - PSQL_IMG=postgres:9.4.5
-    - PGPASSWORD="`pwgen -c -n -1 $(echo $[ 7 + $[ RANDOM % 17 ]]) 1`"
-    - PACT_BROKER_DATABASE_PASSWORD=$PGPASSWORD
+    - PSQL_CONT_NAME="postgres"
+    - PSQL_WAIT_TIMEOUT="20s"
+    - PACT_CONT_NAME="broker_app"
+    - PACT_WAIT_TIMEOUT="30s"
+  matrix:
+    - PACT_BROKER_PORT=80
+#    - PACT_BROKER_PORT=9999
 
-# When we try to map ports `-p ${SEL_PORT}:${SEL_PORT}` we get
-#   Error response from daemon: Cannot start container 9da9d7a1176: iptables
-#   failed: iptables --wait -t filter -A DOCKER ! -i docker0 -o docker0
-#   -p tcp -d 172.17.0.1 --dport 5432 or 80 -j ACCEPT:
-#   iptables: No chain/target/match by that name. (exit status 1)
-# So we need to --privileged to avoid this Travis-docker issues, for now.
+# The test script is designed to run in a Linux machine and therefore
+# in TravisCI. It also has conditionals for OSX so developers can run it there
 script:
-  - docker build -t pact_broker .
-  - docker pull busybox:latest
-  - docker pull ${PSQL_IMG}
-  - docker run --privileged -d --name=pact_box -ti -P busybox:latest sh
-  - sleep 1
-  - docker inspect -f "{{ .State.Running }}" pact_box | grep true
-  - >
-    docker run -d --name=postgres --net=container:pact_box \
-      -e POSTGRES_PASSWORD=${PGPASSWORD} \
-      -e PGPASSWORD \
-      -e PGUSER \
-      -e PGPORT \
-      ${PSQL_IMG}
-  - sleep 2
-  - docker exec -ti postgres pg_isready --host=localhost --port=${PGPORT}
-  - docker exec -ti postgres psql -c 'CREATE DATABASE pact;'
-  - docker exec -ti postgres psql -c '\connect pact'
-  - >
-    docker run --privileged -d --name=pact --net=container:pact_box \
-      -e PACT_BROKER_DATABASE_USERNAME \
-      -e PACT_BROKER_DATABASE_PASSWORD \
-      -e PACT_BROKER_DATABASE_HOST \
-      -e PACT_BROKER_DATABASE_NAME \
-      pact_broker
-  - sleep 10
-  - echo 'Checking that server can be connected to from within Docker container'
-  - >
-    docker exec -ti pact \
-      curl -H "Accept:text/html" \
-              "http://localhost:$PACT_PORT/ui/relationships"
-  - echo 'Checking that server can be connected to from outside Docker container'
-  - export PACT_IP=`docker inspect -f '{{ .NetworkSettings.IPAddress }}' pact_box`
-  - curl -H "Accept:text/html" "http://$PACT_IP:$PACT_PORT/ui/relationships"
+  - ./script/test.sh
 
+# Docker cleanup though it might not be necessary as Travis probably
+# cleans the used slaves anyway for this is also serves as documenting code
 after_script:
-  - docker stop postgres
-  - docker stop pact
-  - docker stop pact_box
-  - docker rm pact
-  - docker rm pact_box
-  - docker rm postgres
+  - docker stop $PSQL_CONT_NAME || true
+  - docker stop $PACT_CONT_NAME || true
+  - docker rm $PACT_CONT_NAME || true
+  - docker rm $PSQL_CONT_NAME || true

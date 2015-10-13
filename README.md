@@ -5,7 +5,8 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 
 ## Prerequisites
 
-* A running postgres database and the ability to connect to it
+* A running postgres database and the ability to connect to it (see [POSTGRESQL.md](POSTGRESQL.md)).
+* If on Mac, you will need the `timeout` or `gtimeout` function. You can install `gtimeout` using `brew install coreutils`.
 
 ## Getting Started
 

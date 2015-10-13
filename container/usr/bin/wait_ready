@@ -22,8 +22,25 @@ die () {
   exit $errnum
 }
 
-# Validate equired variables
+function_exists () {
+  command -v ${1} > /dev/null 2>&1
+}
+
+select_installed_function () {
+  for func in "$@"
+  do
+    if function_exists $func ; then
+      echo $func && return
+    fi
+  done
+  die "Could not find any of the following functions: $@"
+}
+
+# Validate required variables
 [ -z "${wait_timeout}" ] && die "Needs wait_timeout through the first argument"
 
-timeout --foreground ${wait_timeout} \
+
+TIMEOUT=$(select_installed_function timeout gtimeout)
+
+${TIMEOUT} --foreground ${wait_timeout} \
   $(dirname "$0")/loop_wait_pact.sh || die "Pact failed to start"

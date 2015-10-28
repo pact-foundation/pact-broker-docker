@@ -1,4 +1,8 @@
-FROM phusion/passenger-ruby22:0.9.15
+# ubuntu:14.04 -- https://hub.docker.com/_/ubuntu/
+# |==> phusion/baseimage:0.9.17 -- https://goo.gl/ZLt61q
+#      |==> phusion/passenger-ruby22:0.9.17 -- https://goo.gl/xsnWOP
+#           |==> HERE
+FROM phusion/passenger-ruby22:0.9.17
 
 EXPOSE 80
 ENV APP_HOME=/home/app/pact_broker

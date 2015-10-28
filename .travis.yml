@@ -1,12 +1,5 @@
 sudo: required
 
-# Language and ruby version is not relevant because it runs inside
-# docker which has an specific ruby version installed in our Dockerfile
-# but left this here for the sake of Travis happiness
-language: ruby
-ruby:
-  - "2.2"
-
 services:
   - docker
 

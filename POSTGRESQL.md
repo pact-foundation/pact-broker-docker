@@ -4,13 +4,17 @@ The best way is to run postgresql via docker as well.
 
 1. Start the PostgreSQL container via:
 
+  ```console
     $ docker run --name pactbroker-db -e POSTGRES_PASSWORD=ThePostgresPassword -e POSTGRES_USER=admin -e PGDATA=/var/lib/postgresql/data/pgdata -v /var/lib/postgresql/data:/var/lib/postgresql/data -d postgres
+  ```
 
-Change ThePostgresPassword as required.
+  Change ThePostgresPassword as required.
 
 2. Connect to the container and execute psql via:
 
+  ```console
     $ docker run -it --link pactbroker-db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U admin'
+  ```
 
   Run the follow SQL configuration scripts:
 
@@ -22,12 +26,16 @@ Change ThePostgresPassword as required.
 
 3. Start the PactBroker container via:
 
+    ```console
     $ docker run --name pactbroker --link pactbroker-db:postgres -e PACT_BROKER_DATABASE_USERNAME=pactbrokeruser -e PACT_BROKER_DATABASE_PASSWORD=TheUserPassword -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pactbroker -d -p 80:80 dius/pact_broker
+    ```
 
 4. (Don't need to run this) Finally if you want to reconfigure/remove the container you will need to use
 
+    ```console
     $ docker rm pactbroker-db
     $ docker rm pactbroker
+    ```
 
 ## Installation of non-docker postgresql
 

@@ -5,13 +5,13 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 
 ## Prerequisites
 
-* A running postgres database and the ability to connect to it (see [POSTGRESQL.md](POSTGRESQL.md)).
+* A running postgresql database and the ability to connect to it (see [POSTGRESQL.md](POSTGRESQL.md)).
 * If on Mac, you will need the `timeout` or `gtimeout` function. You can install `gtimeout` using `brew install coreutils`.
 
 ## Getting Started
 
 1. [Install Docker](https://docs.docker.com/installation/)
-2. Prepare your environment. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh](script/test.sh).
+2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh](script/test.sh).
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
@@ -26,7 +26,6 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 * The application makes use of the phusion passenger application server.
 * As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database.
 * Apart from creating a postgres database no further preparation is required.
-
 
 ## Publishing to Docker Hub
 

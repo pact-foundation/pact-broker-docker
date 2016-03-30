@@ -12,13 +12,13 @@ Change ThePostgresPassword as required.
 
     $ docker run -it --link pactbroker-db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U admin'
 
-Run the follow SQL configuration scripts:
+  Run the follow SQL configuration scripts:
 
-```sql
-CREATE USER pactbrokeruser WITH PASSWORD 'TheUserPassword';
-CREATE DATABASE pactbroker WITH OWNER pactbrokeruser;
-GRANT ALL PRIVILEGES ON DATABASE pactbroker TO pactbrokeruser;
-```
+  ```sql
+  CREATE USER pactbrokeruser WITH PASSWORD 'TheUserPassword';
+  CREATE DATABASE pactbroker WITH OWNER pactbrokeruser;
+  GRANT ALL PRIVILEGES ON DATABASE pactbroker TO pactbrokeruser;
+  ```
 
 3. Start the PactBroker container via:
 

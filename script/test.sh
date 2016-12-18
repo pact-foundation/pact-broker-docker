@@ -79,9 +79,13 @@ if [ "$(uname)" == "Darwin" ]; then
     if [ "true" == "$(command -v docker-machine > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
       test_ip=$(docker-machine ip default)
     else
-      echo "Cannot detect either boot2docker or docker-machine" && exit 1
+      if  [ "true" == "$(command -v docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
+        test_ip='localhost'
+      else
+        echo "Cannot detect either boot2docker, docker-machine, or docker native" && exit 1
     fi
   fi
+fi
 else
   PORT_BIND="${PACT_BROKER_PORT}"
 fi

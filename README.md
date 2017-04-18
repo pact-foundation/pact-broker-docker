@@ -21,16 +21,28 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 ## Notes
 
 * Use `-p 80:80` to start the docker image, as some of the Rack middleware gets confused by receiving requests for other ports and will return a 404 otherwise (port forwarding does not rewrite headers).
-* On OSX, use `boot2docker ip` to get the IP of the VirtualBox, and connect on port 80.
-* ~~On OSX you need to use 8080 due to boot2docker's virtual box generally not having the right privileges to start a new process listing to default web port.~~ This doesn't seem to be true/true anymore.
+* On OSX, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 80.
 * The application makes use of the phusion passenger application server.
 * As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database.
 * Apart from creating a postgres database no further preparation is required.
 
-## Alternative setup using docker-compose
+## Running with Docker Compose
 
-1. Use the docker-compose.yml file from the repository, modify and use as needed. 
-2. Use `docker-compose up` to get Pact Broker running.
+For a quick start with the Pact Broker and Postgre, we have an example
+[Docker Compose](DiUS/pact_broker-docker/blob/master/docker-compose.yml) setup you can use:
+
+1. Modify the `docker-compose.yml` file as required.
+2. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database
+
+Now you can access your local broker:
+
+```sh
+# Get IP of your running Docker instance
+DOCKER_HOST=$(docker-machine ip $(docker-machine active))
+curl -v http://$DOCKER_HOST # you can visit in your browser too!
+```
+
+_NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
 
 ## Publishing to Docker Hub
 

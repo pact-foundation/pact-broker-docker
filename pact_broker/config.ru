@@ -27,13 +27,10 @@ DATABASE_CREDENTIALS = {
 }
 
 app = PactBroker::App.new do | config |
-  # change these from their default values if desired
-  # config.log_dir = "./log"
-  # config.auto_migrate_db = true
-  # config.use_hal_browser = true
   config.logger = ::Logger.new($stdout)
   config.logger.level = Logger::WARN
   config.database_connection = Sequel.connect(DATABASE_CREDENTIALS.merge(logger: DatabaseLogger.new(config.logger), encoding: 'utf8'))
+  config.database_connection.timezone = :utc
 end
 
 run app

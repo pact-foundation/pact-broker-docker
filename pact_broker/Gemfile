@@ -3,3 +3,4 @@ source 'https://rubygems.org'
 gem "pact_broker"
 gem "pg"
 gem "passenger"
+gem 'haml', '~>4.0'

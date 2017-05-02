@@ -91,15 +91,15 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (1.17.0)
+    pact_broker (1.17.1)
       dry-validation (~> 0.10.5)
-      haml
-      httparty
-      json
+      haml (~> 4.0)
+      httparty (~> 0.14)
+      json (> 1.8, < 3.0)
       pact (~> 1.4)
       pact-support (~> 0.4, >= 0.4.2)
       padrino-core (~> 0.12.4)
-      rack
+      rack (< 3.0)
       redcarpet (~> 3.1)
       reform (~> 2.2.0)
       roar (~> 1.1)
@@ -179,7 +179,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml (~> 4.0)
-  pact_broker
+  pact_broker (~> 1.17)
   passenger
   pg
 

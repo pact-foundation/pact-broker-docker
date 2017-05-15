@@ -26,6 +26,9 @@ DATABASE_CREDENTIALS = {
   database: ENV['PACT_BROKER_DATABASE_NAME']
 }
 
+if ENV['PACT_BROKER_DATABASE_PORT'] =~ /^\d+$/
+  DATABASE_CREDENTIALS[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i
+end
 app = PactBroker::App.new do | config |
   config.logger = ::Logger.new($stdout)
   config.logger.level = Logger::WARN

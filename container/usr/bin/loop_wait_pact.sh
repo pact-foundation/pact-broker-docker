@@ -28,15 +28,22 @@ fi
 # defaults
 [ -z "${PACT_BROKER_PORT}" ] && PACT_BROKER_PORT=80
 [ -z "${PACT_BROKER_HOST}" ] && PACT_BROKER_HOST=localhost
+USERNAME="$1"
+PASSWORD="$2"
 
 STATUS_URL="http://${PACT_BROKER_HOST}:${PACT_BROKER_PORT}/diagnostic/status/heartbeat"
 
+if [ -n "${USERNAME}" ]; then
+  CREDENTIALS="--user ${USERNAME}:${PASSWORD}"
+else
+  CREDENTIALS=""
+fi
 # Exit immediately if a command exits with a non-zero status
 set -e
 
 echo "STATUS_URL is '${STATUS_URL}'"
 echo -n "Waiting for the Pact Broker to be ready..."
-while ! curl -s "${STATUS_URL}" | jq '.ok' | grep "true"; do
+while ! curl -s ${CREDENTIALS} "${STATUS_URL}" | jq '.ok' | grep "true"; do
   echo -n '.'
   sleep 0.1
 done

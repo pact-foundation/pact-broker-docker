@@ -8,6 +8,8 @@
 set -e
 
 wait_timeout=$1
+username=$2
+password=$3
 
 # echo fn that outputs to stderr http://stackoverflow.com/a/2990533/511069
 echoerr() {
@@ -43,4 +45,4 @@ select_installed_function () {
 TIMEOUT=$(select_installed_function timeout gtimeout)
 
 ${TIMEOUT} --foreground ${wait_timeout} \
-  $(dirname "$0")/loop_wait_pact.sh || die "Pact failed to start"
+  $(dirname "$0")/loop_wait_pact.sh ${username} ${password} || die "Pact Broker failed to start"

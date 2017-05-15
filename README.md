@@ -26,6 +26,9 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 * As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database.
 * Apart from creating a postgres database no further preparation is required.
 
+## Using basic auth
+Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application.
+
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgre, we have an example
@@ -58,5 +61,5 @@ This will prompt for your docker hub credentials and email
 
 ```
 docker login
-./script/build_and_push.sh # Note: have not tested this yet
+./script/build_and_push.sh
 ```

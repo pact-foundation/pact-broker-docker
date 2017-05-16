@@ -94,6 +94,13 @@ if [ "${DISPOSABLE_PSQL}" == "true" ]; then
   [ "$(uname)" == "Darwin" ] && die \
     "Running the disposable postgres is only supported in Linux for now."
 
+  if docker ps -a | grep ${PSQL_CONT_NAME}; then
+    echo ""
+    echo "Stopping and removing running instance of postgres container"
+    docker stop ${PSQL_CONT_NAME}
+    docker rm ${PSQL_CONT_NAME}
+  fi
+
   PACT_BROKER_DATABASE_USERNAME=postgres
   PACT_BROKER_DATABASE_NAME=pact
   PGUSER=${PACT_BROKER_DATABASE_USERNAME}

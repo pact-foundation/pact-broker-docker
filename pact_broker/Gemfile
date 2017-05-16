@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "pact_broker", "~>1.17"
+gem "pact_broker", "~>2.0"
 gem "pg"
 gem "passenger"
-gem 'haml', '~>4.0'
+

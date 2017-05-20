@@ -10,7 +10,7 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 
 ## Getting Started
 
-1. [Install Docker](https://docs.docker.com/installation/)
+1. [Install Docker](https://docs.docker.com/engine/installation/)
 2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh](script/test.sh).
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
@@ -21,11 +21,31 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 ## Notes
 
 * Use `-p 80:80` to start the docker image, as some of the Rack middleware gets confused by receiving requests for other ports and will return a 404 otherwise (port forwarding does not rewrite headers).
-* On OSX, use `boot2docker ip` to get the IP of the VirtualBox, and connect on port 80.
-* ~~On OSX you need to use 8080 due to boot2docker's virtual box generally not having the right privileges to start a new process listing to default web port.~~ This doesn't seem to be true/true anymore.
+* On OSX, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 80.
 * The application makes use of the phusion passenger application server.
 * As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database.
 * Apart from creating a postgres database no further preparation is required.
+
+## Using basic auth
+Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application.
+
+## Running with Docker Compose
+
+For a quick start with the Pact Broker and Postgre, we have an example
+[Docker Compose](DiUS/pact_broker-docker/blob/master/docker-compose.yml) setup you can use:
+
+1. Modify the `docker-compose.yml` file as required.
+2. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database
+
+Now you can access your local broker:
+
+```sh
+# Get IP of your running Docker instance
+DOCKER_HOST=$(docker-machine ip $(docker-machine active))
+curl -v http://$DOCKER_HOST # you can visit in your browser too!
+```
+
+_NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
 
 ## Publishing to Docker Hub
 
@@ -41,5 +61,5 @@ This will prompt for your docker hub credentials and email
 
 ```
 docker login
-./script/build_and_push.sh # Note: have not tested this yet
+./script/build_and_push.sh
 ```

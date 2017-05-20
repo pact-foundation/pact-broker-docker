@@ -26,14 +26,21 @@ DATABASE_CREDENTIALS = {
   database: ENV['PACT_BROKER_DATABASE_NAME']
 }
 
+if ENV['PACT_BROKER_DATABASE_PORT'] =~ /^\d+$/
+  DATABASE_CREDENTIALS[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i
+end
+
+if ENV.fetch('PACT_BROKER_BASIC_AUTH_USERNAME','') != '' && ENV.fetch('PACT_BROKER_BASIC_AUTH_PASSWORD', '') != ''
+  use Rack::Auth::Basic, "Restricted area" do |username, password|
+    username == ENV['PACT_BROKER_BASIC_AUTH_USERNAME'] && password == ENV['PACT_BROKER_BASIC_AUTH_PASSWORD']
+  end
+end
+
 app = PactBroker::App.new do | config |
-  # change these from their default values if desired
-  # config.log_dir = "./log"
-  # config.auto_migrate_db = true
-  # config.use_hal_browser = true
   config.logger = ::Logger.new($stdout)
   config.logger.level = Logger::WARN
   config.database_connection = Sequel.connect(DATABASE_CREDENTIALS.merge(logger: DatabaseLogger.new(config.logger), encoding: 'utf8'))
+  config.database_connection.timezone = :utc
 end
 
 run app

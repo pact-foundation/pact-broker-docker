@@ -94,6 +94,13 @@ if [ "${DISPOSABLE_PSQL}" == "true" ]; then
   [ "$(uname)" == "Darwin" ] && die \
     "Running the disposable postgres is only supported in Linux for now."
 
+  if docker ps -a | grep ${PSQL_CONT_NAME}; then
+    echo ""
+    echo "Stopping and removing running instance of postgres container"
+    docker stop ${PSQL_CONT_NAME}
+    docker rm ${PSQL_CONT_NAME}
+  fi
+
   PACT_BROKER_DATABASE_USERNAME=postgres
   PACT_BROKER_DATABASE_NAME=pact
   PGUSER=${PACT_BROKER_DATABASE_USERNAME}
@@ -150,6 +157,9 @@ docker run --privileged --name=${PACT_CONT_NAME} -d -p ${PORT_BIND} \
   -e PACT_BROKER_DATABASE_PASSWORD=${PACT_BROKER_DATABASE_PASSWORD} \
   -e PACT_BROKER_DATABASE_HOST=${PACT_BROKER_DATABASE_HOST} \
   -e PACT_BROKER_DATABASE_NAME=${PACT_BROKER_DATABASE_NAME} \
+  -e PACT_BROKER_DATABASE_PORT=${PACT_BROKER_DATABASE_PORT} \
+  -e PACT_BROKER_BASIC_AUTH_USERNAME=${PACT_BROKER_BASIC_AUTH_USERNAME} \
+  -e PACT_BROKER_BASIC_AUTH_PASSWORD=${PACT_BROKER_BASIC_AUTH_PASSWORD} \
   dius/pact_broker
 sleep 1 && docker logs ${PACT_CONT_NAME}
 
@@ -166,7 +176,7 @@ docker inspect -f "{{ .State.Running }}" ${PACT_CONT_NAME} | grep true || die \
 
 echo ""
 echo "Checking that server can be connected from within the Docker container"
-docker exec ${PACT_CONT_NAME} wait_ready ${PACT_WAIT_TIMEOUT} || die \
+docker exec ${PACT_CONT_NAME} wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD} || die \
   "When running wait_ready inside the container!"
 
 if [ -z "${test_ip}" ]; then
@@ -176,19 +186,19 @@ fi
 echo ""
 echo "Checking that server can be connected from outside the Docker container"
 export PACT_BROKER_HOST=${test_ip}
-$(dirname "$0")/../container/usr/bin/wait_ready ${PACT_WAIT_TIMEOUT}
+$(dirname "$0")/../container/usr/bin/wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD}
 
 echo ""
 echo "Checking that server accepts and return HTML from outside"
-curl -H "Accept:text/html" -s "http://${test_ip}:${EXTERN_BROKER_PORT}/ui/relationships"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}/ui/relationships"
 
 echo ""
 echo "Checking for specific HTML content from outside: '0 pacts'"
-curl -H "Accept:text/html" -s "http://${test_ip}:${EXTERN_BROKER_PORT}/ui/relationships" | grep "0 pacts"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}/ui/relationships" | grep "0 pacts"
 
 echo ""
 echo "Checking that server accepts and responds with status 200"
-response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT})
+response_code=$(curl -s -o /dev/null -w "%{http_code}" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} http://${test_ip}:${EXTERN_BROKER_PORT})
 
 if [[ "${response_code}" == '200' ]]; then
   echo ""

@@ -120,7 +120,7 @@ GEM
     passenger (5.1.4)
       rack
       rake (>= 0.8.1)
-    pg (0.20.0)
+    pg (0.21.0)
     rack (1.5.5)
     rack-protection (1.5.3)
       rack

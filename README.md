@@ -12,10 +12,14 @@ This repository deploys [Pact Broker](https://github.com/bethesque/pact_broker) 
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
 2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh](script/test.sh).
+    * PACT_BROKER_DATABASE_ADAPTER
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
     * PACT_BROKER_DATABASE_NAME
+    
+    Adapter can be 'mysql2' or 'postgres'
+    
 3. Test the pact broker environment by executing [script/test.sh](script/test.sh)
 
 ## Notes

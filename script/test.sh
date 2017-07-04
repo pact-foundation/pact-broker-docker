@@ -76,11 +76,11 @@ if [ "$(uname)" == "Darwin" ]; then
   if [ "true" == "$(command -v boot2docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
     test_ip=$(boot2docker ip)
   else
-    if [ "true" == "$(command -v docker-machine > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
-      test_ip=$(docker-machine ip default)
+    if  [ "true" == "$(command -v docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
+      test_ip='localhost'
     else
-      if  [ "true" == "$(command -v docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
-        test_ip='localhost'
+      if [ "true" == "$(command -v docker-machine > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
+        test_ip=$(docker-machine ip default)
       else
         echo "Cannot detect either boot2docker, docker-machine, or docker native" && exit 1
     fi
@@ -190,11 +190,11 @@ $(dirname "$0")/../container/usr/bin/wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROK
 
 echo ""
 echo "Checking that server accepts and return HTML from outside"
-curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}/ui/relationships"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}"
 
 echo ""
 echo "Checking for specific HTML content from outside: '0 pacts'"
-curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}/ui/relationships" | grep "0 pacts"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}" | grep "0 pacts"
 
 echo ""
 echo "Checking that server accepts and responds with status 200"

@@ -32,7 +32,7 @@ Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgre, we have an example
-[Docker Compose](DiUS/pact_broker-docker/blob/master/docker-compose.yml) setup you can use:
+[Docker Compose](docker-compose.yml) setup you can use:
 
 1. Modify the `docker-compose.yml` file as required.
 2. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database

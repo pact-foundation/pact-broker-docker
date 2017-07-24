@@ -46,9 +46,9 @@ GEM
     find_a_port (1.0.1)
     haml (4.0.7)
       tilt
-    httparty (0.15.5)
+    httparty (0.15.6)
       multi_xml (>= 0.5.2)
-    i18n (0.8.4)
+    i18n (0.8.6)
     inflecto (0.0.2)
     json (2.1.0)
     multi_json (1.12.1)
@@ -85,7 +85,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.2.0)
+    pact_broker (2.3.0)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 4.0)
@@ -109,7 +109,7 @@ GEM
       sinatra (>= 1.4.6)
       thor (~> 0.18)
     padrino-support (0.14.1.1)
-    passenger (5.1.5)
+    passenger (5.1.6)
       rack
       rake (>= 0.8.1)
     pg (0.21.0)

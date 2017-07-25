@@ -19,7 +19,7 @@ if defined?(PhusionPassenger)
 end
 
 DATABASE_CREDENTIALS = {
-  adapter: "postgres",
+  adapter: ENV['PACT_BROKER_DATABASE_ADAPTER'],
   user: ENV['PACT_BROKER_DATABASE_USERNAME'],
   password: ENV['PACT_BROKER_DATABASE_PASSWORD'],
   host: ENV['PACT_BROKER_DATABASE_HOST'],
@@ -34,7 +34,7 @@ if ENV.fetch('PACT_BROKER_BASIC_AUTH_USERNAME','') != '' && ENV.fetch('PACT_BROK
   use Rack::Auth::Basic, "Restricted area" do |username, password|
     username == ENV['PACT_BROKER_BASIC_AUTH_USERNAME'] && password == ENV['PACT_BROKER_BASIC_AUTH_PASSWORD']
   end
-end
+end 
 
 app = PactBroker::App.new do | config |
   config.logger = ::Logger.new($stdout)

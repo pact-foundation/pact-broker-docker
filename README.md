@@ -18,7 +18,7 @@ This repository deploys [Pact Broker](https://github.com/pact-foundation/pact_br
     * PACT_BROKER_DATABASE_NAME
     * PACT_BROKER_DATABASE_ADAPTER (optional, defaults to 'postgres')
 
-    Adapter can be 'mysql2' or 'postgres'
+    Adapter can be 'postgres' (recommended), 'mysql2' (please note that future JSON search features may not be supported by mysql) or 'sqlite' (only recommended for investigation/spikes).
 
 3. Test the pact broker environment by executing [script/test.sh](script/test.sh)
 

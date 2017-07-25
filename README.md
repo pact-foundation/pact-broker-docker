@@ -15,13 +15,13 @@ This repository deploys [Pact Broker](https://github.com/pact-foundation/pact_br
 
 For a postgres or mysql database:
 
-    * PACT_BROKER_DATABASE_ADAPTER (optional, defaults to 'postgres'.)
+    * PACT_BROKER_DATABASE_ADAPTER (optional, defaults to 'postgres', see note below.)
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
     * PACT_BROKER_DATABASE_NAME
 
-    Adapter can be 'postgres' (recommended) or 'mysql2' (please note that future JSON search features may not be supported on mysql).
+Adapter can be 'postgres' (recommended) or 'mysql2' (please note that future JSON search features may not be supported on mysql).
 
 For an sqlite database (only recommended for investigation/spikes, as it will be disposed of with the container unless you mount it from an external file system):
 

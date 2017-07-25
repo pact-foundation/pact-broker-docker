@@ -18,8 +18,10 @@ if defined?(PhusionPassenger)
   end
 end
 
+database_adapter = ENV.fetch('PACT_BROKER_DATABASE_ADAPTER','') != '' ? ENV['PACT_BROKER_DATABASE_ADAPTER'] : 'postgres'
+
 DATABASE_CREDENTIALS = {
-  adapter: "postgres",
+  adapter: database_adapter,
   user: ENV['PACT_BROKER_DATABASE_USERNAME'],
   password: ENV['PACT_BROKER_DATABASE_PASSWORD'],
   host: ENV['PACT_BROKER_DATABASE_HOST'],

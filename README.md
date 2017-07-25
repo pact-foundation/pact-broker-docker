@@ -12,23 +12,30 @@ This repository deploys [Pact Broker](https://github.com/pact-foundation/pact_br
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
 2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh](script/test.sh).
+
+For a postgres or mysql database:
+
+    * PACT_BROKER_DATABASE_ADAPTER (optional, defaults to 'postgres'.)
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
     * PACT_BROKER_DATABASE_NAME
-    * PACT_BROKER_DATABASE_ADAPTER (optional, defaults to 'postgres')
 
-    Adapter can be 'postgres' (recommended), 'mysql2' (please note that future JSON search features may not be supported by mysql) or 'sqlite' (only recommended for investigation/spikes).
+    Adapter can be 'postgres' (recommended) or 'mysql2' (please note that future JSON search features may not be supported on mysql).
+
+For an sqlite database (only recommended for investigation/spikes, as it will be disposed of with the container unless you mount it from an external file system):
+
+  * PACT_BROKER_DATABASE_ADAPTER (set to 'sqlite')
+  * PACT_BROKER_DATABASE_NAME (arbitrary name eg. pact_broker.sqlite)
 
 3. Test the pact broker environment by executing [script/test.sh](script/test.sh)
 
 ## Notes
 
 * Use `-p 80:80` to start the docker image, as some of the Rack middleware gets confused by receiving requests for other ports and will return a 404 otherwise (port forwarding does not rewrite headers).
-* On OSX, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 80.
+* On OSX, if you are not using Docker native, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 80.
 * The application makes use of the phusion passenger application server.
-* As the native dependencies for a postgres driver are baked into the docker container, you are limited to using postgres as a database.
-* Apart from creating a postgres database no further preparation is required.
+* Apart from creating a database no further preparation is required.
 
 ## Using basic auth
 Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application.
@@ -50,20 +57,3 @@ curl -v http://$DOCKER_HOST # you can visit in your browser too!
 ```
 
 _NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
-
-## Publishing to Docker Hub
-
-1. Login to docker hub from console
-
-```
-docker login
-```
-
-This will prompt for your docker hub credentials and email
-
-2. Build the docker image for the dius account
-
-```
-docker login
-./script/build_and_push.sh
-```

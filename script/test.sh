@@ -192,16 +192,34 @@ echo "Checking that server accepts and return HTML from outside"
 curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}"
 
 echo ""
-echo "Checking for specific HTML content from outside: '0 pacts'"
-curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}" | grep "0 pacts"
+echo "Checking for specific HTML content from outside: 'Pacts'"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}" | grep "Pacts"
 
-echo ""
 echo "Checking that server accepts and responds with status 200"
 response_code=$(curl -s -o /dev/null -w "%{http_code}" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} http://${test_ip}:${EXTERN_BROKER_PORT})
 
-if [[ "${response_code}" == '200' ]]; then
-  echo ""
-  echo "SUCCESS: All tests passed!"
-else
-  die "While checking HTML response status 200"
+if [[ "${response_code}" -ne '200' ]]; then
+  die "Expected response code to be 200, but was ${response_code}"
 fi
+
+if [[ ! -z "${PACT_BROKER_BASIC_AUTH_USERNAME}" ]]; then
+  echo ""
+  echo "Checking that basic auth is configured"
+  response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT})
+
+  if [[ "${response_code}" -ne '401' ]]; then
+    die "Expected response code to be 401, but was ${response_code}"
+  fi
+fi
+
+script/publish.sh "http://${test_ip}:${EXTERN_BROKER_PORT}"
+
+echo ""
+echo "Checking that badges can be accessed without basic auth"
+response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT}/pacts/provider/Bar/consumer/Foo/latest/badge.svg)
+
+if [[ "${response_code}" -ne '200' ]]; then
+  die "Expected response code to be 200, but was ${response_code}"
+fi
+
+echo "SUCCESS: All tests passed!"

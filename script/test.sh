@@ -56,14 +56,14 @@ fi
 [ -z "${PACT_BROKER_PORT}" ]             && PACT_BROKER_PORT=80
 [ -z "${PSQL_WAIT_TIMEOUT}" ]            && PSQL_WAIT_TIMEOUT="10s"
 [ -z "${PACT_WAIT_TIMEOUT}" ]            && PACT_WAIT_TIMEOUT="15s"
-[ -z "${PACT_CONT_NAME}" ]               && PACT_CONT_NAME="broker_app"
+[ -z "${PACT_CONT_NAME}" ]               && PACT_CONT_NAME="broker-app"
 [ -z "${PSQL_CONT_NAME}" ]               && PSQL_CONT_NAME="postgres"
 [ -z "${PACT_BROKER_DATABASE_ADAPTER}" ] && PACT_BROKER_DATABASE_ADAPTER="postgres"
 
 echo "Will build the pact broker"
 docker build -t=dius/pact_broker .
 
-# Stop and remove any running broker_app container instances before updating
+# Stop and remove any running broker-app container instances before updating
 if docker ps -a | grep ${PACT_CONT_NAME}; then
   echo ""
   echo "Stopping and removing running instance of pact broker container"

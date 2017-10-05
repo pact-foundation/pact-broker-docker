@@ -12,7 +12,7 @@
 
     # Commit changes
     git add pact_broker
-    git commit -m "chore(gems): Updated pact_broker gem to version $(cd pact_broker && bundle exec ruby -e "require 'pact_broker/version'; puts PactBroker::VERSION")"
+    git commit -m "feat(gems): update pact_broker gem to version $(cd pact_broker && bundle exec ruby -e "require 'pact_broker/version'; puts PactBroker::VERSION")"
     git push
 
 ## Publishing to Docker Hub

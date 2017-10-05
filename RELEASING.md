@@ -21,4 +21,7 @@ Docker hub will build an image every time a tag with pattern /^[0-9.\-]+/ (eg. 2
 
 To release a new image with a tag:
 
+    export TAG=$(script/next-docker-tag.sh)
+    bundle exec rake generate_changelog # then remove extra whitespace
+    git add CHANGELOG.md && git commit -m "chore(changelog): update for ${TAG}"
     script/release.sh

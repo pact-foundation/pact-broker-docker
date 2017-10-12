@@ -26,3 +26,4 @@ To release a new image with a tag:
     bundle exec rake generate_changelog # then remove extra whitespace
     git add CHANGELOG.md && git commit -m "chore(changelog): update for ${TAG}"
     script/release.sh
+    unset TAG

@@ -40,6 +40,10 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 ## Using basic auth
 Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application. Note that the [verification status badges][badges] are not protected by basic auth, so that you may embed them in README markdown.
 
+## Setting the log level
+
+Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, `WARN`, `ERROR`, or `FATAL`.
+
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgres, we have an example
@@ -58,4 +62,9 @@ curl -v http://$DOCKER_HOST # you can visit in your browser too!
 
 _NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
 
+# Troubleshooting
+
+See the [Troubleshooting][troubleshooting] page on the wiki.
+
 [badges]: https://github.com/pact-foundation/pact_broker/wiki/Provider-verification-badges
+[troubleshooting]: https://github.com/DiUS/pact_broker-docker/wiki/Troubleshooting

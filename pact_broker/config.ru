@@ -1,13 +1,12 @@
-require 'logger'
 require 'sequel'
 require 'pact_broker'
+require_relative 'logger'
 require_relative 'basic_auth'
 require_relative 'database_connection'
 require_relative 'passenger_config'
 
 app = PactBroker::App.new do | config |
-  config.logger = ::Logger.new($stdout)
-  config.logger.level = Logger::WARN
+  config.logger = $logger
   config.database_connection = create_database_connection(config.logger)
   config.database_connection.timezone = :utc
 end

@@ -1,5 +1,12 @@
-<a name="v2.6.0-1"></a>
-### v2.6.0-1 (2017-10-06)
+<a name="2.6.0-2"></a>
+### 2.6.0-2 (2017-10-13)
+
+#### Features
+
+* allow log level to be configured via PACT_BROKER_LOG_LEVEL	 ([a1b77aa](/../../commit/a1b77aa))
+
+<a name="2.6.0-1"></a>
+### 2.6.0-1 (2017-10-06)
 
 #### Features
 

@@ -87,7 +87,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.7.0.beta.2)
+    pact_broker (2.7.0.beta.3)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 4.0)
@@ -174,7 +174,7 @@ PLATFORMS
 
 DEPENDENCIES
   mysql2 (~> 0.3)
-  pact_broker (= 2.7.0.beta.2)
+  pact_broker (= 2.7.0.beta.3)
   passenger
   pg
   sqlite3 (~> 1.3)

@@ -4,6 +4,8 @@ Run:
 
     script/update.sh
 
+This will update to the latest version of the pact broker gem allowable by the Gemfile. Note that if you want to release a beta version, you will need to specify the version explicitly. eg `gem "pact_broker", "2.7.0.beta.3"`
+
 ## Debugging
 
     # Check Pact Broker can start

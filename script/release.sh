@@ -1,3 +1,5 @@
+set -e
+
 DOCKER_IMAGE="dius/pact-broker"
 
 export TAG=$(script/next-docker-tag.sh)

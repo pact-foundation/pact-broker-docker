@@ -5,13 +5,13 @@ This repository deploys [Pact Broker](https://github.com/pact-foundation/pact_br
 
 ## Prerequisites
 
-* A running postgresql database and the ability to connect to it (see [POSTGRESQL.md](POSTGRESQL.md)).
+* A running postgresql database and the ability to connect to it (see [POSTGRESQL.md][postgres]).
 * If on Mac, you will need the `timeout` or `gtimeout` function. You can install `gtimeout` using `brew install coreutils`.
 
 ## Getting Started
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
-2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh](script/test.sh).
+2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh][test-script].
 
 For a postgres or mysql database:
 
@@ -28,7 +28,7 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
   * PACT_BROKER_DATABASE_ADAPTER (set to 'sqlite')
   * PACT_BROKER_DATABASE_NAME (arbitrary name eg. pact_broker.sqlite)
 
-3. Test the pact broker environment by executing [script/test.sh](script/test.sh)
+3. Test the pact broker environment by executing [script/test.sh][test-script]
 
 ## Notes
 
@@ -47,7 +47,7 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgres, we have an example
-[Docker Compose](docker-compose.yml) setup you can use:
+[Docker Compose][docker-compose] setup you can use:
 
 1. Modify the `docker-compose.yml` file as required.
 2. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database
@@ -68,3 +68,6 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 
 [badges]: https://github.com/pact-foundation/pact_broker/wiki/Provider-verification-badges
 [troubleshooting]: https://github.com/DiUS/pact_broker-docker/wiki/Troubleshooting
+[postgres]: https://github.com/DiUS/pact_broker-docker/blob/master/POSTGRESQL.md
+[test-script]: https://github.com/DiUS/pact_broker-docker/blob/master/script/test.sh
+[docker-compose]: https://github.com/DiUS/pact_broker-docker/blob/master/docker-compose.yml

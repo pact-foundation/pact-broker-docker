@@ -59,7 +59,7 @@ GEM
     mustermann19 (0.4.4)
       enumerable-lazy
     mysql2 (0.4.9)
-    pact (1.19.0)
+    pact (1.19.1)
       json (> 1.8.5)
       pact-mock_service (~> 2.0)
       pact-support (~> 1.2, >= 1.2.4)

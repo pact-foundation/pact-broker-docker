@@ -1,3 +1,14 @@
+<a name="2.8.0.beta.4-1"></a>
+### 2.8.0.beta.4-1 (2017-11-03)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.8.0.beta.4	 ([78f0a3b](/../../commit/78f0a3b))
+  * update pact_broker gem to version 2.7.0.beta.3	 ([10d21e7](/../../commit/10d21e7))
+
+
 <a name="2.7.0.beta.3-1"></a>
 ### 2.7.0.beta.3-1 (2017-11-01)
 

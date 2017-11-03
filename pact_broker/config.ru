@@ -11,6 +11,8 @@ app = PactBroker::App.new do | config |
   config.database_connection.timezone = :utc
 end
 
+PactBroker.configuration.load_from_database!
+
 basic_auth_username = ENV.fetch('PACT_BROKER_BASIC_AUTH_USERNAME','')
 basic_auth_password = ENV.fetch('PACT_BROKER_BASIC_AUTH_PASSWORD', '')
 use_basic_auth = basic_auth_username != '' && basic_auth_password != ''

@@ -1,7 +1,5 @@
 set -e
 
-DOCKER_IMAGE="dius/pact-broker"
-
 export TAG=$(script/next-docker-tag.sh)
 bundle exec rake generate_changelog
 git add CHANGELOG.md && git commit -m "chore(changelog): update for ${TAG}"

@@ -44,6 +44,10 @@ Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC
 
 Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, `WARN`, `ERROR`, or `FATAL`.
 
+## General Pact Broker configuration and usage
+
+Documentation for the Pact Broker application itself can be found in the Pact Broker [wiki][pact-broker-wiki].
+
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgres, we have an example
@@ -71,3 +75,4 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 [postgres]: https://github.com/DiUS/pact_broker-docker/blob/master/POSTGRESQL.md
 [test-script]: https://github.com/DiUS/pact_broker-docker/blob/master/script/test.sh
 [docker-compose]: https://github.com/DiUS/pact_broker-docker/blob/master/docker-compose.yml
+[pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki

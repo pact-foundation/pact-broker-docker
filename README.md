@@ -59,9 +59,10 @@ For a quick start with the Pact Broker and Postgres, we have an example
 Now you can access your local broker:
 
 ```sh
-# Get IP of your running Docker instance
-DOCKER_HOST=$(docker-machine ip $(docker-machine active))
-curl -v http://$DOCKER_HOST # you can visit in your browser too!
+curl -v http://localhost # you can visit in your browser too!
+
+# SSL endpoint, note that URLs in response contain https:// protocol
+curl -v -k https://localhost:8443
 ```
 
 _NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_

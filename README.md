@@ -40,6 +40,9 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 ## Using basic auth
 Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application. Note that the [verification status badges][badges] are not protected by basic auth, so that you may embed them in README markdown.
 
+## Using SSL
+See the [Pact Broker configuration documentation][reverse-proxy].
+
 ## Setting the log level
 
 Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, `WARN`, `ERROR`, or `FATAL`.
@@ -77,3 +80,4 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 [test-script]: https://github.com/DiUS/pact_broker-docker/blob/master/script/test.sh
 [docker-compose]: https://github.com/DiUS/pact_broker-docker/blob/master/docker-compose.yml
 [pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki
+[reverse-proxy]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#running-the-broker-behind-a-reverse-proxy

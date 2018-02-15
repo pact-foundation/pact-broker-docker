@@ -40,9 +40,16 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 ## Using basic auth
 Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application. Note that the [verification status badges][badges] are not protected by basic auth, so that you may embed them in README markdown.
 
+## Using SSL
+See the [Pact Broker configuration documentation][reverse-proxy].
+
 ## Setting the log level
 
 Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, `WARN`, `ERROR`, or `FATAL`.
+
+## General Pact Broker configuration and usage
+
+Documentation for the Pact Broker application itself can be found in the Pact Broker [wiki][pact-broker-wiki].
 
 ## Running with Docker Compose
 
@@ -55,9 +62,10 @@ For a quick start with the Pact Broker and Postgres, we have an example
 Now you can access your local broker:
 
 ```sh
-# Get IP of your running Docker instance
-DOCKER_HOST=$(docker-machine ip $(docker-machine active))
-curl -v http://$DOCKER_HOST # you can visit in your browser too!
+curl -v http://localhost # you can visit in your browser too!
+
+# SSL endpoint, note that URLs in response contain https:// protocol
+curl -v -k https://localhost:8443
 ```
 
 _NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
@@ -71,3 +79,5 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 [postgres]: https://github.com/DiUS/pact_broker-docker/blob/master/POSTGRESQL.md
 [test-script]: https://github.com/DiUS/pact_broker-docker/blob/master/script/test.sh
 [docker-compose]: https://github.com/DiUS/pact_broker-docker/blob/master/docker-compose.yml
+[pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki
+[reverse-proxy]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#running-the-broker-behind-a-reverse-proxy

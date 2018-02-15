@@ -1,3 +1,16 @@
+<a name="2.14.0-1"></a>
+### 2.14.0-1 (2018-02-15)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.14.0	 ([b81c815](/../../commit/b81c815))
+
+* **ssl**
+  * create nginx SSL reverse proxy example (#58)	 ([0a01e10](/../../commit/0a01e10))
+
+
 <a name="2.13.1-1"></a>
 ### 2.13.1-1 (2018-01-12)
 

@@ -1,7 +1,6 @@
 FROM 1and1internet/ubuntu-16-nginx-passenger-ruby-2.3
 ENV APP_HOME=/home/app/pact_broker/
-RUN apt-get update && apt-get install libpq-dev --yes &&
-rm -f /etc/service/nginx/down /etc/nginx/sites-enabled/default
+RUN apt-get update && apt-get install libpq-dev --yes && rm -f /etc/service/nginx/down /etc/nginx/sites-enabled/default
 
 COPY container /
 RUN gem update --system

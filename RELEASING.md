@@ -18,4 +18,3 @@ Docker hub will build a new `latest` image every time a tag with a major.minor.p
 To release a new image with a tag:
 
     script/release.sh
-

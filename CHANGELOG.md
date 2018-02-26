@@ -1,3 +1,16 @@
+<a name="2.15.0-1"></a>
+### 2.15.0-1 (2018-02-26)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.15.0	 ([b7669ae](/../../commit/b7669ae))
+
+* **env**
+  * allow env vars to configure http requests	 ([a3c6b99](/../../commit/a3c6b99))
+
+
 <a name="2.14.0-1"></a>
 ### 2.14.0-1 (2018-02-15)
 

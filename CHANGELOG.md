@@ -1,3 +1,13 @@
+<a name="2.15.0-2"></a>
+### 2.15.0-2 (2018-02-26)
+
+
+#### Features
+
+* **env**
+  * allow lowercase env vars for http requests	 ([3f4cde2](/../../commit/3f4cde2))
+
+
 <a name="2.15.0-1"></a>
 ### 2.15.0-1 (2018-02-26)
 

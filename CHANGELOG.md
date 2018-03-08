@@ -1,3 +1,19 @@
+<a name="2.16.0-1"></a>
+### 2.16.0-1 (2018-03-08)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.16.0	 ([c4427dd](/../../commit/c4427dd))
+
+
+#### Bug Fixes
+
+* **healthcheck**
+  * fix healthcheck to avoid warnings. Fixes pact-foundation/pact_broker/issues/199	 ([01f52d3](/../../commit/01f52d3))
+
+
 <a name="2.15.0-2"></a>
 ### 2.15.0-2 (2018-02-26)
 

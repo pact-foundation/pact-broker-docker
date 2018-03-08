@@ -5,7 +5,7 @@ services:
   postgres:
     image: postgres
     healthcheck:
-      test: psql postgres --command "select 1"
+      test: psql postgres --command "select 1" -U postgres
     ports:
       - "5432:5432"
     environment:

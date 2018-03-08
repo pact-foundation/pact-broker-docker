@@ -2,6 +2,8 @@
 
 Run:
 
+    chruby 2.4 # or use your ruby version manager of choice
+    bundle install
     script/update.sh
 
 This will update to the latest version of the pact broker gem allowable by the Gemfile. Note that if you want to release a beta version, you will need to specify the version explicitly. eg `gem "pact_broker", "2.7.0.beta.3"`
@@ -18,4 +20,3 @@ Docker hub will build a new `latest` image every time a tag with a major.minor.p
 To release a new image with a tag:
 
     script/release.sh
-

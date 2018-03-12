@@ -59,6 +59,7 @@ fi
 [ -z "${PACT_CONT_NAME}" ]               && PACT_CONT_NAME="broker-app"
 [ -z "${PSQL_CONT_NAME}" ]               && PSQL_CONT_NAME="postgres"
 [ -z "${PACT_BROKER_DATABASE_ADAPTER}" ] && PACT_BROKER_DATABASE_ADAPTER="postgres"
+[ -z "${PACT_BROKER_PUBLIC_HEARTBEAT}" ] && PACT_BROKER_PUBLIC_HEARTBEAT="true"
 
 echo "Will build the pact broker"
 docker build -t=dius/pact_broker .
@@ -159,6 +160,7 @@ docker run --privileged --name=${PACT_CONT_NAME} -d -p ${PORT_BIND} \
   -e PACT_BROKER_DATABASE_PORT=${PACT_BROKER_DATABASE_PORT} \
   -e PACT_BROKER_BASIC_AUTH_USERNAME=${PACT_BROKER_BASIC_AUTH_USERNAME} \
   -e PACT_BROKER_BASIC_AUTH_PASSWORD=${PACT_BROKER_BASIC_AUTH_PASSWORD} \
+  -e PACT_BROKER_PUBLIC_HEARTBEAT=${PACT_BROKER_PUBLIC_HEARTBEAT} \
   -e PACT_BROKER_LOG_LEVEL=INFO \
   dius/pact_broker
 sleep 1 && docker logs ${PACT_CONT_NAME}
@@ -218,6 +220,13 @@ script/publish.sh "http://${test_ip}:${EXTERN_BROKER_PORT}"
 echo ""
 echo "Checking that badges can be accessed without basic auth"
 response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT}/pacts/provider/Bar/consumer/Foo/latest/badge.svg)
+
+if [[ "${response_code}" -ne '200' ]]; then
+  die "Expected response code to be 200, but was ${response_code}"
+fi
+
+echo "Checking that the heartbeat URL can be accessed without basic auth"
+response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT}/diagnostic/status/heartbeat)
 
 if [[ "${response_code}" -ne '200' ]]; then
   die "Expected response code to be 200, but was ${response_code}"

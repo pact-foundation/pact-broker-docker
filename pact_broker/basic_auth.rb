@@ -23,14 +23,14 @@ class BasicAuth
   end
 
   def use_basic_auth?(env)
-    !(is_badge_path?(env) || is_heartbeat_and_public_access_allowed(env))
+    !(is_badge_path?(env) || is_heartbeat_and_public_access_allowed?(env))
   end
 
   def is_badge_path?(env)
     env[PATH_INFO] =~ BADGE_PATH
   end
 
-  def is_heartbeat_and_public_access_allowed?
-    @allow_public_access_to_heartbeat && env[PATH_INFO] == BADGE_PATH
+  def is_heartbeat_and_public_access_allowed?(env)
+    @allow_public_access_to_heartbeat && env[PATH_INFO] == HEARTBEAT_PATH
   end
 end

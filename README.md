@@ -40,6 +40,8 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 ## Using basic auth
 Run your container with `PACT_BROKER_BASIC_AUTH_USERNAME` and `PACT_BROKER_BASIC_AUTH_PASSWORD` set to enable basic auth for the pact broker application. Note that the [verification status badges][badges] are not protected by basic auth, so that you may embed them in README markdown.
 
+If you are using the docker container within an AWS autoscaling group, and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`.
+
 ## Using SSL
 See the [Pact Broker configuration documentation][reverse-proxy].
 

@@ -1,3 +1,12 @@
+<a name="2.16.1-3"></a>
+### 2.16.1-3 (2018-03-13)
+
+
+#### Bug Fixes
+
+* correct code for allowing public access to heartbeat url	 ([2b342d5](/../../commit/2b342d5))
+
+
 <a name="2.16.1-2"></a>
 ### 2.16.1-2 (2018-03-12)
 

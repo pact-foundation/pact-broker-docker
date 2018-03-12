@@ -43,6 +43,7 @@ script:
 # Docker cleanup though it might not be necessary as Travis probably
 # cleans the used slaves anyway for this is also serves as documenting code
 after_script:
+  - docker logs $PACT_CONT_NAME
   - docker stop $PSQL_CONT_NAME || true
   - docker stop $PACT_CONT_NAME || true
   - docker rm $PACT_CONT_NAME || true

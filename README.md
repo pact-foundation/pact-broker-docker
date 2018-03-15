@@ -72,6 +72,10 @@ curl -v -k https://localhost:8443
 
 _NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
 
+## Running with Openshift
+
+See [pact-broker-openshift](https://github.com/jaimeniswonger/pact-broker-openshift) for an example config file.
+
 # Troubleshooting
 
 See the [Troubleshooting][troubleshooting] page on the wiki.

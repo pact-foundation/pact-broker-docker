@@ -1,3 +1,14 @@
+<a name="2.17.1-1"></a>
+### 2.17.1-1 (2018-03-30)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.17.1	 ([31848b5](/../../commit/31848b5))
+  * update pact_broker gem to version 2.17.0	 ([bea5c1c](/../../commit/bea5c1c))
+
+
 <a name="2.16.1-3"></a>
 ### 2.16.1-3 (2018-03-13)
 

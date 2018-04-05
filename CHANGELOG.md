@@ -1,3 +1,13 @@
+<a name="2.18.0-1"></a>
+### 2.18.0-1 (2018-04-05)
+
+
+#### Features
+
+* **gems**
+  * add rake tasks and update pact_broker gem to version 2.18.0	 ([6b83c67](/../../commit/6b83c67))
+
+
 <a name="2.17.1-1"></a>
 ### 2.17.1-1 (2018-03-30)
 

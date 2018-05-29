@@ -1,3 +1,14 @@
+<a name="2.19.2-1"></a>
+### 2.19.2-1 (2018-05-29)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.19.2	 ([bf996ee](/../../commit/bf996ee))
+  * update pact_broker gem to version 2.19.1	 ([3038f35](/../../commit/3038f35))
+
+
 <a name="2.19.1-1"></a>
 ### 2.19.1-1 (2018-05-18)
 

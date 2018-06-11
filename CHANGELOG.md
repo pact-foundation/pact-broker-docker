@@ -1,3 +1,12 @@
+<a name="2.22.0-1"></a>
+### 2.22.0-1 (2018-06-11)
+
+
+#### Features
+
+* expose webhook whitelist configuration as environment variables	 ([219cda4](/../../commit/219cda4))
+
+
 <a name="2.20.0-1"></a>
 ### 2.20.0-1 (2018-06-08)
 

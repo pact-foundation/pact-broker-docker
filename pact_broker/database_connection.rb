@@ -4,16 +4,17 @@ require_relative 'database_logger'
 def create_database_connection(logger)
   database_adapter = ENV.fetch('PACT_BROKER_DATABASE_ADAPTER','') != '' ? ENV['PACT_BROKER_DATABASE_ADAPTER'] : 'postgres'
 
-  credentials = {
+  config = {
     adapter: database_adapter,
     user: ENV['PACT_BROKER_DATABASE_USERNAME'],
     password: ENV['PACT_BROKER_DATABASE_PASSWORD'],
     host: ENV['PACT_BROKER_DATABASE_HOST'],
-    database: ENV['PACT_BROKER_DATABASE_NAME']
+    database: ENV['PACT_BROKER_DATABASE_NAME'],
+    encoding: 'utf8'
   }
 
   if ENV['PACT_BROKER_DATABASE_PORT'] =~ /^\d+$/
-    credentials[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i
+    config[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i
   end
 
   ##
@@ -33,7 +34,9 @@ def create_database_connection(logger)
   # -1 means that connections will be validated every time, which avoids errors
   # when databases are restarted and connections are killed.  This has a performance
   # penalty, so consider increasing this timeout if building a frequently accessed service.
-  connection = Sequel.connect(credentials.merge(logger: DatabaseLogger.new(logger), encoding: 'utf8'))
+  logger.info "Connecting to database with config: #{config.merge(password: "*****")}"
+  config[:logger] = DatabaseLogger.new(logger)
+  connection = Sequel.connect(config)
   connection.extension(:connection_validator)
   connection.pool.connection_validation_timeout = -1
   connection

@@ -1,2 +1,3 @@
 pact_broker/pact_broker.sqlite
 pact_broker.sqlite
+pact_broker/log

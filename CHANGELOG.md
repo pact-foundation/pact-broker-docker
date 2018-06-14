@@ -1,3 +1,12 @@
+<a name="2.22.0-2"></a>
+### 2.22.0-2 (2018-06-14)
+
+
+#### Features
+
+* change version ordering to order by date by default	 ([9e6fca7](/../../commit/9e6fca7))
+
+
 <a name="2.22.0-1"></a>
 ### 2.22.0-1 (2018-06-11)
 

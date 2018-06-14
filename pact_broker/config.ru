@@ -17,9 +17,9 @@ app = PactBroker::App.new do | config |
   config.webhook_http_method_whitelist = dc.webhook_http_method_whitelist
   config.webhook_scheme_whitelist = dc.webhook_scheme_whitelist
   config.base_equality_only_on_content_that_affects_verification_results = dc.base_equality_only_on_content_that_affects_verification_results
+  config.order_versions_by_date = dc.order_versions_by_date
+  config.load_from_database!
 end
-
-PactBroker.configuration.load_from_database!
 
 PactBroker::Configuration::SAVABLE_SETTING_NAMES.each do | setting |
   $logger.info "PactBroker.configuration.#{setting}=#{PactBroker.configuration.send(setting).inspect}"

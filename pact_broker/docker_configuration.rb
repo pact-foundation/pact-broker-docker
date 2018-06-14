@@ -35,6 +35,14 @@ module PactBroker
       end
     end
 
+    def order_versions_by_date
+      if env_populated?(:order_versions_by_date)
+        env(:order_versions_by_date) == 'true'
+      else
+        true
+      end
+    end
+
     def env name
       @env["PACT_BROKER_#{name.to_s.upcase}"]
     end

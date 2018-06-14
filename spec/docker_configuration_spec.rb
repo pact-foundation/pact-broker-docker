@@ -8,9 +8,12 @@ RSpec.describe PactBroker::DockerConfiguration do
 
   let(:env) do
     {
-      "PACT_BROKER_WEBHOOK_HOST_WHITELIST" => host_whitelist
+      "PACT_BROKER_WEBHOOK_HOST_WHITELIST" => host_whitelist,
+      "PACT_BROKER_ORDER_VERSIONS_BY_DATE" => "false"
     }
   end
+
+  let(:host_whitelist) { "" }
 
   let(:default_configuration) do
     instance_double('default configuration',
@@ -35,6 +38,17 @@ RSpec.describe PactBroker::DockerConfiguration do
     end
 
     its(:pact_broker_environment_variables) { is_expected.to eq expected_environment_variables }
+  end
+
+  describe "order_versions_by_date" do
+    context "when PACT_BROKER_ORDER_VERSIONS_BY_DATE is set to false" do
+      its(:order_versions_by_date) { is_expected.to be false }
+    end
+
+    context "when PACT_BROKER_ORDER_VERSIONS_BY_DATE is not set" do
+      let(:env) { {} }
+      its(:order_versions_by_date) { is_expected.to be true }
+    end
   end
 
   describe "webhook_host_whitelist" do

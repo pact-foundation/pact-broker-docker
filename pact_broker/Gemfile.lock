@@ -64,7 +64,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.23.1)
+    pact_broker (2.23.2)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 5.0)

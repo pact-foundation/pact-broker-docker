@@ -1,3 +1,13 @@
+<a name="2.23.2-1"></a>
+### 2.23.2-1 (2018-06-25)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.23.2	 ([493a9e5](/../../commit/493a9e5))
+
+
 <a name="2.23.1-1"></a>
 ### 2.23.1-1 (2018-06-23)
 

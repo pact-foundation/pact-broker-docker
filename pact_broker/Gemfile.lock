@@ -64,7 +64,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.23.3)
+    pact_broker (2.23.4)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 5.0)
@@ -121,7 +121,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
     semver2 (3.4.2)
-    sequel (5.9.0)
+    sequel (5.10.0)
     sinatra (2.0.3)
       mustermann (~> 1.0)
       rack (~> 2.0)

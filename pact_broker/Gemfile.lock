@@ -55,7 +55,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     mustermann (1.0.2)
-    mysql2 (0.5.1)
+    mysql2 (0.5.2)
     pact-support (1.6.2)
       awesome_print (~> 1.1)
       find_a_port (~> 1.0.1)
@@ -64,7 +64,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.23.4)
+    pact_broker (2.24.0)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 5.0)

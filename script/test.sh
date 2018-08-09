@@ -65,6 +65,8 @@ fi
 [ -z "${PACT_BROKER_WEBHOOK_SCHEME_WHITELIST}" ] && PACT_BROKER_WEBHOOK_SCHEME_WHITELIST="http https"
 [ -z "${PACT_BROKER_WEBHOOK_HOST_WHITELIST}" ] && PACT_BROKER_WEBHOOK_HOST_WHITELIST="/.*\\.foo\\.com$/ bar.com 10.2.3.41/24"
 
+bundle exec rspec spec
+
 echo "Will build the pact broker"
 docker build -t=dius/pact_broker .
 

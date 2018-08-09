@@ -1,33 +1,52 @@
 class BasicAuth
   PATH_INFO = 'PATH_INFO'.freeze
+  REQUEST_METHOD = 'REQUEST_METHOD'.freeze
+  GET = 'GET'.freeze
+  OPTIONS = 'OPTIONS'.freeze
+  HEAD = 'HEAD'.freeze
   BADGE_PATH = %r{^/pacts/provider/[^/]+/consumer/.*/badge(?:\.[A-Za-z]+)?$}.freeze
   HEARTBEAT_PATH = "/diagnostic/status/heartbeat".freeze
 
-  def initialize(app, username, password, allow_public_access_to_heartbeat)
+  def initialize(app, write_user_username, write_user_password, read_user_username, read_user_password, allow_public_access_to_heartbeat)
     @app = app
-    @expected_username = username
-    @expected_password = password
+    @write_user_username = write_user_username
+    @write_user_password = write_user_password
+    @read_user_username = read_user_username
+    @read_user_password = read_user_password
     @allow_public_access_to_heartbeat = allow_public_access_to_heartbeat
 
-    @app_with_auth = Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
-      username == @expected_username && password == @expected_password
+    @app_with_write_auth = Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
+      username == @write_user_username && password == @write_user_password
+    end
+
+    @app_with_read_auth = Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
+      (username == @write_user_username && password == @write_user_password) ||
+        (username == @read_user_username && password == @read_user_password)
     end
   end
 
   def call(env)
     if use_basic_auth? env
-      @app_with_auth.call(env)
+      if read_request?(env)
+        @app_with_read_auth.call(env)
+      else
+        @app_with_write_auth.call(env)
+      end
     else
       @app.call(env)
     end
   end
 
-  def use_basic_auth?(env)
-    !(is_badge_path?(env) || is_heartbeat_and_public_access_allowed?(env))
+  def read_request?(env)
+    env.fetch(REQUEST_METHOD) == GET || env.fetch(REQUEST_METHOD) == OPTIONS || env.fetch(REQUEST_METHOD) == HEAD
   end
 
-  def is_badge_path?(env)
-    env[PATH_INFO] =~ BADGE_PATH
+  def use_basic_auth?(env)
+    !allow_public_access(env)
+  end
+
+  def allow_public_access(env)
+    env[PATH_INFO] =~ BADGE_PATH || is_heartbeat_and_public_access_allowed?(env)
   end
 
   def is_heartbeat_and_public_access_allowed?(env)

@@ -1,3 +1,13 @@
+<a name="2.27.0-1"></a>
+### 2.27.0-1 (2018-09-07)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.27.0	 ([f961d13](/../../commit/f961d13))
+
+
 <a name="2.26.1-1"></a>
 ### 2.26.1-1 (2018-09-07)
 

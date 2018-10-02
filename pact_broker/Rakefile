@@ -1,5 +1,6 @@
-require_relative 'pact_broker/database_connection'
+require_relative 'database_connection'
 require 'logger'
+require 'pact_broker/tasks'
 
 PactBroker::DB::MigrationTask.new do | task |
   task.database_connection = create_database_connection(Logger.new($stdout))

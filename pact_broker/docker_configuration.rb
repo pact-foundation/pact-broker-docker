@@ -35,6 +35,10 @@ module PactBroker
       end
     end
 
+    def disable_ssl_verification
+      env(:disable_ssl_verification) == 'true'
+    end
+
     def order_versions_by_date
       if env_populated?(:order_versions_by_date)
         env(:order_versions_by_date) == 'true'

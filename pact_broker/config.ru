@@ -18,6 +18,7 @@ app = PactBroker::App.new do | config |
   config.webhook_scheme_whitelist = dc.webhook_scheme_whitelist
   config.base_equality_only_on_content_that_affects_verification_results = dc.base_equality_only_on_content_that_affects_verification_results
   config.order_versions_by_date = dc.order_versions_by_date
+  config.disable_ssl_verification = dc.disable_ssl_verification
 end
 
 PactBroker.configuration.load_from_database!
@@ -32,7 +33,6 @@ basic_auth_read_only_username = ENV.fetch('PACT_BROKER_BASIC_AUTH_READ_ONLY_USER
 basic_auth_read_only_password = ENV.fetch('PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD', '')
 use_basic_auth = basic_auth_username != '' && basic_auth_password != ''
 allow_public_access_to_heartbeat = ENV.fetch('PACT_BROKER_PUBLIC_HEARTBEAT', '') == 'true'
-
 
 if use_basic_auth
   use BasicAuth,

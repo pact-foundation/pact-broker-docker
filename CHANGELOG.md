@@ -1,3 +1,15 @@
+<a name="2.27.2-1"></a>
+### 2.27.2-1 (2018-10-03)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.27.2	 ([1836c1d](/../../commit/1836c1d))
+
+* allow disable_ssl_verification to be configured via environment variable	 ([85e7164](/../../commit/85e7164))
+
+
 <a name="2.27.0-1"></a>
 ### 2.27.0-1 (2018-09-07)
 

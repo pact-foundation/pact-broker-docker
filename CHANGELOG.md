@@ -1,3 +1,15 @@
+<a name="2.27.2-2"></a>
+### 2.27.2-2 (2018-10-29)
+
+#### Features
+
+* reduce Docker image size from 906 to 769 MB  ([81f56da](/../../commit/81f56da))
+
+#### Bug Fixes
+
+* ensure PACT_BROKER_DISABLE_SSL_VERIFICATION env var is passed through to the application	 ([e802a6e](/../../commit/e802a6e))
+
+
 <a name="2.27.2-1"></a>
 ### 2.27.2-1 (2018-10-03)
 

@@ -71,7 +71,7 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 
 * PACT_BROKER_BASE_EQUALITY_ONLY_ON_CONTENT_THAT_AFFECTS_VERIFICATION_RESULTS - `true` by default, may be set to `false`.
 * PACT_BROKER_ORDER_VERSIONS_BY_DATE - `true` by default, may be set to `false`.
-* PACT_DISABLE_SSL_VERIFICATION - `false` by default, may be set to `true`.
+* PACT_BROKER_DISABLE_SSL_VERIFICATION - `false` by default, may be set to `true`.
 
 ## General Pact Broker configuration and usage
 

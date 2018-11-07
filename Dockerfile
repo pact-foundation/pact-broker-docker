@@ -1,8 +1,8 @@
-# ubuntu:16.04 -- https://hub.docker.com/_/ubuntu/
-# |==> phusion/baseimage:0.9.17 -- https://goo.gl/ZLt61q
-#      |==> phusion/passenger-docker -- https://goo.gl/xsnWOP
+# ubuntu -- https://hub.docker.com/_/ubuntu/
+# |==> phusion/baseimage -- https://github.com/phusion/baseimage-docker
+#      |==> phusion/passenger-docker -- https://github.com/phusion/passenger-docker
 #           |==> HERE
-FROM phusion/passenger-ruby24:0.9.35
+FROM phusion/passenger-ruby24:1.0.0
 
 ENV APP_HOME=/home/app/pact_broker/
 RUN rm -f /etc/service/nginx/down /etc/nginx/sites-enabled/default

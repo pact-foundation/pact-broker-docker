@@ -1,3 +1,15 @@
+<a name="2.27.3-2"></a>
+### 2.27.3-2 (2018-11-07)
+
+
+#### Features
+
+* upgrade to latest phusion/passenger-ruby vers for security fixes (#80)	 ([2107dc6](/../../commit/2107dc6))
+
+* **gems**
+  * update pact_broker gem to version 2.27.3	 ([87fc466](/../../commit/87fc466))
+
+
 <a name="2.27.2-2"></a>
 ### 2.27.2-2 (2018-10-29)
 

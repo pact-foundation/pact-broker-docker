@@ -68,7 +68,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.27.4)
+    pact_broker (2.27.5)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 5.0)
@@ -76,7 +76,7 @@ GEM
       json (> 1.8, < 3.0)
       pact-support
       padrino-core (~> 0.14, >= 0.14.3)
-      rack (~> 2.0)
+      rack (~> 2.0, >= 2.0.6)
       rack-protection (~> 2.0)
       redcarpet (~> 3.3, >= 3.3.2)
       reform (~> 2.2)

@@ -6,6 +6,8 @@ FROM phusion/passenger-ruby24:1.0.0
 
 # Update OS as per https://github.com/phusion/passenger-docker#upgrading-the-operating-system-inside-the-container
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+RUN bash -lc 'rvm --default use ruby-2.4.5'
+
 ENV APP_HOME=/home/app/pact_broker/
 RUN rm -f /etc/service/nginx/down /etc/nginx/sites-enabled/default
 COPY container /

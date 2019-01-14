@@ -1,3 +1,13 @@
+<a name="2.27.6-2"></a>
+### 2.27.6-2 (2019-01-15)
+
+
+#### Features
+
+* set default ruby to stop rvm warnings	 ([80dae57](/../../commit/80dae57))
+* update OS in Docker image	 ([ba682f1](/../../commit/ba682f1))
+
+
 <a name="2.27.6-1"></a>
 ### 2.27.6-1 (2018-11-23)
 

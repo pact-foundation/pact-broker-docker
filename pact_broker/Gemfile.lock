@@ -24,7 +24,7 @@ GEM
     dry-core (0.4.7)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.2)
-    dry-logic (0.5.0)
+    dry-logic (0.4.2)
       dry-container (~> 0.2, >= 0.2.6)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
@@ -69,7 +69,8 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.27.6)
+    pact_broker (2.29.0)
+      dry-logic (= 0.4.2)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
       haml (~> 5.0)

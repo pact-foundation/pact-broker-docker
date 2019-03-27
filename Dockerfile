@@ -5,10 +5,10 @@
 FROM phusion/passenger-ruby24:1.0.5
 
 # Update OS as per https://github.com/phusion/passenger-docker#upgrading-the-operating-system-inside-the-container
-RUN apt-get update & \
-    apt-get upgrade -y -o Dpkg::Options::="--force-confold" & \
-    apt-get -qy autoremove & \
-    apt-get clean & \
+RUN apt-get update && \
+    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
+    apt-get -qy autoremove && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN bash -lc 'rvm --default use ruby-2.4.5'

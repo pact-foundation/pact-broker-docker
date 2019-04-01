@@ -19,6 +19,7 @@ For a postgres or mysql database:
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
+    * PACT_BROKER_DATABASE_PORT
     * PACT_BROKER_DATABASE_NAME
 
 Adapter can be 'postgres' (recommended) or 'mysql2' (please note that future JSON search features may not be supported on mysql).

@@ -53,7 +53,7 @@ if [ "${TRAVIS}" == "true" ]; then
 fi
 
 # defaults
-[ -z "${PACT_BROKER_PORT}" ]             && PACT_BROKER_PORT=80
+[ -z "${PACT_BROKER_PORT}" ]             && PACT_BROKER_PORT=3000
 [ -z "${PSQL_WAIT_TIMEOUT}" ]            && PSQL_WAIT_TIMEOUT="10s"
 [ -z "${PACT_WAIT_TIMEOUT}" ]            && PACT_WAIT_TIMEOUT="15s"
 [ -z "${PACT_CONT_NAME}" ]               && PACT_CONT_NAME="broker-app"

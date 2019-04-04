@@ -1,28 +1,45 @@
-# ubuntu -- https://hub.docker.com/_/ubuntu/
-# |==> phusion/baseimage -- https://github.com/phusion/baseimage-docker
-#      |==> phusion/passenger-docker -- https://github.com/phusion/passenger-docker
-#           |==> HERE
-FROM phusion/passenger-ruby24:1.0.5
+FROM ubuntu:18.04
 
-# Update OS as per https://github.com/phusion/passenger-docker#upgrading-the-operating-system-inside-the-container
-RUN apt-get update && \
-    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get -qy autoremove && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install application dependencies
+RUN set -ex && \
+    useradd --create-home --user-group --system pact && \
+    apt-get update && \
+    apt-get install -y \
+        ruby \
+        ruby-dev \
+        make \
+        build-essential \
+        gcc \
+        libssl-dev \
+        curl \
+        libcurl4-openssl-dev \
+        default-libmysqlclient-dev \
+        libpq-dev \
+        libsqlite3-dev && \
+    gem install --no-document --minimal-deps bundler -v '~>1.0' && \
+    rm -rf /var/lib/gems/*/cache
 
-RUN bash -lc 'rvm --default use ruby-2.4.5'
-
-ENV APP_HOME=/home/app/pact_broker/
-RUN rm -f /etc/service/nginx/down /etc/nginx/sites-enabled/default
+# Include testing utils
 COPY container /
-#USER app
 
-COPY --chown=app pact_broker/ $APP_HOME/
-RUN cd $APP_HOME && \
-    gem install --no-document --minimal-deps bundler && \
-    bundle install --deployment --without='development test' && \
-    rm -rf vendor/bundle/ruby/2.4.0/cache/ /usr/local/rvm/rubies/ruby-2.4.4/lib/ruby/gems/2.4.0/cache
+# Set user mode
+ENV HOME=/home/pact
+WORKDIR $HOME
+USER pact
 
-EXPOSE 80
-CMD ["/sbin/my_init"]
+# Install Gems & Passenger Standalone
+COPY --chown=pact pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
+RUN set -ex && \
+    bundle install --no-cache --deployment --without='development test' && \
+    rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
+    bundle exec passenger-config install-agent && \
+    bundle exec passenger-config install-standalone-runtime && \
+    bundle exec passenger-config build-native-support
+
+# Install source
+COPY --chown=pact pact_broker $HOME/
+
+# Start Passenger
+EXPOSE 3000
+ENTRYPOINT ["bundle", "exec", "passenger"]
+CMD ["start", "--log_file", "/dev/stdout"]

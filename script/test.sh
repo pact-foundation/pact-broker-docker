@@ -82,13 +82,13 @@ if [ "$(uname)" == "Darwin" ]; then
   PORT_BIND="${PACT_BROKER_PORT}:${PACT_BROKER_PORT}"
   EXTERN_BROKER_PORT=${PACT_BROKER_PORT}
   if [ "true" == "$(command -v boot2docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
-    test_ip=$(boot2docker ip)
+    TEST_IP=$(boot2docker ip)
   else
     if  [ "true" == "$(command -v docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
-      test_ip='localhost'
+      TEST_IP='localhost'
     else
       if [ "true" == "$(command -v docker-machine > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
-        test_ip=$(docker-machine ip default)
+        TEST_IP=$(docker-machine ip default)
       else
         echo "Cannot detect either boot2docker, docker-machine, or docker native" && exit 1
     fi
@@ -190,25 +190,27 @@ echo "Checking that server can be connected from within the Docker container"
 docker exec ${PACT_CONT_NAME} wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD} || die \
   "When running wait_ready inside the container!"
 
-if [ -z "${test_ip}" ]; then
-  test_ip=`docker inspect -f='{{ .NetworkSettings.IPAddress }}' ${PACT_CONT_NAME}`
+if [ -z "${TEST_IP}" ]; then
+  TEST_IP=`docker inspect -f='{{ .NetworkSettings.IPAddress }}' ${PACT_CONT_NAME}`
 fi
+TEST_URL="http://${TEST_IP}:${EXTERN_BROKER_PORT}"
+echo "TEST_URL is '${TEST_URL}'"
 
 echo ""
 echo "Checking that server can be connected from outside the Docker container"
-export PACT_BROKER_HOST=${test_ip}
+export PACT_BROKER_HOST=${TEST_IP}
 $(dirname "$0")/../container/usr/bin/wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD}
 
 echo ""
 echo "Checking that server accepts and return HTML from outside"
-curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "${TEST_URL}"
 
 echo ""
 echo "Checking for specific HTML content from outside: 'Pacts'"
-curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "http://${test_ip}:${EXTERN_BROKER_PORT}" | grep "Pacts"
+curl -H "Accept:text/html" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} -s "${TEST_URL}" | grep "Pacts"
 
 echo "Checking that server accepts and responds with status 200"
-response_code=$(curl -s -o /dev/null -w "%{http_code}" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} http://${test_ip}:${EXTERN_BROKER_PORT})
+response_code=$(curl -s -o /dev/null -w "%{http_code}" --user ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} ${TEST_URL})
 
 if [[ "${response_code}" -ne '200' ]]; then
   die "Expected response code to be 200, but was ${response_code}"
@@ -217,25 +219,25 @@ fi
 if [[ ! -z "${PACT_BROKER_BASIC_AUTH_USERNAME}" ]]; then
   echo ""
   echo "Checking that basic auth is configured"
-  response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT})
+  response_code=$(curl -s -o /dev/null -w "%{http_code}" ${TEST_URL})
 
   if [[ "${response_code}" -ne '401' ]]; then
     die "Expected response code to be 401, but was ${response_code}"
   fi
 fi
 
-script/publish.sh "http://${test_ip}:${EXTERN_BROKER_PORT}"
+script/publish.sh "${TEST_URL}"
 
 echo ""
 echo "Checking that badges can be accessed without basic auth"
-response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT}/pacts/provider/Bar/consumer/Foo/latest/badge.svg)
+response_code=$(curl -s -o /dev/null -w "%{http_code}" ${TEST_URL}/pacts/provider/Bar/consumer/Foo/latest/badge.svg)
 
 if [[ "${response_code}" -ne '200' ]]; then
   die "Expected response code to be 200, but was ${response_code}"
 fi
 
 echo "Checking that the heartbeat URL can be accessed without basic auth"
-response_code=$(curl -s -o /dev/null -w "%{http_code}" http://${test_ip}:${EXTERN_BROKER_PORT}/diagnostic/status/heartbeat)
+response_code=$(curl -s -o /dev/null -w "%{http_code}" ${TEST_URL}/diagnostic/status/heartbeat)
 
 if [[ "${response_code}" -ne '200' ]]; then
   die "Expected response code to be 200, but was ${response_code}"

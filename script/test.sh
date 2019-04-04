@@ -177,7 +177,7 @@ sleep 1 && docker logs ${PACT_CONT_NAME}
 # If the port was dynamically allocated by docker then find it out
 if [ -z "${EXTERN_BROKER_PORT}" ]; then
   QUERY="{{(index (index .NetworkSettings.Ports "${PACT_BROKER_PORT}/tcp") 0).HostPort}}"
-  EXTERN_BROKER_PORT=`docker inspect -f='${QUERY}' ${PACT_CONT_NAME}`
+  EXTERN_BROKER_PORT=`docker inspect -f="${QUERY}" "${PACT_CONT_NAME}"`
 fi
 
 echo ""

@@ -80,7 +80,6 @@ fi
 
 if [ "$(uname)" == "Darwin" ]; then
   PORT_BIND="${PACT_BROKER_PORT}:${PACT_BROKER_PORT}"
-  EXTERN_BROKER_PORT=${PACT_BROKER_PORT}
   if [ "true" == "$(command -v boot2docker > /dev/null 2>&1 && echo 'true' || echo 'false')" ]; then
     TEST_IP=$(boot2docker ip)
   else
@@ -174,12 +173,6 @@ docker run --privileged --name=${PACT_CONT_NAME} -d -p ${PORT_BIND} \
   dius/pact_broker
 sleep 1 && docker logs ${PACT_CONT_NAME}
 
-# If the port was dynamically allocated by docker then find it out
-if [ -z "${EXTERN_BROKER_PORT}" ]; then
-  QUERY="{{(index (index .NetworkSettings.Ports \"${PACT_BROKER_PORT}/tcp\") 0).HostPort}}"
-  EXTERN_BROKER_PORT=`docker inspect -f="${QUERY}" "${PACT_CONT_NAME}"`
-fi
-
 echo ""
 echo "Checking that the Pact Broker container is still up and running"
 docker inspect -f "{{ .State.Running }}" ${PACT_CONT_NAME} | grep true || die \
@@ -193,7 +186,7 @@ docker exec ${PACT_CONT_NAME} wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASI
 if [ -z "${TEST_IP}" ]; then
   TEST_IP=`docker inspect -f='{{ .NetworkSettings.IPAddress }}' ${PACT_CONT_NAME}`
 fi
-TEST_URL="http://${TEST_IP}:${EXTERN_BROKER_PORT}"
+TEST_URL="http://${TEST_IP}:${PACT_BROKER_PORT}"
 echo "TEST_URL is '${TEST_URL}'"
 
 echo ""

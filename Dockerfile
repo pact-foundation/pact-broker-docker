@@ -1,8 +1,13 @@
 FROM ubuntu:18.04
 
-# Install application dependencies
+# Installation path
+ENV HOME=/pact_broker
+WORKDIR $HOME
+
+# Setup pact_broker user & install application dependencies
 RUN set -ex && \
-    useradd --create-home --user-group --system pact && \
+    chmod g+w $HOME && \
+    useradd --home-dir $HOME --gid root --system pact_broker && \
     apt-get update && \
     apt-get install -y \
         ruby \
@@ -22,13 +27,8 @@ RUN set -ex && \
 # Include testing utils
 COPY container /
 
-# Set user mode
-ENV HOME=/home/pact
-WORKDIR $HOME
-USER pact
-
 # Install Gems & Passenger Standalone
-COPY --chown=pact pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
+COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN set -ex && \
     bundle install --no-cache --deployment --without='development test' && \
     rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
@@ -37,9 +37,10 @@ RUN set -ex && \
     bundle exec passenger-config build-native-support
 
 # Install source
-COPY --chown=pact pact_broker $HOME/
+COPY pact_broker $HOME/
 
 # Start Passenger
+USER pact_broker
 EXPOSE 3000
 ENTRYPOINT ["bundle", "exec", "passenger"]
 CMD ["start", "--log_file", "/dev/stdout"]

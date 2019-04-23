@@ -33,8 +33,8 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 
 ## Notes
 
-* On OSX, if you are not using Docker native, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 3000.
-* The application makes use of the phusion passenger application server.
+* On OSX, if you are not using Docker native, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 9292.
+* The application makes use of the Puma application server.
 * Apart from creating a database no further preparation is required.
 
 ## Using basic auth

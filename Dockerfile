@@ -10,9 +10,6 @@ RUN set -ex && \
     adduser -h $HOME -s /bin/false -D -S -G root ruby && \
     apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev
 
-# Include testing utils
-COPY container /
-
 # Install Gems
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN set -ex && \
@@ -24,6 +21,7 @@ RUN set -ex && \
 COPY pact_broker $HOME/
 
 # Start Puma
+ENV RACK_ENV=production
 USER ruby
 EXPOSE 9292
 ENTRYPOINT ["bundle", "exec", "puma"]

@@ -178,11 +178,6 @@ echo "Checking that the Pact Broker container is still up and running"
 docker inspect -f "{{ .State.Running }}" ${PACT_CONT_NAME} | grep true || die \
   "The Pact Broker container is not running!"
 
-echo ""
-echo "Checking that server can be connected from within the Docker container"
-docker exec ${PACT_CONT_NAME} wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD} || die \
-  "When running wait_ready inside the container!"
-
 if [ -z "${TEST_IP}" ]; then
   TEST_IP=`docker inspect -f='{{ .NetworkSettings.IPAddress }}' ${PACT_CONT_NAME}`
 fi
@@ -191,8 +186,7 @@ echo "TEST_URL is '${TEST_URL}'"
 
 echo ""
 echo "Checking that server can be connected from outside the Docker container"
-export PACT_BROKER_HOST=${TEST_IP}
-$(dirname "$0")/../container/usr/bin/wait_ready ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD}
+PACT_BROKER_HOST=${TEST_IP} $(dirname "$0")/wait_pact.sh ${PACT_WAIT_TIMEOUT} ${PACT_BROKER_BASIC_AUTH_USERNAME} ${PACT_BROKER_BASIC_AUTH_PASSWORD}
 
 echo ""
 echo "Checking that server accepts and return HTML from outside"

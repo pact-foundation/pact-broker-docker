@@ -2,15 +2,15 @@ FROM ruby:2.6-alpine
 
 # Installation path
 ENV HOME=/pact_broker
-WORKDIR $HOME
 
 # Setup ruby user & install application dependencies
 RUN set -ex && \
-    chmod g+w $HOME && \
     adduser -h $HOME -s /bin/false -D -S -G root ruby && \
+    chmod g+w $HOME && \
     apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev
 
 # Install Gems
+WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN set -ex && \
     bundle install --no-cache --deployment --without='development test' && \

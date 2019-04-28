@@ -7,5 +7,10 @@ rescue NameError
   Logger::WARN
 end
 
-$logger = ::Logger.new($stdout)
-$logger.level = log_level
+SemanticLogger.add_appender(io: $stdout)
+SemanticLogger.default_level = log_level
+$logger  = SemanticLogger['root']
+
+PADRINO_LOGGER = {
+  ENV.fetch('RACK_ENV').to_sym =>  { log_level: :error, stream: :stdout, format_datetime: '%Y-%m-%dT%H:%M:%S.000%:z' }
+}

@@ -1,28 +1,28 @@
-# ubuntu -- https://hub.docker.com/_/ubuntu/
-# |==> phusion/baseimage -- https://github.com/phusion/baseimage-docker
-#      |==> phusion/passenger-docker -- https://github.com/phusion/passenger-docker
-#           |==> HERE
-FROM phusion/passenger-ruby24:1.0.5
+FROM ruby:2.6-alpine
 
-# Update OS as per https://github.com/phusion/passenger-docker#upgrading-the-operating-system-inside-the-container
-RUN apt-get update && \
-    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get -qy autoremove && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Installation path
+ENV HOME=/pact_broker
 
-RUN bash -lc 'rvm --default use ruby-2.4.5'
+# Setup ruby user & install application dependencies
+RUN set -ex && \
+    adduser -h $HOME -s /bin/false -D -S -G root ruby && \
+    chmod g+w $HOME && \
+    apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev
 
-ENV APP_HOME=/home/app/pact_broker/
-RUN rm -f /etc/service/nginx/down /etc/nginx/sites-enabled/default
-COPY container /
-#USER app
+# Install Gems
+WORKDIR $HOME
+COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
+RUN set -ex && \
+    bundle install --no-cache --deployment --without='development test' && \
+    rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
+    apk del make gcc libc-dev
 
-COPY --chown=app pact_broker/ $APP_HOME/
-RUN cd $APP_HOME && \
-    gem install --no-document --minimal-deps bundler && \
-    bundle install --deployment --without='development test' && \
-    rm -rf vendor/bundle/ruby/2.4.0/cache/ /usr/local/rvm/rubies/ruby-2.4.4/lib/ruby/gems/2.4.0/cache
+# Install source
+COPY pact_broker $HOME/
 
-EXPOSE 80
-CMD ["/sbin/my_init"]
+# Start Puma
+ENV RACK_ENV=production
+USER ruby
+EXPOSE 9292
+ENTRYPOINT ["bundle", "exec", "puma"]
+CMD ["config.ru"]

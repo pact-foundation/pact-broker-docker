@@ -19,7 +19,7 @@ addons:
 # But: Because we are using `global` instead of leaving them here
 #      we need to put them under env: -> matrix:
 # env:
-#   - PACT_BROKER_PORT=80
+#   - PACT_BROKER_PORT=9292
 #   - PACT_BROKER_PORT=9999
 
 # Global environment variables apply to all configurations, i.e. we
@@ -31,7 +31,7 @@ env:
     - PACT_CONT_NAME="broker_app"
     - PACT_WAIT_TIMEOUT="30s"
   matrix:
-    - PACT_BROKER_PORT=80
+    - PACT_BROKER_PORT=9292
 #    - PACT_BROKER_PORT=9999
 
 # The test script is designed to run in a Linux machine and therefore

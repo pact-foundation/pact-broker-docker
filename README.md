@@ -1,7 +1,7 @@
 Dockerised Pact Broker [![Build Status](https://travis-ci.org/DiUS/pact_broker-docker.svg)](https://travis-ci.org/DiUS/pact_broker-docker)
 ==================
 
-This repository deploys [Pact Broker](https://github.com/pact-foundation/pact_broker) using lightweight containers using Docker. You can pull the dius/pact-broker image from [Dockerhub](https://hub.docker.com/r/dius/pact-broker/).
+This repository deploys [Pact Broker][pact-broker] using lightweight containers using Docker. You can pull the dius/pact-broker image from [Dockerhub][pact-broker-docker].
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@ This repository deploys [Pact Broker](https://github.com/pact-foundation/pact_br
 
 ## Getting Started
 
-1. [Install Docker](https://docs.docker.com/engine/installation/)
+1. [Install Docker][docker]
 2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables. If you want to use a disposable postgres docker container just do `export DISPOSABLE_PSQL=true` before running the [script/test.sh][test-script].
 
 For a postgres or mysql database:
@@ -33,9 +33,8 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 
 ## Notes
 
-* Use `-p 80:80` to start the docker image, as some of the Rack middleware gets confused by receiving requests for other ports and will return a 404 otherwise (port forwarding does not rewrite headers).
-* On OSX, if you are not using Docker native, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 80.
-* The application makes use of the phusion passenger application server.
+* On OSX, if you are not using Docker native, use `docker-machine ip $(docker-machine active)` to get the IP of the VirtualBox, and connect on port 9292.
+* The application makes use of the Puma application server.
 * Apart from creating a database no further preparation is required.
 
 ## Using basic auth
@@ -65,7 +64,7 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 
 ## Webhook whitelists
 
-* PACT_BROKER_WEBHOOK_HOST_WHITELIST - a space delimited list of hosts (eg. `github.com`), network ranges (eg. `10.2.3.41/24`, or regular expressions (eg. `/.*\\.foo\\.com$/`). Regular expressions should start and end with a `/` to differentiate them from Strings. Note that backslashes need to be escaped with a second backslash. Please read the [Webhook whitelists](https://github.com/pact-foundation/pact_broker/wiki/Configuration#webhook-whitelists) section of the Pact Broker configuration documentation to understand how the whitelist is used. Remember to use quotes around this value as it may have spaces in it.
+* PACT_BROKER_WEBHOOK_HOST_WHITELIST - a space delimited list of hosts (eg. `github.com`), network ranges (eg. `10.2.3.41/24`, or regular expressions (eg. `/.*\\.foo\\.com$/`). Regular expressions should start and end with a `/` to differentiate them from Strings. Note that backslashes need to be escaped with a second backslash. Please read the [Webhook whitelists][webhook-whitelist] section of the Pact Broker configuration documentation to understand how the whitelist is used. Remember to use quotes around this value as it may have spaces in it.
 * PACT_BROKER_WEBHOOK_SCHEME_WHITELIST - a space delimited list (eg. `http https`). Defaults to `https`.
 
 ## Other environment variables
@@ -84,7 +83,8 @@ For a quick start with the Pact Broker and Postgres, we have an example
 [Docker Compose][docker-compose] setup you can use:
 
 1. Modify the `docker-compose.yml` file as required.
-2. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database
+2. Run `docker-compose build` to build the pact_broker container locally.
+3. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database.
 
 Now you can access your local broker:
 
@@ -99,12 +99,16 @@ _NOTE: this image should be modified before using in Production, in particular, 
 
 ## Running with Openshift
 
-See [pact-broker-openshift](https://github.com/jaimeniswonger/pact-broker-openshift) for an example config file.
+See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 
 # Troubleshooting
 
 See the [Troubleshooting][troubleshooting] page on the wiki.
 
+[docker]: https://docs.docker.com/install/
+[pact-broker]: https://github.com/pact-foundation/pact_broker
+[pact-broker-docker]: https://hub.docker.com/r/dius/pact-broker/
+[pact-broker-openshift]: https://github.com/jaimeniswonger/pact-broker-openshift
 [badges]: https://github.com/pact-foundation/pact_broker/wiki/Provider-verification-badges
 [troubleshooting]: https://github.com/DiUS/pact_broker-docker/wiki/Troubleshooting
 [postgres]: https://github.com/DiUS/pact_broker-docker/blob/master/POSTGRESQL.md
@@ -112,3 +116,4 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 [docker-compose]: https://github.com/DiUS/pact_broker-docker/blob/master/docker-compose.yml
 [pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki
 [reverse-proxy]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#running-the-broker-behind-a-reverse-proxy
+[webhook-whitelist]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#webhook-whitelists

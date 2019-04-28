@@ -2,7 +2,6 @@
 
 # This script
 # - waits for this docker container to be ready
-# - needs to run inside the container
 
 # Exit immediately if a command exits with a non-zero status
 set -e

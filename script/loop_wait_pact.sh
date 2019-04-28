@@ -26,7 +26,7 @@ if ! jq --version >/dev/null 2>&1 ; then
 fi
 
 # defaults
-[ -z "${PACT_BROKER_PORT}" ] && PACT_BROKER_PORT=80
+[ -z "${PACT_BROKER_PORT}" ] && PACT_BROKER_PORT=9292
 [ -z "${PACT_BROKER_HOST}" ] && PACT_BROKER_HOST=localhost
 USERNAME="$1"
 PASSWORD="$2"

@@ -13,8 +13,9 @@ services:
       POSTGRES_DB: postgres
 
   broker_app:
-    build: .
-    image: dius/pact-broker
+    image: pactfoundation/pact-broker
+    ports:
+      - "80:80"
     links:
       - postgres
     depends_on:

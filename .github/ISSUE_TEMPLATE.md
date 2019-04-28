@@ -5,7 +5,7 @@ I have already (please mark the applicable with an `x`):
 * [ ] Confirmed this is the right place to raise the issue - only issues related to the Dockerization of the Pact Broker should be raised here. Issues related to the Pact Broker application itself should be raised in the [Pact Broker](https://github.com/pact-foundation/pact_broker) project.
 * [ ] Upgraded to the latest Pact Broker Docker image OR
 * [ ] Checked the [CHANGELOG](/CHANGELOG.md) to see if the issue I am about to raise has been fixed
-* [ ] Read the [Troubleshooting](https://github.com/DiUS/pact_broker-docker/wiki/Troubleshooting) page
+* [ ] Read the [Troubleshooting](https://github.com/pact-foundation/pact-broker-docker/wiki/Troubleshooting) page
 
 ## Software versions
 

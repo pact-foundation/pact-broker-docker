@@ -1,7 +1,7 @@
-Dockerised Pact Broker [![Build Status](https://travis-ci.org/DiUS/pact_broker-docker.svg)](https://travis-ci.org/DiUS/pact_broker-docker)
+Dockerised Pact Broker [![Build Status](https://travis-ci.org/pact-foundation/pact-broker-docker.svg)](https://travis-ci.org/pact-foundation/pact-broker-docker)
 ==================
 
-This repository deploys [Pact Broker][pact-broker] using lightweight containers using Docker. You can pull the dius/pact-broker image from [Dockerhub][pact-broker-docker].
+This repository deploys [Pact Broker][pact-broker] using lightweight containers using Docker. You can pull the pactfoundation/pact-broker image from [Dockerhub][pact-broker-docker].
 
 ## Prerequisites
 
@@ -107,13 +107,13 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 
 [docker]: https://docs.docker.com/install/
 [pact-broker]: https://github.com/pact-foundation/pact_broker
-[pact-broker-docker]: https://hub.docker.com/r/dius/pact-broker/
+[pact-broker-docker]: https://hub.docker.com/r/pactfoundation/pact-broker/
 [pact-broker-openshift]: https://github.com/jaimeniswonger/pact-broker-openshift
 [badges]: https://github.com/pact-foundation/pact_broker/wiki/Provider-verification-badges
-[troubleshooting]: https://github.com/DiUS/pact_broker-docker/wiki/Troubleshooting
-[postgres]: https://github.com/DiUS/pact_broker-docker/blob/master/POSTGRESQL.md
-[test-script]: https://github.com/DiUS/pact_broker-docker/blob/master/script/test.sh
-[docker-compose]: https://github.com/DiUS/pact_broker-docker/blob/master/docker-compose.yml
+[troubleshooting]: https://github.com/pact-foundation/pact-broker-docker/wiki/Troubleshooting
+[postgres]: https://github.com/pact-foundation/pact-broker-docker/blob/master/POSTGRESQL.md
+[test-script]: https://github.com/pact-foundation/pact-broker-docker/blob/master/script/test.sh
+[docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
 [pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki
 [reverse-proxy]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#running-the-broker-behind-a-reverse-proxy
 [webhook-whitelist]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#webhook-whitelists

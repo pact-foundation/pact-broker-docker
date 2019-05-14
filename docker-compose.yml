@@ -15,7 +15,7 @@ services:
   broker_app:
     image: pactfoundation/pact-broker
     ports:
-      - "80:9292"
+      - "9292:9292"
     links:
       - postgres
     depends_on:

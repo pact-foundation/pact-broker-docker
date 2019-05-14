@@ -15,13 +15,11 @@ services:
   broker_app:
     image: pactfoundation/pact-broker
     ports:
-      - "80:80"
+      - "80:9292"
     links:
       - postgres
     depends_on:
       - postgres
-    ports:
-      - "9292:9292"
     environment:
       PACT_BROKER_DATABASE_USERNAME: postgres
       PACT_BROKER_DATABASE_PASSWORD: password

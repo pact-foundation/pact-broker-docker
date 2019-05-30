@@ -22,7 +22,8 @@ COPY pact_broker $HOME/
 
 # Start Puma
 ENV RACK_ENV=production
+ENV PACT_BROKER_PORT=9292
 USER ruby
-EXPOSE 9292
-ENTRYPOINT ["bundle", "exec", "puma"]
+EXPOSE $PACT_BROKER_PORT
+ENTRYPOINT ["./entrypoint.sh"]
 CMD ["config.ru"]

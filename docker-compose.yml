@@ -16,16 +16,15 @@ services:
     # image: pactfoundation/pact-broker
     build: .
     ports:
-      - "80:80"
+      - "9292:9292"
     depends_on:
       - postgres
-    ports:
-      - "9292:9292"
     environment:
       PACT_BROKER_DATABASE_USERNAME: postgres
       PACT_BROKER_DATABASE_PASSWORD: password
       PACT_BROKER_DATABASE_HOST: postgres
       PACT_BROKER_DATABASE_NAME: postgres
+      PACT_BROKER_PORT: "9292"
 
   # Nginx is not necessary, but demonstrates how
   # one might use a reverse proxy in front of the broker,

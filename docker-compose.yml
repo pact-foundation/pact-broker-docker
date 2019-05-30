@@ -12,12 +12,11 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
 
-  broker_app:
-    image: pactfoundation/pact-broker
+  pact_broker:
+    # image: pactfoundation/pact-broker
+    build: .
     ports:
       - "80:80"
-    links:
-      - postgres
     depends_on:
       - postgres
     ports:
@@ -33,10 +32,8 @@ services:
   # and includes the use of a self-signed TLS certificate
   nginx:
     image: nginx:alpine
-    links:
-      - broker_app:broker
     depends_on:
-      - broker_app
+      - pact_broker
     volumes:
       - ./ssl/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./ssl:/etc/nginx/ssl

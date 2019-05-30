@@ -1,3 +1,12 @@
+<a name="2.32.0-2"></a>
+### 2.32.0-2 (2019-05-30)
+
+
+#### Features
+
+* allow Pact Broker application port to be configured via an environment variable	 ([11e4ced](/../../commit/11e4ced))
+
+
 <a name="2.32.0-1"></a>
 ### 2.32.0-1 (2019-05-30)
 

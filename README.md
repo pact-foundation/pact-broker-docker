@@ -5,9 +5,15 @@ This repository deploys [Pact Broker][pact-broker] using lightweight containers 
 
 ## Notes migration from dius/pact-broker image
 
-The `pactfoundation/pact-broker` image is an upgraded version of the `dius/pact-broker` image. It is smaller (as it runs on Alpline Linux with Puma instead of the larger Passenger Phusion base image), and does not need root permissions.
+The `pactfoundation/pact-broker` image is a forked version of the `dius/pact-broker` image. It is smaller (as it runs on Alpline Linux with Puma instead of the larger Passenger Phusion base image), and does not need root permissions.
 
 All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permisisons cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Ngnix in front of it (see the [docker-compose](https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml) file for an example).
+
+### Which one should I use?
+
+Please read https://github.com/phusion/passenger/wiki/Puma-vs-Phusion-Passenger for information on which server will suit your needs best. The tl;dr is that if you want to run the docker image in a managed architecture which will make your application highly available (eg. ECS, Kubernetes) then use the `pactfoundation/pact-broker`. Puma will not restart itself if it crashes, so you will need external monitoring to ensure the Pact Broker stays available.
+
+If you want to run the container as a standalone instance, then the `dius/pact-broker` image which uses Phusion Passenger will server you better, as Passenger will restart any crashed processes.
 
 ## Prerequisites
 

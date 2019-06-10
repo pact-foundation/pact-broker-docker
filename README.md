@@ -66,6 +66,8 @@ Note that the [verification status badges][badges] are not protected by basic au
 
 If you are using the docker container within an AWS autoscaling group, and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`. No database connection will be made during the execution of this endpoint.
 
+The heartbeat is available at `/diagnostic/status/heartbeat`.
+
 ## Using SSL
 
 See the [Pact Broker configuration documentation][reverse-proxy].

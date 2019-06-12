@@ -1,5 +1,8 @@
 FROM ruby:2.6-alpine
 
+# CVE-2019-5747 Can remove when base image includes busybox version 1.30.0
+RUN wget https://busybox.net/downloads/binaries/1.30.0-i686/busybox && chmod +x busybox && mv busybox /bin/busybox
+
 # Installation path
 ENV HOME=/pact_broker
 

@@ -1,3 +1,15 @@
+<a name="2.34.0-1"></a>
+### 2.34.0-1 (2019-06-27)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.34.0	 ([f09e8f7](/../../commit/f09e8f7))
+
+* upgrade busybox to 1.30.0	 ([0332ef0](/../../commit/0332ef0))
+
+
 <a name="2.32.0-2"></a>
 ### 2.32.0-2 (2019-05-30)
 

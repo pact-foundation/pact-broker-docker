@@ -34,7 +34,7 @@ env:
     - PACT_BROKER_PORT=9292
 #    - PACT_BROKER_PORT=9999
 
-before_script:
+before_install:
   - gem install bundler -v 2.0.2
 
 # The test script is designed to run in a Linux machine and therefore

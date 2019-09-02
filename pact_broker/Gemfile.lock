@@ -69,7 +69,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker (2.36.1)
+    pact_broker (2.37.0)
       dry-logic (= 0.4.2)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)
@@ -127,7 +127,7 @@ GEM
     semantic_logger (4.5.0)
       concurrent-ruby (~> 1.0)
     semver2 (3.4.2)
-    sequel (5.23.0)
+    sequel (5.24.0)
     sinatra (2.0.7)
       mustermann (~> 1.0)
       rack (~> 2.0)

@@ -7,7 +7,9 @@ RSpec.describe "basic auth" do
 
   let(:protected_app) { ->(env) { [200, {}, []]} }
 
-  let(:app) { BasicAuth.new(protected_app, 'write_username', 'write_password', 'read_username', 'read_password', allow_public_access_to_heartbeat) }
+  let(:app) { BasicAuth.new(protected_app, 'write_username', 'write_password', read_username, read_password, allow_public_access_to_heartbeat) }
+  let(:read_username) { 'read_username' }
+  let(:read_password) { 'read_password' }
   let(:allow_public_access_to_heartbeat) { true }
 
 
@@ -174,20 +176,25 @@ RSpec.describe "basic auth" do
   end
 
   context "when there is no read only user configured" do
-    let(:app) { BasicAuth.new(protected_app, 'write_username', 'write_password', nil, nil, allow_public_access_to_heartbeat) }
+    before do
+      allow($stdout).to receive(:puts)
+    end
+
+    let(:read_username) { '' }
+    let(:read_password) { '' }
 
     context "with no credentials" do
-      it "does not allow GET" do
+      it "allows a GET" do
         get "/"
-        expect(last_response.status).to eq 401
+        expect(last_response.status).to eq 200
       end
     end
 
-    context "with credentials" do
-      it "does not allow GET" do
+    context "with incorrect credentials" do
+      it "allows a GET" do
         basic_authorize "foo", "bar"
         get "/"
-        expect(last_response.status).to eq 401
+        expect(last_response.status).to eq 200
       end
     end
   end

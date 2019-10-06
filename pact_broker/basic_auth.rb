@@ -19,9 +19,14 @@ class BasicAuth
       username == @write_user_username && password == @write_user_password
     end
 
-    @app_with_read_auth = Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
-      (username == @write_user_username && password == @write_user_password) ||
-        (username == @read_user_username && password == @read_user_password)
+    @app_with_read_auth = if read_user_username && read_user_username.size > 0
+      Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
+        (username == @write_user_username && password == @write_user_password) ||
+          (username == @read_user_username && password == @read_user_password)
+      end
+    else
+      puts "WARN: Public read access is enabled as no PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME has been set"
+      app
     end
   end
 

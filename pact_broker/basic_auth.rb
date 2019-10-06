@@ -4,7 +4,8 @@ class BasicAuth
   GET = 'GET'.freeze
   OPTIONS = 'OPTIONS'.freeze
   HEAD = 'HEAD'.freeze
-  BADGE_PATH = %r{^/pacts/provider/[^/]+/consumer/.*/badge(?:\.[A-Za-z]+)?$}.freeze
+  PACT_BADGE_PATH = %r{^/pacts/provider/[^/]+/consumer/.*/badge(?:\.[A-Za-z]+)?$}.freeze
+  MATRIX_BADGE_PATH = %r{^/matrix/provider/[^/]+/latest/[^/]+/consumer/[^/]+/latest/[^/]+/badge(?:\.[A-Za-z]+)?$}.freeze
   HEARTBEAT_PATH = "/diagnostic/status/heartbeat".freeze
 
   def initialize(app, write_user_username, write_user_password, read_user_username, read_user_password, allow_public_access_to_heartbeat)
@@ -51,7 +52,7 @@ class BasicAuth
   end
 
   def allow_public_access(env)
-    env[PATH_INFO] =~ BADGE_PATH || is_heartbeat_and_public_access_allowed?(env)
+    env[PATH_INFO] =~ PACT_BADGE_PATH || env[PATH_INFO] =~ MATRIX_BADGE_PATH || is_heartbeat_and_public_access_allowed?(env)
   end
 
   def is_heartbeat_and_public_access_allowed?(env)

@@ -45,10 +45,19 @@ RSpec.describe "basic auth" do
     end
   end
 
-  context "when requesting a badge" do
+  context "when requesting a pact badge" do
     context "when no credentials are used" do
       it "allows GET" do
-        get "pacts/provider/foo/consumer/bar/badge"
+        get "/pacts/provider/foo/consumer/bar/badge"
+        expect(last_response.status).to eq 200
+      end
+    end
+  end
+
+  context "when requesting a matrix badge" do
+    context "when no credentials are used" do
+      it "allows GET" do
+        get "/matrix/provider/foo/latest/dev/consumer/bar/latest/dev/badge"
         expect(last_response.status).to eq 200
       end
     end

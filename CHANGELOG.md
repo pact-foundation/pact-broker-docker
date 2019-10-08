@@ -1,3 +1,13 @@
+<a name="2.38.1-2"></a>
+### 2.38.1-2 (2019-10-07)
+
+
+#### Features
+
+* allow public access to matrix badge	 ([18a7f0e](/../../commit/18a7f0e))
+* if write credentials are specified, but not read credentials, then allow public read access	 ([f95db01](/../../commit/f95db01))
+
+
 <a name="2.38.1-1"></a>
 ### 2.38.1-1 (2019-09-23)
 

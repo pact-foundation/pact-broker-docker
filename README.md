@@ -1,7 +1,11 @@
 Dockerised Pact Broker [![Build Status](https://travis-ci.org/pact-foundation/pact-broker-docker.svg)](https://travis-ci.org/pact-foundation/pact-broker-docker)
 ==================
 
-This repository deploys [Pact Broker][pact-broker] using lightweight containers using Docker. You can pull the pactfoundation/pact-broker image from [Dockerhub][pact-broker-docker].
+This repository contains a Dockerized version of the [Pact Broker][pact-broker]. You can pull the `pactfoundation/pact-broker` image from [Dockerhub][pact-broker-docker]. If you're viewing these docs on Dockerhub, then here is a link to the [github repository][github].
+
+## In a hurry?
+
+If you want to try out a Pact Broker that can be accessed by all your teams, without having to fill in requisition forms and wait for 3 months, you can get a free trial at <a href="https:/pactflow.io/?utm_source=github&utm_campaign=pact_foundation_pact_broker_docker"/>pactflow.io</a>. Built by a group of core Pact maintainers, Pactflow is a fork of the OSS Pact Broker with extra goodies like an improved UI, field level verification results and federated login. It's also fully supported, and that means when something goes wrong, *someone else* gets woken up in the middle of the afternoon to fix it...
 
 ## Notes migration from dius/pact-broker image
 
@@ -13,7 +17,7 @@ All the environment variables used for `dius/pact-broker` are compatible with `p
 
 Please read https://github.com/phusion/passenger/wiki/Puma-vs-Phusion-Passenger for information on which server will suit your needs best. The tl;dr is that if you want to run the docker image in a managed architecture which will make your application highly available (eg. ECS, Kubernetes) then use the `pactfoundation/pact-broker`. Puma will not restart itself if it crashes, so you will need external monitoring to ensure the Pact Broker stays available.
 
-If you want to run the container as a standalone instance, then the `dius/pact-broker` image which uses Phusion Passenger will server you better, as Passenger will restart any crashed processes.
+If you want to run the container as a standalone instance, then the `dius/pact-broker` image which uses Phusion Passenger may serve you better, as Passenger will restart any crashed processes.
 
 ## Prerequisites
 
@@ -132,3 +136,4 @@ See the [Troubleshooting][troubleshooting] page on the wiki.
 [pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki
 [reverse-proxy]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#running-the-broker-behind-a-reverse-proxy
 [webhook-whitelist]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#webhook-whitelists
+[github]: https://github.com/pact-foundation/pact-broker-docker

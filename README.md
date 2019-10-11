@@ -62,6 +62,8 @@ To enable basic auth, run your container with:
 * `PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME`
 * `PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD`
 
+If you want to allow public read access (but still require credentials for writing), then omit setting the READ_ONLY credentials and set `PACT_BROKER_ALLOW_PUBLIC_READ=true`.
+
 Developers should use the read only credentials on their local machines, and the CI should use the read/write credentials. This will ensure that pacts and verification results are only published from your CI.
 
 Note that the [verification status badges][badges] are not protected by basic auth, so that you may embed them in README markdown.
@@ -90,7 +92,7 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 * PACT_BROKER_PORT - the port that the Pact Broker application runs on. Defaults to 9292.
 * PACT_BROKER_DISABLE_SSL_VERIFICATION - `false` by default, may be set to `true`.
 * PACT_BROKER_BASE_EQUALITY_ONLY_ON_CONTENT_THAT_AFFECTS_VERIFICATION_RESULTS - `true` by default, may be set to `false`.
-* PACT_BROKER_ORDER_VERSIONS_BY_DATE - `true` by default, may be set to `false`.
+* PACT_BROKER_ORDER_VERSIONS_BY_DATE - `true` by default. Setting this to false is deprecated.
 
 ## General Pact Broker configuration and usage
 

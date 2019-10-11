@@ -3,6 +3,7 @@ require 'pact_broker'
 require_relative 'logger'
 require_relative 'basic_auth'
 require_relative 'database_connection'
+require_relative 'passenger_config'
 require_relative 'docker_configuration'
 
 dc = PactBroker::DockerConfiguration.new(ENV, PactBroker::Configuration.default_configuration)
@@ -28,10 +29,11 @@ end
 
 basic_auth_username = ENV.fetch('PACT_BROKER_BASIC_AUTH_USERNAME','')
 basic_auth_password = ENV.fetch('PACT_BROKER_BASIC_AUTH_PASSWORD', '')
-basic_auth_read_only_username = ENV.fetch('PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME','')
-basic_auth_read_only_password = ENV.fetch('PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD', '')
-use_basic_auth = basic_auth_username != '' && basic_auth_password != ''
+basic_auth_read_only_username = ENV['PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME']
+basic_auth_read_only_password = ENV['PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD']
+allow_public_read_access = ENV.fetch('PACT_BROKER_ALLOW_PUBLIC_READ', '') == 'true'
 allow_public_access_to_heartbeat = ENV.fetch('PACT_BROKER_PUBLIC_HEARTBEAT', '') == 'true'
+use_basic_auth = basic_auth_username != '' && basic_auth_password != ''
 
 if use_basic_auth
   use BasicAuth,
@@ -39,6 +41,7 @@ if use_basic_auth
         basic_auth_password,
         basic_auth_read_only_username,
         basic_auth_read_only_password,
+        allow_public_read_access,
         allow_public_access_to_heartbeat
 end
 

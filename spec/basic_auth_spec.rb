@@ -7,7 +7,8 @@ RSpec.describe "basic auth" do
 
   let(:protected_app) { ->(env) { [200, {}, []]} }
 
-  let(:app) { BasicAuth.new(protected_app, 'write_username', 'write_password', read_username, read_password, allow_public_access_to_heartbeat) }
+  let(:app) { BasicAuth.new(protected_app, 'write_username', 'write_password', read_username, read_password, allow_public_read_access, allow_public_access_to_heartbeat) }
+  let(:allow_public_read_access) { false }
   let(:read_username) { 'read_username' }
   let(:read_password) { 'read_password' }
   let(:allow_public_access_to_heartbeat) { true }
@@ -107,9 +108,17 @@ RSpec.describe "basic auth" do
     end
   end
 
-  context "with the incorrect username and password for the write user" do
+  context "with the incorrect username for the write user" do
     it "does not allow POST" do
-      basic_authorize 'foo', 'password'
+      basic_authorize 'wrong_username', 'write_password'
+      post "/"
+      expect(last_response.status).to eq 401
+    end
+  end
+
+  context "with the incorrect password for the write user" do
+    it "does not allow POST" do
+      basic_authorize 'write_username', 'wrong_password'
       post "/"
       expect(last_response.status).to eq 401
     end
@@ -189,21 +198,79 @@ RSpec.describe "basic auth" do
       allow($stdout).to receive(:puts)
     end
 
-    let(:read_username) { '' }
-    let(:read_password) { '' }
+    let(:read_username) { nil }
+    let(:read_password) { nil }
 
-    context "with no credentials" do
-      it "allows a GET" do
-        get "/"
-        expect(last_response.status).to eq 200
+    context "when allow_public_read_access is false" do
+      context "with no credentials" do
+        it "does not allow a GET" do
+          get "/"
+          expect(last_response.status).to eq 401
+        end
+      end
+
+      context "with empty credentials" do
+        it "does not allow a GET" do
+          basic_authorize('', '')
+          get "/"
+          expect(last_response.status).to eq 401
+        end
+      end
+
+      context "with incorrect credentials" do
+        it "does not allow a GET" do
+          basic_authorize("foo", "bar")
+          get "/"
+          expect(last_response.status).to eq 401
+        end
       end
     end
 
-    context "with incorrect credentials" do
-      it "allows a GET" do
-        basic_authorize "foo", "bar"
-        get "/"
-        expect(last_response.status).to eq 200
+    context "when allow_public_read_access is true" do
+      let(:allow_public_read_access) { true }
+
+      context "with no credentials" do
+        it "allows a GET" do
+          get "/"
+          expect(last_response.status).to eq 200
+        end
+
+        it "does not allow POST" do
+          post "/"
+          expect(last_response.status).to eq 401
+        end
+      end
+
+      context "with empty credentials" do
+        before do
+          basic_authorize("", "")
+        end
+
+        it "allows a GET" do
+          get "/"
+          expect(last_response.status).to eq 200
+        end
+
+        it "does not allow POST" do
+          post "/"
+          expect(last_response.status).to eq 401
+        end
+      end
+
+      context "with incorrect credentials" do
+        before do
+          basic_authorize("foo", "bar")
+        end
+
+        it "allows a GET" do
+          get "/"
+          expect(last_response.status).to eq 200
+        end
+
+        it "does not allow POST" do
+          post "/"
+          expect(last_response.status).to eq 401
+        end
       end
     end
   end

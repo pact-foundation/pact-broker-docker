@@ -3,7 +3,6 @@ require 'pact_broker'
 require_relative 'logger'
 require_relative 'basic_auth'
 require_relative 'database_connection'
-require_relative 'passenger_config'
 require_relative 'docker_configuration'
 
 dc = PactBroker::DockerConfiguration.new(ENV, PactBroker::Configuration.default_configuration)

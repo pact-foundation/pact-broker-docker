@@ -1,0 +1,4 @@
+---
+1.2.0 json_pure:>= 0,nokogiri:>= 0|checksum:2ea1a451e8d378187054875bee7549354f6422daff31402005ba08ec8e978ecf
+1.2.1 json_pure:>= 0,nokogiri:>= 0|checksum:3290c7f70fdff118765b3054a2c053f33d7b74dbd69a9104d1e4d6d2a0959ca7
+1.2.2 json_pure:>= 0,nokogiri:>= 0|checksum:f526bf348b7fa52e8f8d04f5bc0b9b31d4c10cbb93fd39ce641886efa4b65fb9

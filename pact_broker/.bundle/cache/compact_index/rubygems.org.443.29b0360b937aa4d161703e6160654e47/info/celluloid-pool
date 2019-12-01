@@ -1,0 +1,7 @@
+---
+0.10.0.pre4 bundler:>= 0,coveralls:>= 0,rspec-logsplit:>= 0,rubocop:>= 0,timers:>= 0|checksum:bc59b5e6edd6bcc9c184cfaabc477a0535dba969c410b7b8084452961a9a51a3,rubygems:> 1.3.1
+0.11.0.pre0 bundler:>= 0,dotenv:>= 0,nenv:>= 0,rspec-logsplit:>= 0,timers:>= 0|checksum:e31d03cf5efaedab58f9c6c8cd2017a3f572bcbad7131329fcdfa67cda61e6f0,rubygems:> 1.3.1
+0.11.0.pre1 bundler:>= 0,dotenv:>= 0,nenv:>= 0,rspec-logsplit:>= 0.1.2,timers:~> 4.0.0|checksum:12da6c275587ffc670750db4faaa070b43189a48f842bcf3cdb9622a30647a69,rubygems:> 1.3.1
+0.20.0 bundler:>= 0,dotenv:>= 0,nenv:>= 0,rspec-logsplit:>= 0.1.2,timers:~> 4.0.0|checksum:20fc1207cd2feed490c1a2358647ed86b3fd7bbd5d8447e67ae6c361b45a9c2d
+0.20.1 bundler:>= 0,dotenv:>= 0,nenv:>= 0,rspec-logsplit:>= 0.1.2,timers:>= 4.1.1|checksum:e9be974166f054b60f5f22c8fcf3735a194d8f9f46d8f487ca0a4be101eaeadb
+0.20.5 timers:>= 4.1.1|checksum:ac9453bfb063582913712131aab5f0c026e7c82d0e2e4531b4ab242a2329d9ad

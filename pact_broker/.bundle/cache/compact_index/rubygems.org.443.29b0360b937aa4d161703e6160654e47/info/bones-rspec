@@ -1,0 +1,6 @@
+---
+1.0.0 bones:>= 3.5.0|checksum:2199153ce648ba245bdfa023ce68c682658ea33a3f066a97ce27a1ecd1fdfa55
+1.0.1 bones:>= 3.5.0,rspec:~> 1|checksum:8c1f4f91a050aaf18b4b4d66b3509cba3a58cc1f4cbad105a89c9e50d42715c4
+1.1.0 bones:>= 3.5.0,rspec:~> 1|checksum:0c9ab7d9b3cbda4f544ea66e58df42ba6a3fc426c90a35c65ac1985223a95a23
+2.0.0 bones:= 3.6.3,rspec:= 1.3.1|checksum:39f50df5e1cdec1c907a4d3f8d01fa87feb4dcc605ff3e0766bc84fcb1cf5322
+2.0.1 bones:>= 3.6,rspec:>= 1.3|checksum:ad6b6ef9f67b67a70d3c5c495c72e5c45b3fd5a1811dba9001d8c789fb43a0a5

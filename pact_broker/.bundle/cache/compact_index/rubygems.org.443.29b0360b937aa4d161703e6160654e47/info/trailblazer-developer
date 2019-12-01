@@ -1,0 +1,11 @@
+---
+0.0.1 representable:>= 0,trailblazer-activity:~> 0.8|checksum:660fcbafb09fb3c9aed32965c39c12a81f5696a22a5e66fbc53b8fec7d2efeda
+0.0.2 representable:>= 0,trailblazer-activity:~> 0.8,trailblazer-activity-dsl-linear:>= 0|checksum:fe1d2f112aceb89dccb93f2f1af80681fbb92c6844692d16a50d4e3c234d8592
+0.0.3 representable:>= 0,trailblazer-activity:~> 0.8,trailblazer-activity-dsl-linear:>= 0|checksum:81352c974a6c0644729a5b58aefdbc4973135367794f12d59057731b05ef346d
+0.0.4 representable:>= 0,trailblazer-activity:~> 0.8,trailblazer-activity-dsl-linear:>= 0|checksum:1f03ef30f159dfdd0b6e221d1a23021254cab98b7fe9cb3e9cdd7b14c0f75adb
+0.0.5 representable:>= 0,trailblazer-activity:~> 0.8,trailblazer-activity-dsl-linear:>= 0|checksum:3128c8a065731efaeaf29bce0ba470c1f66a2d228e9b11c1b08282e53bae584f
+0.0.6 representable:>= 0,trailblazer-activity:>= 0.8.4,trailblazer-activity-dsl-linear:>= 0|checksum:45a5346acafd804f3df527209b39db94600e830b1f2e9b7b179d4a6f72d12b6c
+0.0.7 representable:>= 0,trailblazer-activity:>= 0.10.0,trailblazer-activity-dsl-linear:>= 0|checksum:510df3ebdeb931ce35135f97d638e8c7948174b5585bcdcab566320713f4a784
+0.0.8 representable:>= 0,trailblazer-activity:< 1.0.0&>= 0.10.0,trailblazer-activity-dsl-linear:>= 0|checksum:c45a1c57577c7a2b76c4c5474674aea745ce8c391b739b9612d16a746d5e250b
+0.0.9 representable:>= 0,trailblazer-activity:< 1.0.0&>= 0.10.0,trailblazer-activity-dsl-linear:>= 0|checksum:e6e0245efd1670bf540b06ffc0db60db8122d97701be67ac0f0a7d3259b37a3e
+0.0.10 representable:>= 0,trailblazer-activity:< 1.0.0&>= 0.10.0,trailblazer-activity-dsl-linear:>= 0|checksum:c246e8eac9f7a93cafba7eac1c51c81959474ee9b620058acead7a9f619c95e8

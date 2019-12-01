@@ -1,0 +1,35 @@
+---
+0.5.1 hoe:>= 1.7.0,libxml-ruby:>= 0.8.0|checksum:f5a1077f509d8679b62b882106cc38ce0111116a7492c4dbd0df99f2e3921b6c
+0.5.2 hoe:>= 1.8.2,libxml-ruby:>= 0.8.0|checksum:8a9bb3c56f51f6fc6673170ad7fb023e6842c1d58ea33df12aa4a08a9f1862f3
+0.6.0 hoe:>= 1.8.2,libxml-ruby:>= 1.1.2|checksum:d9abf40b41647130cfa0035c6e6499ec5225703bd28ef0ed9100b13ffb925023
+0.6.1 hoe:>= 1.8.2,libxml-ruby:>= 1.1.2|checksum:68f0b1ac0705bb233e0303160d1068dde6540dd0dbfc48b8b33c1094371e7ae3
+0.2.1 activesupport:>= 2.0.1,libxml-ruby:= 0.5.2.0|checksum:50ad85983e1b85136da619fc996e4eefed2ca31768f7517515fb82a02ffec9a9
+0.2.2 libxml-ruby:= 0.5.2.0|checksum:6c66bcd0d3e0c217dfd6489599ac714b4629077f25f3ea59cc390b36becc7920
+0.3.0 libxml-ruby:= 0.5.2.0|checksum:97e094fbca37201d09ab4d40a364f42fab4ffeea50653b53217d5a1f72ac200a
+0.3.1 libxml-ruby:= 0.5.2.0|checksum:ce2e450226cd115c2f0c83d00eb0ab67eeb96b50d2cc88ea66419991072b12a4
+0.3.2 libxml-ruby:= 0.5.2.0|checksum:8d04e729d0a8caa1e44c1d7a7814f833a06a98a72994fc3afc55dffcfadaf34e
+0.3.3 libxml-ruby:= 0.5.2.0|checksum:9250aa0f364db251290390acd7da616a7ea27a0f35208e04bd1aee1fed159707
+0.3.4 libxml-ruby:= 0.5.2.0|checksum:d1d27aafc07382d7ace1d122aa34931dc80b22a7e39ee93198bb54db46f5d75d
+0.3.5 libxml-ruby:= 0.5.2.0|checksum:be267dce60811c3a7b5bd0a2210561481526fb0608e75a41df524dfcad51de72
+0.3.6 libxml-ruby:= 0.5.2.0|checksum:09fb3f4bde965c71b584288606373f57f9fda2a47e844cc144627300490eb737
+0.3.7 libxml-ruby:= 0.5.2.0|checksum:2310f532cbcd2539ddfa5157116abfcddad7f1b900ac101fa07b27dd13c077c5
+0.4.0 libxml-ruby:= 0.5.2.0|checksum:7fcf852840063cb5e17bbad1f730ed62a413ba8f0d876a770c034ffb18653426
+0.4.1 libxml-ruby:= 0.6.0.0|checksum:699e6c86c4471c19dfca56ce94d88f041284e337910fb2e725c7a50c817b6bd2
+0.4.2 hoe:>= 1.7.0,libxml-ruby:>= 0.8.0|checksum:94b9947781aacd28c1ee69d8fbcd28dc857fdd530f2b7009725cc2b35a750d91
+0.5.0 hoe:>= 1.7.0,libxml-ruby:>= 0.8.0|checksum:8e3b4745a2b1320aa5a08bbeec96a9a20ad627d2147606fed79b7badafc5e72d
+0.6.2 hoe:>= 1.12.2,libxml-ruby:>= 1.1.2|checksum:6e5814a9bc0a58f507637af7157c4badb7f5d33f0a3b29e3f2f72878ce84d4a4
+0.6.3 libxml-ruby:>= 1.1.2|checksum:25cd359cfa55eac0189a92c9a821d678654b864d73a50a5c4e788024ec340835
+0.6.4 libxml-ruby:>= 1.1.2|checksum:8fe69a24bc025da981225493123e41bc3a6873ebb0873a5e577a3e2c54c354b0
+0.6.5 libxml-ruby:>= 1.1.2|checksum:ddb3f6e2f65c1b0734563bda46099c2e5d453b8b315ed7c6bfbc8176a8adcf7b
+0.6.6 libxml-ruby:>= 1.1.2|checksum:c1aec3a21de4804cc3c98e4c474f4d1ec3873452d184af54deba9b4279f2994c
+0.6.7 libxml-ruby:>= 1.1.2|checksum:310df56d10fadae505ca40b50fb05ad2e444400ba37996912769d9cb8204cff4
+0.6.8 libxml-ruby:>= 1.1.2|checksum:f337c9424b124956a32ce16150fd582938f5411b7a2fb74053ad58036ebf7f24
+0.6.9 libxml-ruby:>= 1.1.2|checksum:518cb60780430cb968eddd0db47b2dc978e45f52ff137fd652fa729d1ff3d280
+0.6.10 libxml-ruby:>= 1.1.2|checksum:60340cf1fc2cb43f56a2cf28b866432a74c41bb9428eb420029453adbdc2e3a2
+0.7.0 libxml-ruby:~> 2.3.2|checksum:ef05ae209c908545795b9f6c72017a2d025e84cebcfc0a9724dd07606eb98cde
+0.7.1 libxml-ruby:~> 2.3.2|checksum:8945a337f2658ae15b5416eca8d539690d64cbda07db144170a4b8a95d8b3697
+0.7.2 libxml-ruby:~> 2.3.2|checksum:20fab073d6563af15506a7e13b5f07350f2fbc384865272ad1f637e4bd069a71
+0.8.0 libxml-ruby:~> 2.3|checksum:20b40d04e9a46c33d30ffdac7dcac9d97486b6a9f982a86630300d1f8f5cdec9
+0.8.1 libxml-ruby:~> 2.6.0|checksum:09d6b0300a5695cdc9c6467f621a14e42bf36339e0d1d04ea777885447fbb9e8
+0.8.2 libxml-ruby:~> 2.6.0|checksum:9250018014cacd02c55deae1ec6d1d03bc864e29befe66f48a1ace1d531c9f10
+0.9.0 libxml-ruby:~> 2.6|checksum:1ef64e315d4a4bcc6f829d12b6aca4a87a0a7695cf000c975989fb2f8f935b16

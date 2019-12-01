@@ -1,0 +1,5 @@
+---
+1.0.0 activesupport:>= 4.2.0.alpha|checksum:cefcf623aad0f5950d1d4170af9c2018ea505ef53cb2398191f0c3d6a25aec72
+1.0.1 activesupport:>= 4.2.0.alpha|checksum:ac3e2b5d89b240b55e54aacdefa5d6120a110d859ce989fb6ffc6754b18e6020
+1.0.2 activesupport:>= 4.2.0.alpha|checksum:cfbb5a7b4847968888c470ae0ff262a099d81094dc46ee0f591e274d184ac731
+1.0.3 activesupport:>= 4.2.0.alpha|checksum:722d589fc83dea0ea49e816440bacc554383dc9a05c8aee5429cf7f621abbe63

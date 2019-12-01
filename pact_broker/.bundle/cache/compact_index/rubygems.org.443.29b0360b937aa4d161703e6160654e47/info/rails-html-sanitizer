@@ -1,0 +1,9 @@
+---
+1.0.0 loofah:~> 2.0|checksum:12487bac73912c6ee65436ee3e8dbb7259e1173f0a79d31e7f52e49ee9084f2b
+1.0.1 loofah:~> 2.0|checksum:f8c08716c30a087d655ff99249a8cafd426344dc96d6647ee9015e4d06a08dee
+1.0.2 loofah:~> 2.0|checksum:2481cfb60c4a03941489af5c92165c6dd169966f0b849d26d857cab5444b467a
+1.0.3 loofah:~> 2.0|checksum:a7da8eb4ce2e673ba909d36a94a9e06f196e88a92e76d01dfee3803d0d6a0e8d
+1.0.4 loofah:>= 2.2.2&~> 2.2|checksum:99cbc3d267856f6731663e654140be298393b1ee966027efab5dbcd44ade67bf
+1.1.0 loofah:>= 2.2.2&~> 2.2|checksum:041fdfa18c6efb7308b8714dd470e7e8548d4aaf823f0d5aa5d6e49b7d378ea6
+1.2.0 loofah:>= 2.2.2&~> 2.2|checksum:386f7b52a3c7a436ae2faa9886da3e5dc1b06c7ac90a9c58a1781d35eaef9c46
+1.3.0 loofah:~> 2.3|checksum:8e348db43fcca066944ff580f39dc110161a1b3fbd195bbff584debb7ac597c5

@@ -1,0 +1,6 @@
+---
+0.5.2 |checksum:2fe26844b314b8e2bd52ec16cff90e610b5c19075d1000161f8c8d3cc231c6c8
+0.5.1 |checksum:f8eb8f78342e3366509d2acb6ee87afec77e49c1545c7e7a76bdaab0f820db46,rubygems:
+0.6 minitar:~> 0.6,minitar-cli:~> 0.6|checksum:49586e30e1063d7aebecc488b3977f2e8c6dbf2b22b96761e5032f1e303b3d3d,ruby:>= 1.8
+0.6.1 minitar:~> 0.6,minitar-cli:~> 0.6|checksum:503985a7f7174fd12f26cae5cfc607a4a625c79a253462b7238b1052cafd9563,ruby:>= 1.8
+0.8 minitar:~> 0.8,minitar-cli:~> 0.8|checksum:9d80e397f112133bffc468fb1042baade21417aa1f85fdbb956d66eab3275986,ruby:>= 1.8

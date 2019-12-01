@@ -1,0 +1,22 @@
+---
+0.0.1 blockenspiel:>= 0.0.1,hoe:>= 1.8.0|checksum:8dbf1c32015c3e983cf1138dd00feee9120d0a67f597fa565c5892b017d110f3
+0.0.2 blockenspiel:>= 0.0.1,hoe:>= 1.8.0|checksum:993f4a72a6078e6a445cfb2f0afb8680e93b102adb2c3980ff165c8b29cf8f62
+0.0.3 blockenspiel:>= 0.0.1,hoe:>= 1.8.0|checksum:5a4c588b90e9c5358915e9d2a5557d69289e11263fbe89a607c97c391333a587
+0.0.4 blockenspiel:>= 0.0.4,hoe:>= 1.8.1|checksum:cfcb78fe0cd6d96d20f2a114e804ae4314ef76c7e8be50db6213c80c3cb05431
+0.1.0 blockenspiel:>= 0.2.1|checksum:476f556bac37d837f5a8c4fc17d50fc66070db63727ad6aec52e38e320a45751
+0.1.1 blockenspiel:>= 0.2.1|checksum:55d16ec1fd801fd75ef46d57d539e9b2d7a603768c9828fe45adb247462fa347
+0.1.2 blockenspiel:>= 0.2.2|checksum:5cabb89556284987f2ddd7bacd846373b5f7afb96a60812aa97d48f648ad432e
+0.1.3 blockenspiel:>= 0.2.2|checksum:c95cc40e80af70a5206ca0a572da470d2c51cc3ef976388cad27d088626a3bb3
+0.2.0 blockenspiel:>= 0.3.0|checksum:2fc224c6fed74e2697eb3b8a233b50fb907530497aac8030ee980d302d2aacc9
+0.2.1 blockenspiel:>= 0.3.1|checksum:ae0b22ebf7c1776493d9c68629d0021db43c8aebc90051a8f0f645e22e0351c8
+0.2.2 blockenspiel:>= 0.3.1|checksum:b3ffbdffd60dda7919384a1618e1a57296de909df7c992013129468cf36aceb3
+0.2.3 blockenspiel:>= 0.3.1|checksum:dff9b0784a8b3ba07558d65744d9ef9319c973e573b63fba4e1c8b63f947b8df
+0.2.4 blockenspiel:>= 0.3.1|checksum:5d5add9c37831cbcf97e2c16cd76d34acd4c67c2149e5a352ad67f324ed0ff02
+0.2.5 blockenspiel:>= 0.3.1|checksum:5cd42fef4559a0a98d6981cf79457ed13f88cc866eebc34dc0638097e28402bd
+0.3.0 blockenspiel:>= 0.3.1|checksum:eab01f2e8c74d32997824dde2daa363ee4a07fd62abb945b21a220d65af82cc0
+0.4.0 blockenspiel:>= 0.3.1|checksum:53b95ffd7ac3a8fde3f4213a20ed17f0a514d7b5e163c2009205f44a7c3a95b7
+0.4.1 blockenspiel:>= 0.4.1|checksum:43a07c308a92fbd69f8df04dba102448b00c2c5ba062f7712b638c90ac58ed0d,rubygems:> 1.3.1
+0.4.2 blockenspiel:>= 0.4.3|checksum:845cbfc03f96b042bfeee2439d655cf3ea81a5432d523c3ea727b59b28b0b002,rubygems:> 1.3.1
+0.4.3 blockenspiel:>= 0.4.3|checksum:ac8498d47f5f0b572fd3592f585c395c414d2c23675440c70689667317d9a9c0,rubygems:> 1.3.1
+0.4.4 blockenspiel:>= 0.4.5|checksum:4e605751bf71dc27bd223ac3a2eed083b12308ec101c318c5af9a376f2327746,rubygems:> 1.3.1
+0.5.0 blockenspiel:~> 0.5|checksum:636c8f9174c884034d1b24354a479c579b32e7839d897729b97e079aff251444,ruby:>= 1.9.3,rubygems:> 1.3.1

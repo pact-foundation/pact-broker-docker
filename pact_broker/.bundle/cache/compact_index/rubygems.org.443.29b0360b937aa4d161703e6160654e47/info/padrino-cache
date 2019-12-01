@@ -1,0 +1,85 @@
+---
+0.1.0 sinatra:>= 0.9.2|checksum:746fb0a866c21f87810ff8af2e07d70f7bb06531849f0daee72622ad35dd6904
+0.1.1 sinatra:>= 0.9.2|checksum:21bbfa5b1374aa6d57071ee5ec945a780d4b9a0cc0b7656cd609379fe9d2fd62
+0.1.2 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:760249a17501a8c126d03bc0c1a96ceaa291a8ccefebabd5c1b7820a1e97d544
+0.1.3 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:9560d7d43f63dc6fc298fa0114f013e5585910d2827ecaf2abd6e523b86b0e91
+0.1.4 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:d1b2f76f1001a1ad85bbf2ce058a8657b17d32d800a18b4d42a8488419cb7de8
+0.1.5 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:de12eb39468f866696b91f7157dbea8c9d745300dc43eb0a69488b40f2c0edb7
+0.2.0 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:882228790a712382bad1edf5d81d4f76eb78755e04ecbc3db789b867e8a0718f
+0.2.1 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:5165f406fe95b44965d50d9e3c58d379b9150190aaf60c14a78972b99c7a0feb
+0.2.2 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:47e1560a8adc1e7c61d5d3c71e59f396989a02567f22ceb32b7f248d733b307a
+0.2.5 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:e26b6b6ac42b3c8cb0c525569e288650b6260a0b428290b8b77f48d06bc00cf4
+0.2.6 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:cfe112b6dd343b807268a42a341cc8c2734ca17294dd714e290c51118267b949
+0.2.9 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:be7c49daa4ad2155315459724893ffc04780ecbcd067d26fd12cc4e88667ac92
+0.4.5 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:a3c519fe2c4fba5fe255dbfee19d0b14e5b27200963d5bc3164a176980bc3629
+0.4.6 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:4dc8b8dcc5d3d7587ac7e7b79a5ca679ba635818f1ef77e9bf6dbdc2d944e6ce
+0.5.0 padrino-core:>= 0.1.1,sinatra:>= 0.9.2|checksum:535684536c353c7ab3c42ef9e001c2a50aca96a09657842dd22c714701479164
+0.6.1 padrino-core:= 0.6.1,sinatra:>= 0.9.2|checksum:b36f7692dfdc435f4f1858159b7e19356e847e943c9fc95b80375fb66dc8886a
+0.9.16 padrino-core:= 0.9.16|checksum:f187e173f6fe4b44c069ed5be4afed4ced84e837f5db3709f6a250479b762c7c,rubygems:>= 1.3.6
+0.9.17 padrino-core:= 0.9.17|checksum:2e23bf504c13a7fb360277f60fdbd98f8d59ee965312055009b2990df27be5dd,rubygems:>= 1.3.6
+0.9.18 padrino-core:= 0.9.18|checksum:3f6362631707d239917da7a847a49847f9f8159690823d836878cea0008e0114,rubygems:>= 1.3.6
+0.9.19 padrino-core:= 0.9.19|checksum:a4b0abc5080125cc9ebfbf35c75568ef8267dd8d59affd4358c10fddcfb18699,rubygems:>= 1.3.6
+0.9.20 padrino-core:= 0.9.20|checksum:a87c3bebca6c3233f9604243c88f140eb9cf3d72ba195c1ede1392e8bb20ca13,rubygems:>= 1.3.6
+0.9.21 padrino-core:= 0.9.21|checksum:3f9a358cc00c9ea376925cceb49d4161579ce62c385795836fba6671c8b0ac68,rubygems:>= 1.3.6
+0.9.22 padrino-core:= 0.9.22|checksum:52dede98dfa62f3b8f0f8d1ad1d94e9671030a6cf665cb0b388e6cb08e13a228,rubygems:>= 1.3.6
+0.9.23 padrino-core:= 0.9.23|checksum:6c1fdcb15ddad0949dcbb140bb12b55328de2f2de77ad710ebae84b3551fccff,rubygems:>= 1.3.6
+0.9.25 padrino-core:= 0.9.25|checksum:a2937ffa4717a02d78d46b8fb901dcb141682d94431e6d6d90867ed5712a9bdf,rubygems:>= 1.3.6
+0.9.24 padrino-core:= 0.9.24|checksum:b1ffa19288f818192a49d5b774effe1c718d9c1d195726fa11ef34480eae78af,rubygems:>= 1.3.6
+0.9.26 padrino-core:= 0.9.26|checksum:266cd2e52472d6065692a0ab4f5a5be5f9deee745496bfe878f3fb6f561ed4e2,rubygems:>= 1.3.6
+0.9.27 padrino-core:= 0.9.27|checksum:52af4b7e6c167298d9764a6294d28753519032e09d412f441c0f3b87ba0a1726,rubygems:>= 1.3.6
+0.9.28 padrino-core:= 0.9.28|checksum:e680c1617038cb637334e141f45d6d7c1a816233b5c0b9408f1a05d51e5676b0,rubygems:>= 1.3.6
+0.9.29 padrino-core:= 0.9.29|checksum:2649547746a24ad6e64aa8fd19a8af941b75175b97232434b6e25a2d86ef1b5d,rubygems:>= 1.3.6
+0.10.0 padrino-core:= 0.10.0|checksum:8f3a7544f34db23a3e901ad802a94084db1fb717a882705ea6a87531cfa4a5af,rubygems:>= 1.3.6
+0.10.1 padrino-core:= 0.10.1|checksum:71dc4acd6d6cffd4bb7659aca87e5d668e7e254a6ec7f7accb2897344d491a79,rubygems:>= 1.3.6
+0.10.2 padrino-core:= 0.10.2|checksum:26d96f8a684056a399c48a0d105f9c9da8ca20cab6cd8e3a6c94e0aeffd7323a,rubygems:>= 1.3.6
+0.10.3 padrino-core:= 0.10.3|checksum:660f56d94b03537cc94a2f1c7364e5a203f9007f8c9884c7746a5b9e9cc175f2,rubygems:>= 1.3.6
+0.10.4 padrino-core:= 0.10.4|checksum:2ecace916787209660fc7e2bc9b438df9a9223b7b445ed6e435a71961d7cd4cd,rubygems:>= 1.3.6
+0.10.5 padrino-core:= 0.10.5|checksum:63ce3f4b461acd98c38ac134f464c26ddba9748b44b730ec7c051b3a81a24384,rubygems:>= 1.3.6
+0.10.6.a padrino-core:= 0.10.6.a|checksum:5c369b98c1cdf3d9402f122936523df2d00423309a5f6078f111556bdad39297,rubygems:> 1.3.1
+0.10.6.b padrino-core:= 0.10.6.b|checksum:644eba4b5a9ed61135efa257d769761d97dcce5b736723cdc1cae9843ad41b22,rubygems:> 1.3.1
+0.10.6.c padrino-core:= 0.10.6.c|checksum:7edc23d1b4a2869561dd13ff908b999e20b773f4154bf70cad6e74ddc84ead38,rubygems:> 1.3.1
+0.10.6.d padrino-core:= 0.10.6.d|checksum:5b9249482a4eac6c46d7471414712c6228eda41af244b2d54332faf725ac3858,rubygems:> 1.3.1
+0.10.6.e padrino-core:= 0.10.6.e|checksum:dfaaf42a942058c6a10ad14aa6a243887a950111414dbf48b690f8599ccfeefa,rubygems:> 1.3.1
+0.10.6 padrino-core:= 0.10.6|checksum:8ac74a404a5ba24eff6a8adc59e7061160efc5b42d2d8899400c3d53770e4eb1,rubygems:>= 1.3.6
+0.10.7 padrino-core:= 0.10.7|checksum:8ed738f96ecabfa65130709b60c4d599155b60d1c935c46936b0fe2d61a2952b,rubygems:>= 1.3.6
+0.11.0 padrino-core:= 0.11.0,padrino-helpers:= 0.11.0|checksum:37f661752ed52eea581e9d6737aa620ccf8f519c03e097fb116c3695dad49231,rubygems:>= 1.3.6
+0.11.1 padrino-core:= 0.11.1,padrino-helpers:= 0.11.1|checksum:2f3a2c15169d0a826930ac74b5e90f99f9f8d5cc85a6debcb594e5be1a6fbdad,rubygems:>= 1.3.6
+0.11.2 padrino-core:= 0.11.2,padrino-helpers:= 0.11.2|checksum:f674b215926b6d6538b00e07b6255d2f6dd2b34baf9805fb56489faceb94b8e6,rubygems:>= 1.3.6
+0.11.3 padrino-core:= 0.11.3,padrino-helpers:= 0.11.3|checksum:3ef3ff119468177f97a9aff94ac2e5077b1fb47f58b9971a5273e2cfec7c872f,rubygems:>= 1.3.6
+0.11.4 padrino-core:= 0.11.4,padrino-helpers:= 0.11.4|checksum:dc693a169a123622a34a033e515993e746cc60e684e2dab65a427d8e9864fbf9,rubygems:>= 1.3.6
+0.12.0.rc1 moneta:~> 0.7.0,padrino-core:= 0.12.0.rc1,padrino-helpers:= 0.12.0.rc1|checksum:acda6d0375eb0d7666f6b138045d19923876519c8d6be5a91d3da32aaa6a2680,rubygems:> 1.3.1
+0.12.0.rc2 moneta:~> 0.7.0,padrino-core:= 0.12.0.rc2,padrino-helpers:= 0.12.0.rc2|checksum:9bfbb9c2078d27ef0843d2eb5942f21141a6425d288ca3f14f709b86c904e94b,rubygems:> 1.3.1
+0.12.0.rc3 moneta:~> 0.7.0,padrino-core:= 0.12.0.rc3,padrino-helpers:= 0.12.0.rc3|checksum:c6f077b33371a693b5b06fdb6bcd1e56cc6acc78855eaefe05bf4605aa35f548,rubygems:> 1.3.1
+0.12.0 moneta:~> 0.7.0,padrino-core:= 0.12.0,padrino-helpers:= 0.12.0|checksum:5d0589f884b703133bf1474a4b10c93cdb02dc15c36f7cd003e041a534798ee2,rubygems:>= 1.3.6
+0.12.1 moneta:~> 0.7.0,padrino-core:= 0.12.1,padrino-helpers:= 0.12.1|checksum:83b7acdc7c80dce03776cb5d58e4348a18cb1248e0f382c5637e840176921289,rubygems:>= 1.3.6
+0.12.2 moneta:~> 0.7.0,padrino-core:= 0.12.2,padrino-helpers:= 0.12.2|checksum:262e5bbb985f1c976791de2d2763dee235bb86c3954ee4ca72823ef1564a1188,rubygems:>= 1.3.6
+0.12.3 moneta:~> 0.7.0,padrino-core:= 0.12.3,padrino-helpers:= 0.12.3|checksum:876ef219ffdc1b6f19f6945faef51ff7f21ca1d2e710366e9f7903afc91bc087,rubygems:>= 1.3.6
+0.12.4 moneta:~> 0.7.0,padrino-core:= 0.12.4,padrino-helpers:= 0.12.4|checksum:8c7a9108652c1f1b61acfefb94448ecdd324e9a645b4e99cd05367152a84745d,rubygems:>= 1.3.6
+0.13.0.beta1 moneta:~> 0.7.0,padrino-core:= 0.13.0.beta1,padrino-helpers:= 0.13.0.beta1|checksum:edb9621b2ab52e36edf44207073cf90a3417be199f10c58c90e387974aaf074e,rubygems:> 1.3.1
+0.12.5 moneta:~> 0.7.0,padrino-core:= 0.12.5,padrino-helpers:= 0.12.5|checksum:99ed9cbc2f45b47ada2064b9cb7e1394814e2dfb2c525a5b07fe767c27bb1a40,rubygems:>= 1.3.6
+0.13.0.beta2 moneta:~> 0.7.0,padrino-core:= 0.13.0.beta2,padrino-helpers:= 0.13.0.beta2|checksum:282e5bea5c586d4b58ffc9e0dca4c40d9249a517e389e0eb31fa9b0200a07744,rubygems:> 1.3.1
+0.13.0.beta3 moneta:~> 0.7.0,padrino-core:= 0.13.0.beta3,padrino-helpers:= 0.13.0.beta3|checksum:faef73b165fb8f3f40d5ed369b4a72033fd7b181d4af032fb8cae15ad29ec6e8,rubygems:> 1.3.1
+0.13.0 moneta:~> 0.7.0,padrino-core:= 0.13.0,padrino-helpers:= 0.13.0|checksum:5927447445e7a4fc77eb7561fa9f095314e6efc0efda34dd5562592fcebf4f24,rubygems:>= 1.3.6
+0.13.1.beta1 moneta:~> 0.7.0,padrino-core:= 0.13.1.beta1,padrino-helpers:= 0.13.1.beta1|checksum:2bcf24e6ea09946a20d5cab70c289f42016a058239738a536265cac3bacb32a3,rubygems:> 1.3.1
+0.13.1 moneta:~> 0.7.0,padrino-core:= 0.13.1,padrino-helpers:= 0.13.1|checksum:aa9297012096dcdb13457260c6c8de0b14b346aa1cc4e85f351fe3c39b4c7dff,rubygems:>= 1.3.6
+0.13.2 moneta:~> 0.7.0,padrino-core:= 0.13.2,padrino-helpers:= 0.13.2|checksum:b617c6769d66e712489d07d48bdef21852658532fd1828300d2d87798130f073,rubygems:>= 1.3.6
+0.12.6 moneta:~> 0.7.0,padrino-core:= 0.12.6,padrino-helpers:= 0.12.6|checksum:56e821f512cb619f258e68a225037ad76e26723cee3c5924ce191174bb4772ce,rubygems:>= 1.3.6
+0.12.7 moneta:~> 0.7.0,padrino-core:= 0.12.7,padrino-helpers:= 0.12.7|checksum:42bb8076289d3c43fb9a7f8a67c0697c412686d362455c0a03779697f8e8fd6c,rubygems:>= 1.3.6
+0.12.8 moneta:~> 0.7.0,padrino-core:= 0.12.8,padrino-helpers:= 0.12.8|checksum:9a6e1f0cd897e3e87a69f21c92f2aeed80e672d9e07b7ab8b9f80d496d780e86,rubygems:>= 1.3.6
+0.13.3 moneta:~> 0.8.0,padrino-core:= 0.13.3,padrino-helpers:= 0.13.3|checksum:5a85563788166f1977cdb2fdfb63dd7b7c1674a81b90cefe6f0a38d08728addb,rubygems:>= 1.3.6
+0.13.3.1 moneta:~> 0.8.0,padrino-core:= 0.13.3.1,padrino-helpers:= 0.13.3.1|checksum:9deebfecc769f7fbe63821c4acd84efdd3e80c900debcbd671eda9f1b0027597,rubygems:>= 1.3.6
+0.12.8.1 moneta:~> 0.7.0,padrino-core:= 0.12.8.1,padrino-helpers:= 0.12.8.1|checksum:bd2b2a598e1eae77a9e5e1929bb7fed6c17ac69f94db372c0b4f76e744e4c143,rubygems:>= 1.3.6
+0.13.3.2 moneta:~> 0.8.0,padrino-core:= 0.13.3.2,padrino-helpers:= 0.13.3.2|checksum:4145e74d8424979e742cdc1f2541aac4c096b344c3b8d2531eb2167016ff1f72,rubygems:>= 1.3.6
+0.13.3.3 moneta:~> 0.8.0,padrino-core:= 0.13.3.3,padrino-helpers:= 0.13.3.3|checksum:f47c8886e7037a2f3c55cce2e849e77bb917c91cb37cd5642b58204e64b2921c,rubygems:>= 1.3.6
+0.14.0.rc1 moneta:~> 0.8.0,padrino-core:= 0.14.0.rc1,padrino-helpers:= 0.14.0.rc1|checksum:b7e3293076d4caf8dc4b51e7f0a3f30f37aa0cdf254cd3d047e8153caf36046e,rubygems:> 1.3.1
+0.14.0.rc2 moneta:~> 0.8.0,padrino-core:= 0.14.0.rc2,padrino-helpers:= 0.14.0.rc2|checksum:44c0481f7b8ec8b00caa55f1d3885e30787356e846894fc056e891222ca76b95,rubygems:> 1.3.1
+0.14.0 moneta:~> 0.8.0,padrino-core:= 0.14.0,padrino-helpers:= 0.14.0|checksum:c699f2855493fd1a749c98694584cb7849dfec79b04a85ad4ba0cd179d98c006,rubygems:>= 1.3.6
+0.14.0.1 moneta:~> 0.8.0,padrino-core:= 0.14.0.1,padrino-helpers:= 0.14.0.1|checksum:55e9db506b29b1a03750e456754437b55c3bd3ba2210499dcea15b362233de66,rubygems:>= 1.3.6
+0.14.0.2 moneta:~> 0.8.0,padrino-core:= 0.14.0.2,padrino-helpers:= 0.14.0.2|checksum:f762ff904fc27d658219d7c4288f26512abb6283547b3edd91c4b2abf9e68453,rubygems:>= 1.3.6
+0.14.1 moneta:~> 0.8.0,padrino-core:= 0.14.1,padrino-helpers:= 0.14.1|checksum:c937252a5c88165f3be763898069b267d87484f68fef4c434cc615331499dc3e,rubygems:>= 1.3.6
+0.14.1.1 moneta:~> 0.8.0,padrino-core:= 0.14.1.1,padrino-helpers:= 0.14.1.1|checksum:cc063fec991f432fd3370090ad5f3b549aa33a59e1d6b63de9506f3cfebe5486,rubygems:>= 1.3.6
+0.13.3.4 moneta:~> 0.8.0,padrino-core:= 0.13.3.4,padrino-helpers:= 0.13.3.4|checksum:909896198ff1c2aa8a14ab111dd411e726240d84cbb964335e8ad2e45590e386,rubygems:>= 1.3.6
+0.14.2 moneta:~> 1.0.0,padrino-core:= 0.14.2,padrino-helpers:= 0.14.2|checksum:e9260493d325227e52ce88f3c835d273aad3f6ee92ffd8795b76768416242db2,rubygems:>= 1.3.6
+0.12.9 moneta:~> 0.7.0,padrino-core:= 0.12.9,padrino-helpers:= 0.12.9|checksum:d16821db3e5e7b2705951885df62e8a53cc694024bf472464eb77eb1982f7cec,rubygems:>= 1.3.6
+0.14.3 moneta:~> 1.0.0,padrino-core:= 0.14.3,padrino-helpers:= 0.14.3|checksum:f91d197d25818f3016df42146fb0efb602c5a5f6e9993ed8d7faab1d6f0f636d,rubygems:>= 1.3.6
+0.14.4 moneta:~> 1.0.0,padrino-core:= 0.14.4,padrino-helpers:= 0.14.4|checksum:e211fe86f7edbe484e4732512d6d0ca036c04d63d4d29eedd0e7cc4f83e12457,rubygems:>= 1.3.6

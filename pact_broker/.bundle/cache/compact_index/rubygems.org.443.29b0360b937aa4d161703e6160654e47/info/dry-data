@@ -1,0 +1,13 @@
+---
+0.0.1 dry-container:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2|checksum:0894fffa2216f4e219159337aebd6f5c79368af604e9ada7262c1838c0bf9e31
+0.1.0 dry-container:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2|checksum:b8f598186b55135e54e6a46cf22b2a990c6f2fabf61c87b3ebbc0f1343d8bf42
+0.2.0 dry-container:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2|checksum:4b4f2f0b6d290fa3f56a1c338fc896f49934a2609c1e32803e417a102abff2c2
+0.2.1 dry-container:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2|checksum:f4fe7ced040b89e20e1b6cdee46ed6e2e4b034c4e5ea6b2c5655f2b74dc35d1b
+0.3.0 dry-configurable:~> 0.1,dry-container:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:f45c0b198798e1efbd57ca5c29115bff585218278a27cdd07451319e8ca3c54c
+0.3.1 dry-configurable:~> 0.1,dry-container:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:630199866208682e43ff196babefc393f003fcefa535c6dc8f2d9042afbce7ec
+0.3.2 dry-configurable:~> 0.1,dry-container:~> 0.2,dry-equalizer:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:b4b1c8384c20da7e25985f65ede9949c83c8fa7f82b1ead53bfb0663a106e1e8
+0.4.0 dry-configurable:~> 0.1,dry-container:~> 0.2,dry-equalizer:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:58879456909f0547b7b6c4482c889a5fa3a64e4db8cb4b8b51b6cf768c5ed64d
+0.4.1 dry-configurable:~> 0.1,dry-container:~> 0.2,dry-equalizer:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:b9614fedaa8e02ecc967567f6e0e851a506b8dacdb2644e44e259ea88f4cbaac
+0.4.2 dry-configurable:~> 0.1,dry-container:~> 0.2,dry-equalizer:~> 0.2,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:4e0bfe70a87daacd43d06264f6eadde3f8d256a14d59be35ecc6565d6e73c4f0
+0.5.0 dry-configurable:~> 0.1,dry-container:~> 0.2,dry-equalizer:~> 0.2,dry-logic:~> 0.1,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:ecd9f5a863b1675fd1d1c92de64a24ba5d2380d73bde941d361c6f16e4728a7b
+0.5.1 dry-configurable:~> 0.1,dry-container:~> 0.2,dry-equalizer:~> 0.2,dry-logic:~> 0.1,inflecto:>= 0.0.2&~> 0.0.0,kleisli:~> 0.2,thread_safe:~> 0.3|checksum:82415301b4656ee4602b4a424c675f4b4e699f4773281cf11cce941553663bc5

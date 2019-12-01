@@ -1,0 +1,9 @@
+---
+0.3.1 enumerable-lazy:>= 0|checksum:43cd24a367d7de9e122a67b7c00b2080a643cd3a553851ce1efa55a2fc6fef26,ruby:>= 1.9.2
+0.3.1.1 |checksum:127197691777757aaf99b547d7fddea7c44642d587b827498d5f7d07aaa586e8,ruby:>= 1.9.2
+0.3.1.2 enumerable-lazy:>= 0|checksum:0b0302abbdf90e4354880beaea17a7c3ba02ff4af60d38a351f659e181b82346,ruby:>= 1.9.2
+0.4.0 enumerable-lazy:>= 0|checksum:e389d351f730a77f608eec7e1d0aa7de404d2f143ba01bf9abce77aeb7218da8,ruby:>= 1.9.2
+0.4.1 enumerable-lazy:>= 0|checksum:1727efb1f941e85c280e33f5bf8e6955f75e40e937eea5803682279eba76045f,ruby:>= 1.9.2
+0.4.2 enumerable-lazy:>= 0|checksum:0f2099c08cf7b69eb656a3850dd714208cbe29fe1fe4569601885d28a680c87f,ruby:>= 1.9.2
+0.4.3 enumerable-lazy:>= 0|checksum:1692551aeeac6b7c1dae92787df9afe2d63dc5599d3119a7f10cc89edbe8baa3,ruby:>= 1.9.2
+0.4.4 enumerable-lazy:>= 0|checksum:b67dc721d81056b7d081e6bd0c4454cd5bee197bf62c36ed4a2baa8bc8365c59,ruby:>= 1.9.2

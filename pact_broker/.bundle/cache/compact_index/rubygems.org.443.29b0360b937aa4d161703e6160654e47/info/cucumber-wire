@@ -1,0 +1,4 @@
+---
+0.0.1 |checksum:4ea8ca3f772d80876eb50533ab10521b383d866419bd6e838b822f0d16ded527,ruby:>= 1.9.3
+1.0.0 cucumber-core:~> 4.0,cucumber-expressions:~> 6.0|checksum:daa7dd8a57bc14b2245ca653cd28c7d045e9b86bca1d4c9291ed0765d2eb0b95,ruby:>= 2.2
+1.1.0 cucumber-core:>= 5.0.0&~> 5.0,cucumber-expressions:>= 8.0.2&~> 8.0|checksum:41dc2dd11be065e0c56880930d102c75a74d56c9378d1bf221f07d03a2283f29,ruby:>= 2.3

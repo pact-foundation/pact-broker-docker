@@ -1,9 +1,0 @@
----
-1.0.0 bones:>= 3.0.0|checksum:bae0747452a0ea829a550a7d96a88748c718e291d301caaab4bd7ff14b868b1e
-1.0.1 bones:>= 3.0.0|checksum:27744f588615ae173c8f3a23707d7933fefd5956d398f7072f675ed3af56532f
-1.1.0 bones:>= 3.0.1|checksum:7f4abee112104306951617d6899e1f86e462ae6fc6c27b6ce413b11214350498
-1.2.1 bones:>= 3.1.0|checksum:9bf77e72cb3596757518065070b6a071eb1bff046100a5556ead5750fa8ad598
-1.2.2 bones:>= 3.1.2|checksum:0a2e41f0a8a8a4ba719d76df6c8f2e347b34a82afb00ebab23d6e643dc3c6a38
-1.2.3 bones:>= 3.4.2|checksum:6cdf0382bde03252dfbdea31327572aedab323b699d5ace5ddbc81c211f61b24
-1.2.4 bones:>= 3.4.3|checksum:4d74fd886198d53d7a602034bea2f6fe36a06f25a396b2a1593d42fa1e152fac
-1.3.0 bones:>= 3.5.0,bones-rcov:>= 0,bones-rspec:>= 1.0.1,bones-rubyforge:>= 0,bones-zentest:>= 0|checksum:12b1550b4d2504cf128849309eef110e85a260947ae12661547a2e02ef631617

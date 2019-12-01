@@ -1,5 +1,0 @@
----
-0.6 minitar:~> 0.6.0,powerbar:~> 1.0|checksum:65bcca4f602afd9d3842233cc1563cc2517c6d57112a382ab0ce93372cd5d0d7,ruby:>= 1.8
-0.6.1 minitar:~> 0.6.0,powerbar:~> 1.0|checksum:8a285008c8f61fb7f4b8471479661000903fb3cc4de336d314d863360769c735,ruby:>= 1.8
-0.7 minitar:~> 0.7.0,powerbar:~> 1.0|checksum:d5963eaf3b4dc2631c9b0ea6492e7552c488191757711a7bcd433d6cc72b7e19,ruby:>= 1.8
-0.8 minitar:~> 0.8.0,powerbar:~> 1.0|checksum:3317a3489d0e17a7964d49430de06cc772f50bf80f8998f6c2c66097c0068494,ruby:>= 1.8

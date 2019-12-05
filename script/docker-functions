@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+function docker_build_bundle_base() {
+  docker build . -f Dockerfile-bundle-base -t pact_broker_bundle_base
+}
+
+function get_pact_broker_version() {
+  docker run --rm pact_broker_bundle_base:latest ruby -e "require 'pact_broker/version'; puts PactBroker::VERSION"
+}

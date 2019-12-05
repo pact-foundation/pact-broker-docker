@@ -35,9 +35,9 @@ For a postgres or mysql database:
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
-    * PACT_BROKER_DATABASE_PORT (optional, defaults to the default port for the specified adapter)
-    * PACT_BROKER_DATABASE_SSLMODE (optional, defaults to 'prefer' possible values: 'disable', 'allow', 'prefer', 'require', 'verify-ca', or 'verify-full' to choose how to treat SSL (only respected if using the postgres database adapter))
     * PACT_BROKER_DATABASE_NAME
+    * PACT_BROKER_DATABASE_PORT (optional, defaults to the default port for the specified adapter)
+    * PACT_BROKER_DATABASE_SSLMODE (optional, possible values: 'disable', 'allow', 'prefer', 'require', 'verify-ca', or 'verify-full' to choose how to treat SSL (only respected if using the postgres database adapter). See https://www.postgresql.org/docs/9.1/libpq-ssl.html for more information.)
 
 Adapter can be 'postgres' (recommended) or 'mysql2' (please note that future JSON search features may not be supported on mysql).
 

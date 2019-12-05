@@ -3,16 +3,19 @@ require_relative 'database_logger'
 
 def create_database_connection(logger)
   database_adapter = ENV.fetch('PACT_BROKER_DATABASE_ADAPTER','') != '' ? ENV['PACT_BROKER_DATABASE_ADAPTER'] : 'postgres'
-  sslmode = ENV.fetch('PACT_BROKER_DATABASE_SSLMODE','') != '' ? ENV['PACT_BROKER_DATABASE_SSLMODE'] : 'prefer'
+
   config = {
     adapter: database_adapter,
     user: ENV['PACT_BROKER_DATABASE_USERNAME'],
     password: ENV['PACT_BROKER_DATABASE_PASSWORD'],
     host: ENV['PACT_BROKER_DATABASE_HOST'],
     database: ENV['PACT_BROKER_DATABASE_NAME'],
-    sslmode: sslmode,
     encoding: 'utf8'
   }
+
+  if ENV.fetch('PACT_BROKER_DATABASE_SSLMODE','') != ''
+    config[:sslmode] = ENV['PACT_BROKER_DATABASE_SSLMODE']
+  end
 
   if ENV['PACT_BROKER_DATABASE_PORT'] =~ /^\d+$/
     config[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i

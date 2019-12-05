@@ -1,3 +1,17 @@
+<a name="2.40.0-2"></a>
+### 2.40.0-2 (2019-12-05)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version	 ([2a6992c](/../../commit/2a6992c))
+  * update pact_broker gem to version	 ([384a662](/../../commit/384a662))
+
+* only pass through sslmode if it is set via the environment variable	 ([7ab7f19](/../../commit/7ab7f19))
+* proxy sslmode parameter to Sequel	 ([d681a38](/../../commit/d681a38))
+
+
 <a name="2.40.0-1"></a>
 ### 2.40.0-1 (2019-10-26)
 

@@ -2,9 +2,11 @@
 
 set -e
 
-cd pact_broker
-bundle update
-cd ..
+rm -rf tmp
+docker build . -f Dockerfile-bundle-base -t pact_broker_bundle_base
+docker run --rm -v ${PWD}/tmp:/tmp/bundle_update pact_broker_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/bundle_update"
+mv tmp/Gemfile.lock pact_broker/
+
 unset PACT_BROKER_DATABASE_HOST
 unset PACT_BROKER_DATABASE_USERNAME
 unset PACT_BROKER_DATABASE_PASSWORD

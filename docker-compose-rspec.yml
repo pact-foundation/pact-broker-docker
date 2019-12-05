@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  rspec:
+    build:
+      context: .
+      dockerfile: Dockerfile-bundle-base
+    volumes:
+      - ./pact_broker/:/pact_broker
+      - ./spec/:/spec
+      - ./.rspec:/.rspec
+      - ./Gemfile:/Gemfile
+      - ./Gemfile.lock:/.Gemfile.lock
+    command: sh -c "cd / && bundle install && bundle exec rspec"

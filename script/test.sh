@@ -69,7 +69,7 @@ fi
 docker-compose -f docker-compose-rspec.yml up --build
 
 echo "Will build the pact broker"
-docker build -t=dius/pact_broker .
+docker build -t=pactfoundation/pact_broker .
 
 # Stop and remove any running broker-app container instances before updating
 if docker ps -a | grep ${PACT_CONT_NAME}; then
@@ -171,7 +171,7 @@ docker run --privileged --name=${PACT_CONT_NAME} -d -p ${PORT_BIND} \
   -e PACT_BROKER_WEBHOOK_SCHEME_WHITELIST="${PACT_BROKER_WEBHOOK_SCHEME_WHITELIST}" \
   -e PACT_BROKER_WEBHOOK_HOST_WHITELIST="${PACT_BROKER_WEBHOOK_HOST_WHITELIST}" \
   -e PACT_BROKER_LOG_LEVEL=INFO \
-  dius/pact_broker
+  pactfoundation/pact_broker
 sleep 1 && docker logs ${PACT_CONT_NAME}
 
 echo ""
@@ -211,6 +211,8 @@ if [[ ! -z "${PACT_BROKER_BASIC_AUTH_USERNAME}" ]]; then
 
   if [[ "${response_code}" -ne '401' ]]; then
     die "Expected response code to be 401, but was ${response_code}"
+  else
+    echo "Correctly received a 401 for an unauthorised request"
   fi
 fi
 

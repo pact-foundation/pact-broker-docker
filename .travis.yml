@@ -6,6 +6,7 @@ services:
 # https://github.com/travis-ci/travis-ci/issues/4778
 before_install:
   - sudo service docker restart; sleep 10; docker --version
+  - gem install bundler -v 2.0.2
 
 # add jq in packages once it becomes pre-allowed
 #  https://github.com/travis-ci/apt-package-whitelist/issues/1394
@@ -33,9 +34,6 @@ env:
   matrix:
     - PACT_BROKER_PORT=9292
 #    - PACT_BROKER_PORT=9999
-
-before_install:
-  - gem install bundler -v 2.0.2
 
 # The test script is designed to run in a Linux machine and therefore
 # in TravisCI. It also has conditionals for OSX so developers can run it there

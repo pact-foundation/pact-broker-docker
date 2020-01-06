@@ -5,5 +5,5 @@ function docker_build_bundle_base() {
 }
 
 function get_pact_broker_version() {
-  docker run --rm pact_broker_bundle_base:latest ruby -e "require 'pact_broker/version'; puts PactBroker::VERSION"
+  ruby -e "puts File.read('pact_broker/Gemfile.lock').match(/pact_broker \((.*)\)/)[1]"
 }

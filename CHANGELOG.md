@@ -1,3 +1,13 @@
+<a name="2.44.0-1"></a>
+### 2.44.0-1 (2020-01-28)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.44.0	 ([a0a4eda](/../../commit/a0a4eda))
+
+
 <a name="2.43.0-1"></a>
 ### 2.43.0-1 (2020-01-06)
 

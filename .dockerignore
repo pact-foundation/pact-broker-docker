@@ -4,5 +4,5 @@
 test.sh
 *.md
 .gitkeep
-script
 pact_broker/pact_broker.sqlite
+tmp

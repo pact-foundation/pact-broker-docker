@@ -4,12 +4,16 @@ function docker_build_bundle_base() {
   docker build . -f Dockerfile-bundle-base -t pact_broker_bundle_base
 }
 
-function get_pact_broker_version() {
-  docker run --rm -v ${PWD}/pact_broker/Gemfile.lock:/tmp/Gemfile.lock ruby:2.6.4-alpine ruby -e "puts File.read('/tmp/Gemfile.lock').match(/pact_broker \((.*)\)/)[1]"
-}
-
 function bundle_update_on_docker() {
   rm -rf tmp/Gemfile.lock
   docker run --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/shared"
   mv tmp/Gemfile.lock pact_broker/
+}
+
+function docker_build_package_base() {
+  docker build . -f Dockerfile-package-base -t pact_broker_package_base
+}
+
+function run_on_package_base() {
+  docker run --rm -it pact_broker_package_base sh -c "$@"
 }

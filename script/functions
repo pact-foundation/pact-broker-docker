@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+gem_version_from_gemfile_lock() {
+  grep "pact_broker (" pact_broker/Gemfile.lock | awk -F '[()]' '{print $2}'
+}

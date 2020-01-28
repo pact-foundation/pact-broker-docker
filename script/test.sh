@@ -65,9 +65,6 @@ fi
 [ -z "${PACT_BROKER_WEBHOOK_SCHEME_WHITELIST}" ] && PACT_BROKER_WEBHOOK_SCHEME_WHITELIST="http https"
 [ -z "${PACT_BROKER_WEBHOOK_HOST_WHITELIST}" ] && PACT_BROKER_WEBHOOK_HOST_WHITELIST="/.*\\.foo\\.com$/ bar.com 10.2.3.41/24"
 
-# TODO clean up built containers
-docker-compose -f docker-compose-rspec.yml up --build
-
 echo "Will build the pact broker"
 docker build -t=pactfoundation/pact_broker .
 
@@ -216,7 +213,7 @@ if [[ ! -z "${PACT_BROKER_BASIC_AUTH_USERNAME}" ]]; then
   fi
 fi
 
-script/publish.sh "${TEST_URL}"
+script/test/publish.sh "${TEST_URL}"
 
 echo ""
 echo "Checking that badges can be accessed without basic auth"

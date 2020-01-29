@@ -127,6 +127,20 @@ _NOTE: this image should be modified before using in Production, in particular, 
 
 See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 
+## Database migrations
+
+The Pact Broker auto migrates on startup, and will always do so in a way that is backwards compatible, to support architectures that run multiple instances of the application at a time (eg. AWS auto scaling).
+
+From the `/pact_broker` directory on the docker image, you can run migration and rollback scripts via rake. A rollback would be required if you needed to downgrade your Pact Broker image.
+
+To work out which migration to rollback to, select the tag of the Pact Broker gem version you want at https://github.com/pact-foundation/pact_broker and then look in the `db/migrations` directory. Find the very last migration in the directory, and take the numbers at the start of the file name. This is your "target".
+
+To rollback run:
+
+`rake pact_broker:db:migrate[target]` eg `rake pact_broker:db:migrate[20191101]`
+
+You can confirm the new version by running `rake pact_broker:db:version`
+
 # Troubleshooting
 
 See the [Troubleshooting][troubleshooting] page on the wiki.

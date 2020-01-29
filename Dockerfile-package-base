@@ -4,12 +4,9 @@ FROM ruby:2.6.4-alpine
 ENV HOME=/app
 WORKDIR $HOME
 
-RUN set -ex && \
-  apk add --update --no-cache git
-
+RUN apk add --update --no-cache git
 RUN gem install bundler -v 2.0.2
 
-#COPY script/docker/fake-git /usr/local/sbin/git
 COPY Rakefile $HOME/
 COPY Gemfile Gemfile.lock $HOME/
 # Only loaded for running the specs

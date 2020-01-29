@@ -99,10 +99,6 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 
 Documentation for the Pact Broker application itself can be found in the Pact Broker [wiki][pact-broker-wiki].
 
-## Running on Kubernetes
-
-See this issue first: https://github.com/pact-foundation/pact-broker-docker/issues/7
-
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgres, we have an example
@@ -126,6 +122,10 @@ _NOTE: this image should be modified before using in Production, in particular, 
 ## Running with Openshift
 
 See [pact-broker-openshift][pact-broker-openshift] for an example config file.
+
+## Running on Kubernetes
+
+Don't call your service "pact_broker" as it will create an environment called `PACT_BROKER_PORT` which will clash with the docker images own environment variables. See this issue: https://github.com/pact-foundation/pact-broker-docker/issues/7
 
 ## Database migrations
 

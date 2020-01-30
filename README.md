@@ -121,6 +121,8 @@ _NOTE: this image should be modified before using in Production, in particular, 
 
 ## Running with Openshift
 
+Don't call your service "pact_broker" as it will create an environment called `PACT_BROKER_PORT` which will clash with the docker images own environment variables. See this issue: https://github.com/pact-foundation/pact-broker-docker/issues/7
+
 See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 
 ## Running on Kubernetes

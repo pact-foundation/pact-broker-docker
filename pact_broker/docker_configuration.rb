@@ -47,6 +47,10 @@ module PactBroker
       end
     end
 
+    def base_url
+      env(:base_url)
+    end
+
     def env name
       @env["PACT_BROKER_#{name.to_s.upcase}"]
     end

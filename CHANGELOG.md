@@ -1,3 +1,15 @@
+<a name="2.46.0-1"></a>
+### 2.46.0-1 (2020-01-30)
+
+
+#### Features
+
+* support setting the application base URL using environment variable PACT_BROKER_BASE_URL	 ([2c6fc3b](/../../commit/2c6fc3b))
+
+* **gems**
+  * update pact_broker gem to version 2.46.0	 ([af359df](/../../commit/af359df))
+
+
 <a name="2.45.0-1"></a>
 ### 2.45.0-1 (2020-01-30)
 

@@ -1,3 +1,13 @@
+<a name="2.45.0-1"></a>
+### 2.45.0-1 (2020-01-30)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.45.0	 ([cd0237f](/../../commit/cd0237f))
+
+
 <a name="2.44.0-1"></a>
 ### 2.44.0-1 (2020-01-28)
 

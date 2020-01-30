@@ -16,4 +16,3 @@ PACT_BROKER_DATABASE_NAME=pact_broker.sqlite PACT_BROKER_DATABASE_ADAPTER=sqlite
 PACT_BROKER_DATABASE_NAME=pact_broker.sqlite PACT_BROKER_DATABASE_ADAPTER=sqlite script/test_basic_auth.sh
 git add pact_broker
 git commit -m "feat(gems): update pact_broker gem to version $(gem_version_from_gemfile_lock)"
-git push

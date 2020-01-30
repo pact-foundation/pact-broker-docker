@@ -6,7 +6,7 @@ source script/docker-functions
 source script/functions
 
 docker_build_bundle_base
-bundle_update_on_docker
+bundle_update_on_docker $1
 
 script/spec.sh
 unset PACT_BROKER_DATABASE_HOST

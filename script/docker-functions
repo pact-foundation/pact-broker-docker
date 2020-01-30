@@ -6,7 +6,13 @@ function docker_build_bundle_base() {
 
 function bundle_update_on_docker() {
   rm -rf tmp/Gemfile.lock
-  docker run --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/shared"
+  if [ -n "$1" ]; then
+    echo "Installing version ${1} of the pact_broker gem"
+    docker run --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "gem install pact_broker -v $1 && bundle update && cp Gemfile.lock /tmp/shared"
+  else
+    echo "Updating gems"
+    docker run --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/shared"
+  fi
   mv tmp/Gemfile.lock pact_broker/
 }
 

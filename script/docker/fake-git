@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-# This file is used by the conventional changelog gem instead of the real git executable
-# inside the docker container, as using git in a docker container turns out to be ridiculously hard.
-# It echos a pre-created list of git commits, created in
-# script/prepare-git-log-extract-for-conventional-changelog.sh
-# Don't judge me. I've tried a LOT of things.
-
-cat /tmp/git-log

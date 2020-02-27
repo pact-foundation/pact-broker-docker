@@ -13,3 +13,12 @@ end
 PactBroker::DB::CleanTask.new do | task |
   task.database_connection = create_database_connection(Logger.new($stdout))
 end
+
+PactBroker::DB::DeleteOverwrittenDataTask.new do | task |
+  task.database_connection = create_database_connection(Logger.new($stdout))
+  if ENV['PACT_BROKER_DELETE_OVERWRITTEN_DATA_AGE']
+    task.age_in_days = ENV['PACT_BROKER_DELETE_OVERWRITTEN_DATA_AGE'].to_i
+  else
+    task.age_in_days = 30
+  end
+end

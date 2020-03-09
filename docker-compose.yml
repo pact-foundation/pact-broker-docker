@@ -7,6 +7,8 @@ services:
       test: psql postgres --command "select 1" -U postgres
     ports:
       - "5432:5432"
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -39,3 +41,5 @@ services:
     ports:
       - "8443:443"
       - "80:80"
+volumes:
+  postgres-volume:

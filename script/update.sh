@@ -5,6 +5,8 @@ set -e
 source script/docker-functions
 source script/functions
 
+git pull origin master
+
 docker_build_bundle_base
 bundle_update_on_docker $1
 

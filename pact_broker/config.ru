@@ -4,6 +4,7 @@ require_relative 'logger'
 require_relative 'basic_auth'
 require_relative 'database_connection'
 require_relative 'docker_configuration'
+require_relative 'pact_broker_resource_access_policy'
 
 dc = PactBroker::DockerConfiguration.new(ENV, PactBroker::Configuration.default_configuration)
 dc.pact_broker_environment_variables.each{ |key, value| $logger.info "#{key}=#{value}"}
@@ -35,14 +36,14 @@ allow_public_read_access = ENV.fetch('PACT_BROKER_ALLOW_PUBLIC_READ', '') == 'tr
 allow_public_access_to_heartbeat = ENV.fetch('PACT_BROKER_PUBLIC_HEARTBEAT', '') == 'true'
 use_basic_auth = basic_auth_username != '' && basic_auth_password != ''
 
+
 if use_basic_auth
+  puts "INFO: Public read access is enabled" if allow_public_read_access
+  policy = PactBrokerResourceAccessPolicy.build(allow_public_read_access, allow_public_access_to_heartbeat)
   use BasicAuth,
-        basic_auth_username,
-        basic_auth_password,
-        basic_auth_read_only_username,
-        basic_auth_read_only_password,
-        allow_public_read_access,
-        allow_public_access_to_heartbeat
+        [basic_auth_username, basic_auth_password],
+        [basic_auth_read_only_username, basic_auth_read_only_password],
+        policy
 end
 
 run app

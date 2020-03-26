@@ -7,12 +7,12 @@ RSpec.describe "basic auth" do
 
   let(:protected_app) { ->(env) { [200, {}, []]} }
 
-  let(:app) { BasicAuth.new(protected_app, 'write_username', 'write_password', read_username, read_password, allow_public_read_access, allow_public_access_to_heartbeat) }
+  let(:policy) { PactBrokerResourceAccessPolicy.build(allow_public_read_access, allow_public_access_to_heartbeat) }
+  let(:app) { BasicAuth.new(protected_app, ['write_username', 'write_password'], [read_username, read_password], policy) }
   let(:allow_public_read_access) { false }
   let(:read_username) { 'read_username' }
   let(:read_password) { 'read_password' }
   let(:allow_public_access_to_heartbeat) { true }
-
 
   context "when requesting the heartbeat" do
     let(:path) { "/diagnostic/status/heartbeat" }
@@ -165,6 +165,12 @@ RSpec.describe "basic auth" do
       basic_authorize 'read_username', 'read_password'
       delete "/"
       expect(last_response.status).to eq 401
+    end
+
+    it "allows POST to the pacts for verification endpoint" do
+      basic_authorize 'read_username', 'read_password'
+      post "/pacts/provider/Foo/for-verification"
+      expect(last_response.status).to eq 200
     end
   end
 

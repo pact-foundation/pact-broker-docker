@@ -10,7 +10,10 @@ def create_database_connection(logger)
     password: ENV['PACT_BROKER_DATABASE_PASSWORD'],
     host: ENV['PACT_BROKER_DATABASE_HOST'],
     database: ENV['PACT_BROKER_DATABASE_NAME'],
-    encoding: 'utf8'
+    sql_log_level: ENV.fetch('PACT_BROKER_SQL_LOG_LEVEL', 'debug').to_sym,
+    log_warn_duration: ENV.fetch('PACT_BROKER_SQL_LOG_WARN_DURATION', '5').to_f,
+    encoding: 'utf8',
+    logger: DatabaseLogger.new(logger)
   }
 
   if ENV.fetch('PACT_BROKER_DATABASE_SSLMODE','') != ''
@@ -39,7 +42,6 @@ def create_database_connection(logger)
   # when databases are restarted and connections are killed.  This has a performance
   # penalty, so consider increasing this timeout if building a frequently accessed service.
   logger.info "Connecting to database with config: #{config.merge(password: "*****")}"
-  config[:logger] = DatabaseLogger.new(logger)
   connection = Sequel.connect(config)
   connection.extension(:connection_validator)
   connection.pool.connection_validation_timeout = -1

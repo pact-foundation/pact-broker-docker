@@ -10,7 +10,7 @@ class PactBrokerResourceAccessPolicy
   PACT_BADGE_PATH             = %r{^/pacts/provider/[^/]+/consumer/.*/badge(?:\.[A-Za-z]+)?$}.freeze
   MATRIX_BADGE_PATH           = %r{^/matrix/provider/[^/]+/latest/[^/]+/consumer/[^/]+/latest/[^/]+/badge(?:\.[A-Za-z]+)?$}.freeze
   HEARTBEAT_PATH              = %r{^/diagnostic/status/heartbeat$}.freeze
-  PACTS_FOR_VERIFICATION_PATH = %r{^/pacts/provider/[^/]+/for-verification$}
+  PACTS_FOR_VERIFICATION_PATH = %r{^/pacts/provider/[^/]+/for-verification$}.freeze
 
   PUBLIC = 0
   READ = 1

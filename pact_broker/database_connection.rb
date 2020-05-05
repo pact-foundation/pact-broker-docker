@@ -1,29 +1,6 @@
 require 'sequel'
 require_relative 'database_logger'
 
-def create_database_connection(logger)
-  database_adapter = ENV.fetch('PACT_BROKER_DATABASE_ADAPTER','') != '' ? ENV['PACT_BROKER_DATABASE_ADAPTER'] : 'postgres'
-
-  config = {
-    adapter: database_adapter,
-    user: ENV['PACT_BROKER_DATABASE_USERNAME'],
-    password: ENV['PACT_BROKER_DATABASE_PASSWORD'],
-    host: ENV['PACT_BROKER_DATABASE_HOST'],
-    database: ENV['PACT_BROKER_DATABASE_NAME'],
-    encoding: 'utf8'
-  }
-
-  if ENV.fetch('PACT_BROKER_DATABASE_SSLMODE','') != ''
-    config[:sslmode] = ENV['PACT_BROKER_DATABASE_SSLMODE']
-  end
-
-  if ENV['PACT_BROKER_DATABASE_PORT'] =~ /^\d+$/
-    config[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i
-  end
-
-  create_database_connection_from_config(logger, config)
-end
-
 def create_database_connection_from_config(logger, config)
   ##
   # Sequel by default does not test connections in its connection pool before

@@ -21,6 +21,10 @@ def create_database_connection(logger)
     config[:port] = ENV['PACT_BROKER_DATABASE_PORT'].to_i
   end
 
+  create_database_connection_from_config(logger, config)
+end
+
+def create_database_connection_from_config(logger, config)
   ##
   # Sequel by default does not test connections in its connection pool before
   # handing them to a client. To enable connection testing you need to load the

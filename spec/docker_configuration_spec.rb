@@ -92,20 +92,40 @@ RSpec.describe PactBroker::DockerConfiguration do
     let(:env) { super().merge(db_env) }
 
     context "when then configuration is provided as a URL" do
-      let(:db_env) do
-        {
-          "PACT_BROKER_DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
-        }
+      context "using the default env var" do
+        let(:db_env) do
+          {
+            "PACT_BROKER_DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
+          }
+        end
+
+        its(:database_configuration) { is_expected.to be_a Hash }
+        its("database_configuration.keys") { are_expected.to include :adapter, :user, :password, :host, :database, :encoding, :port }
+        it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
+        it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
+        it { expect(subject.database_configuration[:host]).to eq "localhost" }
+        it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
+        it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
+        it { expect(subject.database_configuration[:port]).to eq 5432 }
       end
 
-      its(:database_configuration) { is_expected.to be_a Hash }
-      its("database_configuration.keys") { are_expected.to include :adapter, :user, :password, :host, :database, :encoding, :port }
-      it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
-      it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
-      it { expect(subject.database_configuration[:host]).to eq "localhost" }
-      it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
-      it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
-      it { expect(subject.database_configuration[:port]).to eq 5432 }
+      context "using a configured provider and an arbitrary env var" do
+        let(:db_env) do
+          {
+            "PACT_BROKER_DATABASE_URL_PROVIDER" => "DATABASE_URL",
+            "DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
+          }
+        end
+
+        its(:database_configuration) { is_expected.to be_a Hash }
+        its("database_configuration.keys") { are_expected.to include :adapter, :user, :password, :host, :database, :encoding, :port }
+        it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
+        it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
+        it { expect(subject.database_configuration[:host]).to eq "localhost" }
+        it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
+        it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
+        it { expect(subject.database_configuration[:port]).to eq 5432 }
+      end
     end
 
     context "when then configuration is provided in separate env vars" do

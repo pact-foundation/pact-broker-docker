@@ -28,7 +28,7 @@ module PactBroker
     end
 
     def database_configuration
-      if env_populated?(:database_url)
+      if configure_database_via_url?
         database_configuration_from_url
       else
         database_configuration_from_parts
@@ -109,6 +109,18 @@ module PactBroker
 
     private
 
+    def configure_database_via_url?
+      database_url
+    end
+
+    def database_url
+      if env_populated?(:database_url)
+        env(:database_url)
+      elsif env_populated?(:database_url_provider)
+        @env[env(:database_url_provider)]
+      end
+    end
+
     def database_configuration_from_parts
       database_adapter = if env_populated?(:database_adapter)
                            env(:database_adapter)
@@ -132,7 +144,7 @@ module PactBroker
     end
 
     def database_configuration_from_url
-      uri = URI(env(:database_url))
+      uri = URI(database_url)
 
       {
         adapter: uri.scheme,

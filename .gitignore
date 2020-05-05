@@ -4,3 +4,4 @@ pact_broker/log
 pact_broker/tmp
 pact_broker/.bundle
 tmp
+.data

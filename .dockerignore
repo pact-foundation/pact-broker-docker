@@ -6,3 +6,4 @@ test.sh
 .gitkeep
 pact_broker/pact_broker.sqlite
 tmp
+.data

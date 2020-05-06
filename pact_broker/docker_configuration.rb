@@ -27,6 +27,14 @@ module PactBroker
       space_delimited_string_list_or_default(:webhook_http_method_whitelist)
     end
 
+    def database_configuration
+      if configure_database_via_url?
+        database_configuration_from_url
+      else
+        database_configuration_from_parts
+      end.merge(encoding: 'utf8', sslmode: env(:database_sslmode)).compact
+    end
+
     def base_equality_only_on_content_that_affects_verification_results
       if env_populated?(:base_equality_only_on_content_that_affects_verification_results)
         env(:base_equality_only_on_content_that_affects_verification_results) == 'true'
@@ -97,6 +105,55 @@ module PactBroker
           end
         end.join(' ')
       end
+    end
+
+    private
+
+    def configure_database_via_url?
+      database_url
+    end
+
+    def database_url
+      if env_populated?(:database_url)
+        env(:database_url)
+      elsif env_populated?(:database_url_provider)
+        @env[env(:database_url_provider)]
+      end
+    end
+
+    def database_configuration_from_parts
+      database_adapter = if env_populated?(:database_adapter)
+                           env(:database_adapter)
+                         else
+                           'postgres'
+                         end
+
+      config = {
+        adapter: database_adapter,
+        user: env(:database_username),
+        password: env(:database_password),
+        host: env(:database_host),
+        database: env(:database_name),
+      }
+
+      if env(:database_port) =~ /^\d+$/
+        config[:port] = env(:database_port).to_i
+      end
+
+      config
+    end
+
+    def database_configuration_from_url
+      uri = URI(database_url)
+
+      {
+        adapter: uri.scheme,
+        user: uri.user,
+        password: uri.password,
+        host: uri.host,
+        database: uri.path.sub(/^\//, ''),
+        port: (uri.port || 5432).to_i,
+      }.compact
     end
   end
 end

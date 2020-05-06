@@ -31,14 +31,13 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 
 For a postgres or mysql database:
 
-You can either set the PACT_BROKER_DATABASE_URL in the format `driver://username:password@host:port/database` (eg. `postgres://user1:pass1@myhost/mydb`) or, you can set the credentials individually using the following environment variables:
-
     * PACT_BROKER_DATABASE_ADAPTER (optional, defaults to 'postgres', see note below.)
     * PACT_BROKER_DATABASE_USERNAME
     * PACT_BROKER_DATABASE_PASSWORD
     * PACT_BROKER_DATABASE_HOST
     * PACT_BROKER_DATABASE_NAME
     * PACT_BROKER_DATABASE_PORT (optional, defaults to the default port for the specified adapter)
+    * PACT_BROKER_DATABASE_SSLMODE (optional, possible values: 'disable', 'allow', 'prefer', 'require', 'verify-ca', or 'verify-full' to choose how to treat SSL (only respected if using the postgres database adapter). See https://www.postgresql.org/docs/9.1/libpq-ssl.html for more information.)
 
 Adapter can be 'postgres' (recommended) or 'mysql2' (please note that future JSON search features may not be supported on mysql).
 
@@ -46,10 +45,6 @@ For an sqlite database (only recommended for investigation/spikes, as it will be
 
   * PACT_BROKER_DATABASE_ADAPTER (set to 'sqlite')
   * PACT_BROKER_DATABASE_NAME (arbitrary name eg. pact_broker.sqlite)
-
-You can additionally set:
-
-    * PACT_BROKER_DATABASE_SSLMODE (optional, possible values: 'disable', 'allow', 'prefer', 'require', 'verify-ca', or 'verify-full' to choose how to treat SSL (only respected if using the postgres database adapter). See https://www.postgresql.org/docs/9.1/libpq-ssl.html for more information.)
 
 3. Test the pact broker environment by executing [script/test.sh][test-script]
 
@@ -134,10 +129,6 @@ See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 ## Running on Kubernetes
 
 Don't call your service "pact_broker" as it will create an environment called `PACT_BROKER_PORT` which will clash with the docker images own environment variables. See this issue: https://github.com/pact-foundation/pact-broker-docker/issues/7
-
-## Running on Heroku
-
-Heroku provides the database connection string as the environment variable `$DATABASE_URL`. To tell the Pact Broker to use this environment variable rather than `$PACT_BROKER_DATABASE_URL`, set the environment variable `PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME=DATABASE_URL`.
 
 ## Database migrations
 

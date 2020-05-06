@@ -10,7 +10,10 @@ dc.pact_broker_environment_variables.each{ |key, value| $logger.info "#{key}=#{v
 
 app = PactBroker::App.new do | config |
   config.logger = $logger
-  config.database_connection = create_database_connection(config.logger)
+
+  db_config = dc.database_configuration
+  config.database_connection = create_database_connection_from_config(config.logger, db_config)
+
   config.database_connection.timezone = :utc
   config.base_url = dc.base_url
   config.webhook_host_whitelist = dc.webhook_host_whitelist

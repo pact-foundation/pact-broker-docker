@@ -1,3 +1,16 @@
+<a name="2.52.2-2"></a>
+### 2.52.2-2 (2020-05-06)
+
+
+#### Features
+
+* allow Pact Broker to run on Heroku	 ([f4dc1f1](/../../commit/f4dc1f1))
+* allow Pact Broker to run on Heroku	 ([bf006c7](/../../commit/bf006c7))
+
+* **gems**
+  * update pact_broker gem to version 2.52.2	 ([3ac135f](/../../commit/3ac135f))
+
+
 <a name="2.52.2-1"></a>
 ### 2.52.2-1 (2020-04-16)
 

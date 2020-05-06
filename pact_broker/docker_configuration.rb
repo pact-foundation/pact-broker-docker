@@ -28,11 +28,11 @@ module PactBroker
     end
 
     def database_configuration
-      if configure_database_via_url?
+      if database_url
         database_configuration_from_url
       else
         database_configuration_from_parts
-      end.merge(encoding: 'utf8', sslmode: env(:database_sslmode)).compact
+      end.merge(encoding: 'utf8', sslmode: env_or_nil(:database_sslmode)).compact
     end
 
     def base_equality_only_on_content_that_affects_verification_results
@@ -67,6 +67,10 @@ module PactBroker
       (env(name) || "").size > 0
     end
 
+    def env_or_nil name
+      env_populated?(name) ? env(name) : nil
+    end
+
     def default property_name
       @default_configuration.send(property_name)
     end
@@ -80,7 +84,6 @@ module PactBroker
     end
 
     class SpaceDelimitedStringList < Array
-
       def initialize list
         super(list)
       end
@@ -109,24 +112,12 @@ module PactBroker
 
     private
 
-    def configure_database_via_url?
-      database_url
-    end
-
     def database_url
-      if env_populated?(:database_url)
-        env(:database_url)
-      elsif env_populated?(:database_url_provider)
-        @env[env(:database_url_provider)]
-      end
+      @database_url ||= @env[env_or_nil(:database_url_environment_variable_name) || 'PACT_BROKER_DATABASE_URL']
     end
 
     def database_configuration_from_parts
-      database_adapter = if env_populated?(:database_adapter)
-                           env(:database_adapter)
-                         else
-                           'postgres'
-                         end
+      database_adapter = env_or_nil(:database_adapter) || 'postgres'
 
       config = {
         adapter: database_adapter,
@@ -152,7 +143,7 @@ module PactBroker
         password: uri.password,
         host: uri.host,
         database: uri.path.sub(/^\//, ''),
-        port: (uri.port || 5432).to_i,
+        port: uri.port&.to_i,
       }.compact
     end
   end

@@ -71,6 +71,7 @@ RSpec.describe PactBroker::DockerConfiguration do
           "PACT_BROKER_DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
         }
       end
+
       let(:env) do
         super().merge(db_env)
       end
@@ -84,6 +85,7 @@ RSpec.describe PactBroker::DockerConfiguration do
 
       its(:pact_broker_environment_variables) { is_expected.to have_key "PACT_BROKER_DATABASE_URL" }
       its(:pact_broker_environment_variables) { is_expected.not_to have_key "SOMETHING" }
+
       it { expect(subject.pact_broker_environment_variables["PACT_BROKER_PASSWORD"]).to eq "*****" }
     end
   end
@@ -99,8 +101,6 @@ RSpec.describe PactBroker::DockerConfiguration do
           }
         end
 
-        its(:database_configuration) { is_expected.to be_a Hash }
-        its("database_configuration.keys") { are_expected.to include :adapter, :user, :password, :host, :database, :encoding, :port }
         it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
         it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
         it { expect(subject.database_configuration[:host]).to eq "localhost" }
@@ -109,16 +109,14 @@ RSpec.describe PactBroker::DockerConfiguration do
         it { expect(subject.database_configuration[:port]).to eq 5432 }
       end
 
-      context "using a configured provider and an arbitrary env var" do
+      context "using a configured environment variable name and an arbitrary env var" do
         let(:db_env) do
           {
-            "PACT_BROKER_DATABASE_URL_PROVIDER" => "DATABASE_URL",
+            "PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME" => "DATABASE_URL",
             "DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
           }
         end
 
-        its(:database_configuration) { is_expected.to be_a Hash }
-        its("database_configuration.keys") { are_expected.to include :adapter, :user, :password, :host, :database, :encoding, :port }
         it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
         it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
         it { expect(subject.database_configuration[:host]).to eq "localhost" }
@@ -138,8 +136,6 @@ RSpec.describe PactBroker::DockerConfiguration do
         }
       end
 
-      its(:database_configuration) { is_expected.to be_a Hash }
-      its("database_configuration.keys") { are_expected.to include :adapter, :user, :password, :host, :database, :encoding }
       it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
       it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
       it { expect(subject.database_configuration[:host]).to eq "localhost" }

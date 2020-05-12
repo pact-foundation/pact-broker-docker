@@ -1,3 +1,12 @@
+<a name="2.52.2.0"></a>
+### 2.52.2.0 (2020-05-12)
+
+
+#### Features
+
+* change tag format from M.m.p-RELEASE to M.m.p.RELEASE	 ([719a948](/../../commit/719a948))
+
+
 <a name="2.52.2-2"></a>
 ### 2.52.2-2 (2020-05-06)
 

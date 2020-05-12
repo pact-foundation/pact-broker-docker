@@ -12,9 +12,3 @@ git tag -a "${TAG}" -m "Releasing version ${TAG}"
 git push origin "${TAG}"
 git push origin master
 echo "Releasing from https://hub.docker.com/repository/docker/pactfoundation/pact-broker/builds"
-
-experimental_tag=$(script/release/next-docker-experimental-tag.sh)
-
-echo "Tagging version ${experimental_tag}"
-git tag -a "${experimental_tag}" -m "Releasing version ${experimental_tag}"
-git push origin "${experimental_tag}"

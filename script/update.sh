@@ -2,6 +2,11 @@
 
 set -e
 
+if nc -zv localhost 9292 >/dev/null 2>&1 ; then
+  echo "ERROR: There another process running on port 9292"
+  exit 1
+fi
+
 source script/docker-functions
 source script/functions
 

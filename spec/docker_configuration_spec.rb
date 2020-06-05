@@ -30,14 +30,148 @@ RSpec.describe PactBroker::DockerConfiguration do
       }
     end
 
-    let(:expected_environment_variables) do
-      {
-        "PACT_BROKER_FOO" => "foo",
-        "PACT_BROKER_PASSWORD" => "*****"
-      }
+    context "when the environment variables contains an arbitrary key" do
+      let(:expected_environment_variables) do
+        {
+          "PACT_BROKER_FOO" => "foo",
+          "PACT_BROKER_PASSWORD" => "*****"
+        }
+      end
+
+      its(:pact_broker_environment_variables) { is_expected.to eq expected_environment_variables }
     end
 
-    its(:pact_broker_environment_variables) { is_expected.to eq expected_environment_variables }
+    context "when the environment variables contain database keys" do
+      let(:db_env) do
+        {
+          "PACT_BROKER_DATABASE_HOST" => "localhost"
+        }
+      end
+      let(:env) do
+        super().merge(db_env)
+      end
+
+      let(:expected_environment_variables) do
+        {
+          "PACT_BROKER_FOO" => "foo",
+          "PACT_BROKER_PASSWORD" => "*****"
+        }
+      end
+
+      its(:pact_broker_environment_variables) { is_expected.to have_key "PACT_BROKER_FOO" }
+      its(:pact_broker_environment_variables) { is_expected.to have_key "PACT_BROKER_PASSWORD" }
+      its(:pact_broker_environment_variables) { is_expected.to have_key "PACT_BROKER_DATABASE_HOST" }
+      its(:pact_broker_environment_variables) { is_expected.not_to have_key "SOMETHING" }
+      it { expect(subject.pact_broker_environment_variables["PACT_BROKER_PASSWORD"]).to eq "*****" }
+    end
+
+    context "when the environment variables contain a database url key" do
+      let(:db_env) do
+        {
+          "PACT_BROKER_DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
+        }
+      end
+
+      let(:env) do
+        super().merge(db_env)
+      end
+
+      let(:expected_environment_variables) do
+        {
+          "PACT_BROKER_FOO" => "foo",
+          "PACT_BROKER_PASSWORD" => "*****"
+        }
+      end
+
+      its(:pact_broker_environment_variables) { is_expected.to have_key "PACT_BROKER_DATABASE_URL" }
+      its(:pact_broker_environment_variables) { is_expected.not_to have_key "SOMETHING" }
+
+      it { expect(subject.pact_broker_environment_variables["PACT_BROKER_PASSWORD"]).to eq "*****" }
+    end
+  end
+
+  describe "database_configuration" do
+    let(:env) { super().merge(db_env) }
+
+    context "when then configuration is provided as a URL" do
+      context "using the default env var" do
+        let(:db_env) do
+          {
+            "PACT_BROKER_DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
+          }
+        end
+
+        it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
+        it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
+        it { expect(subject.database_configuration[:host]).to eq "localhost" }
+        it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
+        it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
+        it { expect(subject.database_configuration[:port]).to eq 5432 }
+      end
+
+      context "using a configured environment variable name and an arbitrary env var" do
+        let(:db_env) do
+          {
+            "PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME" => "DATABASE_URL",
+            "DATABASE_URL" => "postgresql://pactbrokeruser:TheUserPassword@localhost:5432/pactbroker"
+          }
+        end
+
+        it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
+        it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
+        it { expect(subject.database_configuration[:host]).to eq "localhost" }
+        it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
+        it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
+        it { expect(subject.database_configuration[:port]).to eq 5432 }
+      end
+    end
+
+    context "when then configuration is provided in separate env vars" do
+      let(:db_env) do
+        {
+          "PACT_BROKER_DATABASE_USERNAME" => "pactbrokeruser",
+          "PACT_BROKER_DATABASE_PASSWORD" => "TheUserPassword",
+          "PACT_BROKER_DATABASE_HOST" => "localhost",
+          "PACT_BROKER_DATABASE_NAME" => "pactbroker",
+        }
+      end
+
+      it { expect(subject.database_configuration[:user]).to eq "pactbrokeruser" }
+      it { expect(subject.database_configuration[:password]).to eq "TheUserPassword" }
+      it { expect(subject.database_configuration[:host]).to eq "localhost" }
+      it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
+      it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
+
+      context "when an adapter is supplied" do
+        let(:db_env) { super().merge("PACT_BROKER_DATABASE_ADAPTER" => "mysql") }
+
+        it { expect(subject.database_configuration[:adapter]).to eq "mysql" }
+      end
+
+      context "when an adapter is not supplied" do
+        it { expect(subject.database_configuration[:adapter]).to eq "postgres" }
+      end
+
+      context "when a port is supplied" do
+        let(:db_env) { super().merge("PACT_BROKER_DATABASE_PORT" => port) }
+
+        context "and the value is numeric" do
+          let(:port) { "1234" }
+
+          it { expect(subject.database_configuration[:port]).to eq 1234 }
+        end
+
+        context "and the value is not numeric" do
+          let(:port) { "abc" }
+
+          its("database_configuration.keys") { are_expected.not_to include :port }
+        end
+      end
+
+      context "when a port is not supplied" do
+        its("database_configuration.keys") { are_expected.not_to include :port }
+      end
+    end
   end
 
   describe "order_versions_by_date" do

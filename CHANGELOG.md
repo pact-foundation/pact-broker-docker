@@ -1,3 +1,65 @@
+<a name="2.56.1.0"></a>
+### 2.56.1.0 (2020-06-01)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.56.1	 ([d0ad957](/../../commit/d0ad957))
+  * update pact_broker gem to version 2.56.0	 ([d29d59a](/../../commit/d29d59a))
+
+
+<a name="2.55.0.0"></a>
+### 2.55.0.0 (2020-05-22)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.55.0	 ([4c90b6c](/../../commit/4c90b6c))
+
+
+<a name="2.54.0.0"></a>
+### 2.54.0.0 (2020-05-13)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.54.0	 ([eafa1c3](/../../commit/eafa1c3))
+
+
+<a name="2.52.2.0"></a>
+### 2.52.2.0 (2020-05-12)
+
+
+#### Features
+
+* change tag format from M.m.p-RELEASE to M.m.p.RELEASE	 ([719a948](/../../commit/719a948))
+
+
+<a name="2.52.2-2"></a>
+### 2.52.2-2 (2020-05-06)
+
+
+#### Features
+
+* allow Pact Broker to run on Heroku	 ([f4dc1f1](/../../commit/f4dc1f1))
+* allow Pact Broker to run on Heroku	 ([bf006c7](/../../commit/bf006c7))
+
+* **gems**
+  * update pact_broker gem to version 2.52.2	 ([3ac135f](/../../commit/3ac135f))
+
+
+<a name="2.52.2-1"></a>
+### 2.52.2-1 (2020-04-16)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.51.2   ([f0dbf78](/../../commit/f0dbf78))
+
 <a name="2.51.0-1"></a>
 ### 2.51.0-1 (2020-03-11)
 

@@ -1,3 +1,12 @@
+<a name="2.56.1.1"></a>
+### 2.56.1.1 (2020-06-05)
+
+
+#### Features
+
+* allow POST access to the 'pacts for verification' endpoint for the read only user (#22)	 ([fcc3f97](/../../commit/fcc3f97))
+
+
 <a name="2.56.1.0"></a>
 ### 2.56.1.0 (2020-06-01)
 

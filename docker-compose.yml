@@ -30,6 +30,7 @@ services:
       # PACT_BROKER_DATABASE_NAME: postgres
       PACT_BROKER_PORT: "9292"
       PACT_BROKER_LOG_LEVEL: INFO
+      PACT_BROKER_SQL_LOG_LEVEL: DEBUG
 
   # Nginx is not necessary, but demonstrates how
   # one might use a reverse proxy in front of the broker,

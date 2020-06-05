@@ -32,7 +32,12 @@ module PactBroker
         database_configuration_from_url
       else
         database_configuration_from_parts
-      end.merge(encoding: 'utf8', sslmode: env_or_nil(:database_sslmode)).compact
+      end.merge(
+        encoding: 'utf8',
+        sslmode: env_or_nil(:database_sslmode),
+        sql_log_level: (env_or_nil(:sql_log_level) || 'debug').downcase.to_sym,
+        log_warn_duration: (env_or_nil(:sql_log_warn_duration) || '5').to_f
+      ).compact
     end
 
     def base_equality_only_on_content_that_affects_verification_results

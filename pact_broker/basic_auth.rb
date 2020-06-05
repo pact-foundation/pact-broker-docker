@@ -1,32 +1,22 @@
-class BasicAuth
-  PATH_INFO = 'PATH_INFO'.freeze
-  REQUEST_METHOD = 'REQUEST_METHOD'.freeze
-  GET = 'GET'.freeze
-  OPTIONS = 'OPTIONS'.freeze
-  HEAD = 'HEAD'.freeze
-  READ_METHODS = [GET, OPTIONS, HEAD].freeze
-  PACT_BADGE_PATH = %r{^/pacts/provider/[^/]+/consumer/.*/badge(?:\.[A-Za-z]+)?$}.freeze
-  MATRIX_BADGE_PATH = %r{^/matrix/provider/[^/]+/latest/[^/]+/consumer/[^/]+/latest/[^/]+/badge(?:\.[A-Za-z]+)?$}.freeze
-  HEARTBEAT_PATH = "/diagnostic/status/heartbeat".freeze
+require_relative 'pact_broker_resource_access_policy'
 
-  def initialize(app, write_user_username, write_user_password, read_user_username, read_user_password, allow_public_read_access, allow_public_access_to_heartbeat)
+class BasicAuth
+  def initialize(app, write_credentials, read_credentials, policy)
     @app = app
-    @write_credentials = [write_user_username, write_user_password]
-    @read_credentials = [read_user_username, read_user_password]
-    @allow_public_access_to_heartbeat = allow_public_access_to_heartbeat
+    @write_credentials = write_credentials
+    @read_credentials = read_credentials
     @app_with_write_auth = build_app_with_write_auth
-    @app_with_read_auth = build_app_with_read_auth(allow_public_read_access)
+    @app_with_read_auth = build_app_with_read_auth
+    @policy = policy
   end
 
   def call(env)
-    if use_basic_auth? env
-      if read_request?(env)
-        app_with_read_auth.call(env)
-      else
-        app_with_write_auth.call(env)
-      end
-    else
+    if policy.public_access_allowed?(env)
       app.call(env)
+    elsif policy.read_access_allowed?(env)
+      app_with_read_auth.call(env)
+    else
+      app_with_write_auth.call(env)
     end
   end
 
@@ -42,7 +32,7 @@ class BasicAuth
 
   private
 
-  attr_reader :app, :app_with_read_auth, :app_with_write_auth, :write_credentials, :read_credentials, :allow_public_access_to_heartbeat
+  attr_reader :app, :app_with_read_auth, :app_with_write_auth, :write_credentials, :read_credentials, :policy
 
   def build_app_with_write_auth
     this = self
@@ -51,32 +41,11 @@ class BasicAuth
     end
   end
 
-  def build_app_with_read_auth(allow_public_read_access)
-    if allow_public_read_access
-      puts "INFO: Public read access is enabled"
-      app
-    else
-      this = self
-      Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
-        this.write_credentials_match(username, password) || this.read_credentials_match(username, password)
-      end
+  def build_app_with_read_auth
+    this = self
+    Rack::Auth::Basic.new(app, "Restricted area") do |username, password|
+      this.write_credentials_match(username, password) || this.read_credentials_match(username, password)
     end
-  end
-
-  def read_request?(env)
-    READ_METHODS.include?(env[REQUEST_METHOD])
-  end
-
-  def use_basic_auth?(env)
-    !allow_public_access(env)
-  end
-
-  def allow_public_access(env)
-    env[PATH_INFO] =~ PACT_BADGE_PATH || env[PATH_INFO] =~ MATRIX_BADGE_PATH || is_heartbeat_and_public_access_allowed?(env)
-  end
-
-  def is_heartbeat_and_public_access_allowed?(env)
-    allow_public_access_to_heartbeat && env[PATH_INFO] == HEARTBEAT_PATH
   end
 
   def is_set(string)

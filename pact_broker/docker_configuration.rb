@@ -35,7 +35,7 @@ module PactBroker
       end.merge(
         encoding: 'utf8',
         sslmode: env_or_nil(:database_sslmode),
-        sql_log_level: (env_or_nil(:sql_log_level) || 'debug').to_sym,
+        sql_log_level: (env_or_nil(:sql_log_level) || 'debug').downcase.to_sym,
         log_warn_duration: (env_or_nil(:sql_log_warn_duration) || '5').to_f
       ).compact
     end

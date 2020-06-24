@@ -14,7 +14,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
 
-  pact_broker:
+  pact-broker:
     # image: pactfoundation/pact-broker
     build: .
     ports:
@@ -38,7 +38,7 @@ services:
   nginx:
     image: nginx:alpine
     depends_on:
-      - pact_broker
+      - pact-broker
     volumes:
       - ./ssl/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./ssl:/etc/nginx/ssl

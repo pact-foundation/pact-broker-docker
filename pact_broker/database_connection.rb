@@ -1,5 +1,5 @@
 require 'sequel'
-require_relative 'database_logger'
+require 'pact_broker/db/log_quietener'
 
 def create_database_connection_from_config(logger, config)
   ##
@@ -20,7 +20,7 @@ def create_database_connection_from_config(logger, config)
   # when databases are restarted and connections are killed.  This has a performance
   # penalty, so consider increasing this timeout if building a frequently accessed service.
   logger.info "Connecting to database with config: #{config.merge(password: "*****")}"
-  connection = Sequel.connect(config.merge(logger: DatabaseLogger.new(logger)))
+  connection = Sequel.connect(config.merge(logger: PactBroker::DB::LogQuietener.new(logger)))
   connection.extension(:connection_validator)
   connection.pool.connection_validation_timeout = -1
   connection

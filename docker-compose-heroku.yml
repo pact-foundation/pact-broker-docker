@@ -1,0 +1,31 @@
+# This example demonstrates how you can run the Pact Broker docker image on Heroku
+# by allowing the PORT and DATABASE_URL environment variables to be used instead of
+# PACT_BROKER_PORT and PACT_BROKER_DATABASE_URL.
+
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    healthcheck:
+      test: psql postgres --command "select 1" -U postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+
+  pact-broker:
+    image: pactfoundation/pact-broker
+    ports:
+      - "9393:9393"
+    depends_on:
+      - postgres
+    environment:
+      PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: "PORT"
+      PORT: "9393"
+      PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: "DATABASE_URL"
+      DATABASE_URL: "postgres://postgres:password@postgres/postgres"
+      PACT_BROKER_LOG_LEVEL: INFO
+      PACT_BROKER_SQL_LOG_LEVEL: DEBUG

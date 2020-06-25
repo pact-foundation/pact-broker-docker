@@ -8,11 +8,14 @@ module PactBroker
     end
 
     def pact_broker_environment_variables
-      @env.each_with_object({}) do | (key, value), hash |
-        if key.start_with?("PACT_BROKER_")
-          hash[key] = key =~ /password/i ? "*****" : value
-        end
+      pact_broker_environment_variable_names.sort.each_with_object({}) do | name, hash |
+        hash[name] = name =~ /password/i ? "*****" : @env[name]
       end
+    end
+
+    def pact_broker_environment_variable_names
+      remapped_env_var_names = @env.keys.select { |k| k.start_with?('PACT_BROKER_') && k.end_with?('_ENVIRONMENT_VARIABLE_NAME') }
+      @env.keys.select{ |k| k.start_with?('PACT_BROKER_') } + remapped_env_var_names.collect{ |name| @env[name] }.compact
     end
 
     def webhook_host_whitelist

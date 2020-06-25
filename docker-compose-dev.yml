@@ -7,15 +7,12 @@ services:
       test: psql postgres --command "select 1" -U postgres
     ports:
       - "5432:5432"
-    # volumes:
-    #   - postgres-volume:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
 
   pact-broker:
-    # image: pactfoundation/pact-broker
     build: .
     ports:
       - "9393:9393"
@@ -32,20 +29,7 @@ services:
       # PACT_BROKER_PORT: "9292"
       PORT: '9393'
       PACT_BROKER_LOG_LEVEL: INFO
-      PACT_BROKER_SQL_LOG_LEVEL: DEBUG
-
-  # Nginx is not necessary, but demonstrates how
-  # one might use a reverse proxy in front of the broker,
-  # and includes the use of a self-signed TLS certificate
-  nginx:
-    image: nginx:alpine
-    depends_on:
-      - pact-broker
+      PACT_BROKER_SQL_LOG_LEVEL: INFO
+    entrypoint: /custom-entrypoint.sh
     volumes:
-      - ./ssl/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./ssl:/etc/nginx/ssl
-    ports:
-      - "8443:443"
-      - "80:80"
-volumes:
-  postgres-volume:
+      - ./script/docker/docker-compose-entrypoint.sh:/custom-entrypoint.sh

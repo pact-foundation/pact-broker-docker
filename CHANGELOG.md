@@ -1,3 +1,15 @@
+<a name="2.58.0.0"></a>
+### 2.58.0.0 (2020-06-26)
+
+
+#### Features
+
+* **gems**
+  * update pact_broker gem to version 2.58.0	 ([c479285](/../../commit/c479285))
+
+* allow puma's persistent_timeout to be set via PACT_BROKER_PUMA_PERSISTENT_TIMEOUT	 ([1e51b9a](/../../commit/1e51b9a))
+
+
 <a name="2.57.0.1"></a>
 ### 2.57.0.1 (2020-06-25)
 

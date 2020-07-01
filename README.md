@@ -1,5 +1,6 @@
-Dockerised Pact Broker [![Build Status](https://travis-ci.org/pact-foundation/pact-broker-docker.svg)](https://travis-ci.org/pact-foundation/pact-broker-docker)
-==================
+# Dockerised Pact Broker
+
+[![Build Status](https://travis-ci.org/pact-foundation/pact-broker-docker.svg)](https://travis-ci.org/pact-foundation/pact-broker-docker)
 
 This repository contains a Dockerized version of the [Pact Broker][pact-broker]. You can pull the `pactfoundation/pact-broker` image from [Dockerhub][pact-broker-docker]. If you're viewing these docs on Dockerhub, here is a link to the [github repository][github].
 
@@ -104,10 +105,12 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 * PACT_BROKER_DISABLE_SSL_VERIFICATION - `false` by default, may be set to `true`.
 * PACT_BROKER_BASE_EQUALITY_ONLY_ON_CONTENT_THAT_AFFECTS_VERIFICATION_RESULTS - `true` by default, may be set to `false`.
 * PACT_BROKER_ORDER_VERSIONS_BY_DATE - `true` by default. Setting this to false is deprecated.
+* PACT_BROKER_PUMA_PERSISTENT_TIMEOUT - allows configuration of the Puma persistent timeout.
+
 
 ## General Pact Broker configuration and usage
 
-Documentation for the Pact Broker application itself can be found in the Pact Broker [wiki][pact-broker-wiki].
+Documentation for the Pact Broker application itself can be found in the Pact Broker [docs][pact-broker-docs].
 
 ## Running with Docker Compose
 
@@ -131,17 +134,51 @@ _NOTE: this image should be modified before using in Production, in particular, 
 
 ## Running with Openshift
 
-Don't call your service "pact_broker" as it will create an environment called `PACT_BROKER_PORT` which will clash with the docker images own environment variables. See this issue: https://github.com/pact-foundation/pact-broker-docker/issues/7
+If you call your service "pact_broker", an environment variable called `PACT_BROKER_PORT` will be created which will conflict with the Docker image's `PACT_BROKER_PORT` (see this [issue](https://github.com/pact-foundation/pact-broker-docker/issues/7) for background). In this case, you have two options.
+
+* Give your service a name that is *not* "pact_broker".
+* [Use different environment variable names](#using-different-environment-variable-names)
 
 See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 
 ## Running on Kubernetes
 
-Don't call your service "pact_broker" as it will create an environment called `PACT_BROKER_PORT` which will clash with the docker images own environment variables. See this issue: https://github.com/pact-foundation/pact-broker-docker/issues/7
+If you call your service "pact_broker", an environment variable called `PACT_BROKER_PORT` will be created which will conflict with the Docker image's `PACT_BROKER_PORT` (see this [issue](https://github.com/pact-foundation/pact-broker-docker/issues/7) for background). In this case, you have two options.
+
+* Give your service a name that is *not* "pact_broker".
+* [Use different environment variable names](#using-different-environment-variable-names)
 
 ## Running on Heroku
 
-Heroku provides the database connection string as the environment variable `$DATABASE_URL`. To tell the Pact Broker to use this environment variable rather than `$PACT_BROKER_DATABASE_URL`, set the environment variable `PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME=DATABASE_URL`.
+Heroku provides the database connection string as the environment variable `DATABASE_URL`, and the port as `PORT`. See the section on [Using different environment variable names](#using-different-environment-variable-names) to allow the Pact Broker to use these environment variables instead of `PACT_BROKER_PORT` and `PACT_BROKER_DATABASE_URL`.
+
+## Running on AWS with an ALB
+
+If you are running the Docker image behind an ALB with an idle timeout, you may need to set the Puma persistent timeout using the `PACT_BROKER_PUMA_PERSISTENT_TIMEOUT` environment variable. See [issue 26](https://github.com/pact-foundation/pact-broker-docker/issues/26) for details.
+
+## Using different environment variable names
+
+If you are running your Docker container in a managed environment, you may not be able to control the names of the environment variables that are set by that software.
+
+In this case, you can tell the application to use different environment variables to source the following configuration options.
+
+### Port
+
+To allow the port of the Pact Broker to be set by a different environment variable, set `PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME` to the name of your chosen variable, and then set that variable. eg.
+
+```sh
+PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME=PACT_BROKER_APPLICATION_PORT
+PACT_BROKER_APPLICATION_PORT=5000
+```
+
+### Database URL
+
+To allow the URL of the database to be set by a different environment variable, set `PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME` to the name of your chosen variable, and then set that variable. eg.
+
+```
+PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME=DATABASE_URL
+DATABASE_URL=...
+```
 
 ## Database migrations
 
@@ -159,18 +196,18 @@ You can confirm the new version by running `rake pact_broker:db:version`
 
 # Troubleshooting
 
-See the [Troubleshooting][troubleshooting] page on the wiki.
+See the [Troubleshooting][troubleshooting] page on the docs site.
 
 [docker]: https://docs.docker.com/install/
 [pact-broker]: https://github.com/pact-foundation/pact_broker
 [pact-broker-docker]: https://hub.docker.com/r/pactfoundation/pact-broker/
 [pact-broker-openshift]: https://github.com/jaimeniswonger/pact-broker-openshift
-[badges]: https://github.com/pact-foundation/pact_broker/wiki/Provider-verification-badges
+[badges]: https://docs.pact.io/pact_broker/advanced_topics/provider_verification_badges
 [troubleshooting]: https://github.com/pact-foundation/pact-broker-docker/wiki/Troubleshooting
 [postgres]: https://github.com/pact-foundation/pact-broker-docker/blob/master/POSTGRESQL.md
 [test-script]: https://github.com/pact-foundation/pact-broker-docker/blob/master/script/test.sh
 [docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
-[pact-broker-wiki]: https://github.com/pact-foundation/pact_broker/wiki
-[reverse-proxy]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#running-the-broker-behind-a-reverse-proxy
+[pact-broker-docs]: https://docs.pact.io/pact_broker/
+[reverse-proxy]: https://docs.pact.io/pact_broker/configuration#running-the-broker-behind-a-reverse-proxy
 [webhook-whitelist]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#webhook-whitelists
 [github]: https://github.com/pact-foundation/pact-broker-docker

@@ -207,5 +207,5 @@ See the [Troubleshooting][troubleshooting] page on the docs site.
 [docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
 [pact-broker-docs]: https://docs.pact.io/pact_broker/
 [reverse-proxy]: https://docs.pact.io/pact_broker/configuration#running-the-broker-behind-a-reverse-proxy
-[webhook-whitelist]: https://github.com/pact-foundation/pact_broker/wiki/Configuration#webhook-whitelists
+[webhook-whitelist]: https://docs.pact.io/pact_broker/configuration#webhook-whitelists
 [github]: https://github.com/pact-foundation/pact-broker-docker

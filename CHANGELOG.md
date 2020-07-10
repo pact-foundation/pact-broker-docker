@@ -1,3 +1,12 @@
+<a name="2.58.0.1"></a>
+### 2.58.0.1 (2020-07-11)
+
+
+#### Features
+
+* allow database pool max connections and timeout to be configured via environment variables	 ([2c88f67](/../../commit/2c88f67))
+
+
 <a name="2.58.0.0"></a>
 ### 2.58.0.0 (2020-06-26)
 

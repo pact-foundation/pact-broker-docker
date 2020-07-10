@@ -171,6 +171,17 @@ RSpec.describe PactBroker::DockerConfiguration do
       context "when a port is not supplied" do
         its("database_configuration.keys") { are_expected.not_to include :port }
       end
+
+      context "when the max connections and pool is supplied" do
+        let(:db_env) do
+          super().merge(
+            "PACT_BROKER_DATABASE_MAX_CONNECTIONS" => "2",
+            "PACT_BROKER_DATABASE_POOL_TIMEOUT" => "7",
+          )
+        end
+
+        its(:database_configuration) { is_expected.to include max_connections: 2, pool_timeout: 7 }
+      end
     end
   end
 

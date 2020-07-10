@@ -39,7 +39,9 @@ module PactBroker
         encoding: 'utf8',
         sslmode: env_or_nil(:database_sslmode),
         sql_log_level: (env_or_nil(:sql_log_level) || 'debug').downcase.to_sym,
-        log_warn_duration: (env_or_nil(:sql_log_warn_duration) || '5').to_f
+        log_warn_duration: (env_or_nil(:sql_log_warn_duration) || '5').to_f,
+        max_connections: env_as_integer(:database_max_connections),
+        pool_timeout: env_as_integer(:database_pool_timeout)
       ).compact
     end
 
@@ -77,6 +79,10 @@ module PactBroker
 
     def env_or_nil name
       env_populated?(name) ? env(name) : nil
+    end
+
+    def env_as_integer name, default = nil
+      env_populated?(name) ? env(name).to_i : default
     end
 
     def default property_name

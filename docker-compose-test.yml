@@ -26,7 +26,7 @@ services:
     volumes:
       - ./script/docker/docker-compose-entrypoint.sh:/custom-entrypoint.sh
 
-  test:
+  sut:
     build:
       context: test
     depends_on:

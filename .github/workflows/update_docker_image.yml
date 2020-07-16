@@ -25,6 +25,8 @@ jobs:
           if [ -z "$(git diff pact_broker/Gemfile.lock)" ] ; then
             echo "No gems updated"
             exit 1
+          else
+            echo "Gems updated, continuing with release"
           fi
       # - run:
       # - name: Unit tests

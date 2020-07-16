@@ -17,7 +17,16 @@ jobs:
         with:
           ruby-version: 2.6.4
       - name: Update gems
-        run: bundle update
+        run: |
+          cd pact_broker
+          bundle update
+      - name: Detect changes
+        run: |
+          if [ -z "$(git diff pact_broker/Gemfile.lock)" ] ; then
+            echo "No gems updated"
+            exit 1
+          fi
+      - run:
       # - name: Unit tests
       #   run: bundle exec rake spec
       # - name: Integration tests

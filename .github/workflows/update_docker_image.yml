@@ -16,7 +16,11 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.4
-      - run: |
-          bundle update
-          bundle exec rake spec
-      - run: script/test.sh
+      - name: Update gems
+        run: bundle update
+      # - name: Unit tests
+      #   run: bundle exec rake spec
+      # - name: Integration tests
+      #   run: script/test.sh
+      - name: Next tag
+        run: script/release/next-docker-tag.sh

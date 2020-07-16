@@ -3,7 +3,7 @@ name: Update Docker image
 on:
   push:
     branches:
-      - $default-branch
+      - master
 
 jobs:
   test:

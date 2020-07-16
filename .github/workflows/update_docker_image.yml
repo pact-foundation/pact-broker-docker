@@ -19,5 +19,4 @@ jobs:
       - run: |
           bundle update
           bundle exec rake spec
-
-
+      - run: script/test.sh

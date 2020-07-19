@@ -55,5 +55,6 @@ jobs:
 
       - name: Push image to Docker Hub
         run: |
-          docker tag pactfoundation/pact-broker:latest pactfoundation/pact-broker:bethtest
-          docker push pactfoundation/pact-broker:bethtest
+          docker tag pactfoundation/pact-broker:latest pactfoundation/pact-broker:${TAG}
+          docker push pactfoundation/pact-broker:latest
+          docker push pactfoundation/pact-broker:${TAG}

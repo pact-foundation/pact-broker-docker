@@ -29,7 +29,9 @@ jobs:
         run: script/workflow/detect-changes.sh
 
       - name: Unit tests
-        run: bundle exec rake spec
+        run: |
+          bundle install
+          bundle exec rake spec
 
       # - name: Login to docker hub
       #   uses: actions-hub/docker/login@master

@@ -3,8 +3,8 @@
 set -e
 
 cleanup() {
-  docker-compose -f docker-compose-tests.yml rm -fv
-  docker-compose -f docker-compose-test-different-env-var-names.yml rm -fv
+  docker-compose -f docker-compose-tests.yml rm -fv  || true
+  docker-compose -f docker-compose-test-different-env-var-names.yml rm -fv || true
 }
 trap cleanup EXIT
 

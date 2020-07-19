@@ -42,7 +42,7 @@ jobs:
         run: script/workflow/docker-login.sh
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       # - name: Build Docker image
       #   uses: actions-hub/docker@master

@@ -17,8 +17,8 @@ jobs:
         with:
           ruby-version: 2.6.4
       - run: |
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
       - name: Update gems
         run: script/workflow/update-gems.sh
         env:
@@ -61,8 +61,8 @@ jobs:
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
       - run: |
-        docker tag pactfoundation/pact_broker:latest pactfoundation/pact_broker:bethtest
-        docker push pactfoundation/pact_broker:bethtest
+          docker tag pactfoundation/pact_broker:latest pactfoundation/pact_broker:bethtest
+          docker push pactfoundation/pact_broker:bethtest
 
       # - name: Tag
       #   uses: actions-hub/docker@master

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -euo
 
 cd pact_broker
 

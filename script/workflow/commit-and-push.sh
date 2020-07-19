@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -euo
 
 git add pact_broker/Gemfile.lock
 git commit -m "feat(deps): update ${RELEASED_GEM_NAME} gem to version ${RELEASED_GEM_VERSION}"

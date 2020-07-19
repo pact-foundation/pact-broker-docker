@@ -10,7 +10,6 @@ trap cleanup EXIT
 
 cleanup
 
-docker build -t pactfoundation/pact_broker:localtest .
 docker-compose -f docker-compose-tests.yml up --build --abort-on-container-exit --exit-code-from sut
 cleanup
 

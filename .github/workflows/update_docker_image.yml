@@ -1,12 +1,12 @@
 name: Update Docker image
 
 on:
-  push:
-    branches:
-      - master
+  repository_dispatch:
+    types:
+      - gem-released
 
 jobs:
-  test:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,12 @@ jobs:
       - name: Update gems
         run: |
           cd pact_broker
+          gem install ${RELEASED_GEM_NAME} -v ${RELEASED_GEM_VERSION}
+          bundle update ${RELEASED_GEM_NAME}
           bundle update
+        env:
+          RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
+          RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
       - name: Detect changes
         run: |
           if [ -z "$(git diff pact_broker/Gemfile.lock)" ] ; then
@@ -28,10 +33,40 @@ jobs:
           else
             echo "Gems updated, continuing with release"
           fi
-      # - run:
+      - name: Build Docker image
+        uses: actions-hub/docker@master
+        with:
+          args: build -t pactfoundation/pact_broker:latest .
+
       # - name: Unit tests
       #   run: bundle exec rake spec
       # - name: Integration tests
       #   run: script/test.sh
-      - name: Next tag
-        run: script/release/next-docker-tag.sh
+      - name: Calculate next tag
+        run: echo '::set-env name=TAG::$(script/release/next-docker-tag.sh)'
+      - name: Commit and push
+        run: |
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+          git commit -m "feat(deps): update ${RELEASED_GEM_NAME} gem to version ${RELEASED_GEM_VERSION}"
+          git tag -a "${TAG}" -m "chore(release): version ${TAG}"
+          git push origin master --follow-tags
+        env:
+          RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
+          RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
+
+      - name: Login to docker hub
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Tag
+        uses: actions-hub/docker@master
+        with:
+          args: tag pactfoundation/pact_broker:latest pactfoundation/pact_broker:bethtest
+
+      - name: Push to docker hub :latest
+        uses: actions-hub/docker@master
+        with:
+          args: push pactfoundation/pact_broker:bethtest

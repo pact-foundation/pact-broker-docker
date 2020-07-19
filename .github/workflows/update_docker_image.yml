@@ -46,7 +46,7 @@ jobs:
       #   uses: actions-hub/docker@master
       #   with:
       #     args: build -t pactfoundation/pact-broker:latest .
-      - runs: docker build -t pactfoundation/pact-broker:latest .
+      - run: docker build -t pactfoundation/pact-broker:latest .
 
       - name: Integration tests
         run: script/test.sh

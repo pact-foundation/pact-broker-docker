@@ -1,3 +1,14 @@
+<a name="2.58.2.0"></a>
+### 2.58.2.0 (2020-07-19)
+
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.58.2	 ([f0bf1a9](/../../commit/f0bf1a9))
+  * update pact_broker gem to version 2.58.2	 ([b6d093d](/../../commit/b6d093d))
+
+
 <a name="2.58.0.1"></a>
 ### 2.58.0.1 (2020-07-11)
 

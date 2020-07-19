@@ -33,21 +33,12 @@ jobs:
           bundle install
           bundle exec rake spec
 
-      # - name: Login to docker hub
-      #   uses: actions-hub/docker/login@master
-      #   env:
-      #     DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-      #     DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Login to docker hub
+      - name: Login to Docker Hub
         run: script/workflow/docker-login.sh
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      # - name: Build Docker image
-      #   uses: actions-hub/docker@master
-      #   with:
-      #     args: build -t pactfoundation/pact-broker:latest .
       - run: docker build -t pactfoundation/pact-broker:latest .
 
       - name: Integration tests
@@ -62,16 +53,7 @@ jobs:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
-      - run: |
-          docker tag pactfoundation/pact_broker:latest pactfoundation/pact_broker:bethtest
-          docker push pactfoundation/pact_broker:bethtest
-
-      # - name: Tag
-      #   uses: actions-hub/docker@master
-      #   with:
-      #     args: tag pactfoundation/pact_broker:latest pactfoundation/pact_broker:bethtest
-
-      # - name: Push to docker hub :latest
-      #   uses: actions-hub/docker@master
-      #   with:
-      #     args: push pactfoundation/pact_broker:bethtest
+      - name: Push image to Docker Hub
+        run: |
+          docker tag pactfoundation/pact-broker:latest pactfoundation/pact-broker:bethtest
+          docker push pactfoundation/pact-broker:bethtest

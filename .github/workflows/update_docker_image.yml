@@ -33,6 +33,13 @@ jobs:
           else
             echo "Gems updated, continuing with release"
           fi
+
+      - name: Login to docker hub
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
+
       - name: Build Docker image
         uses: actions-hub/docker@master
         with:
@@ -55,11 +62,6 @@ jobs:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
-      - name: Login to docker hub
-        uses: actions-hub/docker/login@master
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Tag
         uses: actions-hub/docker@master

@@ -53,7 +53,7 @@ jobs:
         run: echo "::set-env name=TAG::$(script/release/next-docker-tag.sh)"
 
       - name: Set major tag
-        run: echo "set-env name=MAJOR_TAG::$(echo $TAG | cut -d'.' -f1)"
+        run: echo "::set-env name=MAJOR_TAG::$(echo $TAG | cut -d'.' -f1)"
 
       - name: Commit and push
         run: script/workflow/git-commit-and-push.sh

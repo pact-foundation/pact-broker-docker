@@ -55,10 +55,8 @@ jobs:
       - name: Set major tag
         run: echo "::set-env name=MAJOR_TAG::$(echo $TAG | cut -d'.' -f1)"
 
-      - name: Commit and push
-        run: |
-          script/workflow/git-commit-and-push.sh
-          echo "::set-env name=GIT_TAG_PUSHED::true"
+      - name: Git commit and push tag
+        run: script/workflow/git-commit-and-push-tag.sh
         env:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
@@ -70,3 +68,6 @@ jobs:
           docker push pactfoundation/pact-broker:latest
           docker push pactfoundation/pact-broker:${TAG}
           docker push pactfoundation/pact-broker:${MAJOR_TAG}
+
+      - name: Git push to master
+        run: git push origin master

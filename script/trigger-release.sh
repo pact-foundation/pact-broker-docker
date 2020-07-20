@@ -17,7 +17,7 @@ repository_slug=$(git remote get-url origin | cut -d':' -f2 | sed 's/\.git//')
 output=$(curl -v https://api.github.com/repos/${repository_slug}/dispatches \
       -H 'Accept: application/vnd.github.everest-preview+json' \
       -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES" \
-      -d "{\"event_type\": \"release-triggered\", \"client_payload\": {\"increment\": ${increment}}}" 2>&1)
+      -d "{\"event_type\": \"release-triggered\"}" 2>&1)
 
 if  ! echo "${output}" | grep "HTTP\/1.1 204" > /dev/null; then
   echo "$output" | sed  "s/${GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES}/********/g"

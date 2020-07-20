@@ -18,6 +18,8 @@ jobs:
         with:
           ruby-version: 2.6.4
 
+      - run: bundle install
+
       - name: Configure git
         run: |
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"

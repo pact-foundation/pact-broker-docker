@@ -70,9 +70,3 @@ jobs:
           docker push pactfoundation/pact-broker:latest
           docker push pactfoundation/pact-broker:${TAG}
           docker push pactfoundation/pact-broker:${MAJOR_TAG}
-
-      - name: Clean up git tag on failure
-        if: ${{ failure() && env.GIT_TAG_PUSHED == 'true' && env.TAG != '' }}
-        run: |
-          git tag -d ${TAG} || true
-          git push --delete origin ${TAG} || true

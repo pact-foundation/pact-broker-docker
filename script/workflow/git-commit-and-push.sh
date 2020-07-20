@@ -14,4 +14,5 @@ git add CHANGELOG.md
 git commit -m "chore(release): version ${TAG}"
 
 git tag -a "${TAG}" -m "chore(release): version ${TAG}"
-git push origin master --follow-tags
+git push origin ${TAG} # Do this first so it fails if the tag already exists
+git push origin master

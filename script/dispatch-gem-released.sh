@@ -39,4 +39,4 @@ else
   echo "Release workflow triggered"
 fi
 
-echo "See https://github.com/${repository_slug}/actions?query=workflow%3A%22Release%22"
+echo "See https://github.com/pact-foundation/pact-broker-docker/actions?query=workflow%3A%22Update+gems%22"

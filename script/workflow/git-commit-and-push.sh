@@ -3,6 +3,8 @@
 set -euo
 
 : "${TAG:?Please set the TAG environment variable}"
+: "${RELEASED_GEM_NAME:?Please set the RELEASED_GEM_NAME environment variable}"
+: "${RELEASED_GEM_VERSION:?Please set the RELEASED_GEM_VERSION environment variable}"
 
 git add pact_broker/Gemfile.lock
 git commit -m "feat(deps): update ${RELEASED_GEM_NAME} gem to version ${RELEASED_GEM_VERSION}"

@@ -52,8 +52,11 @@ jobs:
       - name: Calculate next tag
         run: echo "::set-env name=TAG::$(script/release/next-docker-tag.sh)"
 
+      - name: Set major tag
+        run: echo "set-env name=MAJOR_TAG::$(echo $TAG | cut -d'.' -f1)"
+
       - name: Commit and push
-        run: script/workflow/commit-and-push.sh
+        run: script/workflow/git-commit-and-push.sh
         env:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
@@ -61,5 +64,7 @@ jobs:
       - name: Push image to Docker Hub
         run: |
           docker tag pactfoundation/pact-broker:latest pactfoundation/pact-broker:${TAG}
+          docker tag pactfoundation/pact-broker:latest pactfoundation/pact-broker:${MAJOR_TAG}
           docker push pactfoundation/pact-broker:latest
           docker push pactfoundation/pact-broker:${TAG}
+          docker push pactfoundation/pact-broker:${MAJOR_TAG}

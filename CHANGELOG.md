@@ -8,39 +8,6 @@
   * update pact_broker gem to version 2.58.2	 ([3639d32](/../../commit/3639d32))
 
 
-<a name="2.58.2.2"></a>
-### 2.58.2.2 (2020-07-20)
-
-
-#### Features
-
-* **deps**
-  * update pact_broker gem to version 2.58.2	 ([1dca044](/../../commit/1dca044))
-
-
-<a name="2.58.2.1"></a>
-### 2.58.2.1 (2020-07-20)
-
-
-#### Features
-
-* **deps**
-  * update pact_broker gem to version 2.58.2	 ([0aab497](/../../commit/0aab497))
-  * update pact_broker gem to version 2.58.2	 ([05b1f0c](/../../commit/05b1f0c))
-
-
-<a name="2.58.2.0"></a>
-### 2.58.2.0 (2020-07-20)
-
-
-#### Features
-
-* **deps**
-  * update pact_broker gem to version 2.58.2	 ([2962ef8](/../../commit/2962ef8))
-  * update pact_broker gem to version 2.58.2	 ([f0bf1a9](/../../commit/f0bf1a9))
-  * update pact_broker gem to version 2.58.2	 ([b6d093d](/../../commit/b6d093d))
-
-
 <a name="2.58.0.1"></a>
 ### 2.58.0.1 (2020-07-11)
 

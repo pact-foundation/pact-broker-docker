@@ -1,0 +1,52 @@
+name: Update gems
+
+on:
+  repository_dispatch:
+    types:
+      - gem-released
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.4
+
+      - name: Configure git
+        run: |
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global push.default current
+
+      - name: Update gems
+        run: script/workflow/update-gems.sh
+        env:
+          RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
+          RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
+
+      - name: Detect changes
+        run: script/workflow/detect-changes.sh
+
+      - name: Unit tests
+        run: |
+          bundle install
+          bundle exec rake spec
+
+      - name: Login to Docker Hub
+        run: script/workflow/docker-login.sh
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build Docker image
+        run: docker build -t pactfoundation/pact-broker:latest .
+
+      - name: Integration tests
+        run: script/test.sh
+
+      - name: Git commit and push
+        run: script/workflow/git-commit-and-push-gemfile.sh

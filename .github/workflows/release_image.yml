@@ -1,9 +1,9 @@
-name: Update Docker image
+name: Release Docker image
 
 on:
   repository_dispatch:
     types:
-      - gem-released
+      - release-triggered
 
 jobs:
   release:

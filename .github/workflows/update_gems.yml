@@ -6,7 +6,7 @@ on:
       - gem-released
 
 jobs:
-  release:
+  update:
     runs-on: ubuntu-latest
 
     steps:

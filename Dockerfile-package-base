@@ -5,7 +5,7 @@ ENV HOME=/app
 WORKDIR $HOME
 
 RUN apk add --update --no-cache git
-RUN gem install bundler -v 2.0.2
+RUN gem install bundler -v 2.1.4
 
 COPY Rakefile $HOME/
 COPY Gemfile Gemfile.lock $HOME/

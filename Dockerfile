@@ -13,7 +13,7 @@ RUN set -ex && \
 WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN set -ex && \
-  gem install bundler -v 2.0.2 && \
+  gem install bundler -v 2.1.4 && \
   bundle install --no-cache --deployment --without='development test' && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
   apk del make gcc libc-dev

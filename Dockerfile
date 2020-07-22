@@ -1,4 +1,4 @@
-FROM ruby:2.6.4-alpine
+FROM ruby:2.6.6-alpine
 
 # Installation path
 ENV HOME=/pact_broker
@@ -7,7 +7,7 @@ ENV HOME=/pact_broker
 RUN set -ex && \
   adduser -h $HOME -s /bin/false -D -S -G root ruby && \
   chmod g+w $HOME && \
-  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev
+  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev git
 
 # Install Gems
 WORKDIR $HOME
@@ -15,9 +15,13 @@ COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > BUNDLER_VERSION
 RUN set -ex && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
-  bundle install --no-cache --deployment --without='development test' && \
+  ls /usr/local/lib/ruby/gems/2.6.0 && \
+  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
+  bundle config set deployment 'true' && \
+  bundle config set no-cache 'true' && \
+  bundle install --without='development test' && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
-  apk del make gcc libc-dev
+  apk del make gcc libc-dev git
 
 # Install source
 COPY pact_broker $HOME/

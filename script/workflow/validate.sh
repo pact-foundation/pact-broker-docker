@@ -1,5 +1,7 @@
 #!/bin/sh
 
+git fetch --all --tags
+
 if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
   echo "Git tag ${TAG} already exists. Exiting."
   exit 1

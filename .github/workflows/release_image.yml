@@ -31,7 +31,7 @@ jobs:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Setup
-      - run: |
+        run: |
             source script/workflow/set-env-vars.sh
             script/workflow/validate.sh
         env:

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Deprecated - the Docker Hub builds are turned off. Use script/trigger-release.sh" && exit 1
+
 set -e
 
 export TAG=$(script/release/next-docker-tag.sh)

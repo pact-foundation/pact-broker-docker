@@ -24,13 +24,13 @@ jobs:
           git config --global push.default current
 
       - name: Update gems
-        run: script/workflow/update-gems.sh
+        run: script/update-gems-workflow/update-gems.sh
         env:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
       - name: Detect changes
-        run: script/workflow/detect-changes.sh
+        run: script/update-gems-workflow/detect-changes.sh
 
       - name: Unit tests
         run: |
@@ -38,7 +38,7 @@ jobs:
           bundle exec rake spec
 
       - name: Login to Docker Hub
-        run: script/workflow/docker-login.sh
+        run: script/release-workflow/docker-login.sh
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
@@ -50,7 +50,7 @@ jobs:
         run: script/test.sh
 
       - name: Git commit and push
-        run: script/workflow/git-commit-and-push-gemfile.sh
+        run: script/update-gems-workflow/git-commit-and-push-gemfile.sh
         env:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'

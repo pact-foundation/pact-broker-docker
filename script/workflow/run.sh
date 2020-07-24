@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo
+set -euo >/dev/null
 
 if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
   git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"

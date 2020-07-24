@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo
+set -euo >/dev/null
 
 cd pact_broker
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo
+set -euo >/dev/null
 
 : "${TAG:?Please set the TAG environment variable}"
 

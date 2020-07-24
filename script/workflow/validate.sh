@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -u
+
 git fetch --all --tags
 
 if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then

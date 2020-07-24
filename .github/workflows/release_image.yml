@@ -18,39 +18,9 @@ jobs:
         with:
           ruby-version: 2.6.4
 
-      - name: Configure git
-        run: |
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global push.default current
-
       - name: Login to Docker Hub
-        run: script/workflow/docker-login.sh
+        run: script/release-workflow/run.sh
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-      - name: Setup
-        run: |
-            script/workflow/set-env-vars.sh
-            script/workflow/validate.sh
-        env:
           CUSTOM_TAG: ${{ github.event.client_payload.tag }}
-
-      - name: Build Docker image
-        run: script/workflow/docker-build.sh
-
-      - name: Prepare release
-        run: |
-          bundle install
-          script/workflow/prepare-release.sh
-
-      - name: Push image to Docker Hub
-        run: script/workflow/docker-push.sh
-
-      - name: Git push to master
-        run: git push origin master
-
-      - name: Clean up tag
-        if: ${{ failure() && env.TAG != '' }}
-        run: git push origin :${TAG}

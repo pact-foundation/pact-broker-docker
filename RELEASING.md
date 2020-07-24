@@ -1,22 +1,19 @@
+# Releasing
+
 ## Updating the Pact Broker gems
 
-Run:
+    script/update.sh <OPTIONAL_PACT_BROKER_GEM_VERSION>
 
-    chruby 2.4 # or use your ruby version manager of choice
-    bundle install
-    script/update.sh
+## Testing
 
-This will update to the latest version of the pact broker gem allowable by the Gemfile. Note that if you want to release a beta version, you will need to specify the version explicitly. eg `gem "pact_broker", "2.7.0.beta.3"`
+    script/test.sh
 
 ## Debugging
 
-    # Check Pact Broker can start
-    PACT_BROKER_DATABASE_NAME=pact_broker.sqlite PACT_BROKER_DATABASE_ADAPTER=sqlite be rackup
+    docker build -t pactfoundation/pact-broker:latest .
+    docker-compose -f docker-compose-dev.yml up --build
 
-## Publishing to Docker Hub
+## Releasing image to Docker Hub
 
-Docker hub will build a new `latest` image every time a tag with a major.minor.patch version pattern is pushed. It will build with just the tag name if the version has something like '.beta.1' on the end.
-
-To release a new image with a tag:
-
-    script/release.sh
+    export GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES=<a github token with public repo scope>
+    script/trigger-release.sh

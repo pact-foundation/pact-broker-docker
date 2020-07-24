@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo
+
 function cleanup() {
   exit_code="$?"
   echo $exit_code

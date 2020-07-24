@@ -1,3 +1,18 @@
+<a name="2.58.2.4"></a>
+### 2.58.2.4 (2020-07-24)
+
+
+#### Features
+
+* **deps**
+  * upgrade to rack 13.0	 ([aa858cc](/../../commit/aa858cc))
+
+
+#### Bug Fixes
+
+* remove webrick 1.4.2 due to vulnerabilities	 ([bbd4c21](/../../commit/bbd4c21))
+
+
 <a name="2.58.2.3"></a>
 ### 2.58.2.3 (2020-07-20)
 

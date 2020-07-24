@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Script to trigger release of gem via the pact-foundation/release-gem action
 # Requires a Github API token with repo scope stored in the
 # environment variable GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES
 

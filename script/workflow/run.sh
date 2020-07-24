@@ -3,10 +3,7 @@
 set -euo >/dev/null
 
 if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
-  git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-  git config --global user.name "${GITHUB_ACTOR}"
-  git config --global push.default current
-
+  script/workflow/git-configure.sh
   script/workflow/docker-login.sh
 fi
 
@@ -20,5 +17,4 @@ fi
 
 script/workflow/prepare-release.sh
 script/workflow/docker-push.sh
-git push origin ${TAG}
-git push origin master
+script/workflow/git-push.sh

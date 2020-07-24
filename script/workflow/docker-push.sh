@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo
+set -euo >/dev/null
 
 if [ -n "${MAJOR_TAG}" ]; then
   docker tag ${DOCKER_IMAGE_ORG_AND_NAME}:latest ${DOCKER_IMAGE_ORG_AND_NAME}:${MAJOR_TAG}

@@ -1,5 +1,5 @@
 set -e
-source script/functions
+. script/functions
 gem_version=$(gem_version_from_gemfile_lock)
 DOCKER_IMAGE="pactfoundation/pact-broker"
 existing_tags=$(wget -q https://registry.hub.docker.com/v1/repositories/${DOCKER_IMAGE}/tags -O - | jq -r .[].name)

@@ -2,8 +2,8 @@
 
 set -e
 
-source script/docker-functions
-source script/functions
+. script/docker-functions
+. script/functions
 
 git pull origin master
 

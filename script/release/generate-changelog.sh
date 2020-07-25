@@ -4,7 +4,7 @@ set -e
 
 : "${TAG:?Please set the TAG environment variable}"
 
-source script/docker-functions
+. script/docker-functions
 
 docker_build_package_base
 

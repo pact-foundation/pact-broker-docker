@@ -9,7 +9,7 @@ if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
   ${script_dir}/docker-login.sh
 fi
 
-source ${script_dir}/set-env-vars.sh
+. ${script_dir}/set-env-vars.sh
 ${script_dir}/validate.sh
 ${script_dir}/docker-build.sh
 

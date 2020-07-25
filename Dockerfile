@@ -18,7 +18,6 @@ RUN set -ex && \
   ls /usr/local/lib/ruby/gems/2.6.0 && \
   gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
   find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
-  gem install webrick -v '~>1.6' && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \
   bundle install --without='development test' && \

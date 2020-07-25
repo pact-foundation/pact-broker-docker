@@ -9,3 +9,6 @@ else
   export TAG=$(script/release/next-docker-tag.sh)
   export MAJOR_TAG=$(echo $TAG | cut -d'.' -f1)
 fi
+
+echo "Set TAG=${TAG}"
+echo "Set MAJOR_TAG=${MAJOR_TAG}"

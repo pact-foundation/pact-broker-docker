@@ -10,8 +10,6 @@ if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
 fi
 
 . ${script_dir}/set-env-vars.sh
-echo "TAG=${TAG:-}"
-echo "MAJOR_TAG=${MAJOR_TAG:-}"
 
 ${script_dir}/validate.sh
 ${script_dir}/docker-build.sh

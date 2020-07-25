@@ -18,7 +18,7 @@ jobs:
         with:
           ruby-version: 2.6.4
 
-      - name: Login to Docker Hub
+      - name: Release image
         run: script/release-workflow/run.sh
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}

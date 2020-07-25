@@ -4,6 +4,11 @@ set -u
 
 git fetch --all --tags
 
+if [ -z "${TAG:-}" ]; then
+  echo "TAG must be set. Exiting."
+  exit 1
+fi
+
 if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null; then
   echo "Git tag ${TAG} already exists. Exiting."
   exit 1

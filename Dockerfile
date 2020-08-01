@@ -34,7 +34,7 @@ COPY --from=Builder /usr/local/bundle/ /usr/local/bundle/
 COPY --from=Builder --chown=ruby:root $HOME $HOME
 
 RUN set -ex && \
-  apk add --update --no-cache postgresql-dev && \ 
+  apk add --update --no-cache postgresql-dev mariadb-dev postgresql-dev sqlite-dev && \ 
   gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
   find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \ 
   bundle config set deployment 'true' 

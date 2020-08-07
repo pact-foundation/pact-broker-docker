@@ -1,3 +1,11 @@
+<a name="2.59.2.0"></a>
+### 2.59.2.0 (2020-08-07)
+
+#### Features
+
+* **deps**
+  * update to pact_broker (2.59.2), semantic_logger (4.7.2)	 ([5cf922b](/../../commit/5cf922b))
+
 <a name="2.59.1.0"></a>
 ### 2.59.1.0 (2020-08-04)
 

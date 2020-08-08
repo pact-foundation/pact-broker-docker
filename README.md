@@ -24,7 +24,7 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 
 ## Prerequisites
 
-* A running postgresql database and the ability to connect to it (see [POSTGRESQL.md][postgres]).
+* A running Postgresql (or MySQL) database and the ability to connect to it (see [POSTGRESQL.md][postgres]). Postgres is recommended over MySQL for performance and support reasons.
 
 ## Getting Started
 

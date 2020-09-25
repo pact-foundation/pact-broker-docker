@@ -73,7 +73,7 @@ GEM
       randexp (~> 0.1.7)
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
-    pact_broker (2.62.0)
+    pact_broker (2.63.0)
       dry-logic (= 0.4.2)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)

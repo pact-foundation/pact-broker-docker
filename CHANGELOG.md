@@ -1,3 +1,13 @@
+<a name="2.65.0.0"></a>
+### 2.65.0.0 (2020-09-25)
+
+#### Features
+
+* **deps**
+  * update to pact_broker (2.65.0)	 ([7e61052](/../../commit/7e61052))
+
+* allow missing migration files (allow older images to run against newer database versions)	 ([5750928](/../../commit/5750928))
+
 <a name="2.64.0.0"></a>
 ### 2.64.0.0 (2020-09-25)
 

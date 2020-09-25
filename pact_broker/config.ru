@@ -13,6 +13,7 @@ app = PactBroker::App.new do | config |
   config.logger = $logger
 
   config.database_connection = create_database_connection_from_config(config.logger, dc.database_configuration)
+  config.allow_missing_migration_files = true
 
   config.database_connection.timezone = :utc
   config.base_url = dc.base_url

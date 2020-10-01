@@ -1,3 +1,11 @@
+<a name="2.66.0.0"></a>
+### 2.66.0.0 (2020-10-01)
+
+#### Features
+
+* **deps**
+  * update to haml (5.2.0), pact_broker (2.66.0), rspec-core (3.9.3), webrick (1.6.1)	 ([e425ba0](/../../commit/e425ba0))
+
 <a name="2.65.0.0"></a>
 ### 2.65.0.0 (2020-09-25)
 

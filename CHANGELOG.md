@@ -1,3 +1,11 @@
+<a name="2.68.1.0"></a>
+### 2.68.1.0 (2020-10-25)
+
+#### Features
+
+* **deps**
+  * update to pact_broker (2.68.1), rspec-expectations (3.9.3), rspec-support (3.9.4)	 ([b9ec3c1](/../../commit/b9ec3c1))
+
 <a name="2.68.0.0"></a>
 ### 2.68.0.0 (2020-10-23)
 

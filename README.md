@@ -44,10 +44,10 @@ You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://userna
 
 Adapter can be 'postgres' (recommended) or 'mysql2'. __It is strongly recommended that you use Postgres rather than MySQL if possible as the SQL queries are optimised for Postgres. You may run into performance issues due to the size of the database sooner on MySQL than Postgres.__
 
-For an sqlite database (only recommended for investigation/spikes, as it will be disposed of with the container unless you mount it from an external file system):
+For investigations/spikes you can use SQlite. It is not supported as a production database, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
 
-  * `PACT_BROKER_DATABASE_ADAPTER` (set to 'sqlite')
-  * `PACT_BROKER_DATABASE_NAME` (arbitrary name eg. pact_broker.sqlite)
+  * `PACT_BROKER_DATABASE_ADAPTER` (set to `sqlite`)
+  * `PACT_BROKER_DATABASE_NAME` (arbitrary file in the `/tmp` directory eg. `/tmp/pact_broker.sqlite`)
 
 You can additionally set:
 

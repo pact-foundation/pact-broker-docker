@@ -11,7 +11,7 @@ existing_release_numbers_for_current_gem_version=$(echo "$existing_tags" | grep 
 
 if [ -n "${existing_release_numbers_for_current_gem_version}" ]; then
   last_release_number=$(printf "0\n${existing_release_numbers_for_current_gem_version}" | sort -g | tail -1)
-  next_release_number=$[$last_release_number+1]
+  next_release_number=$(( $last_release_number + 1 ))
 else
   next_release_number=0
 fi

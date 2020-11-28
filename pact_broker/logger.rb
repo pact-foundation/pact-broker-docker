@@ -1,4 +1,5 @@
 require 'logger'
+require 'semantic_logger'
 
 log_level = begin
   Kernel.const_get('Logger').const_get(ENV['PACT_BROKER_LOG_LEVEL'] || 'WARN')

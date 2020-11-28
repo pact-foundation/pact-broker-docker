@@ -5,8 +5,8 @@ services:
     image: postgres
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -22,6 +22,8 @@ services:
       PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: PORT
       PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: DATABASE_URL
       DATABASE_URL: "postgres://postgres:password@postgres/postgres"
+      PACT_BROKER_DATABASE_BETA_CLEAN_ENABLED: "true"
+      PACT_BROKER_DATABASE_BETA_CLEAN_CRON_SCHEDULE: "* * * * *"
       # PACT_BROKER_DATABASE_USERNAME: postgres
       # PACT_BROKER_DATABASE_PASSWORD: password
       # PACT_BROKER_DATABASE_HOST: postgres
@@ -29,7 +31,7 @@ services:
       # PACT_BROKER_PORT: "9292"
       PORT: '9393'
       PACT_BROKER_LOG_LEVEL: INFO
-      PACT_BROKER_SQL_LOG_LEVEL: INFO
+      PACT_BROKER_SQL_LOG_LEVEL: DEBUG
     entrypoint: /custom-entrypoint.sh
     volumes:
       - ./script/docker/docker-compose-entrypoint.sh:/custom-entrypoint.sh

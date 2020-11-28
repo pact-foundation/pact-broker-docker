@@ -1,21 +1,40 @@
 require_relative 'database_connection'
-require 'logger'
+require_relative 'docker_configuration'
+require_relative 'logger'
 require 'pact_broker/tasks'
 
+def create_database_configuration
+  dc = PactBroker::DockerConfiguration.new(ENV, OpenStruct.new)
+  create_database_connection_from_config($logger, dc.database_configuration.tap { |it| puts it })
+end
+
 PactBroker::DB::MigrationTask.new do | task |
-  task.database_connection = create_database_connection(Logger.new($stdout))
+  task.database_connection = create_database_configuration
 end
 
 PactBroker::DB::VersionTask.new do | task |
-  task.database_connection = create_database_connection(Logger.new($stdout))
+  task.database_connection = create_database_configuration
 end
 
 PactBroker::DB::CleanTask.new do | task |
-  task.database_connection = create_database_connection(Logger.new($stdout))
+  task.database_connection = create_database_configuration
+
+  if (ENV['PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS'] || '') != ''
+    require 'json'
+    task.keep_version_selectors = JSON.parse(ENV['PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS'])
+  end
+
+  if (ENV['PACT_BROKER_DATABASE_CLEAN_VERSION_DELETION_LIMIT'] || '') != ''
+    task.version_deletion_limit = ENV['PACT_BROKER_DATABASE_CLEAN_VERSION_DELETION_LIMIT'].to_i
+  end
+
+  if (ENV['PACT_BROKER_DATABASE_CLEAN_DRY_RUN'] || '') != ''
+    task.dry_run = ENV['PACT_BROKER_DATABASE_CLEAN_DRY_RUN'] == 'true'
+  end
 end
 
 PactBroker::DB::DeleteOverwrittenDataTask.new do | task |
-  task.database_connection = create_database_connection(Logger.new($stdout))
+  task.database_connection = create_database_configuration
   if ENV['PACT_BROKER_DELETE_OVERWRITTEN_DATA_AGE']
     task.age_in_days = ENV['PACT_BROKER_DELETE_OVERWRITTEN_DATA_AGE'].to_i
   else

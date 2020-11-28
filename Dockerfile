@@ -1,5 +1,15 @@
 FROM ruby:2.6.6-alpine
 
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-amd64 \
+    SUPERCRONIC=supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=a2e2d47078a8dafc5949491e5ea7267cc721d67c
+
+RUN wget "$SUPERCRONIC_URL" \
+ && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
+ && chmod +x "$SUPERCRONIC" \
+ && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
+ && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+
 # Installation path
 ENV HOME=/pact_broker
 
@@ -30,6 +40,8 @@ COPY pact_broker $HOME/
 # Start Puma
 ENV RACK_ENV=production
 ENV PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME=PACT_BROKER_PORT
+ENV PACT_BROKER_DATABASE_BETA_CLEAN_ENABLED=false
+ENV PACT_BROKER_DATABASE_BETA_CLEAN_CRON_SCHEDULE="5 * * * *"
 ENV PACT_BROKER_PORT=9292
 USER ruby
 ENTRYPOINT ["./entrypoint.sh"]

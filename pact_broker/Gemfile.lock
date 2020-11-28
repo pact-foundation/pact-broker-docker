@@ -73,7 +73,7 @@ GEM
       diff-lcs (~> 1.4)
       randexp (~> 0.1.7)
       term-ansicolor (~> 1.0)
-    pact_broker (2.70.0)
+    pact_broker (2.71.0)
       dry-logic (= 0.4.2)
       dry-types (~> 0.10.3)
       dry-validation (~> 0.10.5)

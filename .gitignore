@@ -5,3 +5,4 @@ pact_broker/tmp
 pact_broker/.bundle
 tmp
 .data
+docker/pg-dump.sql

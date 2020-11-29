@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres
+    image: postgres:12
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
     # ports:
@@ -11,6 +11,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
+    volumes:
+      - ${PWD}/docker/postgres-entrypoint.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ${PWD}/docker/pg-dump.sql:/tmp/pg-dump.sql
 
   pact-broker:
     build: .

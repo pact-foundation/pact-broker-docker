@@ -27,9 +27,10 @@ services:
       DATABASE_URL: "postgres://postgres:password@postgres/postgres"
       PACT_BROKER_DATABASE_BETA_CLEAN_ENABLED: "true"
       PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE: "* * * * *"
-      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: "true"
+      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: "false"
+      PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: "500"
       # Keep all prod versions, AND the latest version for every pacticipant/tag, and all versions less than 30 days old
-      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"tag":"production"}, {"latest": true, "tag": true}, {"max_age": 30}]'
+      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true, "tag": true}, {"max_age": 30}]'
       # PACT_BROKER_DATABASE_USERNAME: postgres
       # PACT_BROKER_DATABASE_PASSWORD: password
       # PACT_BROKER_DATABASE_HOST: postgres

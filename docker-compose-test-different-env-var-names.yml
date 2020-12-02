@@ -33,4 +33,4 @@ services:
     environment:
       TEST_URL: http://pact-broker:9393
       PACT_BROKER_PORT: "9393"
-    entrypoint: dockerize -wait http://pact-broker:9393/diagnostic/status/heartbeat /home/test.sh
+    entrypoint: dockerize -wait http://pact-broker:9393/diagnostic/status/heartbeat -timeout 20s /home/test.sh

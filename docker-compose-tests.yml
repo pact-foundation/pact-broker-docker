@@ -37,4 +37,4 @@ services:
       PACT_BROKER_BASIC_AUTH_USERNAME: "${PACT_BROKER_BASIC_AUTH_USERNAME}"
       PACT_BROKER_BASIC_AUTH_PASSWORD: "${PACT_BROKER_BASIC_AUTH_PASSWORD}"
       PACT_BROKER_PORT: "9292"
-    entrypoint: dockerize -wait http://pact-broker:9292/diagnostic/status/heartbeat /home/test.sh
+    entrypoint: dockerize -wait http://pact-broker:9292/diagnostic/status/heartbeat -timeout 20s /home/test.sh

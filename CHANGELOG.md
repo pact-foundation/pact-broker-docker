@@ -1,3 +1,10 @@
+<a name="2.72.0.1"></a>
+### 2.72.0.1 (2020-12-02)
+
+#### Features
+
+* beta - allow data cleaning tasks to be configured by environment variables	 ([5896360](/../../commit/5896360))
+
 <a name="2.72.0.0"></a>
 ### 2.72.0.0 (2020-12-02)
 

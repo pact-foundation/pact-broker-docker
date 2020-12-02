@@ -1,3 +1,13 @@
+<a name="2.72.0.0"></a>
+### 2.72.0.0 (2020-12-02)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.72.0	 ([8d6a622](/../../commit/8d6a622))
+
+* support scheduled cleaning of old data (beta)	 ([d9f1651](/../../commit/d9f1651))
+
 <a name="2.71.0.0"></a>
 ### 2.71.0.0 (2020-11-28)
 

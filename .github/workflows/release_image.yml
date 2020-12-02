@@ -4,6 +4,7 @@ on:
   repository_dispatch:
     types:
       - release-triggered
+      - manual-release-triggered
 
 jobs:
   release:

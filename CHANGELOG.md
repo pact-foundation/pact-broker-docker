@@ -1,3 +1,10 @@
+<a name="2.72.0.3"></a>
+### 2.72.0.3 (2020-12-04)
+
+#### Features
+
+* ensure supercronic only loads the crontab once when the entrypoint is called multiple times during startup	 ([4e217ef](/../../commit/4e217ef))
+
 <a name="2.72.0.2"></a>
 ### 2.72.0.2 (2020-12-02)
 

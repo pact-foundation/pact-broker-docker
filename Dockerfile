@@ -1,4 +1,4 @@
-FROM ruby:2.6.6-alpine
+FROM ruby:2.6.6-alpine as Base 
 
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \
@@ -12,28 +12,41 @@ RUN wget "$SUPERCRONIC_URL" \
 
 # Installation path
 ENV HOME=/pact_broker
+WORKDIR $HOME
 
 # Setup ruby user & install application dependencies
 RUN set -ex && \
   adduser -h $HOME -s /bin/false -D -S -G root ruby && \
   chmod g+w $HOME
 
+RUN set -ex && \
+  apk add --update --no-cache mariadb-dev postgresql-dev sqlite-dev
+
+FROM Base as Builder
+
 # Install Gems
-WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > BUNDLER_VERSION
 RUN set -ex && \
-  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev git && \
+  apk add --update --no-cache make gcc libc-dev git && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
   ls /usr/local/lib/ruby/gems/2.6.0 && \
-  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
-  find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \
   bundle install --without='development test' && \
-  rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
-  apk del make gcc libc-dev git
+  rm -rf vendor/bundle/ruby/*/cache .bundle/cache 
 
+FROM Base
+
+# Copy app with gems from former build stage
+COPY --from=Builder /usr/local/bundle/ /usr/local/bundle/
+COPY --from=Builder --chown=ruby:root $HOME $HOME
+
+RUN set -ex && \
+  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
+  find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \ 
+  bundle config set deployment 'true' 
+  
 # Install source
 COPY pact_broker $HOME/
 
@@ -48,5 +61,6 @@ ENV PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE=7
 ENV PACT_BROKER_DATABASE_CLEAN_DRY_RUN=false
 ENV PACT_BROKER_PORT=9292
 USER ruby
+
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["config.ru"]

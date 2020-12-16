@@ -56,6 +56,7 @@ You can additionally set:
     * `PACT_BROKER_SQL_LOG_WARN_DURATION` - optional, defaults to 5 seconds. Log the SQL for queries that take longer than this number of seconds.
     * `PACT_BROKER_DATABASE_MAX_CONNECTIONS` - optional, defaults to 4. The maximum size of the connection pool. There is no need to set this unless you notice particular connection contention issues.
     * `PACT_BROKER_DATABASE_POOL_TIMEOUT` - optional, 5 seconds by default. The number of seconds to wait if a connection cannot be acquired before raising an error. There is no need to set this unless you notice particular connection contention issues.
+    * `PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES` - optional, defaults to 0. When running the Pact Broker Docker image experimentally using Docker Compose on a local development machine, the Broker application process may be ready before the database is available for connection, causing the application container to exit with an error. Setting the max retries to a non-zero number will allow it to retry the connection the configured number of times, waiting 3 seconds between attempts.
 
 ## Notes
 

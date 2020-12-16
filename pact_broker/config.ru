@@ -12,7 +12,7 @@ dc.pact_broker_environment_variables.each{ |key, value| $logger.info "#{key}=#{v
 app = PactBroker::App.new do | config |
   config.logger = $logger
 
-  config.database_connection = create_database_connection_from_config(config.logger, dc.database_configuration)
+  config.database_connection = create_database_connection_from_config(config.logger, dc.database_configuration, dc.database_connect_max_retries)
   config.allow_missing_migration_files = true
 
   config.database_connection.timezone = :utc

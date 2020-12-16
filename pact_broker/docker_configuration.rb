@@ -45,6 +45,10 @@ module PactBroker
       ).compact
     end
 
+    def database_connect_max_retries
+      env_as_integer(:database_connect_max_retries, 0)
+    end
+
     def base_equality_only_on_content_that_affects_verification_results
       if env_populated?(:base_equality_only_on_content_that_affects_verification_results)
         env(:base_equality_only_on_content_that_affects_verification_results) == 'true'

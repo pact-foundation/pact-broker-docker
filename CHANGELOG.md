@@ -1,3 +1,13 @@
+<a name="2.73.0.0"></a>
+### 2.73.0.0 (2020-12-16)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.73.0	 ([2ecc2f8](/../../commit/2ecc2f8))
+
+* allow database retries to be configured so application waits for database to be available on startup	 ([3c36a27](/../../commit/3c36a27))
+
 <a name="2.72.0.3"></a>
 ### 2.72.0.3 (2020-12-04)
 

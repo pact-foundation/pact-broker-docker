@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-docker build -t=pactfoundation/pact_broker .
+docker build -t=pactfoundation/pact-broker .

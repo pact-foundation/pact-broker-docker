@@ -55,6 +55,9 @@ jobs:
           RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
           RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
+      - name: Vulnerability scan
+        run: script/scan.sh pactfoundation/pact-broker:latest
+
       - name: Trigger release
         uses: peter-evans/repository-dispatch@v1
         with:

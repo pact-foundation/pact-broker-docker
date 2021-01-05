@@ -13,6 +13,7 @@ fi
 
 ${script_dir}/validate.sh
 ${script_dir}/docker-build.sh
+${script_dir}/../scan.sh ${DOCKER_IMAGE_ORG_AND_NAME}:latest
 
 if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
   bundle install

@@ -1,3 +1,10 @@
+<a name="2.76.1.1"></a>
+### 2.76.1.1 (2021-01-29)
+
+#### Features
+
+* create custom entrypoint to perform rollback	 ([b67f3d6](/../../commit/b67f3d6))
+
 <a name="2.76.1.0"></a>
 ### 2.76.1.0 (2021-01-27)
 

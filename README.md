@@ -185,15 +185,29 @@ DATABASE_URL=...
 
 The Pact Broker auto migrates on startup, and will always do so in a way that is backwards compatible, to support architectures that run multiple instances of the application at a time (eg. AWS auto scaling).
 
-From the `/pact_broker` directory on the docker image, you can run migration and rollback scripts via rake. A rollback would be required if you needed to downgrade your Pact Broker image.
+You can use a custom entrypoint to the Pact Broker Docker image to perform a rollback. A rollback would be required if you needed to downgrade your Pact Broker image. The db-migrate entrypoint is support in versions 2.76.1.1 and later.
+To perform the rollback, you must use at minimum the version of the Docker image that performed the migrations in the first place. You can always use the latest image to rollback.
 
 To work out which migration to rollback to, select the tag of the Pact Broker gem version you want at https://github.com/pact-foundation/pact_broker and then look in the `db/migrations` directory. Find the very last migration in the directory, and take the numbers at the start of the file name. This is your "target".
 
-To rollback run:
+```
+# You can use the PACT_BROKER_DATABASE_URL or the separate environment variables as listed in the Getting Started section.
 
-`bundle exec rake pact_broker:db:migrate[target]` eg `bundle exec rake pact_broker:db:migrate[20191101]`
+docker run --rm \
+    -e PACT_BROKER_DATABASE_URL=<url> \
+    -e PACT_BROKER_MIGRATION_TARGET=<target> \
+    --entrypoint db-migrate \
+    pactfoundation/pact-broker
+```
 
-You can confirm the new version by running `bundle exec rake pact_broker:db:version`
+To get the current version of the database run:
+
+```
+docker run --rm \
+    -e PACT_BROKER_DATABASE_URL=<url> \
+    --entrypoint db-version \
+    pactfoundation/pact-broker
+```
 
 # Troubleshooting
 

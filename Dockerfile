@@ -38,6 +38,9 @@ RUN set -ex && \
 # Install source
 COPY pact_broker $HOME/
 
+RUN ln -s /pact_broker/script/db-migrate.sh /usr/local/bin/db-migrate
+RUN ln -s /pact_broker/script/db-version.sh /usr/local/bin/db-version
+
 # Start Puma
 ENV RACK_ENV=production
 ENV PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME=PACT_BROKER_PORT

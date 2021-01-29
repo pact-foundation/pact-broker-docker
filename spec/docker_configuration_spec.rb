@@ -1,5 +1,5 @@
 $: << "."
-require "pact_broker/docker_configuration"
+require_relative "../pact_broker/docker_configuration"
 require 'rspec/its'
 
 RSpec.describe PactBroker::DockerConfiguration do
@@ -9,15 +9,19 @@ RSpec.describe PactBroker::DockerConfiguration do
   let(:env) do
     {
       "PACT_BROKER_WEBHOOK_HOST_WHITELIST" => host_whitelist,
+      "PACT_BROKER_WEBHOOK_RETRY_SCHEDULE" => retry_schedule,
       "PACT_BROKER_ORDER_VERSIONS_BY_DATE" => "false"
     }
   end
 
   let(:host_whitelist) { "" }
 
+  let(:retry_schedule) { "" }
+
   let(:default_configuration) do
     instance_double('default configuration',
-      webhook_host_whitelist: 'default'
+      webhook_host_whitelist: 'default',
+      webhook_retry_schedule: 'default'
     )
   end
 
@@ -207,6 +211,19 @@ RSpec.describe PactBroker::DockerConfiguration do
       its(:webhook_host_whitelist) { is_expected.to eq 'default' }
     end
   end
+
+  describe "webhook_retry_schedule" do
+    context "when PACT_BROKER_WEBHOOK_RETRY_SCHEDULE is '1 2 3'" do
+      let(:retry_schedule) { "1 2 3" }
+      its(:webhook_retry_schedule) { is_expected.to eq [1, 2, 3] }
+    end
+
+    context "when PACT_BROKER_WEBHOOK_RETRY_SCHEDULE is ''" do
+      let(:retry_schedule) { "" }
+      its(:webhook_retry_schedule) { is_expected.to eq 'default' }
+    end
+  end
+
 end
 
 class PactBroker::DockerConfiguration
@@ -246,6 +263,39 @@ class PactBroker::DockerConfiguration
         it { is_expected.to eq [/foo\.*/] }
 
         its(:to_s) { is_expected.to eq input }
+      end
+    end
+  end
+
+  describe SpaceDelimitedIntegerList do
+    describe "parse" do
+      subject { SpaceDelimitedIntegerList.parse(input) }
+
+      context "when input is ''" do
+        let(:input) { "" }
+
+        it { is_expected.to eq [] }
+        it { is_expected.to be_a SpaceDelimitedIntegerList }
+
+        its(:to_s) { is_expected.to eq input }
+      end
+
+      context "when input is '0 1 1 2 3 5 8 13 21 34'" do
+        let(:input) { "0 1 1 2 3 5 8 13 21 34" }
+
+        it { is_expected.to eq [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] }
+        it { is_expected.to be_a SpaceDelimitedIntegerList }
+
+        its(:to_s) { is_expected.to eq input }
+      end
+
+      context "when input is '13 17 foo 19'" do
+        let(:input) { "13 17 foo 19" }
+
+        it { is_expected.to eq [13, 17, 19] }
+        it { is_expected.to be_a SpaceDelimitedIntegerList }
+
+        its(:to_s) { is_expected.to eq "13 17 19" }
       end
     end
   end

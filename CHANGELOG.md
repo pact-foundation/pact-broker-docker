@@ -1,3 +1,10 @@
+<a name="2.76.2.1"></a>
+### 2.76.2.1 (2021-02-01)
+
+#### Features
+
+* add support for PACT_BROKER_WEBHOOK_RETRY_SCHEDULE environment variable	 ([536a61b](/../../commit/536a61b))
+
 <a name="2.76.2.0"></a>
 ### 2.76.2.0 (2021-01-29)
 

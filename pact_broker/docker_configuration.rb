@@ -145,19 +145,20 @@ module PactBroker
         super(list)
       end
 
+      def self.integer?(string)
+        (Integer(string) rescue nil) != nil
+      end
+
       def self.parse(string)
-        array = (string || '').split(' ').filter { |word|
-          (Integer(word) rescue nil) != nil
-        }.collect { | word |
-          word.to_i
-        }
+        array = (string || '')
+                    .split(' ')
+                    .filter { |word| integer?(word) }
+                    .collect(&:to_i)
         SpaceDelimitedIntegerList.new(array)
       end
 
       def to_s
-        collect do | integer |
-          integer.to_s
-        end.join(' ')
+        collect(&:to_s).join(' ')
       end
     end
 

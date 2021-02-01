@@ -30,6 +30,10 @@ module PactBroker
       space_delimited_string_list_or_default(:webhook_http_method_whitelist)
     end
 
+    def webhook_retry_schedule
+      space_delimited_integer_list_or_default(:webhook_retry_schedule)
+    end
+
     def database_configuration
       if database_url
         database_configuration_from_url
@@ -125,6 +129,36 @@ module PactBroker
             word
           end
         end.join(' ')
+      end
+    end
+
+    def space_delimited_integer_list_or_default property_name
+      if env_populated?(property_name)
+        SpaceDelimitedIntegerList.parse(env(property_name))
+      else
+        default(property_name)
+      end
+    end
+
+    class SpaceDelimitedIntegerList < Array
+      def initialize list
+        super(list)
+      end
+
+      def self.integer?(string)
+        (Integer(string) rescue nil) != nil
+      end
+
+      def self.parse(string)
+        array = (string || '')
+                    .split(' ')
+                    .filter { |word| integer?(word) }
+                    .collect(&:to_i)
+        SpaceDelimitedIntegerList.new(array)
+      end
+
+      def to_s
+        collect(&:to_s).join(' ')
       end
     end
 

@@ -31,7 +31,17 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 1. [Install Docker][docker]
 2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables.
 
-For a postgres or mysql database:
+### Create the database
+
+On an instance of Postgres version 10 or later, connect as a user with administrator privileges and run:
+
+```
+CREATE DATABASE pact_broker;
+CREATE ROLE pact_broker WITH LOGIN PASSWORD 'CHANGE_ME';
+GRANT ALL PRIVILEGES ON DATABASE pact_broker TO pact_broker;
+```
+
+### Configure the connection details
 
 You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://username:password@host:port/database` (eg. `postgres://user1:pass1@myhost/mydb`) or, you can set the credentials individually using the following environment variables:
 
@@ -42,12 +52,12 @@ You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://userna
     * `PACT_BROKER_DATABASE_NAME`
     * `PACT_BROKER_DATABASE_PORT` (optional, defaults to the default port for the specified adapter)
 
-Adapter can be 'postgres' (recommended) or 'mysql2'. __It is strongly recommended that you use Postgres rather than MySQL if possible as the SQL queries are optimised for Postgres. You may run into performance issues due to the size of the database sooner on MySQL than Postgres.__
+Adapter can be 'postgres' (recommended) or 'sqlite' (non production use only).
 
 For investigations/spikes you can use SQlite. It is not supported as a production database, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
 
   * `PACT_BROKER_DATABASE_ADAPTER` (set to `sqlite`)
-  * `PACT_BROKER_DATABASE_NAME` (arbitrary file in the `/tmp` directory eg. `/tmp/pact_broker.sqlite`)
+  * `PACT_BROKER_DATABASE_NAME` (arbitrary file in the `/tmp` directory eg. `/tmp/pact_broker.sqlite3`)
 
 You can additionally set:
 

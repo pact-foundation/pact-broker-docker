@@ -72,6 +72,7 @@ You can additionally set:
 
 * The application makes use of the Puma application server.
 * Apart from creating a database no further preparation is required.
+* The image does not need root privileges to run, however, the root filesystem (or at least, the /tmp directory) must be writeable for Puma to temporarily store files when processing large requests. See this [issue](https://github.com/pact-foundation/pact-js/issues/583#issuecomment-777728677).
 
 ## Using basic auth
 

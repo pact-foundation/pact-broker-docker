@@ -30,6 +30,10 @@ module PactBroker
       space_delimited_string_list_or_default(:webhook_http_method_whitelist)
     end
 
+    def webhook_http_code_success
+      space_delimited_integer_list_or_default(:webhook_http_code_success)
+    end
+
     def webhook_retry_schedule
       space_delimited_integer_list_or_default(:webhook_retry_schedule)
     end

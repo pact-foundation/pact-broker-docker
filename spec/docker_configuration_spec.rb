@@ -10,6 +10,7 @@ RSpec.describe PactBroker::DockerConfiguration do
     {
       "PACT_BROKER_WEBHOOK_HOST_WHITELIST" => host_whitelist,
       "PACT_BROKER_WEBHOOK_RETRY_SCHEDULE" => retry_schedule,
+      "PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS" => http_code_success,
       "PACT_BROKER_ORDER_VERSIONS_BY_DATE" => "false"
     }
   end
@@ -21,6 +22,7 @@ RSpec.describe PactBroker::DockerConfiguration do
   let(:default_configuration) do
     instance_double('default configuration',
       webhook_host_whitelist: 'default',
+      webhook_http_code_success: 'default',
       webhook_retry_schedule: 'default'
     )
   end
@@ -209,6 +211,18 @@ RSpec.describe PactBroker::DockerConfiguration do
     context "when PACT_BROKER_WEBHOOK_HOST_WHITELIST is ''" do
       let(:host_whitelist) { "" }
       its(:webhook_host_whitelist) { is_expected.to eq 'default' }
+    end
+  end
+
+  describe "webhook_http_code_success" do
+    context "when PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS is '200 202 301 302'" do
+      let(:retry_schedule) { "200 202 301 302" }
+      its(:webhook_http_code_success) { is_expected.to eq [200, 202, 301, 302] }
+    end
+
+    context "when PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS is ''" do
+      let(:retry_schedule) { "" }
+      its(:webhook_http_code_success) { is_expected.to eq 'default' }
     end
   end
 

@@ -19,6 +19,8 @@ RSpec.describe PactBroker::DockerConfiguration do
 
   let(:retry_schedule) { "" }
 
+  let(:http_code_success) { "" }
+
   let(:default_configuration) do
     instance_double('default configuration',
       webhook_host_whitelist: 'default',
@@ -113,6 +115,7 @@ RSpec.describe PactBroker::DockerConfiguration do
         it { expect(subject.database_configuration[:database]).to eq "pactbroker" }
         it { expect(subject.database_configuration[:encoding]).to eq "utf8" }
         it { expect(subject.database_configuration[:port]).to eq 5432 }
+        it { expect(subject.pact_broker_environment_variables["PACT_BROKER_DATABASE_URL"]).to eq "postgresql://pactbrokeruser:*****@localhost:5432/pactbroker" }
       end
 
       context "using a configured environment variable name and an arbitrary env var" do
@@ -216,12 +219,12 @@ RSpec.describe PactBroker::DockerConfiguration do
 
   describe "webhook_http_code_success" do
     context "when PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS is '200 202 301 302'" do
-      let(:retry_schedule) { "200 202 301 302" }
+      let(:http_code_success) { "200 202 301 302" }
       its(:webhook_http_code_success) { is_expected.to eq [200, 202, 301, 302] }
     end
 
     context "when PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS is ''" do
-      let(:retry_schedule) { "" }
+      let(:http_code_success) { "" }
       its(:webhook_http_code_success) { is_expected.to eq 'default' }
     end
   end

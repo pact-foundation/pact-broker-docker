@@ -7,14 +7,7 @@ require_relative 'docker_configuration'
 require_relative 'pact_broker_resource_access_policy'
 
 dc = PactBroker::DockerConfiguration.new(ENV, PactBroker::Configuration.default_configuration)
-dc.pact_broker_environment_variables.each { |key, value|
-  # suppress password of database connection string, if present
-  if key.upcase == "PACT_BROKER_DATABASE_URL" && value =~ /:\/\/[^:]+:[^@]+@/
-    $logger.info "#{key}=#{value.sub(/(:\/\/[^:]+):[^@]+@/, '\1:*****@')}"
-  else
-    $logger.info "#{key}=#{value}"
-  end
-}
+dc.pact_broker_environment_variables.each{ |key, value| $logger.info "#{key}=#{value}"}
 
 app = PactBroker::App.new do | config |
   config.logger = $logger

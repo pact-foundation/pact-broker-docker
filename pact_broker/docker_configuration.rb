@@ -9,7 +9,14 @@ module PactBroker
 
     def pact_broker_environment_variables
       pact_broker_environment_variable_names.sort.each_with_object({}) do | name, hash |
-        hash[name] = name =~ /password/i ? "*****" : @env[name]
+        value = @env[name]
+        # special case: suppress password of database connection string, if present
+        if name == "PACT_BROKER_DATABASE_URL" && value =~ /:\/\/[^:]+:[^@]+@/
+          hash[name] = value.sub(/(:\/\/[^:]+):[^@]+@/, '\1:*****@')
+        else
+          hash[name] = name =~ /password/i ? "*****" : value
+        end
+
       end
     end
 

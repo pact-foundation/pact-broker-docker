@@ -1,3 +1,10 @@
+<a name="2.78.1.1"></a>
+### 2.78.1.1 (2021-02-22)
+
+#### Features
+
+* 38 add docker environment variable PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS (#39)	 ([00b6c46](/../../commit/00b6c46))
+
 <a name="2.78.1.0"></a>
 ### 2.78.1.0 (2021-02-18)
 

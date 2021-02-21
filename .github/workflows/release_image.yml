@@ -17,7 +17,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.4
+          ruby-version: 2.6.6
 
       - name: Release image
         run: script/release-workflow/run.sh

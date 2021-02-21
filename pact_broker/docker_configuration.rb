@@ -9,7 +9,14 @@ module PactBroker
 
     def pact_broker_environment_variables
       pact_broker_environment_variable_names.sort.each_with_object({}) do | name, hash |
-        hash[name] = name =~ /password/i ? "*****" : @env[name]
+        value = @env[name]
+        # special case: suppress password of database connection string, if present
+        if name == "PACT_BROKER_DATABASE_URL" && value =~ /:\/\/[^:]+:[^@]+@/
+          hash[name] = value.sub(/(:\/\/[^:]+):[^@]+@/, '\1:*****@')
+        else
+          hash[name] = name =~ /password/i ? "*****" : value
+        end
+
       end
     end
 
@@ -28,6 +35,10 @@ module PactBroker
 
     def webhook_http_method_whitelist
       space_delimited_string_list_or_default(:webhook_http_method_whitelist)
+    end
+
+    def webhook_http_code_success
+      space_delimited_integer_list_or_default(:webhook_http_code_success)
     end
 
     def webhook_retry_schedule

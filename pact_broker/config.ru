@@ -21,6 +21,7 @@ app = PactBroker::App.new do | config |
   config.webhook_http_method_whitelist = dc.webhook_http_method_whitelist
   config.webhook_scheme_whitelist = dc.webhook_scheme_whitelist
   config.webhook_retry_schedule = dc.webhook_retry_schedule
+  config.webhook_http_code_success = dc.webhook_http_code_success
   config.base_equality_only_on_content_that_affects_verification_results = dc.base_equality_only_on_content_that_affects_verification_results
   config.order_versions_by_date = dc.order_versions_by_date
   config.disable_ssl_verification = dc.disable_ssl_verification

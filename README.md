@@ -113,7 +113,7 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 ## Other webhook settings
 
 * `PACT_BROKER_WEBHOOK_RETRY_SCHEDULE` - a space delimited list of integers specifying the number of seconds after which to retry webhook requests when they fail. Defaults to `10 60 120 300 600 1200`. This does not normally need to be changed.
-* `PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS` - a space delimited list of successful http codes (e.g. `200 201 301`). Defaults to `200 201 202 203 204 205 206`. If webhook call returns the response with http code that is listed in the success codes then the operation is considered as a success, otherwise the webhook will be re-triggered based on `PACT_BROKER_WEBHOOK_RETRY_SCHEDULE` configuration.
+* `PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS` - a space delimited list of successful http codes (e.g. `200 201 301`). Defaults to `200 201 202 203 204 205 206`. If webhook call returns the response with http code that is listed in the success codes then the operation is considered as a success, otherwise the webhook will be re-triggered based on `PACT_BROKER_WEBHOOK_RETRY_SCHEDULE` configuration. In most cases, configuring this is not necessary, but there are some CI systems that return a non 200 status for a success, which is why this feature exists.
 
 ## Other environment variables
 

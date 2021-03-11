@@ -5,8 +5,6 @@ services:
     image: postgres:12
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
-    # ports:
-    #   - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -14,8 +12,6 @@ services:
     volumes:
       - ${PWD}/docker/postgres-entrypoint.sh:/docker-entrypoint-initdb.d/init-db.sh
       - ${PWD}/docker/pg-dump.sql:/tmp/pg-dump.sql
-    logging:
-        driver: none
 
   pact-broker:
     build: .
@@ -24,23 +20,13 @@ services:
     depends_on:
       - postgres
     environment:
-      PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: PORT
-      PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: DATABASE_URL
-      DATABASE_URL: "postgres://postgres:password@postgres/postgres"
-      PACT_BROKER_DATABASE_CLEAN_ENABLED: "false"
+      PACT_BROKER_DATABASE_URL: "postgres://postgres:password@postgres/postgres"
+      PACT_BROKER_LOG_LEVEL: "INFO"
+      PACT_BROKER_SQL_LOG_LEVEL: "DEBUG"
+      PACT_BROKER_DATABASE_CLEAN_ENABLED: "true"
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "5"
       PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE: "* * * * *"
-      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: "false"
       PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: "500"
       PACT_BROKER_SQL_LOG_WARN_DURATION: "60"
       # Keep all prod versions, AND the latest version for every pacticipant/tag, and all versions less than 30 days old
       PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true, "tag": true}, {"max_age": 30}]'
-      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "10"
-      # PACT_BROKER_DATABASE_USERNAME: postgres
-      # PACT_BROKER_DATABASE_PASSWORD: password
-      # PACT_BROKER_DATABASE_HOST: postgres
-      # PACT_BROKER_DATABASE_NAME: postgres
-      # PACT_BROKER_PORT: "9292"
-      PORT: '9393'
-      PACT_BROKER_LOG_LEVEL: INFO
-      PACT_BROKER_SQL_LOG_LEVEL: DEBUG
-      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "5"

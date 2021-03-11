@@ -37,6 +37,7 @@ RUN set -ex && \
 
 # Install source
 COPY pact_broker $HOME/
+RUN mv $HOME/clean.sh /usr/local/bin/clean
 
 RUN ln -s /pact_broker/script/db-migrate.sh /usr/local/bin/db-migrate
 RUN ln -s /pact_broker/script/db-version.sh /usr/local/bin/db-version
@@ -44,7 +45,7 @@ RUN ln -s /pact_broker/script/db-version.sh /usr/local/bin/db-version
 # Start Puma
 ENV RACK_ENV=production
 ENV PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME=PACT_BROKER_PORT
-ENV PACT_BROKER_DATABASE_BETA_CLEAN_ENABLED=false
+ENV PACT_BROKER_DATABASE_CLEAN_ENABLED=false
 ENV PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE="0 2 15 * *"
 ENV PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS='[{ "latest": true, "tag": true }, { "max_age": 90 }]'
 ENV PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT=500

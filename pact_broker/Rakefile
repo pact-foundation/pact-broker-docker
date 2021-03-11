@@ -5,7 +5,7 @@ require 'pact_broker/tasks'
 
 def create_database_configuration
   dc = PactBroker::DockerConfiguration.new(ENV, OpenStruct.new)
-  create_database_connection_from_config($logger, dc.database_configuration)
+  create_database_connection_from_config($logger, dc.database_configuration, dc.database_connect_max_retries)
 end
 
 def env(name)

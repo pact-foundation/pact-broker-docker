@@ -129,6 +129,38 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 
 Documentation for the Pact Broker application itself can be found in the Pact Broker [docs][pact-broker-docs].
 
+## Automatic data clean up
+
+Performance can degrade when too much data accumulates in the Pact Broker. To read about the automatic data clean up feature, please see the [Maintenance](https://docs.pact.io/pact_broker/administration/maintenance) page of the Pact Broker documentation.
+
+### Running the clean task on a cron schedule within the application container
+
+If you have exactly one Pact Broker container running at a time, you can configure cron on the container to run the clean up.
+
+* `PACT_BROKER_DATABASE_CLEAN_ENABLED`: set to `true` to enable the clean. Default is `false`.
+* `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE`: set to a cron schedule that will run when your Broker is under the least operational load. Default is 2:15am - `15 2 * * *`
+* `PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT`: The maximum number of records to delete at a time for each of the categories listed in the [Categories of removable data](https://docs.pact.io/pact_broker/administration/maintenance#categories-of-removable-data). Defaults to `500`.
+* `PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE`: The maximum number of days to keep "overwritten" data as described in the [Categories of removable data](https://docs.pact.io/pact_broker/administration/maintenance#categories-of-removable-data)
+* `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`:  a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "tag": true}, {"max_age": 90}]` (remember to escape the quotes if necessary in your configuration files/console).
+* `PACT_BROKER_DATABASE_CLEAN_DRY_RUN`: defaults to `false`. Set to `true` to see the output of what *would* have been deleted if the task had run. This is helpful when experimenting with or fine tuning the clean feature. As nothing is deleted when in dry-run mode, the same output will be printed in the logs each time the task runs.
+
+### Running the clean task from an external source
+
+If you are running more than one Pact Broker Docker container at a time for the same database, then you will end up with two clean up tasks fighting with each other to delete the data. In this situation, it is best to run the clean task from an external location at a regular interval. To do this, run an instance of the pact-broker docker image with the entrypoint `clean`, the same database connection credentials as the application, and the same environment variables described in the section above *except the PACT_BROKER_DATABASE_CLEAN_ENABLED and PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE* vars.
+
+You can see a working example in the [docker-compose-clean.yml](./docker-compose-clean.yml) file. To run the example locally, run:
+
+```
+docker-compose -f docker-compose-clean.yml up pact-broker
+
+# in another console
+docker-compose -f docker-compose-clean.yml up clean
+```
+
+### Known issues with the data clean up task
+
+* When the pact-broker docker container gets restarted because of an internal error, another supercronic (the application that runs the cron task in the background) process seems to get started each time, leading to multiple clean tasks running at once. This issue has been noticed in local testing, but we do not know if it is likely to be an issue under normal production use. Please raise an issue if you are observing it. The mitigation for this is to run the clean from an external source as documented above.
+
 ## Running with Docker Compose
 
 For a quick start with the Pact Broker and Postgres, we have an example

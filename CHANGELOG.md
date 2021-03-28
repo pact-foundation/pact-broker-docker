@@ -1,3 +1,11 @@
+<a name="2.79.1.0"></a>
+### 2.79.1.0 (2021-03-28)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.79.1	 ([c1a80ae](/../../commit/c1a80ae))
+
 <a name="2.79.0.1"></a>
 ### 2.79.0.1 (2021-03-11)
 

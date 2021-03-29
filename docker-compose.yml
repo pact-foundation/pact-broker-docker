@@ -25,6 +25,10 @@ services:
       PACT_BROKER_DATABASE_URL: "postgres://postgres:password@postgres/postgres"
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG
+      # PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES is only needed for docker-compose 
+      # because the database takes longer to start up than the puma process
+      # Should not be needed in production.
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "5"
 
   # Nginx is not necessary, but demonstrates how
   # one might use a reverse proxy in front of the broker,

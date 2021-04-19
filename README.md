@@ -131,7 +131,9 @@ Documentation for the Pact Broker application itself can be found in the Pact Br
 
 ## Automatic data clean up
 
-Performance can degrade when too much data accumulates in the Pact Broker. To read about the automatic data clean up feature, please see the [Maintenance](https://docs.pact.io/pact_broker/administration/maintenance) page of the Pact Broker documentation.
+Performance can degrade when too much data accumulates in the Pact Broker. To read about the automatic data clean up feature, please see the [Maintenance](https://docs.pact.io/pact_broker/administration/maintenance) page of the Pact Broker documentation. 
+
+You will need version `2.79.1.1` or later of the pactfoundation/pact-broker Docker image for this feature.
 
 ### Running the clean task on a cron schedule within the application container
 

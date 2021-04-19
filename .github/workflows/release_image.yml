@@ -5,6 +5,7 @@ on:
     types:
       - release-triggered
       - manual-release-triggered
+  workspace_dispatch:
 
 jobs:
   release:

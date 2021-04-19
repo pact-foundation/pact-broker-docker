@@ -14,7 +14,7 @@ services:
       - ${PWD}/docker/pg-dump.sql:/tmp/pg-dump.sql
 
   pact-broker:
-    build: .
+    image: pactfoundation/pact-broker:2.79.1.0
     ports:
       - "9393:9393"
     depends_on:

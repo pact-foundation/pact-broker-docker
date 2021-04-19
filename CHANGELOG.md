@@ -1,3 +1,11 @@
+<a name="2.79.1.1"></a>
+### 2.79.1.1 (2021-04-20)
+
+#### Bug Fixes
+
+* correct path to clean script	 ([1b6ee75](/../../commit/1b6ee75))
+* Dockerfile-package-base to reduce vulnerabilities (#44)	 ([5279abb](/../../commit/5279abb))
+
 <a name="2.79.1.0"></a>
 ### 2.79.1.0 (2021-03-28)
 

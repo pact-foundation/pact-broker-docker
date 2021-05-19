@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem "pact_broker"
+gem "pact_broker", ">= 2.79.1"
 gem "pg", "~>1.0"
 gem "puma", "~> 4.3", ">= 4.3.8"
 gem "mysql2", "~>0.3"

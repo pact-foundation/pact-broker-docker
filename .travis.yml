@@ -1,8 +1,0 @@
-services:
-  - docker
-
-install:
-  - echo 'nothing to install'
-
-script:
-  - ./script/test.sh

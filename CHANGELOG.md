@@ -1,3 +1,16 @@
+<a name="2.79.1.2"></a>
+### 2.79.1.2 (2021-05-25)
+
+#### Features
+
+* **deps**
+  * Update puma to 5.3.1 (#48)	 ([3b31b26](/../../commit/3b31b26))
+
+#### Bug Fixes
+
+* Dockerfile-bundle-base to reduce vulnerabilities (#47)	 ([9f706a6](/../../commit/9f706a6))
+* pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities (#46)	 ([893bb12](/../../commit/893bb12))
+
 <a name="2.79.1.1"></a>
 ### 2.79.1.1 (2021-04-20)
 

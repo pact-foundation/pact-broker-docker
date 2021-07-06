@@ -1,3 +1,15 @@
+<a name="2.80.0.0"></a>
+### 2.80.0.0 (2021-07-06)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.80.0	 ([53affe3](/../../commit/53affe3))
+
+#### Bug Fixes
+
+* update base docker image	 ([cb43417](/../../commit/cb43417))
+
 <a name="2.79.1.2"></a>
 ### 2.79.1.2 (2021-05-25)
 

@@ -1,3 +1,10 @@
+<a name="2.80.0.1"></a>
+### 2.80.0.1 (2021-07-09)
+
+#### Bug Fixes
+
+* Dockerfile-package-base to reduce vulnerabilities (#56)	 ([96499bf](/../../commit/96499bf))
+
 <a name="2.80.0.0"></a>
 ### 2.80.0.0 (2021-07-06)
 

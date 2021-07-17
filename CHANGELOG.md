@@ -1,3 +1,15 @@
+<a name="2.81.0.0"></a>
+### 2.81.0.0 (2021-07-17)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.81.0	 ([954be71](/../../commit/954be71))
+
+#### Bug Fixes
+
+* Dockerfile-bundle-base to reduce vulnerabilities (#55)	 ([5940657](/../../commit/5940657))
+
 <a name="2.80.0.1"></a>
 ### 2.80.0.1 (2021-07-09)
 

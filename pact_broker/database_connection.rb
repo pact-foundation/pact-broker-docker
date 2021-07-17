@@ -21,6 +21,11 @@ require 'pact_broker/db/log_quietener'
 
 def create_database_connection_from_config(logger, config, max_retries = 0)
   logger.info "Connecting to database with config: #{config.merge(password: "*****")}"
+  config_with_logger =  if config[:sql_log_level] == :none
+                          config.reject { |k, _| k == :sql_log_level }
+                        else
+                          config.merge(logger: PactBroker::DB::LogQuietener.new(logger))
+                        end
 
   tries = 0
   max_tries = max_retries + 1
@@ -28,7 +33,7 @@ def create_database_connection_from_config(logger, config, max_retries = 0)
   wait = 3
 
   begin
-    connection = Sequel.connect(config.merge(logger: PactBroker::DB::LogQuietener.new(logger)))
+    connection = Sequel.connect(config_with_logger)
   rescue StandardError => e
     if (tries += 1) < max_tries
       logger.info "Error connecting to database (#{e.class}). Waiting #{wait} seconds and trying again. #{max_tries-tries} tries to go."

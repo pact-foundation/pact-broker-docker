@@ -62,7 +62,7 @@ For investigations/spikes you can use SQlite. It is not supported as a productio
 You can additionally set:
 
     * `PACT_BROKER_DATABASE_SSLMODE` - optional, possible values: 'disable', 'allow', 'prefer', 'require', 'verify-ca', or 'verify-full' to choose how to treat SSL (only respected if using the postgres database adapter. See https://www.postgresql.org/docs/9.1/libpq-ssl.html for more information.)
-    * `PACT_BROKER_SQL_LOG_LEVEL` - optional, defaults to debug. The level at which to log SQL statements.
+    * `PACT_BROKER_SQL_LOG_LEVEL` - optional, defaults to debug. The level at which to log SQL statements. Valid options are none, debug, info, warn.
     * `PACT_BROKER_SQL_LOG_WARN_DURATION` - optional, defaults to 5 seconds. Log the SQL for queries that take longer than this number of seconds.
     * `PACT_BROKER_DATABASE_MAX_CONNECTIONS` - optional, defaults to 4. The maximum size of the connection pool. There is no need to set this unless you notice particular connection contention issues.
     * `PACT_BROKER_DATABASE_POOL_TIMEOUT` - optional, 5 seconds by default. The number of seconds to wait if a connection cannot be acquired before raising an error. There is no need to set this unless you notice particular connection contention issues.

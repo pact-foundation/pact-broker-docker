@@ -31,6 +31,8 @@ module PactBroker
       puma_persistent_timeout: nil
     )
 
+    sensitive_values(:database_url, :database_password)
+
     def log_level= log_level
       super(log_level&.downcase&.to_sym)
     end

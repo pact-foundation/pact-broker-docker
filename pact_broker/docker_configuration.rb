@@ -31,6 +31,7 @@ module PactBroker
       puma_persistent_timeout: nil
     )
 
+    # these need to be set again after inheriting
     sensitive_values(:database_url, :database_password)
 
     def log_level= log_level

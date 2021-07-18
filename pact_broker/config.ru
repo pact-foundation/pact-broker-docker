@@ -1,11 +1,10 @@
-require 'sequel'
-require 'pact_broker'
-require_relative 'logger'
-require_relative 'basic_auth'
-require_relative 'database_connection'
-require_relative 'docker_configuration'
-require_relative 'pact_broker_resource_access_policy'
+require "sequel"
+require "pact_broker"
 require "pact_broker/initializers/database_connection"
+require_relative "logger"
+require_relative "basic_auth"
+require_relative "docker_configuration"
+require_relative "pact_broker_resource_access_policy"
 
 PactBroker.docker_configuration.log_configuration($logger)
 
@@ -23,7 +22,6 @@ basic_auth_read_only_password = ENV['PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD']
 allow_public_read_access = ENV.fetch('PACT_BROKER_ALLOW_PUBLIC_READ', '') == 'true'
 allow_public_access_to_heartbeat = ENV.fetch('PACT_BROKER_PUBLIC_HEARTBEAT', '') == 'true'
 use_basic_auth = basic_auth_username != '' && basic_auth_password != ''
-
 
 if use_basic_auth
   puts "INFO: Public read access is enabled" if allow_public_read_access

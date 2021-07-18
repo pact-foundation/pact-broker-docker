@@ -1,6 +1,5 @@
-require_relative "../docker_configuration_2"
+require_relative "../docker_configuration"
 
-# port ENV[ENV['PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME']]
 port PactBroker.docker_configuration.port
 
 if PactBroker.docker_configuration.puma_persistent_timeout

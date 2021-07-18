@@ -1,4 +1,4 @@
-require_relative "docker_configuration_2"
+require_relative "docker_configuration"
 require 'logger'
 require 'semantic_logger'
 

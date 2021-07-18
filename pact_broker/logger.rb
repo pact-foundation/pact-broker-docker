@@ -1,15 +1,9 @@
+require_relative "docker_configuration_2"
 require 'logger'
 require 'semantic_logger'
 
-log_level = begin
-  Kernel.const_get('Logger').const_get(ENV['PACT_BROKER_LOG_LEVEL'] || 'WARN')
-rescue NameError
-  $stderr.puts "Ignoring PACT_BROKER_LOG_LEVEL '#{ENV['PACT_BROKER_LOG_LEVEL']}' as it is invalid. Valid values are: DEBUG INFO WARN ERROR FATAL. Using WARN."
-  Logger::WARN
-end
-
-SemanticLogger.add_appender(io: $stdout)
-SemanticLogger.default_level = log_level
+SemanticLogger.add_appender(io: $stdout, formatter: PactBroker.docker_configuration.log_format)
+SemanticLogger.default_level = PactBroker.docker_configuration.log_level
 $logger  = SemanticLogger['pact-broker']
 
 PADRINO_LOGGER = {

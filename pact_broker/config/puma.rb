@@ -1,5 +1,8 @@
-port ENV[ENV['PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME']]
+require_relative "../docker_configuration_2"
 
-if ENV['PACT_BROKER_PUMA_PERSISTENT_TIMEOUT']
-  persistent_timeout ENV['PACT_BROKER_PUMA_PERSISTENT_TIMEOUT'].to_i
+# port ENV[ENV['PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME']]
+port PactBroker.docker_configuration.port
+
+if PactBroker.docker_configuration.puma_persistent_timeout
+  persistent_timeout PactBroker.docker_configuration.puma_persistent_timeout
 end

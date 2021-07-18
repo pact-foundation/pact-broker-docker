@@ -5,33 +5,16 @@ require_relative 'basic_auth'
 require_relative 'database_connection'
 require_relative 'docker_configuration'
 require_relative 'pact_broker_resource_access_policy'
+require "pact_broker/initializers/database_connection"
 
-dc = PactBroker::DockerConfiguration.new(ENV, PactBroker::Configuration.default_configuration)
-dc.pact_broker_environment_variables.each{ |key, value| $logger.info "#{key}=#{value}"}
+PactBroker.docker_configuration.log_configuration($logger)
 
 app = PactBroker::App.new do | config |
   config.logger = $logger
-
-  config.database_connection = create_database_connection_from_config(config.logger, dc.database_configuration, dc.database_connect_max_retries)
-  config.allow_missing_migration_files = true
-
-  config.database_connection.timezone = :utc
-  config.base_url = dc.base_url
-  config.webhook_host_whitelist = dc.webhook_host_whitelist
-  config.webhook_http_method_whitelist = dc.webhook_http_method_whitelist
-  config.webhook_scheme_whitelist = dc.webhook_scheme_whitelist
-  config.webhook_retry_schedule = dc.webhook_retry_schedule
-  config.webhook_http_code_success = dc.webhook_http_code_success
-  config.base_equality_only_on_content_that_affects_verification_results = dc.base_equality_only_on_content_that_affects_verification_results
-  config.order_versions_by_date = dc.order_versions_by_date
-  config.disable_ssl_verification = dc.disable_ssl_verification
+  config.database_connection = PactBroker.create_database_connection(config.logger, config.database_configuration, config.database_connect_max_retries)
 end
 
 PactBroker.configuration.load_from_database!
-
-PactBroker::Configuration::SAVABLE_SETTING_NAMES.each do | setting |
-  $logger.info "PactBroker.configuration.#{setting}=#{PactBroker.configuration.send(setting).inspect}"
-end
 
 basic_auth_username = ENV.fetch('PACT_BROKER_BASIC_AUTH_USERNAME','')
 basic_auth_password = ENV.fetch('PACT_BROKER_BASIC_AUTH_PASSWORD', '')

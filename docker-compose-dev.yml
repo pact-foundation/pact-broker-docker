@@ -24,7 +24,7 @@ services:
     depends_on:
       - postgres
     environment:
-      PACT_BROKER_CONFIG_DIR: /tmp/pact_broker.yml
+      PACT_BROKER_CONF: /tmp/pact_broker.yml
       PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: PORT
       PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: DATABASE_URL
       DATABASE_URL: "postgres://postgres:password@postgres/postgres"

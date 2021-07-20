@@ -3,7 +3,6 @@ require "anyway"
 # Copied from https://github.com/palkan/anyway_config/blob/4165ff3cb3a385707319eb210925842353418300/lib/anyway/env.rb
 module PactBroker
   class Env
-
     using Anyway::Ext::DeepDup
     using Anyway::Ext::Hash
 

@@ -1,18 +1,6 @@
 # @private - do not rely on these classes as a public interface
-require "pact_broker/version" #TODO delete this
 require "pact_broker/config/runtime_configuration"
 require_relative "env_loader"
-
-config_dir = ENV.fetch("PACT_BROKER_CONFIG_DIR", "")
-
-if config_dir != ""
-  if File.exist?(config_dir) && File.directory?(config_dir)
-    Anyway::Settings.default_config_path = config_dir
-    puts "Setting configuration directory to #{config_dir}"
-  else
-    puts "WARN: Cannot use configuration directory at #{config_dir} because it does not exist or is not a directory."
-  end
-end
 
 Anyway.loaders.insert_after :env, :custom_env, PactBroker::Loaders::Env
 

@@ -10,5 +10,3 @@ gem "rake", "~> 13.0"
 # Need to manually add Webrick because we deleted it from the underlying Docker image
 # because of a vulnerability, and Webmachine requires it in the adapters.rb file.
 gem "webrick", "~> 1.6"
-
-gem "pry-byebug"

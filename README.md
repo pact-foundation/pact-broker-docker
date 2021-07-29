@@ -95,6 +95,10 @@ If you are using the docker container within an AWS autoscaling group, and you n
 
 The heartbeat is available at `/diagnostic/status/heartbeat`.
 
+## Healthcheck URL
+
+See [Heartbeat URL](#heartbeat-url).
+
 ## Using SSL
 
 See the [Pact Broker configuration documentation][reverse-proxy].

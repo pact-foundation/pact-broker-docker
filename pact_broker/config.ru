@@ -27,11 +27,7 @@ app = PactBroker::App.new do | config |
   config.disable_ssl_verification = dc.disable_ssl_verification
 end
 
-PactBroker.configuration.load_from_database!
-
-PactBroker::Configuration::SAVABLE_SETTING_NAMES.each do | setting |
-  $logger.info "PactBroker.configuration.#{setting}=#{PactBroker.configuration.send(setting).inspect}"
-end
+PactBroker.configuration.log_configuration
 
 basic_auth_username = ENV.fetch('PACT_BROKER_BASIC_AUTH_USERNAME','')
 basic_auth_password = ENV.fetch('PACT_BROKER_BASIC_AUTH_PASSWORD', '')

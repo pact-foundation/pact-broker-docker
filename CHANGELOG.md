@@ -1,3 +1,12 @@
+<a name="2.81.0.2"></a>
+### 2.81.0.2 (2021-08-30)
+
+#### Bug Fixes
+
+* fix configuration logging	 ([a69d9ac](/../../commit/a69d9ac))
+* Dockerfile to reduce vulnerabilities (#59)	 ([f6257d2](/../../commit/f6257d2))
+* update default cron schedule (#58)	 ([745d97d](/../../commit/745d97d))
+
 <a name="2.81.0.1"></a>
 ### 2.81.0.1 (2021-07-17)
 

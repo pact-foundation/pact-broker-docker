@@ -1,8 +1,20 @@
 # @private - do not rely on these classes as a public interface
-require "pact_broker/config/runtime_configuration"
 require_relative "env_loader"
 
+# module PactBroker
+#   module Loaders
+#     class DockerDefaults < Anyway::Loaders::Env
+#       def call(env_prefix:, **_options)
+#         base_config = trace!(:docker_defaults) { { log_stream: :stdout, enable_public_badge_access: true } }
+#       end
+#     end
+#   end
+# end
+
+# Anyway.loaders.prepend :docker_defaults, PactBroker::Loaders::DockerDefaults
 Anyway.loaders.insert_after :env, :custom_env, PactBroker::Loaders::Env
+
+require "pact_broker/config/runtime_configuration"
 
 module PactBroker
   def self.docker_configuration
@@ -10,24 +22,21 @@ module PactBroker
   end
 
   class DockerConfiguration < PactBroker::Config::RuntimeConfiguration
-    config_name :pact_broker
-
     attr_config(
-      port: 9292,
-      log_level: :info,
-      log_format: nil,
+      log_stream: :stdout,
+      enable_public_badge_access: true,
       puma_persistent_timeout: nil
     )
 
-    # these need to be set again after inheriting
-    sensitive_values(:database_url, :database_password)
+    # these need to be set again after extending the class
+    sensitive_values(*PactBroker::Config::RuntimeConfiguration.sensitive_values)
 
-    def log_level= log_level
-      super(log_level&.downcase&.to_sym)
+    def log_stream= log_stream
+      super(log_stream&.to_sym)
     end
 
-    def log_format= log_format
-      super(log_format&.to_sym)
+    def port= port
+      super(port&.to_i)
     end
 
     def puma_persistent_timeout= puma_persistent_timeout
@@ -35,3 +44,5 @@ module PactBroker
     end
   end
 end
+
+puts "PactBroker::DockerConfiguration.sensitive_values = #{PactBroker::DockerConfiguration.sensitive_values}"

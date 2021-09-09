@@ -1,4 +1,4 @@
-FROM ruby:2.6.7-alpine
+FROM ruby:2.6.8-alpine
 
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \

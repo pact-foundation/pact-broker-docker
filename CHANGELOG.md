@@ -1,3 +1,10 @@
+<a name="2.83.0.3"></a>
+### 2.83.0.3 (2021-09-09)
+
+#### Bug Fixes
+
+* revert upgrade from ruby:2.6.7-alpine to ruby:2.6.8-alpine	 ([a8cd1d5](/../../commit/a8cd1d5))
+
 <a name="2.83.0.2"></a>
 ### 2.83.0.2 (2021-09-09)
 

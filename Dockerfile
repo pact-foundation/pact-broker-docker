@@ -1,4 +1,4 @@
-FROM ruby:2.6.7-alpine
+FROM ruby:2.7-alpine3.14
 
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \
@@ -26,8 +26,8 @@ RUN set -ex && \
   apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev git && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
-  ls /usr/local/lib/ruby/gems/2.6.0 && \
-  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
+  ls /usr/local/lib/ruby/gems/2.7.0 && \
+  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.7.0 -x rake && \
   find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \

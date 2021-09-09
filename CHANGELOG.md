@@ -1,3 +1,10 @@
+<a name="2.83.0.2"></a>
+### 2.83.0.2 (2021-09-09)
+
+#### Features
+
+* upgrade from ruby:2.6.7-alpine to ruby:2.6.8-alpine	 ([8d02b8f](/../../commit/8d02b8f))
+
 <a name="2.83.0.1"></a>
 ### 2.83.0.1 (2021-09-09)
 

@@ -1,3 +1,11 @@
+<a name="2.83.0.1"></a>
+### 2.83.0.1 (2021-09-09)
+
+#### Bug Fixes
+
+* try reverting to ruby:2.6.7-alpine to see if it fixes https://github.com/pact-foundation/pact-broker-docker/issues/62	 ([a8154d1](/../../commit/a8154d1))
+* Dockerfile-bundle-base to reduce vulnerabilities (#61)	 ([a3a04d3](/../../commit/a3a04d3))
+
 <a name="2.83.0.0"></a>
 ### 2.83.0.0 (2021-08-30)
 

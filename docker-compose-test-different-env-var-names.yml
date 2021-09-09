@@ -20,9 +20,7 @@ services:
       PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: CUSTOM_DATABASE_URL
       CUSTOM_DATABASE_URL: "postgres://postgres:postgres@postgres/postgres"
       PACT_BROKER_LOG_LEVEL: INFO
-    entrypoint: /custom-entrypoint.sh
-    volumes:
-      - ./script/docker/docker-compose-entrypoint.sh:/custom-entrypoint.sh
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "10"
 
   sut:
     build:

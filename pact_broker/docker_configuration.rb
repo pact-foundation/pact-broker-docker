@@ -44,5 +44,3 @@ module PactBroker
     end
   end
 end
-
-puts "PactBroker::DockerConfiguration.sensitive_values = #{PactBroker::DockerConfiguration.sensitive_values}"

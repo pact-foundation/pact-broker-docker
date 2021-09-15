@@ -24,12 +24,13 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 
 ## Prerequisites
 
-* A running Postgresql (or MySQL) database and the ability to connect to it (see [POSTGRESQL.md][postgres]). Postgres is recommended over MySQL for performance and support reasons.
+* A running Postgresql database and the ability to connect to it (see [POSTGRESQL.md][postgres]). 
 
 ## Getting Started
 
 1. [Install Docker][docker]
-2. Prepare your environment if you are not running postgresql in a docker container. Setup the pact broker connection to the database through the use of the following environment variables.
+2. Create a Postgres database.
+2. Setup the Pact Broker connection to the database using the environment variables described below.
 
 ### Create the database
 
@@ -59,14 +60,7 @@ For investigations/spikes you can use SQlite. It is not supported as a productio
   * `PACT_BROKER_DATABASE_ADAPTER` (set to `sqlite`)
   * `PACT_BROKER_DATABASE_NAME` (arbitrary file in the `/tmp` directory eg. `/tmp/pact_broker.sqlite3`)
 
-You can additionally set:
-
-    * `PACT_BROKER_DATABASE_SSLMODE` - optional, possible values: 'disable', 'allow', 'prefer', 'require', 'verify-ca', or 'verify-full' to choose how to treat SSL (only respected if using the postgres database adapter. See https://www.postgresql.org/docs/9.1/libpq-ssl.html for more information.)
-    * `PACT_BROKER_SQL_LOG_LEVEL` - optional, defaults to debug. The level at which to log SQL statements. Valid options are none, debug, info, warn.
-    * `PACT_BROKER_SQL_LOG_WARN_DURATION` - optional, defaults to 5 seconds. Log the SQL for queries that take longer than this number of seconds.
-    * `PACT_BROKER_DATABASE_MAX_CONNECTIONS` - optional, defaults to 4. The maximum size of the connection pool. There is no need to set this unless you notice particular connection contention issues.
-    * `PACT_BROKER_DATABASE_POOL_TIMEOUT` - optional, 5 seconds by default. The number of seconds to wait if a connection cannot be acquired before raising an error. There is no need to set this unless you notice particular connection contention issues.
-    * `PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES` - optional, defaults to 0. When running the Pact Broker Docker image experimentally using Docker Compose on a local development machine, the Broker application process may be ready before the database is available for connection, causing the application container to exit with an error. Setting the max retries to a non-zero number will allow it to retry the connection the configured number of times, waiting 3 seconds between attempts.
+See the [database section](https://docs.pact.io/pact_broker/configuration/settings/#database) of the Pact Broker configuration docs for all the database configuration options available.
 
 ## Notes
 
@@ -74,30 +68,19 @@ You can additionally set:
 * Apart from creating a database no further preparation is required.
 * The image does not need root privileges to run, however, the root filesystem (or at least, the /tmp directory) must be writeable for Puma to temporarily store files when processing large requests. See this [issue](https://github.com/pact-foundation/pact-js/issues/583#issuecomment-777728677).
 
-## Using basic auth
+## Authentication
 
-To enable basic auth, run your container with:
+The Pact Broker comes with 2 configurable basic auth users - one with read/write privileges, and one with read only privileges. The read only credentials should be distributed to the developers for use from development machines, and the read/write credentials should be used for CI/CD.
 
-* `PACT_BROKER_BASIC_AUTH_USERNAME`
-* `PACT_BROKER_BASIC_AUTH_PASSWORD`
-* `PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME`
-* `PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD`
-
-If you want to allow public read access (but still require credentials for writing), then omit setting the READ_ONLY credentials and set `PACT_BROKER_ALLOW_PUBLIC_READ=true`.
-
-Developers should use the read only credentials on their local machines, and the CI should use the read/write credentials. This will ensure that pacts and verification results are only published from your CI.
+See the [Authentication and authorization](https://docs.pact.io/pact_broker/configuration/settings#authentication-and-authorization) section of the Pact Broker documentation for more details.
 
 Note that the [verification status badges][badges] are not protected by basic auth, so that you may embed them in README markdown.
 
-## Heartbeat URL
+## Heartbeat/Healthcheck URL
 
-If you are using the docker container within an AWS autoscaling group, and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`. No database connection will be made during the execution of this endpoint.
+The heartbeat is available at `/diagnostic/status/heartbeat`. No database connection will be made during the execution of this endpoint.
 
-The heartbeat is available at `/diagnostic/status/heartbeat`.
-
-## Healthcheck URL
-
-See [Heartbeat URL](#heartbeat-url).
+If you have enabled basic auth, and you are running the Pact Broker within an AWS autoscaling group or similar and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`. 
 
 ## Using SSL
 
@@ -109,25 +92,15 @@ Set the environment variable `PACT_BROKER_LOG_LEVEL` to one of `DEBUG`, `INFO`, 
 
 ## Webhooks
 
-### Webhook whitelists
+See the [Webhooks](https://docs.pact.io/pact_broker/configuration/features#webhooks) section of the Pact Broker documentation. The only setting that you need to customize is the [`webhook_host_whitelist`](https://docs.pact.io/pact_broker/configuration/settings#webhook_host_whitelist).
 
-* `PACT_BROKER_WEBHOOK_HOST_WHITELIST` - a space delimited list of hosts (eg. `github.com travis.org`), network ranges (eg. `10.2.3.41/24`, or regular expressions (eg. `/.*\\.foo\\.com$/`). Regular expressions should start and end with a `/` to differentiate them from Strings. Note that backslashes need to be escaped with a second backslash. Please read the [Webhook whitelists][webhook-whitelist] section of the Pact Broker configuration documentation to understand how the whitelist is used. Remember to use quotes around this value as it may have spaces in it.
-* `PACT_BROKER_WEBHOOK_SCHEME_WHITELIST` - a space delimited list (eg. `http https`). Defaults to `https`.
+## Other settings
 
-## Other webhook settings
-
-* `PACT_BROKER_WEBHOOK_RETRY_SCHEDULE` - a space delimited list of integers specifying the number of seconds after which to retry webhook requests when they fail. Defaults to `10 60 120 300 600 1200`. This does not normally need to be changed.
-* `PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS` - a space delimited list of successful http codes (e.g. `200 201 301`). Defaults to `200 201 202 203 204 205 206`. If webhook call returns the response with http code that is listed in the success codes then the operation is considered as a success, otherwise the webhook will be re-triggered based on `PACT_BROKER_WEBHOOK_RETRY_SCHEDULE` configuration. In most cases, configuring this is not necessary, but there are some CI systems that return a non 200 status for a success, which is why this feature exists.
-
-## Other environment variables
+See the [Pact Broker Configuration Settings](https://docs.pact.io/pact_broker/configuration/settings) page for a full list of available settings.
 
 * `PACT_BROKER_PORT` - the port that the Pact Broker application runs on. Defaults to 9292.
 * `PACT_BROKER_BASE_URL` - optional but *strongly recommended* when deploying the Pact Broker to production as it prevents some [security vulnerabilities](https://www.cloudflare.com/learning/dns/dns-cache-poisoning/). If you find that the URLs generated by the API are using an IP instead of a hostname, you can set this environment variable to force the desired base URL. Must include the port if it's a non-standard one. eg. `https://my-broker:9292`. This can also be used if you are mounting the Docker container so that it runs on a non root context eg. `https://my-company.com/pact-broker`. Not that this setting does not change where the application is mounted within the Docker container - it just changes the links.
-* `PACT_BROKER_DISABLE_SSL_VERIFICATION` - `false` by default, may be set to `true`.
-* `PACT_BROKER_BASE_EQUALITY_ONLY_ON_CONTENT_THAT_AFFECTS_VERIFICATION_RESULTS` - `true` by default, may be set to `false`.
-* `PACT_BROKER_ORDER_VERSIONS_BY_DATE` - `true` by default. Setting this to false is deprecated.
 * `PACT_BROKER_PUMA_PERSISTENT_TIMEOUT` - allows configuration of the Puma persistent timeout.
-
 
 ## General Pact Broker configuration and usage
 

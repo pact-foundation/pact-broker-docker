@@ -39,8 +39,7 @@ services:
       PORT: '9393'
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG
-    volumes:
-      - ./script/docker/docker-compose-entrypoint.sh:/custom-entrypoint.sh
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "10"
 
   db-migrate:
     build: .

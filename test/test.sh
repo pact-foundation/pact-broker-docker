@@ -55,8 +55,8 @@ echo ""
 echo "Checking that badges can be accessed without basic auth"
 response_code=$(curl -s -o /dev/null -w "%{http_code}" ${TEST_URL}/pacts/provider/Bar/consumer/Foo/latest/badge.svg)
 
-if [[ "${response_code}" -ne '200' ]]; then
-  die "Expected response code to be 200, but was ${response_code}"
+if [[ "${response_code}" -ne '307' ]]; then
+  die "Expected response code to be 307, but was ${response_code}"
 fi
 
 echo "Checking that the heartbeat URL can be accessed without basic auth"

@@ -1,6 +1,6 @@
 # Dockerised Pact Broker
 
-[![Build Status](https://travis-ci.org/pact-foundation/pact-broker-docker.svg?branch=master)](https://travis-ci.org/pact-foundation/pact-broker-docker)
+[![Release Docker image](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml)
 
 This repository contains a Dockerized version of the [Pact Broker][pact-broker]. You can pull the `pactfoundation/pact-broker` image from [Dockerhub][pact-broker-docker]. If you're viewing these docs on Dockerhub, here is a link to the [github repository][github].
 
@@ -94,6 +94,10 @@ Note that the [verification status badges][badges] are not protected by basic au
 If you are using the docker container within an AWS autoscaling group, and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`. No database connection will be made during the execution of this endpoint.
 
 The heartbeat is available at `/diagnostic/status/heartbeat`.
+
+## Healthcheck URL
+
+See [Heartbeat URL](#heartbeat-url).
 
 ## Using SSL
 

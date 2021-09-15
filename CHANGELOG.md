@@ -1,3 +1,69 @@
+<a name="2.85.1.0"></a>
+### 2.85.1.0 (2021-09-14)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.85.1	 ([d0c56b1](/../../commit/d0c56b1))
+
+<a name="2.85.0.0"></a>
+### 2.85.0.0 (2021-09-14)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.85.0	 ([fe77fe3](/../../commit/fe77fe3))
+
+<a name="2.84.0.0"></a>
+### 2.84.0.0 (2021-09-10)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.84.0	 ([ba453fe](/../../commit/ba453fe))
+
+<a name="2.83.0.3"></a>
+### 2.83.0.3 (2021-09-09)
+
+#### Bug Fixes
+
+* revert upgrade from ruby:2.6.7-alpine to ruby:2.6.8-alpine	 ([a8cd1d5](/../../commit/a8cd1d5))
+
+<a name="2.83.0.2"></a>
+### 2.83.0.2 (2021-09-09)
+
+#### Features
+
+* upgrade from ruby:2.6.7-alpine to ruby:2.6.8-alpine	 ([8d02b8f](/../../commit/8d02b8f))
+
+<a name="2.83.0.1"></a>
+### 2.83.0.1 (2021-09-09)
+
+#### Bug Fixes
+
+* try reverting to ruby:2.6.7-alpine to see if it fixes https://github.com/pact-foundation/pact-broker-docker/issues/62	 ([a8154d1](/../../commit/a8154d1))
+* Dockerfile-bundle-base to reduce vulnerabilities (#61)	 ([a3a04d3](/../../commit/a3a04d3))
+
+<a name="2.83.0.0"></a>
+### 2.83.0.0 (2021-08-30)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.83.0	 ([875c113](/../../commit/875c113))
+
+<a name="2.81.0.2"></a>
+### 2.81.0.2 (2021-08-30)
+
+#### Bug Fixes
+
+* fix configuration logging	 ([a69d9ac](/../../commit/a69d9ac))
+* Dockerfile to reduce vulnerabilities (#59)	 ([f6257d2](/../../commit/f6257d2))
+* update default cron schedule (#58)	 ([745d97d](/../../commit/745d97d))
+
+<a name="2.81.0.1"></a>
+### 2.81.0.1 (2021-07-17)
+
 <a name="2.81.0.0"></a>
 ### 2.81.0.0 (2021-07-17)
 

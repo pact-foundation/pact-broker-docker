@@ -31,7 +31,7 @@ output=$(curl -v https://api.github.com/repos/${repository_slug}/dispatches \
       -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES" \
       -d "{\"event_type\": \"gem-released\", \"client_payload\": {\"name\": ${name}, \"version\" : ${version}, \"increment\" : ${increment}}}" 2>&1)
 
-if  ! echo "${output}" | grep "HTTP\/1.1 204" > /dev/null; then
+if  ! echo "${output}" | grep "HTTP\/.* 204" > /dev/null; then
   echo "$output" | sed  "s/${GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES}/********/g"
   echo "Failed to trigger release"
   exit 1

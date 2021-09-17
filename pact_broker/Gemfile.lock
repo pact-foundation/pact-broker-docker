@@ -76,7 +76,7 @@ GEM
       diff-lcs (~> 1.4)
       randexp (~> 0.1.7)
       term-ansicolor (~> 1.0)
-    pact_broker (2.85.1)
+    pact_broker (2.86.0)
       anyway_config (~> 2.1)
       dry-configurable (= 0.12.1)
       dry-logic (= 0.4.2)

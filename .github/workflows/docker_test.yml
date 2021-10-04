@@ -16,7 +16,7 @@ jobs:
         sudo apt-cache madison docker-ce
         sudo apt-get install docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION} containerd.io
       env:
-        DOCKER_VERSION=5:19.03.9~3-0~ubuntu-focal
+        DOCKER_VERSION: 5:19.03.9~3-0~ubuntu-focal
     - name: Check Docker Version
       run: |-
         docker --version

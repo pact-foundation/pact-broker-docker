@@ -17,3 +17,22 @@ jobs:
         sudo apt-get install docker-ce=5:19.03.15~3-0~ubuntu-focal docker-ce-cli=5:19.03.15~3-0~ubuntu-focal containerd.io
     - name: Check Docker Version
       run: docker --version
+
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.6
+    - run: "bundle install"
+    - run: "bundle exec rake"
+
+    - name: Login to Docker Hub
+      run: script/release-workflow/docker-login.sh
+      env:
+        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+    - name: Build Docker image
+      run: docker build -t pactfoundation/pact-broker:latest .
+
+    - name: Integration tests
+      run: script/test.sh

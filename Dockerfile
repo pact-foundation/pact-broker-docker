@@ -26,8 +26,8 @@ RUN set -ex && \
   apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev git && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
-  ls /usr/local/lib/ruby/gems/2.6.0 && \
-  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
+  ls /usr/local/lib/ruby/gems/2.7.0 && \
+  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.7.0 -x rake && \
   find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \

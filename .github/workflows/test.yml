@@ -1,26 +1,26 @@
-name: Test
+# name: Test
 
-on: [push, pull_request]
+# on: [push, pull_request]
 
-jobs:
-  test:
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6.6
-      - run: "bundle install"
-      - run: "bundle exec rake"
+# jobs:
+#   test:
+#     runs-on: "ubuntu-latest"
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 2.6.6
+#       - run: "bundle install"
+#       - run: "bundle exec rake"
 
-      - name: Login to Docker Hub
-        run: script/release-workflow/docker-login.sh
-        env:
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+#       - name: Login to Docker Hub
+#         run: script/release-workflow/docker-login.sh
+#         env:
+#           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+#           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build Docker image
-        run: docker build -t pactfoundation/pact-broker:latest .
+#       - name: Build Docker image
+#         run: docker build -t pactfoundation/pact-broker:latest .
 
-      - name: Integration tests
-        run: script/test.sh
+#       - name: Integration tests
+#         run: script/test.sh

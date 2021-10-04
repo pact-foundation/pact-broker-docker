@@ -1,28 +1,28 @@
-name: Release Docker image
+# name: Release Docker image
 
-on:
-  repository_dispatch:
-    types:
-      - release-triggered
-      - manual-release-triggered
-  workflow_dispatch:
+# on:
+#   repository_dispatch:
+#     types:
+#       - release-triggered
+#       - manual-release-triggered
+#   workflow_dispatch:
 
-jobs:
-  release:
-    runs-on: ubuntu-latest
+# jobs:
+#   release:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6.6
+#       - uses: ruby/setup-ruby@v1
+#         with:
+#           ruby-version: 2.6.6
 
-      - name: Release image
-        run: script/release-workflow/run.sh
-        env:
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-          CUSTOM_TAG: ${{ github.event.client_payload.tag }}
+#       - name: Release image
+#         run: script/release-workflow/run.sh
+#         env:
+#           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+#           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+#           CUSTOM_TAG: ${{ github.event.client_payload.tag }}

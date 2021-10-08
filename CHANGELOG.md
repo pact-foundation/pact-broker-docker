@@ -1,3 +1,19 @@
+<a name="2.86.0.1"></a>
+### 2.86.0.1 (2021-09-28)
+
+#### Bug Fixes
+
+* **deps**
+  * bump nokogiri from 1.12.4 to 1.12.5	 ([f4d3086](/../../commit/f4d3086))
+
+<a name="2.86.0.0"></a>
+### 2.86.0.0 (2021-09-17)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.86.0	 ([ca5071d](/../../commit/ca5071d))
+
 <a name="2.85.1.0"></a>
 ### 2.85.1.0 (2021-09-14)
 

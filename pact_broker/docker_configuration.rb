@@ -10,6 +10,7 @@ module PactBroker
   end
 
   class DockerConfiguration < PactBroker::Config::RuntimeConfiguration
+    # override the Pact Broker defaults for Docker, and add puma specific conf
     attr_config(
       log_stream: :stdout,
       enable_public_badge_access: true,

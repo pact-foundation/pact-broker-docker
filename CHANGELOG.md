@@ -1,3 +1,10 @@
+<a name="2.87.0.2"></a>
+### 2.87.0.2 (2021-10-08)
+
+#### Bug Fixes
+
+* fix clean task logger configuration	 ([9a68393](/../../commit/9a68393))
+
 <a name="2.87.0.1"></a>
 ### 2.87.0.1 (2021-10-08)
 

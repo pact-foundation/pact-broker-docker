@@ -39,7 +39,6 @@ module PactBroker
     private
 
     def parse_env(prefix)
-      match_prefix = "#{prefix}_"
       ENV.each_pair.with_object({}) do |(key, val), data|
         if key == ENV["PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME"]
           map_to_attribute("database_url", key, val, data)

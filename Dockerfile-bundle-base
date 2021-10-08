@@ -1,4 +1,4 @@
-FROM ruby:2.7-alpine
+FROM ruby:2.6.8-alpine3.13
 
 # Installation path
 ENV HOME=/pact_broker

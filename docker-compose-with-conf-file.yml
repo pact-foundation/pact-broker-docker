@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  pact-broker:
+    # image: pactfoundation/pact-broker:2.86.0.1
+    build: .
+    ports:
+      - "9292:9292"
+    environment:
+      PACT_BROKER_CONF: /tmp/pact_broker.yml
+    volumes:
+      - ./docker/config/pact_broker.yml:/tmp/pact_broker.yml

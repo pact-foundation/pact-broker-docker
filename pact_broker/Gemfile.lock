@@ -1,35 +1,3 @@
-GIT
-  remote: https://github.com/pact-foundation/pact_broker.git
-  revision: 0cf6129d336bb5e1cd6973b604c3128d389b33ed
-  ref: 0cf6129d336bb5e1cd6973b604c3128d389b33ed
-  specs:
-    pact_broker (2.85.1)
-      anyway_config (~> 2.1)
-      dry-configurable (= 0.12.1)
-      dry-logic (= 0.4.2)
-      dry-types (~> 0.10.3)
-      dry-validation (~> 0.10.5)
-      haml (~> 5.0)
-      httparty (~> 0.14)
-      json (~> 2.3)
-      pact-support (~> 1.16, >= 1.16.4)
-      padrino-core (~> 0.14, >= 0.14.3)
-      rack (~> 2.2, >= 2.2.3)
-      rack-protection (>= 2.0.8.1, < 3.0)
-      redcarpet (~> 3.5, >= 3.5.1)
-      reform (~> 2.3.3)
-      request_store (~> 1.5)
-      roar (~> 1.1)
-      sanitize (~> 5.2, >= 5.2.1)
-      semantic_logger (~> 4.3)
-      semver2 (~> 3.4.2)
-      sequel (~> 5.28)
-      sinatra (>= 2.0.8.1, < 3.0)
-      sucker_punch (~> 2.0)
-      table_print (~> 1.5)
-      webmachine (= 1.6.0)
-      wisper (~> 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,6 +78,32 @@ GEM
       diff-lcs (~> 1.4)
       expgen (~> 0.1)
       term-ansicolor (~> 1.0)
+    pact_broker (2.87.0)
+      anyway_config (~> 2.1)
+      dry-configurable (= 0.12.1)
+      dry-logic (= 0.4.2)
+      dry-types (~> 0.10.3)
+      dry-validation (~> 0.10.5)
+      haml (~> 5.0)
+      httparty (~> 0.14)
+      json (~> 2.3)
+      pact-support (~> 1.16, >= 1.16.4)
+      padrino-core (~> 0.14, >= 0.14.3)
+      rack (~> 2.2, >= 2.2.3)
+      rack-protection (>= 2.0.8.1, < 3.0)
+      redcarpet (~> 3.5, >= 3.5.1)
+      reform (~> 2.3.3)
+      request_store (~> 1.5)
+      roar (~> 1.1)
+      sanitize (~> 5.2, >= 5.2.1)
+      semantic_logger (~> 4.3)
+      semver2 (~> 3.4.2)
+      sequel (~> 5.28)
+      sinatra (>= 2.0.8.1, < 3.0)
+      sucker_punch (~> 2.0)
+      table_print (~> 1.5)
+      webmachine (= 1.6.0)
+      wisper (~> 2.0)
     padrino-core (0.15.1)
       padrino-support (= 0.15.1)
       sinatra (>= 2.0.0)
@@ -177,7 +171,7 @@ PLATFORMS
 
 DEPENDENCIES
   mysql2 (~> 0.3)
-  pact_broker!
+  pact_broker
   pg (~> 1.0)
   puma (~> 5.3)
   rake (~> 13.0)

@@ -1,11 +1,11 @@
-require_relative 'database_connection'
-require_relative 'docker_configuration'
-require_relative 'logger'
-require 'pact_broker/tasks'
+require_relative "docker_configuration"
+require "pact_broker/configuration"
+require "pact_broker/initializers/database_connection"
+require "pact_broker/tasks"
 
 def create_database_configuration
-  dc = PactBroker::DockerConfiguration.new(ENV, OpenStruct.new)
-  create_database_connection_from_config($logger, dc.database_configuration, dc.database_connect_max_retries)
+  PactBroker.configuration.runtime_configuration = PactBroker.docker_configuration
+  PactBroker.create_database_connection(PactBroker.configuration.database_configuration, PactBroker.configuration.logger)
 end
 
 def env(name)

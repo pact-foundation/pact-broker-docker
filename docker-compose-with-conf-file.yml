@@ -5,11 +5,8 @@ services:
     # image: pactfoundation/pact-broker:2.86.0.1
     build: .
     ports:
-      - "9393:9393"
+      - "9292:9292"
     environment:
       PACT_BROKER_CONF: /tmp/pact_broker.yml
-      PACT_BROKER_DATABASE_URL: sqlite:////tmp/pact_broker.sqlite3
-      PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: CUSTOM_PORT
-      CUSTOM_PORT: "9393"
     volumes:
       - ./docker/config/pact_broker.yml:/tmp/pact_broker.yml

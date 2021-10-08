@@ -2,7 +2,7 @@ require "anyway"
 
 # From https://github.com/palkan/anyway_config/blob/4165ff3cb3a385707319eb210925842353418300/lib/anyway/env.rb
 module PactBroker
-  class Env < Anyway::Env
+  class CustomEnv < Anyway::Env
     using Anyway::Ext::Hash
 
     private
@@ -27,7 +27,7 @@ module PactBroker
   module Loaders
     class CustomEnv < Anyway::Loaders::Env
       def call(env_prefix:, **_options)
-        PactBroker::Env.new.fetch_with_trace(env_prefix).then do |(conf, trace)|
+        PactBroker::CustomEnv.new.fetch_with_trace(env_prefix).then do |(conf, trace)|
           Anyway::Tracing.current_trace&.merge!(trace)
           conf
         end

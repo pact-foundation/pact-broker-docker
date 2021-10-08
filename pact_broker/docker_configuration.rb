@@ -1,5 +1,5 @@
 # @private - do not rely on these classes as a public interface
-require_relative "env_loader"
+require_relative "custom_env_loader"
 
 Anyway.loaders.insert_after :env, :custom_env, PactBroker::Loaders::CustomEnv
 

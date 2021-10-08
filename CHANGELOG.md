@@ -1,3 +1,10 @@
+<a name="2.87.0.1"></a>
+### 2.87.0.1 (2021-10-08)
+
+#### Features
+
+* add support for anyway config (#57)	 ([ee2f93d](/../../commit/ee2f93d))
+
 <a name="2.87.0.0"></a>
 ### 2.87.0.0 (2021-10-05)
 

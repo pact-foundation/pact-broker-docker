@@ -1,9 +1,8 @@
 # @private - do not rely on these classes as a public interface
+require "pact_broker/config/runtime_configuration"
 require_relative "custom_env_loader"
 
 Anyway.loaders.insert_after :env, :custom_env, PactBroker::Loaders::CustomEnv
-
-require "pact_broker/config/runtime_configuration"
 
 module PactBroker
   def self.docker_configuration

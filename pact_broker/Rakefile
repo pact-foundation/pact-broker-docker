@@ -22,7 +22,7 @@ end
 
 PactBroker::DB::CleanTask.new do | task |
   task.database_connection = create_database_configuration
-  task.logger = $logger
+  task.logger = PactBroker.configuration.logger
 
   if env('PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS')
     require 'json'
@@ -40,7 +40,7 @@ end
 
 PactBroker::DB::DeleteOverwrittenDataTask.new do | task |
   task.database_connection = create_database_configuration
-  task.logger = $logger
+  task.logger = PactBroker.configuration.logger
 
   if env('PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE')
     task.max_age = env('PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE').to_i

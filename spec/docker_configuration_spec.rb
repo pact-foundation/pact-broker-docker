@@ -14,7 +14,7 @@ RSpec.describe PactBroker::DockerConfiguration do
     with_env(env, &ex)
   end
 
-  subject { PactBroker::Loaders::Env.new(local: false).call(env_prefix: "pact_broker") }
+  subject { PactBroker::Loaders::CustomEnv.new(local: false).call(env_prefix: "pact_broker") }
 
   it "loads the database URL from the named environment variable" do
     expect(subject).to include "database_url"=>"some_url"

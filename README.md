@@ -237,6 +237,11 @@ docker run --rm \
     --entrypoint db-version \
     pactfoundation/pact-broker
 ```
+# Vulnerability scanning
+
+* We use bundler audit on the underlying Pact Broker [codebase](https://github.com/pact-foundation/pact_broker/blob/master/.github/workflows/test.yml)
+* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/master/script/release-workflow/run.sh)
+* We also use [Snyk](https://app.snyk.io/org/pact-foundation-owm/projects) 
 
 # Troubleshooting
 

@@ -1,0 +1,138 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "This stack includes postgres DB that is supporting the Pact Broker application"
+
+Parameters:
+  dbKmsKey:
+    Description: "KMS key for encrypting the DB"
+    Type: String
+  ssmKmsKey:
+    Description: "KMS key for encrypting secrets"
+    Type: String
+  Uuid:
+    Description: "uuid"
+    Type: String
+  appDataTierSubnets:
+    Description: "subnets for running DB in Xero"
+    Type: String
+  tpzCIDR:
+    Description: "CIDR range for TPZ. This CIDR allows traffic from k8s pod"
+    Type: String
+  vpcID:
+    Description: "vpc for SG"
+    Type: String
+  AllocatedStorage:
+    Type: String
+  AvailabilityZone:
+    Type: String
+  DBInstanceClass:
+    Type: String
+  DBName:
+    Type: String
+  EngineVersion:
+    Type: String
+  MaxAllocatedStorage:
+    Type: String
+  PreferredBackupWindow:
+    Type: String
+  PreferredMaintenanceWindow:
+    Type: String
+  DeletionProtection:
+    Type: String
+
+Resources:
+  pactBrokerSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: SG for PactBroker
+      GroupName: packBrokerSG
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 5432
+        ToPort: 5432
+        CidrIp: !Ref tpzCIDR
+      VpcId: !Ref vpcID
+
+  pactBrokerDbSubnetGrp:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: db subnet group for pact broker
+      DBSubnetGroupName: packBrokerDbSubnetGrp
+      SubnetIds: !Split [",",!Ref appDataTierSubnets]
+
+  #This is a Secret resource with a randomly generated password in its SecretString JSON.
+  MyRDSInstanceRotationSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: This is pact-broker db instance creds
+      Name: "pact-broker-db-creds"
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "postgres"}'
+        GenerateStringKey: password
+        PasswordLength: 16
+        ExcludeCharacters: "\"@/\\"
+        ExcludePunctuation: true
+      KmsKeyId: !Ref ssmKmsKey
+      Tags:
+        - Key: uuid
+          Value: !Ref Uuid
+
+  pactBrokerDb:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: !Ref AllocatedStorage
+      AllowMajorVersionUpgrade: false
+      AutoMinorVersionUpgrade: false
+      AvailabilityZone: !Ref AvailabilityZone
+      BackupRetentionPeriod: 7
+      CACertificateIdentifier: "rds-ca-2019"
+      CopyTagsToSnapshot: true
+      DBInstanceClass: !Ref DBInstanceClass
+      DBName: !Ref DBName
+      DBSubnetGroupName: !Ref pactBrokerDbSubnetGrp
+      DeleteAutomatedBackups: true
+      DeletionProtection: !Ref DeletionProtection
+      EnableCloudwatchLogsExports:
+        - postgresql
+        - upgrade
+      EnableIAMDatabaseAuthentication: false
+      EnablePerformanceInsights: true
+      Engine: postgres
+      EngineVersion: !Ref EngineVersion
+      # Iops: 500 # db size * 10, no IOPS whilst using gp2 type storage
+      KmsKeyId: !Ref dbKmsKey
+      MasterUsername: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
+      MasterUserPassword: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
+      MaxAllocatedStorage: !Ref MaxAllocatedStorage
+      MultiAZ: false
+      PerformanceInsightsKMSKeyId: !Ref dbKmsKey
+      PerformanceInsightsRetentionPeriod: 7
+      Port: 5432
+      PreferredBackupWindow: !Ref PreferredBackupWindow
+      PreferredMaintenanceWindow: !Ref PreferredMaintenanceWindow
+      PubliclyAccessible: false
+      StorageEncrypted: true
+      StorageType: GP2
+      Tags:
+        - Key: uuid
+          Value: !Ref Uuid
+      UseDefaultProcessorFeatures: true
+      VPCSecurityGroups:
+        - !Ref pactBrokerSG
+
+  RDSInstanceConnectionString:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: "This is pact-broker db instance connection string. postgres://pact_broker_user:pact_broker_password@pact_broker_db_host:5432/pact_broker"
+      Name: "pact-broker-db-connection-string"
+      SecretString: !Sub
+        - "postgres://${pact_broker_user}:${pact_broker_password}@${pact_broker_db_host}:5432/${DBName}"
+        - pact_broker_user: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::username}}"
+          pact_broker_password: !Sub "{{resolve:secretsmanager:${MyRDSInstanceRotationSecret}::password}}"
+          pact_broker_db_host: !GetAtt pactBrokerDb.Endpoint.Address
+          DBName: !Ref DBName
+      KmsKeyId: !Ref ssmKmsKey
+      Tags:
+        - Key: uuid
+          Value: !Ref Uuid
+

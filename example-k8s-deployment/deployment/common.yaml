@@ -1,0 +1,53 @@
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+  targetMemoryUtilizationPercentage: 50
+replicaCount: 2
+maxUnavailable: 1
+# it should have been configured by build server in order to keep single-source-of-truth
+# image:
+#   tag: latest
+#   repository: foo.bar.com/pact-broker
+containerPort: 9292
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  path: /
+podAnnotations:
+  sumologic.com/include: "true"
+  sumologic.com/sourceCategory: test/pk8s/pact-broker
+healthcheck:
+  path: /diagnostic/status/heartbeat
+  initialDelaySeconds: 3
+  periodSeconds: 10
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+name: pact-broker
+
+# https://github.com/pact-foundation/pact_broker/blob/a727da80982603a73af5fe518afe58e6b994f4fe/docs/CONFIGURATION.md
+env:
+  # without this config, Puma the web server will confuse with application port config
+  # https://github.com/pact-foundation/pact-broker-docker/blob/ee2f93db03f04103378e83e6359a961c14a63f07/README.md#port
+  - name: PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME
+    value: PACT_BROKER_APPLICATION_PORT
+  - name: PACT_BROKER_APPLICATION_PORT
+    value: "9292"
+  - name: PACT_BROKER_DATABASE_ADAPTER
+    value: postgres
+  - name: PACT_BROKER_DATABASE_URL
+    value: "[SENSITIVE STRING]pact-broker-db-connection-string" # IMPLIES param should have been set by infra code when creating the DB. postgres://pact_broker_user:pact_broker_password@pact_broker_db_host/pact_broker
+  - name: PACT_BROKER_PUBLIC_HEARTBEAT
+    value: "true"
+
+# setting security context so that non-root user access AWS resources by reading AWS token file var/run/secrets/eks.amazonaws.com/serviceaccount/token
+podSecurityContext:
+  # user id for the existing user in Docker image
+  fsGroup: 101

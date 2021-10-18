@@ -4,7 +4,7 @@ Description: "This stack includes essential IAM role that is supporting the Pact
 
 Parameters:
   K8sIdpString:
-    Description: "IDP string from PaaS k8s cluster"
+    Description: "IDP string from k8s cluster"
     Type: String
   k8sNamespace:
     Description: "name to k8s namespace"

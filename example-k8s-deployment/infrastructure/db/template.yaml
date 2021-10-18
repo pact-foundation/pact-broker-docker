@@ -13,7 +13,7 @@ Parameters:
     Description: "uuid"
     Type: String
   appDataTierSubnets:
-    Description: "subnets for running DB in Xero"
+    Description: "subnets for running DB in foo bar corp"
     Type: String
   tpzCIDR:
     Description: "CIDR range for TPZ. This CIDR allows traffic from k8s pod"

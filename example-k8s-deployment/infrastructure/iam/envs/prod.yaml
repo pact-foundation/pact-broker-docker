@@ -1,0 +1,2 @@
+K8sIdpString: "123"
+ssmKmsKey: "arn:aws:kms:us-east-1:123:key/123"

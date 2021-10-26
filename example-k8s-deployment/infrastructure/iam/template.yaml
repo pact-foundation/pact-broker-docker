@@ -1,0 +1,85 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "This stack includes essential IAM role that is supporting the Pact Broker application"
+
+Parameters:
+  K8sIdpString:
+    Description: "IDP string from k8s cluster"
+    Type: String
+  k8sNamespace:
+    Description: "name to k8s namespace"
+    Type: String
+  Uuid:
+    Type: String
+  serviceAccount:
+    Description: "name to the service account"
+    Type: String
+  ssmKmsKey:
+    Description: "kms key used to create SSM secrets"
+    Type: String
+
+Resources:
+  pactBrokerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      # Has to pass in the Document in JSON instead of YAML.
+      # Due to IAM implementation limitation in CFN: https://github.com/aws/amazon-eks-pod-identity-webhook/issues/30
+      AssumeRolePolicyDocument: !Sub
+        - |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": "${IamOidcProviderArn}"
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                        "StringEquals": {
+                            "${OidcProviderEndpoint}:sub": "system:serviceaccount:${namespace}:${serviceAccount}"
+                        }
+                    }
+                }
+            ]
+          }
+        - {
+            "IamOidcProviderArn": !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/oidc.eks.${AWS::Region}.amazonaws.com/id/${K8sIdpString}",
+            "OidcProviderEndpoint": !Sub "oidc.eks.${AWS::Region}.amazonaws.com/id/${K8sIdpString}",
+            "namespace": !Ref k8sNamespace,
+            "serviceAccount": !Ref serviceAccount
+          }
+      Description: IAM role to be assumed in order to fetch SM secrets
+      Path: "/"
+      Policies:
+        - PolicyName: allowToFetchSmSecrets
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+            - Effect: Allow
+              Action:
+              - "secretsmanager:DescribeSecret"
+              - "secretsmanager:GetResourcePolicy"
+              - "secretsmanager:GetSecretValue"
+              - "secretsmanager:ListSecretVersionIds"
+              Resource:
+                # ?????? is wildcard symbol for SM secret versioning string. The string is for differentiating versions of same SM secret
+                - !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:pact-broker-db-connection-string-??????"
+            - Effect: Allow
+              Action: "secretsmanager:ListSecrets"
+              Resource: "*"
+        - PolicyName: allowToDecrypt
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+            - Effect: Allow
+              Action:
+              - kms:Decrypt
+              Resource:
+                - !Ref ssmKmsKey
+      RoleName: pact-broker
+      Tags:
+        - Key: uuid
+          Value: !Ref Uuid
+        - Key: CFN-stack
+          Value: !Sub ${AWS::StackName}

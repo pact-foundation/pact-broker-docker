@@ -1,0 +1,13 @@
+dbKmsKey: "arn:aws:kms:us-east-1:123:alias/uat-rds-encryption"
+appDataTierSubnets: "subnet-1,subnet-2,subnet-3"
+tpzCIDR: "172.16.8.0/23"
+vpcID: "vpc-123"
+
+AllocatedStorage: "50"
+AvailabilityZone: "us-east-1c"
+DBInstanceClass: "db.r6g.large"
+EngineVersion: "13.3"
+MaxAllocatedStorage: "200"
+PreferredBackupWindow: "09:00-09:30"
+PreferredMaintenanceWindow: "Sat:10:30-Sat:11:00"
+DeletionProtection: "false"

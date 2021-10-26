@@ -16,9 +16,6 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
   path: /
-podAnnotations:
-  sumologic.com/include: "true"
-  sumologic.com/sourceCategory: test/pk8s/pact-broker
 healthcheck:
   path: /diagnostic/status/heartbeat
   initialDelaySeconds: 3

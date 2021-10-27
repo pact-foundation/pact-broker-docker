@@ -1,3 +1,13 @@
+<a name="2.89.1.0"></a>
+### 2.89.1.0 (2021-10-27)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.89.1	 ([644f1b8](/../../commit/644f1b8))
+
+* add example K8s deployment configurations (#68)	 ([dd441ef](/../../commit/dd441ef))
+
 <a name="2.89.0.0"></a>
 ### 2.89.0.0 (2021-10-15)
 

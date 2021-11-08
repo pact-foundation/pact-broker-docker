@@ -33,7 +33,8 @@ RUN set -ex && \
   find /usr/local/lib/ruby -name rdoc-6.1* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \
-  bundle install --without='development test' && \
+  bundle config set without 'development test' && \
+  bundle install && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
   apk del make gcc libc-dev git
 

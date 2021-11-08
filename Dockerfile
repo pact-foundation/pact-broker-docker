@@ -27,8 +27,10 @@ RUN set -ex && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
   ls /usr/local/lib/ruby/gems/2.6.0 && \
+  gem install rdoc -v "6.3.2" --install-dir /usr/local/lib/ruby/gems/2.6.0 && \
   gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
   find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
+  find /usr/local/lib/ruby -name rdoc-6.1* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \
   bundle install --without='development test' && \

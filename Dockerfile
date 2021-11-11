@@ -49,7 +49,6 @@ RUN ln -s /pact_broker/script/db-version.sh /usr/local/bin/db-version
 ENV RACK_ENV=production
 ENV PACT_BROKER_DATABASE_CLEAN_ENABLED=false
 ENV PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE="15 2 * * *"
-ENV PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS='[{ "latest": true, "tag": true }, { "max_age": 90 }, { "deployed": true }, { "released" : true }]'
 ENV PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT=500
 ENV PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE=7
 ENV PACT_BROKER_DATABASE_CLEAN_DRY_RUN=false

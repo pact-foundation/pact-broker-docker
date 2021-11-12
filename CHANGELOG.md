@@ -1,3 +1,21 @@
+<a name="2.90.0.0"></a>
+### 2.90.0.0 (2021-11-12)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.90.0	 ([fc9c4c4](/../../commit/fc9c4c4))
+
+* remove keep selector env var and use the default keep selectors from the Pact Broker task	 ([6c901c5](/../../commit/6c901c5))
+* update default clean keep selectors to include currently deployed and released versions	 ([b4b25cd](/../../commit/b4b25cd))
+
+#### Bug Fixes
+
+* update to rdoc 6.3.2 for CVE-2021-31799	 ([1e055db](/../../commit/1e055db))
+
+* **deps**
+  * update i18n to 1.8.11	 ([22188c2](/../../commit/22188c2))
+
 <a name="2.89.1.0"></a>
 ### 2.89.1.0 (2021-10-27)
 

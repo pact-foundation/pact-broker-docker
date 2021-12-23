@@ -1,8 +1,10 @@
 FROM ruby:2.6.8-alpine3.13
 
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-amd64 \
-    SUPERCRONIC=supercronic-linux-amd64 \
-    SUPERCRONIC_SHA1SUM=a2e2d47078a8dafc5949491e5ea7267cc721d67c
+ARG SUPERCRONIC_PLATFORM=amd64
+ARG SUPERCRONIC_SHA1SUM=a2e2d47078a8dafc5949491e5ea7267cc721d67c
+
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-${SUPERCRONIC_PLATFORM} \
+    SUPERCRONIC=supercronic-linux-${SUPERCRONIC_PLATFORM}
 
 RUN wget "$SUPERCRONIC_URL" \
  && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
@@ -53,5 +55,5 @@ ENV PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT=500
 ENV PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE=7
 ENV PACT_BROKER_DATABASE_CLEAN_DRY_RUN=false
 USER ruby
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
 CMD ["config.ru"]

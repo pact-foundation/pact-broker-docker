@@ -1,4 +1,4 @@
-FROM ruby:2.6.8-alpine3.13
+FROM ruby:2.7.5-alpine3.13
 
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \
@@ -26,9 +26,9 @@ RUN set -ex && \
   apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev git && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
-  ls /usr/local/lib/ruby/gems/2.6.0 && \
-  gem install rdoc -v "6.3.2" --install-dir /usr/local/lib/ruby/gems/2.6.0 && \
-  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.6.0 -x rake && \
+  ls /usr/local/lib/ruby/gems/2.7.0 && \
+  gem install rdoc -v "6.3.2" --install-dir /usr/local/lib/ruby/gems/2.7.0 && \
+  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.7.0 -x rake && \
   find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
   find /usr/local/lib/ruby -name rdoc-6.1* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
@@ -36,6 +36,8 @@ RUN set -ex && \
   bundle config set without 'development test' && \
   bundle install && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
+  find /usr/local/bundle/gems/ -name *.pem | grep -e sample -e test | xargs rm -rf {} + && \
+  find /usr/local/bundle/gems/ -name *.key | grep -e sample -e test | xargs rm -rf {} + && \
   apk del make gcc libc-dev git
 
 # Install source

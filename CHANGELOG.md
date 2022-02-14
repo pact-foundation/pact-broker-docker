@@ -1,3 +1,10 @@
+<a name="2.93.3.1"></a>
+### 2.93.3.1 (2022-02-13)
+
+#### Bug Fixes
+
+* pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities (#75)	 ([5f87277](/../../commit/5f87277))
+
 <a name="2.93.3.0"></a>
 ### 2.93.3.0 (2022-02-10)
 

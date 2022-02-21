@@ -1,3 +1,11 @@
+<a name="2.94.0.0"></a>
+### 2.94.0.0 (2022-02-21)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.94.0	 ([6ecdf46](/../../commit/6ecdf46))
+
 <a name="2.93.4.0"></a>
 ### 2.93.4.0 (2022-02-20)
 

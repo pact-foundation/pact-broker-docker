@@ -1,6 +1,8 @@
 name: Test
 
 on: [push, pull_request]
+env:
+  DOCKER_TARGET_PLATFORM: "linux/amd64"
 
 jobs:
   test:
@@ -20,7 +22,7 @@ jobs:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t pactfoundation/pact-broker:latest .
+        run: docker buildx build --platform=${DOCKER_TARGET_PLATFORM} -t pactfoundation/pact-broker:latest .
 
       - name: Integration tests
         run: script/test.sh

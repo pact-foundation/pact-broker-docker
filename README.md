@@ -171,10 +171,12 @@ See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 
 ## Running on Kubernetes
 
-If you call your service "pact_broker", an environment variable called `PACT_BROKER_PORT` will be created which will conflict with the Docker image's `PACT_BROKER_PORT` (see this [issue](https://github.com/pact-foundation/pact-broker-docker/issues/7) for background). In this case, you have two options.
+1. Please read the [docs](https://github.com/puma/puma/blob/master/docs/kubernetes.md) about running Puma on Kubernetes.
 
-* Give your service a name that is *not* "pact_broker".
-* [Use different environment variable names](#using-different-environment-variable-names)
+2. If you call your service "pact_broker", an environment variable called `PACT_BROKER_PORT` will be created which will conflict with the Docker image's `PACT_BROKER_PORT` (see this [issue](https://github.com/pact-foundation/pact-broker-docker/issues/7) for background). In this case, you have two options.
+
+   * Give your service a name that is *not* "pact_broker".
+   * [Use different environment variable names](#using-different-environment-variable-names)
 
 ## Running on Heroku
 

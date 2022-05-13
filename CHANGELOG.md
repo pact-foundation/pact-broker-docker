@@ -1,3 +1,13 @@
+<a name="2.98.0.1"></a>
+### 2.98.0.1 (2022-05-13)
+
+#### Bug Fixes
+
+* **deps**
+  * upgrade gems	 ([0fca8c2](/../../commit/0fca8c2))
+
+* pact_broker/Gemfile.lock to reduce vulnerabilities (#79)	 ([4d8da07](/../../commit/4d8da07))
+
 <a name="2.98.0.0"></a>
 ### 2.98.0.0 (2022-03-29)
 

@@ -5,6 +5,8 @@
 
 * upgrade base image from ruby:2.7.5-alpine3.13 to ruby:2.7.6-alpine3.15 (#83)	 ([d25262f](/../../commit/d25262f))
 
+  BREAKING CHANGE: Docker 19 is no longer supported for the Pact Broker Docker image as alpine3.14 and later require Docker 20.10.0 or later. See https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2 for more information.
+
 <a name="2.101.0.0"></a>
 ### 2.101.0.0 (2022-06-13)
 

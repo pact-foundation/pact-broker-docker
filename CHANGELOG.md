@@ -1,3 +1,10 @@
+<a name="2.101.0.1"></a>
+### 2.101.0.1 (2022-06-28)
+
+#### Bug Fixes
+
+* upgrade base image from ruby:2.7.5-alpine3.13 to ruby:2.7.6-alpine3.15 (#83)	 ([d25262f](/../../commit/d25262f))
+
 <a name="2.101.0.0"></a>
 ### 2.101.0.0 (2022-06-13)
 

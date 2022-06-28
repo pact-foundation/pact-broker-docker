@@ -24,11 +24,11 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 
 ## Prerequisites
 
-* A running Postgresql database and the ability to connect to it (see [POSTGRESQL.md][postgres]). 
+* A running Postgresql database (v9.4 or later) and the ability to connect to it (see [POSTGRESQL.md][postgres]).
 
 ## Getting Started
 
-1. [Install Docker][docker]
+1. [Install Docker][docker] with Docker Engine 20.10.0 or later.
 2. Create a Postgres database.
 2. Setup the Pact Broker connection to the database using the environment variables described below.
 

@@ -182,6 +182,10 @@ See [pact-broker-openshift][pact-broker-openshift] for an example config file.
 
 Heroku provides the database connection string as the environment variable `DATABASE_URL`, and the port as `PORT`. See the section on [Using different environment variable names](#using-different-environment-variable-names) to allow the Pact Broker to use these environment variables instead of `PACT_BROKER_PORT` and `PACT_BROKER_DATABASE_URL`.
 
+## Running with a Helm Chart
+
+There is a community supported project that provides a [Pact Broker Helm Chart](https://github.com/ChrisJBurns/pact-broker-chart). Please note that this is not an official Pact Foundation supported project at this stage.
+
 ## Running on AWS with an ALB
 
 If you are running the Docker image behind an ALB with an idle timeout, you may need to set the Puma persistent timeout using the `PACT_BROKER_PUMA_PERSISTENT_TIMEOUT` environment variable. See [issue 26](https://github.com/pact-foundation/pact-broker-docker/issues/26) for details.

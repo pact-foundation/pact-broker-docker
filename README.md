@@ -28,8 +28,8 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 
 ## Getting Started
 
-1. [Install Docker][docker] with Docker Engine 20.10.0 or later.
-2. Create a Postgres database.
+1. [Install Docker][docker] with Docker Engine 20.10.0 or later. **NOTE: Docker 19 is no longer supported by Docker, and the Pact Broker image will not run on it as the base image requires 20.10.0 or later.**
+2. Create a Postgres database (Postgres 9.6 or later).
 2. Setup the Pact Broker connection to the database using the environment variables described below.
 
 ### Create the database

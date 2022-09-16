@@ -38,6 +38,7 @@ RUN set -ex && \
   bundle config set without 'development test' && \
   bundle install && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
+  find vendor/bundle/ruby/2.7.0/gems -name Gemfile.lock | xargs rm -rf {} + && \
   find /usr/local/bundle/gems/ -name *.pem | grep -e sample -e test | xargs rm -rf {} + && \
   find /usr/local/bundle/gems/ -name *.key | grep -e sample -e test | xargs rm -rf {} + && \
   apk del make gcc libc-dev git

@@ -69,7 +69,7 @@ GEM
       diff-lcs (~> 1.4)
       expgen (~> 0.1)
       rainbow (~> 3.1.1)
-    pact_broker (2.103.0)
+    pact_broker (2.104.0)
       anyway_config (~> 2.1)
       dry-configurable (= 0.12.1)
       dry-container (= 0.8.0)

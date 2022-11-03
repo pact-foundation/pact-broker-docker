@@ -4,8 +4,11 @@ on:
   repository_dispatch:
     types:
       - release-triggered
-      - manual-release-triggered
   workflow_dispatch:
+    inputs:
+      custom_tag:
+      description: 'Custom Docker image tag'
+      required: false
 
 jobs:
   release:
@@ -25,4 +28,4 @@ jobs:
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-          CUSTOM_TAG: ${{ github.event.client_payload.tag }}
+          CUSTOM_TAG: ${{ github.event.inputs.custom_tag }}

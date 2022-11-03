@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       custom_tag:
-      description: 'Custom Docker image tag'
-      required: false
+        description: 'Custom Docker image tag'
+        required: false
 
 jobs:
   release:

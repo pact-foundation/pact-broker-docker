@@ -28,8 +28,9 @@ services:
       # Should not be needed in production.
       PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "5"
       # The list of allowed base URLs (not setting this makes the app vulnerable to cache poisoning)
-      # This allows the app to be addressed from the host from within another docker container correctly
-      PACT_BROKER_BASE_URL: 'https://localhost http://localhost http://localhost:9292 http://pact-broker:9292'
+      # This list allows the app to be addressed from the host and from within another docker container correctly
+      # Ngnix config below makes the app accessible on ports 443 and 80, while the Ruby application itself runs on port 9292
+      PACT_BROKER_BASE_URL: 'https://localhost http://localhost http://localhost:9292 http://pact-broker:9292 https://host.docker.internal http://host.docker.internal http://host.docker.internal:9292'
 
   # Nginx is not necessary, but demonstrates how
   # one might use a reverse proxy in front of the broker,

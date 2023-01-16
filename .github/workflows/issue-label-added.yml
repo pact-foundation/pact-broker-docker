@@ -28,10 +28,6 @@ jobs:
 
     - name: Create
       id: create
-      if: steps.search.outputs.issue == ''
-
-    - name: Create
-      id: create
       uses: atlassian/gajira-create@v3
       with:
         project: ${{ secrets.SMARTBEAR_JIRA_PROJECT }}

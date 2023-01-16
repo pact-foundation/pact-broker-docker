@@ -50,7 +50,7 @@ jobs:
       if: steps.search.outputs.issue == '' && steps.create.outputs.issue != ''
       uses: actions/github-script@v5
       with:
-        github-token: ${{secrets.SMARTBEAR_GITHUB_TOKEN}}
+        github-token: ${{secrets.GITHUB_TOKEN }}
         script: |
           github.rest.issues.createComment({
             issue_number: context.issue.number,

@@ -29,6 +29,7 @@ jobs:
     - name: Create
       id: create
       uses: atlassian/gajira-create@v3
+      if: steps.search.outputs.issue == ''
       with:
         project: ${{ secrets.SMARTBEAR_JIRA_PROJECT }}
         issuetype: Task

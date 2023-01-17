@@ -21,7 +21,7 @@ jobs:
       id: search
       uses: tomhjp/gh-action-jira-search@v0.1.0
       with:
-        jql: 'summary ~ "${{ github.event.repository.name }}-#${{ github.event.issue.number }}:" AND project=${{ secrets.SMARTBEAR_JIRA_PROJECT }}'
+        jql: 'summary ~ "${{ github.event.repository.name }}#${{ github.event.issue.number }}:" AND project=${{ secrets.SMARTBEAR_JIRA_PROJECT }}'
 
     - name: Log
       run: echo "Found issue ${{ steps.search.outputs.issue }}"
@@ -33,7 +33,7 @@ jobs:
       with:
         project: ${{ secrets.SMARTBEAR_JIRA_PROJECT }}
         issuetype: Task
-        summary: '${{ github.event.repository.name }}-#${{ github.event.issue.number }}: ${{ github.event.issue.title }}'
+        summary: '${{ github.event.repository.name }}#${{ github.event.issue.number }}: ${{ github.event.issue.title }}'
         description: |
           *Issue Link:* ${{ github.event.issue.html_url }}
 

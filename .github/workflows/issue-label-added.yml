@@ -5,10 +5,13 @@ on:
     types:
       - labeled
 
+env:
+  SMARTBEAR_JIRA_ISSUE_KEY=''
+
 jobs:
   jira:
     runs-on: ubuntu-latest
-    if: github.event.label.name == 'jira'
+    if: github.event.label.name == 'smartbear'
     steps:
     - name: Login
       uses: atlassian/gajira-login@v3
@@ -21,7 +24,7 @@ jobs:
       id: search
       uses: tomhjp/gh-action-jira-search@v0.1.0
       with:
-        jql: 'summary ~ ${{ toJSON(github.event.issue.title)}} AND project=${{ secrets.SMARTBEAR_JIRA_PROJECT }}'
+        jql: 'summary ~ "${{ github.event.repository.name }}-#${{ github.event.issue.number }}:" AND project=${{ secrets.SMARTBEAR_JIRA_PROJECT }}'
 
     - name: Log
       run: echo "Found issue ${{ steps.search.outputs.issue }}"
@@ -33,7 +36,7 @@ jobs:
       with:
         project: ${{ secrets.SMARTBEAR_JIRA_PROJECT }}
         issuetype: Task
-        summary: ${{ github.event.issue.title }}
+        summary: '${{ github.event.repository.name }}-#${{ github.event.issue.number }}: ${{ github.event.issue.title }}'
         description: |
           *Issue Link:* ${{ github.event.issue.html_url }}
 

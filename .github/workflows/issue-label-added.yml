@@ -11,7 +11,7 @@ env:
 jobs:
   jira:
     runs-on: ubuntu-latest
-    if: github.event.label.name == 'smartbear'
+    if: github.event.label.name == 'smartbear-supported'
     steps:
     - name: Login
       uses: atlassian/gajira-login@v3

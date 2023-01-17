@@ -6,49 +6,6 @@ on:
       - labeled
 
 jobs:
-  jira:
-    runs-on: ubuntu-latest
-    if: github.event.label.name == 'smartbear-supported'
-    steps:
-    - name: Login
-      uses: atlassian/gajira-login@v3
-      env:
-        JIRA_BASE_URL: ${{ secrets.SMARTBEAR_JIRA_BASE_URL }}
-        JIRA_USER_EMAIL: ${{ secrets.SMARTBEAR_JIRA_USER_EMAIL }}
-        JIRA_API_TOKEN: ${{ secrets.SMARTBEAR_JIRA_API_TOKEN }}
-
-    - name: Search
-      id: search
-      uses: tomhjp/gh-action-jira-search@v0.1.0
-      with:
-        jql: 'summary ~ "${{ github.event.repository.name }}#${{ github.event.issue.number }}:" AND project=${{ secrets.SMARTBEAR_JIRA_PROJECT }}'
-
-    - name: Log
-      run: echo "Found issue ${{ steps.search.outputs.issue }}"
-
-    - name: Create
-      id: create
-      uses: atlassian/gajira-create@v3
-      if: steps.search.outputs.issue == ''
-      with:
-        project: ${{ secrets.SMARTBEAR_JIRA_PROJECT }}
-        issuetype: Task
-        summary: '${{ github.event.repository.name }}#${{ github.event.issue.number }}: ${{ github.event.issue.title }}'
-        description: |
-          *Issue Link:* ${{ github.event.issue.html_url }}
-
-          ${{ github.event.issue.body }}
-        fields: '{"customfield_10006": ${{ toJSON(secrets.SMARTBEAR_JIRA_EPIC_TICKET) }}, "customfield_17401":{"value":${{ toJSON( secrets.SMARTBEAR_JIRA_LAYER_CAKE )}}}}'
-
-    - name: Add Comment
-      if: steps.search.outputs.issue == '' && steps.create.outputs.issue != ''
-      uses: actions/github-script@v5
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN }}
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: '👋 Thanks, Jira [${{steps.create.outputs.issue}}] ticket created.'
-          })
+  call-workflow:
+    uses: pact-foundation/.github/workflows/smartbear-issue-label-added.yml@master
+    secrets: inherit

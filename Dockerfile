@@ -1,9 +1,9 @@
 FROM ruby:2.7.6-alpine3.16
 
 ARG SUPERCRONIC_PLATFORM=amd64
-ARG SUPERCRONIC_SHA1SUM=a2e2d47078a8dafc5949491e5ea7267cc721d67c
+ARG SUPERCRONIC_SHA1SUM=d7f4c0886eb85249ad05ed592902fa6865bb9d70
 
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.11/supercronic-linux-${SUPERCRONIC_PLATFORM} \
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.1/supercronic-linux-${SUPERCRONIC_PLATFORM} \
     SUPERCRONIC=supercronic-linux-${SUPERCRONIC_PLATFORM}
 
 RUN wget "$SUPERCRONIC_URL" \

@@ -50,7 +50,8 @@ RUN mv $HOME/clean.sh /usr/local/bin/clean
 RUN ln -s /pact_broker/script/db-migrate.sh /usr/local/bin/db-migrate
 RUN ln -s /pact_broker/script/db-version.sh /usr/local/bin/db-version
 
-ENV RUBYOPT="-W:no-experimental" # hide pattern matching warnings
+# Hide pattern matching warnings
+ENV RUBYOPT="-W:no-experimental"
 
 # Start Puma
 ENV RACK_ENV=production

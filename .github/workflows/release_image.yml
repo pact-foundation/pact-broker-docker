@@ -20,8 +20,6 @@ jobs:
           fetch-depth: 0
 
       - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.6.6
 
       - name: Release image
         run: script/release-workflow/run.sh

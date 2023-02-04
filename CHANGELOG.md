@@ -1,3 +1,14 @@
+<a name="2.106.0.0"></a>
+### 2.106.0.0 (2023-02-04)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.106.0	 ([d779496](/../../commit/d779496))
+
+* upgrade Bundler to version 2.2.33 to fix security issues	 ([af332e8](/../../commit/af332e8))
+* upgrade base image to ruby:2.7.6-alpine3.16 to fix security issues	 ([226f592](/../../commit/226f592))
+
 <a name="2.105.0.1"></a>
 ### 2.105.0.1 (2022-11-03)
 

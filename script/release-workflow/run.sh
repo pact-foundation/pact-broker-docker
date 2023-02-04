@@ -14,11 +14,6 @@ fi
 ${script_dir}/validate.sh
 ${script_dir}/docker-build.sh
 ${script_dir}/docker-scan.sh
-
-if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
-  bundle install
-fi
-
 ${script_dir}/prepare-release.sh
 ${script_dir}/docker-push.sh
 ${script_dir}/git-push.sh

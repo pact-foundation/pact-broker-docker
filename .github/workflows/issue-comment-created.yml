@@ -1,4 +1,4 @@
-name: Issue Comment Created
+name: SmartBear Supported Issue Comment Created
 
 on:
   issue_comment:

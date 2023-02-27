@@ -58,7 +58,7 @@ jobs:
         run: script/scan.sh pactfoundation/pact-broker:latest
 
       - name: Trigger release
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.GHTOKENFORPBDOCKERRELEASE }}
           event-type: release-triggered

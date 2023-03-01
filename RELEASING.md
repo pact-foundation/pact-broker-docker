@@ -15,5 +15,6 @@
 
 ## Releasing image to Docker Hub
 
-    export GITHUB_ACCESS_TOKEN_FOR_PF_RELEASES=<a github token with public repo scope>
-    script/trigger-release.sh
+Execute `https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml`
+
+NOTE: the automatic version calculation code is broken because docker hub no longer allows public API access. The code in `script/release/next-docker-tag.sh` needs to be updated to use the git tags instead. Set the custom_tag when releasing until this is fixed.

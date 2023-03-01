@@ -9,6 +9,10 @@ on:
       custom_tag:
         description: 'Custom Docker image tag'
         required: false
+      push_to_latest:
+        description: 'Should push to latest'
+        type: boolean
+        default: true
 
 jobs:
   release:
@@ -28,3 +32,4 @@ jobs:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
           CUSTOM_TAG: ${{ github.event.inputs.custom_tag }}
+          PUSH_TO_LATEST: ${{ github.event.inputs.push_to_latest }}

@@ -5,7 +5,7 @@ GEM
       ruby-next-core (>= 0.14.0)
     as-notifications (1.0.2)
     awesome_print (1.9.2)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     crass (1.0.6)
     declarative (0.0.20)
     declarative-builder (0.1.0)
@@ -62,7 +62,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.5)
     nio4r (2.5.8)
-    nokogiri (1.14.1)
+    nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     pact-support (1.19.0)
@@ -96,11 +96,11 @@ GEM
       table_print (~> 1.5)
       webmachine (= 1.6.0)
       wisper (~> 2.0)
-    padrino-core (0.15.2)
-      padrino-support (= 0.15.2)
+    padrino-core (0.15.3)
+      padrino-support (= 0.15.3)
       sinatra (>= 2.2.4)
       thor (~> 1.0)
-    padrino-support (0.15.2)
+    padrino-support (0.15.3)
     parslet (2.0.0)
     pg (1.4.6)
     puma (5.6.5)
@@ -132,7 +132,7 @@ GEM
     semantic_logger (4.12.0)
       concurrent-ruby (~> 1.0)
     semver2 (3.4.2)
-    sequel (5.65.0)
+    sequel (5.66.0)
     sinatra (2.2.4)
       mustermann (~> 2.0)
       rack (~> 2.2)
@@ -145,7 +145,7 @@ GEM
     table_print (1.5.7)
     temple (0.10.0)
     thor (1.2.1)
-    tilt (2.0.11)
+    tilt (2.1.0)
     uber (0.1.0)
     webmachine (1.6.0)
       as-notifications (~> 1.0)
@@ -153,7 +153,7 @@ GEM
       multi_json
     webrick (1.8.1)
     wisper (2.0.1)
-    zeitwerk (2.6.6)
+    zeitwerk (2.6.7)
 
 PLATFORMS
   ruby
@@ -168,4 +168,4 @@ DEPENDENCIES
   webrick (~> 1.6)
 
 BUNDLED WITH
-   2.4.6
+   2.4.7

@@ -1,3 +1,13 @@
+<a name="2.107.0.1"></a>
+### 2.107.0.1 (2023-03-16)
+
+#### Bug Fixes
+
+* **deps**
+  * bump ruby from 2.7.6-alpine3.16 to 2.7.7-alpine3.16 (#113)	 ([a9fea7d](/../../commit/a9fea7d))
+  * bump rack from 2.2.6.3 to 2.2.6.4 in /pact_broker (#118)	 ([2c4a083](/../../commit/2c4a083))
+  * bump rack from 2.2.6.2 to 2.2.6.3 in /pact_broker (#115)	 ([62a6aab](/../../commit/62a6aab))
+
 <a name="2.107.0.0"></a>
 ### 2.107.0.0 (2023-03-02)
 

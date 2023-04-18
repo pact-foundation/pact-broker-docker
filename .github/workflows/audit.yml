@@ -6,17 +6,34 @@ on:
   schedule:
     - cron: 0 0 * * 4 # Midnight Wednesday
 
-env:
-  DOCKER_TARGET_PLATFORM: "linux/amd64"
-
 jobs:
-  test:
-    runs-on: "ubuntu-latest"
+  audit:
+    name: 💥 cross-audit
+    strategy:
+      fail-fast: false
+      matrix:
+        DOCKER_TARGET_PLATFORM: [linux/arm, linux/arm64, linux/amd64]
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_TARGET_PLATFORM: ${{ matrix.DOCKER_TARGET_PLATFORM }}
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-      - run: "bundle install"
-      - name: Build Docker image
-        run: docker buildx build --platform=${DOCKER_TARGET_PLATFORM} -t pactfoundation/pact-broker:latest .
-      - name: Audit image
-        run: script/release-workflow/audit.sh
+      - name: Prepare Docker multi-arch builder for ${{ matrix.DOCKER_TARGET_PLATFORM }}
+        if: ${{ matrix.DOCKER_TARGET_PLATFORM }} == 'linux/arm' || 'linux/arm64'
+        run: ./script/release-workflow/docker-prepare.sh
+      - name: Audit Docker image for ${{ matrix.DOCKER_TARGET_PLATFORM }}
+        run: ./script/release-workflow/audit.sh
+      # - name: Run Trivy vulnerability scanner for ${{ matrix.DOCKER_TARGET_PLATFORM }}
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: 'pactfoundation/pact-broker:audit'
+      #     exit-code: '1'
+      #     format: 'sarif'
+      #     output: 'trivy-results.sarif'
+      #     ignore-unfixed: true
+      #     vuln-type: 'os,library'
+      #     severity: 'CRITICAL,HIGH'
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v2
+      #   with:
+      #     sarif_file: 'trivy-results.sarif'

@@ -1,6 +1,7 @@
 name: Test
 
-on: [push, pull_request]
+on: [pull_request]
+# on: [push, pull_request]
 env:
   DOCKER_TARGET_PLATFORM: "linux/amd64"
 

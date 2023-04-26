@@ -23,6 +23,7 @@ jobs:
         run: ./script/release-workflow/docker-prepare.sh
       - name: Audit Docker image for ${{ matrix.DOCKER_TARGET_PLATFORM }}
         run: ./script/release-workflow/audit.sh
+      # # We could also run via a trivy action and publish results back to GitHub :)
       # - name: Run Trivy vulnerability scanner for ${{ matrix.DOCKER_TARGET_PLATFORM }}
       #   uses: aquasecurity/trivy-action@master
       #   with:

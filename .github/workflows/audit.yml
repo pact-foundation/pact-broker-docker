@@ -1,0 +1,22 @@
+name: Audit
+
+on:
+  workflow_dispatch:
+  push:
+  schedule:
+    - cron: 0 0 * * 4 # Midnight Wednesday
+
+env:
+  DOCKER_TARGET_PLATFORM: "linux/amd64"
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+      - run: "bundle install"
+      - name: Build Docker image
+        run: docker buildx build --platform=${DOCKER_TARGET_PLATFORM} -t pactfoundation/pact-broker:latest .
+      - name: Audit image
+        run: script/release-workflow/audit.sh

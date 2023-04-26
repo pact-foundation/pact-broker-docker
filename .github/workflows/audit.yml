@@ -2,6 +2,7 @@ name: Audit
 
 on:
   workflow_dispatch:
+  push:
   schedule:
     - cron: 0 0 * * 4 # Midnight Wednesday
 

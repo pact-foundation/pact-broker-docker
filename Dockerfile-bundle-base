@@ -10,6 +10,6 @@ RUN set -ex && \
   chmod g+w $HOME && \
   apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev
 
-RUN gem install bundler -v 2.2.33
+RUN gem install bundler -v 2.4.7
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN bundle install --no-cache

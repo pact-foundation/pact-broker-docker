@@ -13,10 +13,8 @@ jobs:
   test:
     runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
       - run: "bundle install"
-      - name: Build Docker image
-        run: docker buildx build --platform=${DOCKER_TARGET_PLATFORM} -t pactfoundation/pact-broker:latest .
       - name: Audit image
         run: script/release-workflow/audit.sh

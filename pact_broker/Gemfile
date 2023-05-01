@@ -6,6 +6,8 @@ gem "puma", "~> 5.6"
 gem "mysql2", "~>0.3"
 gem "sqlite3", "~>1.6"
 gem "rake", "~> 13.0"
+gem "webrick", "~> 1.8" # webmachine requires webmachine, but doesn't declare it in the gem dependencies
+
 
 # While https://github.com/brandonhilkert/sucker_punch/pull/253 is outstanding
 gem "sucker_punch", git: "https://github.com/pact-foundation/sucker_punch.git", ref: "fix/rename-is-singleton-class-method-2"

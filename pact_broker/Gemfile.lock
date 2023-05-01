@@ -156,6 +156,7 @@ GEM
       as-notifications (>= 1.0.2, < 2.0)
       i18n (>= 0.4.0)
       multi_json
+    webrick (1.8.1)
     wisper (2.0.1)
     zeitwerk (2.6.8)
 
@@ -170,6 +171,7 @@ DEPENDENCIES
   rake (~> 13.0)
   sqlite3 (~> 1.6)
   sucker_punch!
+  webrick (~> 1.8)
 
 BUNDLED WITH
    2.4.12

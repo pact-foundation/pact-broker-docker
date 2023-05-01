@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/pact-foundation/sucker_punch.git
+  revision: 573ff03c5f689568efbb733ed2997728f0098d5a
+  ref: fix/rename-is-singleton-class-method-2
+  specs:
+    sucker_punch (2.1.2)
+      concurrent-ruby (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,7 +60,7 @@ GEM
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
-    mini_portile2 (2.8.1)
+    mini_portile2 (2.8.2)
     moments (0.2.0)
     multi_json (1.15.0)
     mustermann (2.0.2)
@@ -97,7 +105,7 @@ GEM
       thor (~> 1.0)
     padrino-support (0.15.3)
     parslet (2.0.0)
-    pg (1.4.6)
+    pg (1.5.3)
     psych (4.0.6)
       stringio
     puma (5.6.5)
@@ -138,8 +146,6 @@ GEM
     sqlite3 (1.6.2)
       mini_portile2 (~> 2.8.0)
     stringio (3.0.6)
-    sucker_punch (2.1.2)
-      concurrent-ruby (~> 1.0)
     table_print (1.5.7)
     temple (0.10.0)
     thor (1.2.1)
@@ -150,7 +156,6 @@ GEM
       as-notifications (>= 1.0.2, < 2.0)
       i18n (>= 0.4.0)
       multi_json
-    webrick (1.8.1)
     wisper (2.0.1)
     zeitwerk (2.6.8)
 
@@ -164,7 +169,7 @@ DEPENDENCIES
   puma (~> 5.6)
   rake (~> 13.0)
   sqlite3 (~> 1.6)
-  webrick (~> 1.6)
+  sucker_punch!
 
 BUNDLED WITH
-   2.4.7
+   2.4.12

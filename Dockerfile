@@ -1,4 +1,4 @@
-FROM ruby:2.7.8-alpine3.16
+FROM ruby:3.2.1-alpine3.17
 
 ARG SUPERCRONIC_PLATFORM=amd64
 ARG SUPERCRONIC_SHA1SUM=6817299e04457e5d6ec4809c72ee13a43e95ba41
@@ -25,22 +25,20 @@ WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > BUNDLER_VERSION
 RUN set -ex && \
-  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev git && \
+  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql14-dev sqlite-dev git && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
-  ls /usr/local/lib/ruby/gems/2.7.0 && \
-  gem install rdoc -v "6.3.2" --install-dir /usr/local/lib/ruby/gems/2.7.0 && \
-  gem uninstall --install-dir /usr/local/lib/ruby/gems/2.7.0 -x rake && \
-  find /usr/local/lib/ruby -name webrick* -exec rm -rf {} + && \
-  find /usr/local/lib/ruby -name rdoc-6.1* -exec rm -rf {} + && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \
   bundle config set without 'development test' && \
   bundle install && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
-  find vendor/bundle/ruby/2.7.0/gems -name Gemfile.lock | xargs rm -rf {} + && \
-  find /usr/local/bundle/gems/ -name *.pem | grep -e sample -e test | xargs rm -rf {} + && \
-  find /usr/local/bundle/gems/ -name *.key | grep -e sample -e test | xargs rm -rf {} + && \
+  find $HOME/vendor/bundle -name Gemfile.lock -exec rm -rf {} + && \
+  find $HOME/vendor/bundle -name package-lock.json -exec rm -rf {} + && \
+  find $HOME/vendor/bundle -name *.pem  | grep -e sample -e test -e spec | xargs rm -rf {} + && \
+  find $HOME/vendor/bundle -name *.key  | grep -e sample -e test -e spec | xargs rm -rf {} + && \
+  find $HOME/vendor/bundle -name *.java | grep -e sample -e test -e spec | xargs rm -rf {} + && \
+  find $HOME/vendor/bundle -name *.jar  | grep -e sample -e test -e spec | xargs rm -rf {} + && \
   apk del make gcc libc-dev git
 
 # Install source

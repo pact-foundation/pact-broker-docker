@@ -7,6 +7,5 @@ gem "mysql2", "~>0.3"
 gem "sqlite3", "~>1.6"
 gem "rake", "~> 13.0"
 
-# Need to manually add Webrick because we deleted it from the underlying Docker image
-# because of a vulnerability, and Webmachine requires it in the adapters.rb file.
-gem "webrick", "~> 1.6"
+# While https://github.com/brandonhilkert/sucker_punch/pull/253 is outstanding
+gem "sucker_punch", git: "https://github.com/pact-foundation/sucker_punch.git", ref: "fix/rename-is-singleton-class-method-2"

@@ -75,7 +75,7 @@ GEM
       diff-lcs (~> 1.4)
       expgen (~> 0.1)
       rainbow (~> 3.1.1)
-    pact_broker (2.107.0.beta.1)
+    pact_broker (2.107.0)
       anyway_config (~> 2.1)
       dry-validation (~> 1.8)
       haml (~> 5.0)
@@ -98,6 +98,7 @@ GEM
       sucker_punch (~> 2.0)
       table_print (~> 1.5)
       webmachine (>= 2.0.0.beta, < 3.0)
+      webrick (~> 1.8)
       wisper (~> 2.0)
     padrino-core (0.15.3)
       padrino-support (= 0.15.3)
@@ -137,7 +138,7 @@ GEM
     semantic_logger (4.13.0)
       concurrent-ruby (~> 1.0)
     semver2 (3.4.2)
-    sequel (5.67.0)
+    sequel (5.68.0)
     sinatra (2.2.4)
       mustermann (~> 2.0)
       rack (~> 2.2)
@@ -165,13 +166,12 @@ PLATFORMS
 
 DEPENDENCIES
   mysql2 (~> 0.3)
-  pact_broker (= 2.107.0.beta.1)
+  pact_broker
   pg (~> 1.4)
   puma (~> 5.6)
   rake (~> 13.0)
   sqlite3 (~> 1.6)
   sucker_punch!
-  webrick (~> 1.8)
 
 BUNDLED WITH
    2.4.12

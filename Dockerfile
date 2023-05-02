@@ -33,12 +33,11 @@ RUN set -ex && \
   bundle config set without 'development test' && \
   bundle install && \
   rm -rf vendor/bundle/ruby/*/cache .bundle/cache && \
-  find $HOME/vendor/bundle -name Gemfile.lock -exec rm -rf {} + && \
-  find $HOME/vendor/bundle -name package-lock.json -exec rm -rf {} + && \
-  find $HOME/vendor/bundle -name *.pem  | grep -e sample -e test -e spec | xargs rm -rf {} + && \
-  find $HOME/vendor/bundle -name *.key  | grep -e sample -e test -e spec | xargs rm -rf {} + && \
-  find $HOME/vendor/bundle -name *.java | grep -e sample -e test -e spec | xargs rm -rf {} + && \
-  find $HOME/vendor/bundle -name *.jar  | grep -e sample -e test -e spec | xargs rm -rf {} + && \
+  find $HOME/vendor/bundle /usr/local/lib/ruby/gems \
+      \( -name Gemfile.lock -o -name package-lock.json \) -exec rm -rf {} + && \
+  find $HOME/vendor/bundle /usr/local/lib/ruby/gems \
+      \( -name *.pem -o -name *.key -o -name *.java -o -name *.jar \)  | \
+      grep -e sample -e test -e spec | xargs rm -rf {} + && \
   apk del make gcc libc-dev git
 
 # Install source

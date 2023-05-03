@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types:
       - gem-released
-  repository_dispatch:
+  workflow_dispatch:
     inputs:
       released_gem_name:
         description: The name of the gem that was released

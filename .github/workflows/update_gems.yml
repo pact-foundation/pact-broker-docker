@@ -13,6 +13,17 @@ on:
       released_gem_version:
         description: The version of the game that was released
         required: false
+      released_gem_version_increment:
+        description: "The version increment"
+        required: false
+        default: ""
+        type: choice
+        options:
+          - ""
+          - patch
+          - minor
+          - major
+          - pre
 
 env:
   RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}${{ github.event.inputs.released_gem_name }}'
@@ -69,4 +80,4 @@ jobs:
         with:
           token: ${{ secrets.GHTOKENFORPBDOCKERRELEASE }}
           event-type: release-triggered
-          client-payload: '{"increment": "${{ github.event.client_payload.increment }}"}'
+          client-payload: '{"increment": "${{ github.event.client_payload.increment }}${{ github.event.inputs.released_gem_version_increment }}"}'

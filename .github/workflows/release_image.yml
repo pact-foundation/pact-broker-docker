@@ -11,14 +11,8 @@ on:
     # tag
     # increment/version
     inputs:
-      tag:
-        description: 'Custom Docker image tag (note - this won't update the VERSION file and is for non-prod releases only)
-        required: false
-      version:
-        description: 'Custom version (sets the first part of the Docker tag - this will update the VERSION file)
-        required: false
       increment:
-        description: 'Custom increment (must be set if version is set, but can be set alone)'
+        description: 'Custom increment, defaults to minor if not set'
         required: false
         default: ""
         type: choice
@@ -28,6 +22,13 @@ on:
           - minor
           - major
           - pre
+      # Sets the first part of the Docker tag - this will update the VERSION file
+      version:
+        description: 'Custom version, requires increment to be set'
+        required: false
+      tag:
+        description: 'Custom Docker image tag (note - this won't update the VERSION file and is for non-prod releases only)'
+        required: false
       push_to_latest:
         description: 'Should push to latest'
         type: boolean

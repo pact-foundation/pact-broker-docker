@@ -2,4 +2,8 @@
 
 set -euo >/dev/null
 
-echo ${DOCKER_HUB_TOKEN} | docker login --username ${DOCKER_HUB_USERNAME} --password-stdin
+if [ -n "$DOCKER_HUB_USERNAME" ]; then
+  echo ${DOCKER_HUB_TOKEN} | docker login --username ${DOCKER_HUB_USERNAME} --password-stdin
+else
+  echo "Cannot log in to Docker as DOCKER_HUB_USERNAME is not set"
+fi

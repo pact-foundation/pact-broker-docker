@@ -6,8 +6,11 @@ on:
       - release-triggered
   workflow_dispatch:
     inputs:
-      custom_tag:
-        description: 'Custom Docker image tag'
+      tag:
+        description: 'Custom Docker image tag (note - this won't update the VERSION file and is for non-prod releases only)
+        required: false
+      version:
+        description: 'Custom version (sets the first part of the Docker tag - this will update the VERSION file)
         required: false
       push_to_latest:
         description: 'Should push to latest'
@@ -31,5 +34,6 @@ jobs:
         env:
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-          CUSTOM_TAG: ${{ github.event.inputs.custom_tag }}
+          TAG: ${{ github.event.inputs.tag }}
+          VERSION: ${{ github.event.inputs.version }}
           PUSH_TO_LATEST: ${{ github.event.inputs.push_to_latest }}

@@ -10,6 +10,13 @@ for file in $docker_compose_files; do
 done
 
 bundle exec conventional-changelog version=${TAG} force=true
+if [ -n "$VERSION" ]; then
+  bundle exec bump set $VERSION
+  git add VERSION
+else
+  echo "Cannot update VERSION file as no VERSION has been specified"
+fi
+
 git add CHANGELOG.md
 git add docker-compose*
 git commit -m "chore(release): version ${TAG}"

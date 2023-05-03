@@ -6,7 +6,7 @@
 
 set -e
 
-export DOCKER_IMAGE_ORG_AND_NAME=pactfoundation/pact-broker
+export DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"
 
 if [ -z "$TAG" ]; then
   if [ -n "$VERSION" ] && [ -z "$INCREMENT" ]; then

@@ -1,3 +1,13 @@
+<a name="2.109.0-pactbroker2.107.1"></a>
+### 2.109.0-pactbroker2.107.1 (2023-05-03)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.107.1	 ([7789f4a](/../../commit/7789f4a))
+
+* update base image to ruby 3.2.1-alpine3.17 (#133)	 ([46071dd](/../../commit/46071dd))
+
 <a name="2.107.0.1"></a>
 ### 2.107.0.1 (2023-03-16)
 

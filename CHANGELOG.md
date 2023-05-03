@@ -1,3 +1,10 @@
+<a name="bethtest"></a>
+### bethtest (2023-05-02)
+
+#### Features
+
+* update base image to ruby 3.2.1-alpine3.17 (#133)	 ([46071dd](/../../commit/46071dd))
+
 <a name="2.107.0.1"></a>
 ### 2.107.0.1 (2023-03-16)
 

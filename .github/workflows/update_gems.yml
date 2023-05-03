@@ -4,6 +4,19 @@ on:
   repository_dispatch:
     types:
       - gem-released
+  repository_dispatch:
+    inputs:
+      released_gem_name:
+        description: The name of the gem that was released
+        default: pact_broker
+        required: false
+      released_gem_version:
+        description: The version of the game that was released
+        required: false
+
+env:
+  RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}${{ github.event.inputs.released_gem_name }}'
+  RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}${{ github.event.inputs.released_gem_version }}'
 
 jobs:
   update:
@@ -24,9 +37,6 @@ jobs:
 
       - name: Update gems
         run: script/update-gems-workflow/update-gems.sh
-        env:
-          RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
-          RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
       - name: Detect changes
         run: script/update-gems-workflow/detect-changes.sh
@@ -50,9 +60,6 @@ jobs:
 
       - name: Git commit and push
         run: script/update-gems-workflow/git-commit-and-push-gemfile.sh
-        env:
-          RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}'
-          RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}'
 
       - name: Vulnerability scan
         run: script/scan.sh pactfoundation/pact-broker:latest

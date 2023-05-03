@@ -5,6 +5,11 @@ on:
     types:
       - release-triggered
   workflow_dispatch:
+    # None of these are necessary - an automated release will work out what needs to be incremented
+    # Can set any of the following:
+    # increment (will default to minor if not set)
+    # tag
+    # increment/version
     inputs:
       tag:
         description: 'Custom Docker image tag (note - this won't update the VERSION file and is for non-prod releases only)
@@ -12,6 +17,17 @@ on:
       version:
         description: 'Custom version (sets the first part of the Docker tag - this will update the VERSION file)
         required: false
+      increment:
+        description: 'Custom increment (must be set if version is set, but can be set alone)'
+        required: false
+        default: ""
+        type: choice
+        options:
+          - ""
+          - patch
+          - minor
+          - major
+          - pre
       push_to_latest:
         description: 'Should push to latest'
         type: boolean
@@ -36,4 +52,6 @@ jobs:
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
           TAG: ${{ github.event.inputs.tag }}
           VERSION: ${{ github.event.inputs.version }}
+          # populate INCREMENT from workflow_dispatch or repository_dispatch
+          INCREMENT: ${{ github.event.client_payload.increment }}${{ github.event.inputs.increment }}
           PUSH_TO_LATEST: ${{ github.event.inputs.push_to_latest }}

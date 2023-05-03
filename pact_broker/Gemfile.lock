@@ -75,7 +75,7 @@ GEM
       diff-lcs (~> 1.4)
       expgen (~> 0.1)
       rainbow (~> 3.1.1)
-    pact_broker (2.107.0)
+    pact_broker (2.107.1)
       anyway_config (~> 2.1)
       dry-validation (~> 1.8)
       haml (~> 5.0)

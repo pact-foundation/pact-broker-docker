@@ -4,7 +4,7 @@
 
 This repository contains a Dockerized version of the [Pact Broker][pact-broker]. You can pull the `pactfoundation/pact-broker` image from [Dockerhub][pact-broker-docker]. If you're viewing these docs on Dockerhub, here is a link to the [github repository][github].
 
-> Note: On 12 May 2018, the format of the docker tag changed from `M.m.p-RELEASE` to `M.m.p.RELEASE` (where `M.m.p` is the semantic version of the underlying Pact Broker package) so that Dependabot can recognise when the version has been incremented.
+> Note: On 3 May 2023, the format of the docker tag changed from starting with the Pact Broker gem version (`2.107.0.1`), to ending with the Pact Broker gem version (`2.107.1-pactbroker2.107.1`). Read about the new versioning scheme [here](#versioning).
 
 ## In a hurry?
 
@@ -248,6 +248,28 @@ docker run --rm \
 * We use bundler audit on the underlying Pact Broker [codebase](https://github.com/pact-foundation/pact_broker/blob/master/.github/workflows/test.yml)
 * We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/master/script/release-workflow/run.sh)
 * We also use [Snyk](https://app.snyk.io/org/pact-foundation-owm/projects) 
+
+# Versioning
+
+The Docker image tag uses a semantic-like versioning scheme (Docker tags don't support the `+` symbol, so we cannot implement a strict semantic version). The format of the tag is `M.m.p-pactbroker<pact_broker_version>` eg. `2.109.0-pactbroker2.107.1`. The `M.m.p` (eg. `2.109.0`) is the semantic part of the tag number, while the `-pactbroker<pact_broker_version>` suffix is purely informational.
+
+The major version will be bumped for:
+
+  * Major increments of the Pact Broker gem
+  * Major increments of the base image that contain backwards incompatible changes (eg. dropping support for Docker 19)
+  * Any other backwards incompatible changes made for any reason (eg. environment variable mappings, entrypoints, tasks, supported auth)
+
+The minor version will be bumped for:
+
+  * Minor increments of the Pact Broker gem
+  * Additional non-breaking functionality added to the Docker image
+
+The patch version will be bumped for:
+
+  * Patch increments of the Pact Broker gem
+  * Other fixes to the Docker image
+
+Until May 2023, the versioning scheme used the `M.m.p` from the Pact Broker gem, with an additional `RELEASE` number at the end (eg. `2.107.0.1`). This scheme was replace by the current scheme because it was unable to semantically convey changes made to the Docker image that were unrelated to a Pact Broker gem version change (eg. alpine upgrades).
 
 # Troubleshooting
 

@@ -39,4 +39,3 @@ if [ -z "$TAG" ]; then
 else
   echo "TAG=$TAG"
 fi
-w

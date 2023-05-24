@@ -37,6 +37,30 @@ Please read https://github.com/phusion/passenger/wiki/Puma-vs-Phusion-Passenger 
 
 If you want to run the container as a standalone instance, then the `dius/pact-broker` image which uses Phusion Passenger may serve you better, as Passenger will restart any crashed processes.
 
+## Platforms
+
+### Single platform images
+
+By default, vanilla tags, are built only for `amd64`
+
+- `--platform=linux/amd64`
+
+  ```sh
+  docker run --rm -it --entrypoint /bin/sh pactfoundation/pact-broker:latest -c 'uname -sm'
+  ```
+
+### Multi-manifest image
+
+Multi-platform images are available, by appending `-multi` to any release tag
+
+- `--platform=linux/amd64`
+- `--platform=linux/arm/v7`
+- `--platform=linux/arm64`
+
+  ```sh
+  docker run --rm -it --entrypoint /bin/sh pactfoundation/pact-broker:latest-multi -c 'uname -sm'
+  ```
+
 ## Prerequisites
 
 * A running Postgresql database (v9.4 or later) and the ability to connect to it (see [POSTGRESQL.md][postgres]).

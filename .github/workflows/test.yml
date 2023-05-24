@@ -17,7 +17,7 @@ jobs:
         run: ./script/release-workflow/docker-prepare.sh
 
       - name: Build Docker image for single platform
-        run: ./script/release-workflow/docker-build-single.sh
+        run: ./script/release-workflow/docker-build.sh
 
       - uses: KengoTODA/actions-setup-docker-compose@v1
         if: ${{ env.ACT }}

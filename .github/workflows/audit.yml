@@ -8,7 +8,7 @@ on:
 
 jobs:
   audit:
-    name: 💥 cross-audit
+    name: 👮 cross-audit
     strategy:
       fail-fast: false
       matrix:

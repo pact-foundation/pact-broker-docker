@@ -1,3 +1,10 @@
+<a name="2.110.0-pactbroker2.107.1"></a>
+### 2.110.0-pactbroker2.107.1 (2023-05-24)
+
+#### Features
+
+* Multi manifest build - arm64/arm (new) + amd64 (current) (#123)	 ([14987e3](/../../commit/14987e3))
+
 <a name="2.109.0-pactbroker2.107.1"></a>
 ### 2.109.0-pactbroker2.107.1 (2023-05-03)
 

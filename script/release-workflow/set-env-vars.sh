@@ -9,8 +9,7 @@ set -e
 export DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"
 if [ -n "${DOCKER_TARGET_PLATFORM:-}" ]; then
     export ARCH=$(echo "$DOCKER_TARGET_PLATFORM" | sed 's/linux\///' | sed 's/\/v.*//')
-    export ARCHES="$ARCH"
-    export $ARCHES
+    export ARCHES=$ARCH
 else 
     export ARCHES='amd64 arm64 arm'
     export ARCH=amd64
@@ -40,3 +39,4 @@ if [ -z "$TAG" ]; then
 else
   echo "TAG=$TAG"
 fi
+w

@@ -1,8 +1,6 @@
 name: Test
 
 on: [push, pull_request]
-env:
-  DOCKER_TARGET_PLATFORM: "linux/amd64"
 
 jobs:
   test:
@@ -27,3 +25,5 @@ jobs:
 
       - name: Integration tests
         run: script/test.sh
+        env:
+          TAG: latest-amd64

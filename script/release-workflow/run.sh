@@ -12,6 +12,7 @@ fi
 . ${workflow_dir}/set-env-vars.sh
 
 ${workflow_dir}/validate.sh
+${workflow_dir}/docker-prepare.sh
 ${workflow_dir}/docker-build.sh
 ${workflow_dir}/docker-scan.sh
 ${workflow_dir}/prepare-release.sh

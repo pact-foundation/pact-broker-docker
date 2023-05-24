@@ -1,8 +1,6 @@
 name: Test
 
 on: [push, pull_request]
-env:
-  DOCKER_TARGET_PLATFORM: "linux/amd64"
 
 jobs:
   test:
@@ -13,8 +11,19 @@ jobs:
       - run: "bundle install"
       - run: "bundle exec rake"
 
-      - name: Build Docker image
-        run: docker buildx build --platform=${DOCKER_TARGET_PLATFORM} -t pactfoundation/pact-broker:latest .
+      - name: Setup Docker builder
+        run: ./script/release-workflow/docker-prepare.sh
+
+      - name: Build Docker image for single platform
+        run: ./script/release-workflow/docker-build.sh
+
+      - uses: KengoTODA/actions-setup-docker-compose@v1
+        if: ${{ env.ACT }}
+        name: Install `docker-compose` for use with https://github.com/nektos/act
+        with:
+          version: '2.15.1'
 
       - name: Integration tests
         run: script/test.sh
+        env:
+          TAG: latest-amd64

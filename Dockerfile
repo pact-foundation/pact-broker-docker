@@ -1,10 +1,27 @@
-FROM ruby:3.2.1-alpine3.17
+FROM ruby:3.2.1-alpine3.17 as base
 
-ARG SUPERCRONIC_PLATFORM=amd64
-ARG SUPERCRONIC_SHA1SUM=6817299e04457e5d6ec4809c72ee13a43e95ba41
+FROM base AS base-amd64
+ENV SUPERCRONIC_SHA1SUM=6817299e04457e5d6ec4809c72ee13a43e95ba41
 
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.24/supercronic-linux-${SUPERCRONIC_PLATFORM} \
-    SUPERCRONIC=supercronic-linux-${SUPERCRONIC_PLATFORM}
+FROM base AS base-arm64
+ENV SUPERCRONIC_SHA1SUM=fce407a3d7d144120e97cfc0420f16a18f4637d9
+# https://github.com/sparklemotion/nokogiri/issues/2414
+# Required for ARM (otherwise nokogiri breaks when viewing network graph)
+RUN apk add --update --no-cache gcompat
+
+FROM base AS base-arm
+ENV SUPERCRONIC_SHA1SUM=fad9380ed30b9eae61a5b1089f93bd7ee8eb1a9c
+RUN apk add --update --no-cache gcompat
+
+ARG TARGETARCH
+FROM base-$TARGETARCH AS pb-dev
+
+RUN env
+
+ARG TARGETARCH
+
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.24/supercronic-linux-${TARGETARCH} \
+    SUPERCRONIC=supercronic-linux-${TARGETARCH}
 
 RUN wget "$SUPERCRONIC_URL" \
  && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
@@ -27,6 +44,7 @@ RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > B
 RUN set -ex && \
   apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql14-dev sqlite-dev git && \
   apk upgrade && \
+  gem uninstall bundler -v 2.1.4 && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
   bundle config set deployment 'true' && \
   bundle config set no-cache 'true' && \

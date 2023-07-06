@@ -67,8 +67,8 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.5)
     nio4r (2.5.9)
-    nokogiri (1.14.3)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.15.3)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     pact-support (1.19.0)
       awesome_print (~> 1.9)
@@ -111,7 +111,7 @@ GEM
       stringio
     puma (5.6.6)
       nio4r (~> 2.0)
-    racc (1.6.2)
+    racc (1.7.1)
     rack (2.2.7)
     rack-protection (2.2.4)
       rack
@@ -132,7 +132,7 @@ GEM
       representable (~> 3.1)
     ruby-next-core (0.15.3)
     ruby2_keywords (0.0.5)
-    sanitize (6.0.1)
+    sanitize (6.0.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     semantic_logger (4.13.0)

@@ -6,4 +6,4 @@ if [ "${PACT_BROKER_DATABASE_CLEAN_ENABLED}" = "true" ]; then
   /usr/local/bin/supercronic -quiet -passthrough-logs /pact_broker/crontab &
 fi
 
-bundle exec puma
+exec bundle exec puma

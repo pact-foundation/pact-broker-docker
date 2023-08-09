@@ -1,3 +1,16 @@
+<a name="2.111.0-pactbroker2.107.1"></a>
+### 2.111.0-pactbroker2.107.1 (2023-08-08)
+
+#### Features
+
+* **deps**
+  * update to anyway_config (2.5.1), dry-configurable (1.1.0), dry-core (1.0.1), dry-schema (1.13.2), i18n (1.14.1), mini_portile2 (2.8.4), nokogiri (1.15.3), mini_portile2 (~> 2.8.2), racc (1.7.1), rack (2.2.8), sanitize (6.0.2), semantic_logger (4.14.0), sequel (5.71.0), sqlite3 (1.6.3), stringio (3.0.7), temple (0.10.2), thor (1.2.2), tilt (2.2.0), zeitwerk (2.6.11)	 ([f8db2a2](/../../commit/f8db2a2))
+
+#### Bug Fixes
+
+* **deps**
+  * bump puma from 5.6.5 to 5.6.6	 ([de0b934](/../../commit/de0b934))
+
 <a name="2.110.0-pactbroker2.107.1"></a>
 ### 2.110.0-pactbroker2.107.1 (2023-05-24)
 

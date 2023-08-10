@@ -6,10 +6,6 @@ This repository contains a Dockerized version of the [Pact Broker][pact-broker].
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/pact-foundation/pact-msw-adapter/graphs/commit-activity)
 
-[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
-[![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
-[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
-
 [![Build and test](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/test.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/test.yml)
 [![Audit](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/audit.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/audit.yml)
 [![Release](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml)

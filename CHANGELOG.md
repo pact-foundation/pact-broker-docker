@@ -1,3 +1,10 @@
+<a name="2.112.0-pactbroker2.107.1"></a>
+### 2.112.0-pactbroker2.107.1 (2023-08-21)
+
+#### Bug Fixes
+
+* pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities	 ([76db139](/../../commit/76db139))
+
 <a name="2.111.0-pactbroker2.107.1"></a>
 ### 2.111.0-pactbroker2.107.1 (2023-08-08)
 

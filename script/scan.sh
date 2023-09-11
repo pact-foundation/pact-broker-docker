@@ -3,6 +3,7 @@
 set -eu
 
 : "${1?Please provide the image to scan}"
+ARCH=${ARCH:-'amd64'}
 
 SCRIPT_DIR=$(cd "$(dirname $0)" && pwd)
 

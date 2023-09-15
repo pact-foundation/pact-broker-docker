@@ -9,10 +9,11 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    anyway_config (2.5.1)
+    anyway_config (2.5.3)
       ruby-next-core (>= 0.14.0)
     as-notifications (1.0.2)
     awesome_print (1.9.2)
+    bigdecimal (3.1.4)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     declarative (0.0.20)
@@ -32,7 +33,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-schema (1.13.2)
+    dry-schema (1.13.3)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 1.0, >= 1.0.1)
       dry-core (~> 1.0, < 2)
@@ -67,8 +68,10 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.5)
     nio4r (2.5.9)
-    nokogiri (1.15.3)
+    nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.15.4-aarch64-linux)
       racc (~> 1.4)
     pact-support (1.19.0)
       awesome_print (~> 1.9)
@@ -132,25 +135,25 @@ GEM
       representable (~> 3.1)
     ruby-next-core (0.15.3)
     ruby2_keywords (0.0.5)
-    sanitize (6.0.2)
+    sanitize (6.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     semantic_logger (4.14.0)
       concurrent-ruby (~> 1.0)
     semver2 (3.4.2)
-    sequel (5.71.0)
+    sequel (5.72.0)
+      bigdecimal
     sinatra (2.2.4)
       mustermann (~> 2.0)
       rack (~> 2.2)
       rack-protection (= 2.2.4)
       tilt (~> 2.0)
-    sqlite3 (1.6.5)
-      mini_portile2 (~> 2.8.0)
-    stringio (3.0.7)
+    sqlite3 (1.6.6-aarch64-linux)
+    stringio (3.0.8)
     table_print (1.5.7)
     temple (0.10.2)
     thor (1.2.2)
-    tilt (2.2.0)
+    tilt (2.3.0)
     trailblazer-option (0.1.2)
     uber (0.1.0)
     webmachine (2.0.0)
@@ -162,6 +165,7 @@ GEM
     zeitwerk (2.6.11)
 
 PLATFORMS
+  aarch64-linux
   ruby
 
 DEPENDENCIES
@@ -174,4 +178,4 @@ DEPENDENCIES
   sucker_punch!
 
 BUNDLED WITH
-   2.4.12
+   2.4.19

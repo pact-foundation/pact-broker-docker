@@ -92,8 +92,12 @@ Adapter can be 'postgres' (recommended) or 'sqlite' (non production use only).
 
 For investigations/spikes you can use SQlite. It is not supported as a production database, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
 
-  * `PACT_BROKER_DATABASE_ADAPTER` (set to `sqlite`)
-  * `PACT_BROKER_DATABASE_NAME` (arbitrary file in the `/tmp` directory eg. `/tmp/pact_broker.sqlite3`)
+  * `PACT_BROKER_DATABASE_ADAPTER="sqlite"`
+  * `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writeable by the application process, recommended to use `/tmp`)
+
+    OR
+
+  * `PACT_BROKER_DATABASE_URL="sqlite:////tmp/pact_broker.sqlte3"`
 
 See the [database section](https://docs.pact.io/pact_broker/configuration/settings/#database) of the Pact Broker configuration docs for all the database configuration options available.
 

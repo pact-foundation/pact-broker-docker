@@ -81,23 +81,23 @@ GRANT ALL PRIVILEGES ON DATABASE pact_broker TO pact_broker;
 
 You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://username:password@host[:port]/database` (eg. `postgres://user1:pass1@myhost/mydb`) or, you can set the credentials individually using the following environment variables:
 
-    * `PACT_BROKER_DATABASE_ADAPTER` (optional, defaults to 'postgres', see note below.)
-    * `PACT_BROKER_DATABASE_USERNAME`
-    * `PACT_BROKER_DATABASE_PASSWORD`
-    * `PACT_BROKER_DATABASE_HOST`
-    * `PACT_BROKER_DATABASE_NAME`
-    * `PACT_BROKER_DATABASE_PORT` (optional, defaults to the default port for the specified adapter)
+* `PACT_BROKER_DATABASE_ADAPTER` (optional, defaults to 'postgres', see note below.)
+* `PACT_BROKER_DATABASE_USERNAME`
+* `PACT_BROKER_DATABASE_PASSWORD`
+* `PACT_BROKER_DATABASE_HOST`
+* `PACT_BROKER_DATABASE_NAME`
+* `PACT_BROKER_DATABASE_PORT` (optional, defaults to the default port for the specified adapter)
 
 Adapter can be 'postgres' (recommended) or 'sqlite' (non production use only).
 
 For investigations/spikes you can use SQlite. It is not supported as a production database, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
 
-  * `PACT_BROKER_DATABASE_ADAPTER="sqlite"`
-  * `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writeable by the application process, recommended to use `/tmp`)
+* `PACT_BROKER_DATABASE_ADAPTER="sqlite"`
+* `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writeable by the application process, recommended to use `/tmp`)
 
-    OR
+  OR
 
-  * `PACT_BROKER_DATABASE_URL="sqlite:////tmp/pact_broker.sqlte3"`
+* `PACT_BROKER_DATABASE_URL="sqlite:////tmp/pact_broker.sqlte3"`
 
 See the [database section](https://docs.pact.io/pact_broker/configuration/settings/#database) of the Pact Broker configuration docs for all the database configuration options available.
 

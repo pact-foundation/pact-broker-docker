@@ -79,7 +79,7 @@ GRANT ALL PRIVILEGES ON DATABASE pact_broker TO pact_broker;
 
 ### Configure the connection details
 
-You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://username:password@host:port/database` (eg. `postgres://user1:pass1@myhost/mydb`) or, you can set the credentials individually using the following environment variables:
+You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://username:password@host[:port]/database` (eg. `postgres://user1:pass1@myhost/mydb`) or, you can set the credentials individually using the following environment variables:
 
     * `PACT_BROKER_DATABASE_ADAPTER` (optional, defaults to 'postgres', see note below.)
     * `PACT_BROKER_DATABASE_USERNAME`

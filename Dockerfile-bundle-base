@@ -1,4 +1,4 @@
-FROM ruby:2.7.8-alpine3.16
+FROM ruby:3.2.2-alpine3.18
 
 # Installation path
 ENV HOME=/pact_broker
@@ -10,6 +10,6 @@ RUN set -ex && \
   chmod g+w $HOME && \
   apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql-dev sqlite-dev
 
-RUN gem install bundler -v 2.4.7
+RUN gem install bundler -v 2.4.12
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN bundle install --no-cache

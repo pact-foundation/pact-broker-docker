@@ -1,3 +1,10 @@
+<a name="2.113.0-pactbroker2.107.1"></a>
+### 2.113.0-pactbroker2.107.1 (2023-09-12)
+
+#### Features
+
+* update clean shell script to fail if any of the commands fail	 ([adbf9af](/../../commit/adbf9af))
+
 <a name="2.112.0-pactbroker2.107.1"></a>
 ### 2.112.0-pactbroker2.107.1 (2023-08-21)
 

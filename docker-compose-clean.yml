@@ -33,7 +33,7 @@ services:
       PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: "500"
       PACT_BROKER_SQL_LOG_WARN_DURATION: "60"
       # Keep all prod versions, AND the latest version for every pacticipant/tag, and all versions less than 30 days old
-      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true, "tag": true}, {"max_age": 30}]'
+      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true, "branch": true}, {"latest": true, "tag": true}, {"max_age": 30}]'
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG
     entrypoint: clean

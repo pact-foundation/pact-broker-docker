@@ -1,3 +1,15 @@
+<a name="2.115.0-pactbroker2.108.0"></a>
+### 2.115.0-pactbroker2.108.0 (2024-02-05)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.109.0	 ([d597298](/../../commit/d597298))
+
+#### Bug Fixes
+
+* pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities (#159)	 ([d1cef48](/../../commit/d1cef48))
+
 <a name="2.114.0-pactbroker2.108.0"></a>
 ### 2.114.0-pactbroker2.108.0 (2024-01-05)
 

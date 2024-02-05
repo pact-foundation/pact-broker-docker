@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
 function docker_build_bundle_base() {
-  docker build . -f Dockerfile-bundle-base -t pact_broker_bundle_base
+  docker build . --platform=linux/amd64 -f Dockerfile-bundle-base -t pact_broker_bundle_base
 }
 
 function bundle_update_on_docker() {
   rm -rf tmp/Gemfile.lock
   if [ -n "$1" ]; then
     echo "Installing version ${1} of the pact_broker gem"
-    docker run --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "gem install pact_broker -v $1 && bundle update && cp Gemfile.lock /tmp/shared"
+    docker run --platform=linux/amd64 --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "gem install pact_broker -v $1 && bundle update && cp Gemfile.lock /tmp/shared"
   else
     echo "Updating gems"
-    docker run --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/shared"
+    docker run --platform=linux/amd64 --rm -v ${PWD}/tmp:/tmp/shared pact_broker_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/shared"
   fi
   mv tmp/Gemfile.lock pact_broker/
 }
 
 function docker_build_package_base() {
-  docker build . -f Dockerfile-package-base -t pact_broker_package_base
+  docker build . --platform=linux/amd64 -f Dockerfile-package-base -t pact_broker_package_base
 }
 
 function run_on_package_base() {
-  docker run --rm -it pact_broker_package_base sh -c "$@"
+  docker run --platform=linux/amd64 --rm -it pact_broker_package_base sh -c "$@"
 }

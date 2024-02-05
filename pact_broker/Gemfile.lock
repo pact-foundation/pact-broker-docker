@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/pact-foundation/sucker_punch.git
-  revision: 573ff03c5f689568efbb733ed2997728f0098d5a
-  ref: fix/rename-is-singleton-class-method-2
-  specs:
-    sucker_punch (2.1.2)
-      concurrent-ruby (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,7 +70,7 @@ GEM
       diff-lcs (~> 1.5)
       expgen (~> 0.1)
       rainbow (~> 3.1.1)
-    pact_broker (2.108.0)
+    pact_broker (2.109.0)
       anyway_config (~> 2.1)
       dry-validation (~> 1.8)
       haml (~> 5.0)
@@ -98,7 +90,7 @@ GEM
       semver2 (~> 3.4.2)
       sequel (~> 5.28)
       sinatra (~> 3.0)
-      sucker_punch (~> 2.0)
+      sucker_punch (~> 3.0)
       table_print (~> 1.5)
       webmachine (>= 2.0.0.beta, < 3.0)
       webrick (~> 1.8)
@@ -152,6 +144,8 @@ GEM
     sqlite3 (1.7.2)
       mini_portile2 (~> 2.8.0)
     stringio (3.1.0)
+    sucker_punch (3.2.0)
+      concurrent-ruby (~> 1.0)
     table_print (1.5.7)
     temple (0.10.3)
     thor (1.3.0)
@@ -176,7 +170,6 @@ DEPENDENCIES
   puma (~> 5.6, >= 5.6.8)
   rake (~> 13.0)
   sqlite3 (~> 1.6)
-  sucker_punch!
 
 BUNDLED WITH
-   2.4.12
+   2.4.22

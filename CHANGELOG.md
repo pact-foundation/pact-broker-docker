@@ -1,3 +1,10 @@
+<a name="2.117.0-pactbroker2.109.0"></a>
+### 2.117.0-pactbroker2.109.0 (2024-02-06)
+
+#### Bug Fixes
+
+* force_ruby_platform for sqlite gem to build natively fixes #148	 ([c08fae9](/../../commit/c08fae9))
+
 <a name="2.116.0-pactbroker2.109.0"></a>
 ### 2.116.0-pactbroker2.109.0 (2024-02-05)
 

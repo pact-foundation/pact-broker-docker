@@ -4,5 +4,5 @@ gem "pact_broker"
 gem "pg", "~>1.5"
 gem "puma", "~> 5.6", ">= 5.6.8"
 gem "mysql2", "~>0.3"
-gem "sqlite3", "~>1.6"
+gem "sqlite3", "~>1.6", force_ruby_platform: true
 gem "rake", "~> 13.0"

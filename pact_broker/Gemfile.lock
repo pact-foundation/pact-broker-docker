@@ -60,7 +60,7 @@ GEM
     multi_json (1.15.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    mysql2 (0.5.5)
+    mysql2 (0.5.6)
     nio4r (2.7.0)
     nokogiri (1.16.2)
       mini_portile2 (~> 2.8.2)
@@ -164,7 +164,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mysql2 (~> 0.3)
+  mysql2 (~> 0.5)
   pact_broker
   pg (~> 1.5)
   puma (~> 5.6, >= 5.6.8)

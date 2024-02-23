@@ -10,13 +10,21 @@ push() {
     --output=type=image,push=true \
     -t ${DOCKER_IMAGE_ORG_AND_NAME}:$1 .
 }
+push_ghcr() {
+  docker buildx build --platform=linux/amd64,linux/arm64,linux/arm \
+  --output=type=image,push=true \
+  -t ghcr.io/${DOCKER_IMAGE_ORG_AND_NAME}:$1 
+}
 
 if [ -n "${MAJOR_TAG:-}" ]; then
   push ${MAJOR_TAG}
+  push_ghcr ${MAJOR_TAG}
 fi
 
 push ${TAG}
+push_ghcr ${TAG}
 
 if [ "${PUSH_TO_LATEST}" != "false" ]; then
   push latest
+  push_ghcr latest
 fi

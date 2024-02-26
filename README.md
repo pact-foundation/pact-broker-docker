@@ -35,26 +35,14 @@ If you want to run the container as a standalone instance, then the `dius/pact-b
 
 ## Platforms
 
-### Single platform images
-
-By default, vanilla tags, are built only for `amd64`
-
-- `--platform=linux/amd64`
-
-  ```sh
-  docker run --rm -it --entrypoint /bin/sh pactfoundation/pact-broker:latest -c 'uname -sm'
-  ```
-
-### Multi-manifest image
-
-Multi-platform images are available, by appending `-multi` to any release tag
+Multi-platform images are available
 
 - `--platform=linux/amd64`
 - `--platform=linux/arm/v7`
 - `--platform=linux/arm64`
 
   ```sh
-  docker run --rm -it --entrypoint /bin/sh pactfoundation/pact-broker:latest-multi -c 'uname -sm'
+  docker run --rm -it --entrypoint /bin/sh pactfoundation/pact-broker:latest -c 'uname -sm'
   ```
 
 ## Prerequisites

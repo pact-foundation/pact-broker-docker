@@ -1,3 +1,23 @@
+<a name="2.118.0-pactbroker2.109.1"></a>
+### 2.118.0-pactbroker2.109.1 (2024-02-26)
+
+#### Features
+
+* **deps**
+  * update rack to 2.2.8.1	 ([615abcb](/../../commit/615abcb))
+
+* publish images to ghcr.io as well as docker.io	 ([b54b96b](/../../commit/b54b96b))
+* release multi-arch images under main tags	 ([eb23705](/../../commit/eb23705))
+* bind to IPv6 'any' as well as IPv4 'any' (#170)	 ([992aa59](/../../commit/992aa59))
+
+#### Bug Fixes
+
+* **ci**
+  * ghcr workflow POSIX sh, string replacement is undefined	 ([f0acc31](/../../commit/f0acc31))
+
+* ghcr images need to publish to pact-foundation / dockerhub images to pactfoundation	 ([3a8b91a](/../../commit/3a8b91a))
+* ghcr release workflow had missing arg	 ([8457eb0](/../../commit/8457eb0))
+
 <a name="2.117.1-pactbroker2.109.1"></a>
 ### 2.117.1-pactbroker2.109.1 (2024-02-21)
 

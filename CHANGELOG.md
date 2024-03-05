@@ -1,3 +1,11 @@
+<a name="2.118.1-pactbroker2.109.1"></a>
+### 2.118.1-pactbroker2.109.1 (2024-03-05)
+
+#### Bug Fixes
+
+* **tests**
+  * update docker-compose sed to use correct tag	 ([89b5fa3](/../../commit/89b5fa3))
+
 <a name="2.118.0-pactbroker2.109.1"></a>
 ### 2.118.0-pactbroker2.109.1 (2024-02-26)
 

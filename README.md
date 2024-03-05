@@ -219,6 +219,32 @@ If you are running the Docker image behind an ALB with an idle timeout, you may 
 
 You will also want to make use of the [Heartbeat URL](#heartbeat-url)
 
+
+
+3. If you call your service "pact_broker", an environment variable called `PACT_BROKER_PORT` will be created which will conflict with the Docker image's `PACT_BROKER_PORT` (see this [issue](https://github.com/pact-foundation/pact-broker-docker/issues/7) for background). In this case, you have two options.
+
+   * Give your service a name that is *not* "pact_broker".
+   * [Use different environment variable names](#using-different-environment-variable-names)
+  
+## Running on AWS serverless
+
+1. Somebody created an open source version in gitlab AWS CDK to publish and deploy a serverless framework of the paktbroker and postgres database
+
+Prerequisites to use it, or fork the gitlab pipeline
+* AWS account with proper access
+* AWS CLI and AWS CDK installed
+* Docker installed for local container image management
+* Basic understanding of Docker, AWS ECS, and networking
+
+**Solution**
+Amazon ECS with an ALB: Hosts both the Pact Broker and PostgreSQL in containers, with one click on your AWS environment (public Alb for demo purposes), https://gitlab.com/learnautomatedtesting/servicevirtualizationandpact/
+API Examples Provider, two static results once deployed via AWS CDK with an expected verifier and wrong output, https://gitlab.com/learnautomatedtesting/pactexample 
+Future: Amazon S3 integration to serverless: Stores Pact files for versioning and sharing to pactbroker and back
+Future AWS Lambda Integration: Automates pact verification processes for consumer and provider
+Amazon CloudWatch: Provides logging and monitoring.
+
+
+
 ## Using different environment variable names
 
 If you are running your Docker container in a managed environment, you may not be able to control the names of the environment variables that are set by that software.

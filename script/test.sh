@@ -5,7 +5,7 @@ set -e
 docker_compose_files=$(find . -name "docker-compose-test*.yml")
 
 for file in $docker_compose_files; do
-  cat $file | sed -e "s~image: pactfoundation/pact-broker:.*~image: pactfoundation/pact-broker:${TAG}~g" > dc-tmp
+  cat $file | sed -e "s/pactfoundation\/pact-broker:latest.*/pactfoundation\/pact-broker:${TAG}\"/g" > dc-tmp
   mv dc-tmp $file
 done
 

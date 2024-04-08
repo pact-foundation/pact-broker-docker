@@ -112,7 +112,7 @@ GEM
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
     rainbow (3.1.1)
-    rake (13.1.0)
+    rake (13.2.1)
     redcarpet (3.6.0)
     reform (2.6.2)
       disposable (>= 0.5.0, < 1.0.0)
@@ -168,7 +168,7 @@ DEPENDENCIES
   pact_broker
   pg (~> 1.5)
   puma (~> 5.6, >= 5.6.8)
-  rake (~> 13.0)
+  rake (~> 13.2)
   sqlite3 (~> 1.6)
 
 BUNDLED WITH

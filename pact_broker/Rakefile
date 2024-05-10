@@ -36,6 +36,11 @@ PactBroker::DB::CleanTask.new do | task |
   if env('PACT_BROKER_DATABASE_CLEAN_DRY_RUN')
     task.dry_run = env('PACT_BROKER_DATABASE_CLEAN_DRY_RUN') == 'true'
   end
+
+  # There's no known reason to turn this off - it's just a get out jail card on the off chance something unexpected happens with the locks.
+  if env('PACT_BROKER_DATABASE_CLEAN_USE_LOCK')
+    task.use_lock = env('PACT_BROKER_DATABASE_CLEAN_USE_LOCK') == 'true'
+  end
 end
 
 PactBroker::DB::DeleteOverwrittenDataTask.new do | task |

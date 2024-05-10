@@ -2,6 +2,8 @@
 
 set -e
 
+: "${TAG:?TAG must be provided}"
+
 docker_compose_files=$(find . -name "docker-compose-test*.yml")
 
 for file in $docker_compose_files; do

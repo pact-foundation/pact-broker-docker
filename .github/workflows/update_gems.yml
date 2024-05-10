@@ -68,6 +68,8 @@ jobs:
 
       - name: Integration tests
         run: script/test.sh
+        env:
+          TAG: latest
 
       - name: Git commit and push
         run: script/update-gems-workflow/git-commit-and-push-gemfile.sh

@@ -137,11 +137,15 @@ Documentation for the Pact Broker application itself can be found in the Pact Br
 
 Performance can degrade when too much data accumulates in the Pact Broker. To read about the automatic data clean up feature, please see the [Maintenance](https://docs.pact.io/pact_broker/administration/maintenance) page of the Pact Broker documentation. 
 
-You will need version `2.79.1.1` or later of the pactfoundation/pact-broker Docker image for this feature.
+You will need version `2.79.1.1` or later of the `pactfoundation/pact-broker` Docker image for this feature.
 
 ### Running the clean task on a cron schedule within the application container
 
-If you are running the Pact Broker image with tag `2.119.0` or later, OR (for previous versions) you have exactly one Pact Broker container running at a time, you can configure cron on the application container to run the clean up. Images with tag `2.119.0` and later use a Postgres advisory lock to ensure that only 1 clean task can run at a time. Images prior to this do not support the lock, and running multiple clean tasks at the same time will cause contention and deadlocks. See [below](#running-the-clean-task-from-an-external-container) for the recommended approach.
+If you are running the Pact Broker image with tag `2.119.0` or later, OR (for previous versions) you have exactly one Pact Broker container running at a time, you can configure cron on the application container(s) to run the clean up.
+
+Images with tag `2.119.0` and later use a Postgres advisory lock to ensure that only 1 clean task can run at a time. Any task that attempts to run while another is already running will print a log message and exit with a success code.
+
+Images prior to this do not support the lock, and running multiple clean tasks at the same time will cause contention and deadlocks. See [below](#running-the-clean-task-from-an-external-container) for the recommended approach in this situation.
 
 * `PACT_BROKER_DATABASE_CLEAN_ENABLED`: set to `true` to enable the clean. Default is `false`.
 * `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE`: set to a cron schedule that will run when your Broker is under the least operational load. Default is 2:15am - `15 2 * * *`

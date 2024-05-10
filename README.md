@@ -141,7 +141,7 @@ You will need version `2.79.1.1` or later of the pactfoundation/pact-broker Dock
 
 ### Running the clean task on a cron schedule within the application container
 
-If you have exactly one Pact Broker container running at a time, you can configure cron on the container to run the clean up.
+If you are running the Pact Broker image with tag `2.119.0` or later, OR (for previous versions) you have exactly one Pact Broker container running at a time, you can configure cron on the application container to run the clean up. Images with tag `2.119.0` and later use a Postgres advisory lock to ensure that only 1 clean task can run at a time. Images prior to this do not support the lock, and running multiple clean tasks at the same time will cause contention and deadlocks. See [below](#running-the-clean-task-from-an-external-container) for the recommended approach.
 
 * `PACT_BROKER_DATABASE_CLEAN_ENABLED`: set to `true` to enable the clean. Default is `false`.
 * `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE`: set to a cron schedule that will run when your Broker is under the least operational load. Default is 2:15am - `15 2 * * *`
@@ -150,9 +150,9 @@ If you have exactly one Pact Broker container running at a time, you can configu
 * `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`:  a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "branch": true}, { "max_age": 90 }, { "deployed" : true }, { "released" : true }]` (remember to escape the quotes if necessary in your configuration files/console).
 * `PACT_BROKER_DATABASE_CLEAN_DRY_RUN`: defaults to `false`. Set to `true` to see the output of what *would* have been deleted if the task had run. This is helpful when experimenting with or fine tuning the clean feature. As nothing is deleted when in dry-run mode, the same output will be printed in the logs each time the task runs.
 
-### Running the clean task from an external source
+### Running the clean task from an external container
 
-If you are running more than one Pact Broker Docker container at a time for the same database, then you will end up with two clean up tasks fighting with each other to delete the data. In this situation, it is best to run the clean task from an external location at a regular interval. To do this, run an instance of the pact-broker docker image with the entrypoint `clean`, the same database connection credentials as the application, and the same environment variables described in the section above *except the PACT_BROKER_DATABASE_CLEAN_ENABLED and PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE* vars.
+If you are running more than one Pact Broker Docker container at a time for the same database (eg. in an auto-scaling cluster), for tags prior to `2.119.0`, and you enable the clean task on the application containers, then you will end up with two or more clean up tasks in contention with each other deleting the data. In this situation, it is best to run the clean task from an external location at a regular interval. To do this, run an instance of the pact-broker docker image with the entrypoint `clean`, the same database connection credentials as the application, and the same environment variables described in the section above *without the PACT_BROKER_DATABASE_CLEAN_ENABLED and PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE* vars.
 
 You can see a working example in the [docker-compose-clean.yml](./docker-compose-clean.yml) file. To run the example locally, run:
 

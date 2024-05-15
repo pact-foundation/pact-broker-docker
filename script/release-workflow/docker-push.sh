@@ -7,6 +7,8 @@ set -euo >/dev/null
 push() {
   ## These will use cached builds, so wont build every time.
   docker buildx build --platform=linux/amd64,linux/arm64,linux/arm \
+    --annotation "org.opencontainers.image.source=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" \
+    --annotation "org.opencontainers.image.revision=$GITHUB_SHA" \
     --output=type=image,push=true \
     -t ${DOCKER_IMAGE_ORG_AND_NAME}:$1 .
 }

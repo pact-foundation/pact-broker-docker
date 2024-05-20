@@ -1,3 +1,13 @@
+<a name="2.119.1-pactbroker2.110.0"></a>
+### 2.119.1-pactbroker2.110.0 (2024-05-20)
+
+#### Features
+
+* **deps**
+  * update nokogiri gem to version 1.16.5	 ([2596879](/../../commit/2596879))
+
+* Add OCI image annotations	 ([e32aae2](/../../commit/e32aae2))
+
 <a name="2.119.0-pactbroker2.110.0"></a>
 ### 2.119.0-pactbroker2.110.0 (2024-05-10)
 

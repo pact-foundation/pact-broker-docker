@@ -157,10 +157,10 @@ If you are running more than one Pact Broker Docker container at a time for the 
 You can see a working example in the [docker-compose-clean.yml](./docker-compose-clean.yml) file. To run the example locally, run:
 
 ```
-docker-compose -f docker-compose-clean.yml up pact-broker
+docker compose -f docker-compose-clean.yml up pact-broker
 
 # in another console
-docker-compose -f docker-compose-clean.yml up clean
+docker compose -f docker-compose-clean.yml up clean
 ```
 
 ### Known issues with the data clean up task
@@ -173,8 +173,8 @@ For a quick start with the Pact Broker and Postgres, we have an example
 [Docker Compose][docker-compose] setup you can use:
 
 1. Modify the `docker-compose.yml` file as required.
-2. Run `docker-compose build` to build the pact_broker container locally.
-3. Run `docker-compose up` to get a running Pact Broker and a clean Postgres database.
+2. Run `docker compose build` to build the pact_broker container locally.
+3. Run `docker compose up` to get a running Pact Broker and a clean Postgres database.
 
 Now you can access your local broker:
 

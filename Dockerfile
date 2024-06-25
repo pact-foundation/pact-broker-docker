@@ -5,12 +5,12 @@ FROM ruby:3.2.3-alpine3.19 as base
 #   - https://github.com/sparklemotion/nokogiri/issues/2414
 # 2. Supercronic - setup sha1sum for each supported architecture
 FROM base AS base-amd64
-ENV SUPERCRONIC_SHA1SUM=cd48d45c4b10f3f0bfdd3a57d054cd05ac96812b
+ENV SUPERCRONIC_SHA1SUM=9f27ad28c5c57cd133325b2a66bba69ba2235799
 FROM base AS base-arm64
-ENV SUPERCRONIC_SHA1SUM=512f6736450c56555e01b363144c3c9d23abed4c
+ENV SUPERCRONIC_SHA1SUM=d5e02aa760b3d434bc7b991777aa89ef4a503e49
 RUN apk add --update --no-cache gcompat
 FROM base AS base-arm
-ENV SUPERCRONIC_SHA1SUM=75e065bf0909f920b06d5bd797c0e6b31e68b112
+ENV SUPERCRONIC_SHA1SUM=9375e13dab716bab9f325de4a9145b482145f5e7
 RUN apk add --update --no-cache gcompat
 
 # Supercronic - use base-$TARGETARCH to select correct base image SUPERCRONIC_SHA1SUM
@@ -19,7 +19,7 @@ FROM base-$TARGETARCH AS pb-dev
 
 # Install Supercronic
 ARG TARGETARCH
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.29/supercronic-linux-${TARGETARCH} \
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.30/supercronic-linux-${TARGETARCH} \
     SUPERCRONIC=supercronic-linux-${TARGETARCH}
 RUN wget "$SUPERCRONIC_URL" \
  && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \

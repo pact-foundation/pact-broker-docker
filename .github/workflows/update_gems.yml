@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -78,7 +78,7 @@ jobs:
         run: script/scan.sh pactfoundation/pact-broker:latest
 
       - name: Trigger release
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.GHTOKENFORPBDOCKERRELEASE }}
           event-type: release-triggered

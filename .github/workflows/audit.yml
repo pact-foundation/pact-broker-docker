@@ -18,7 +18,7 @@ jobs:
       DOCKER_TARGET_PLATFORM: ${{ matrix.DOCKER_TARGET_PLATFORM }}
       TAG: "latest"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Prepare Docker multi-arch builder for ${{ matrix.DOCKER_TARGET_PLATFORM }}
         if: ${{ matrix.DOCKER_TARGET_PLATFORM }} == 'linux/arm' || 'linux/arm64'
         run: ./script/release-workflow/docker-prepare.sh

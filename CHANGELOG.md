@@ -1,3 +1,14 @@
+<a name="2.120.0-pactbroker2.110.0"></a>
+### 2.120.0-pactbroker2.110.0 (2024-06-25)
+
+#### Bug Fixes
+
+* **deps**
+  * update supercronic to v0.2.30	 ([d9f5969](/../../commit/d9f5969))
+
+* **ci**
+  * docker-compose possibly causing issues	 ([2a63a60](/../../commit/2a63a60))
+
 <a name="2.119.1-pactbroker2.110.0"></a>
 ### 2.119.1-pactbroker2.110.0 (2024-05-20)
 

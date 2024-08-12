@@ -1,3 +1,11 @@
+<a name="2.121.0-pactbroker2.111.0"></a>
+### 2.121.0-pactbroker2.111.0 (2024-08-12)
+
+#### Features
+
+* **deps**
+  * update pact_broker gem to version 2.111.0	 ([16efe89](/../../commit/16efe89))
+
 <a name="2.120.0-pactbroker2.110.0"></a>
 ### 2.120.0-pactbroker2.110.0 (2024-06-25)
 

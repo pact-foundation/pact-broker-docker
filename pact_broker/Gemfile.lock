@@ -101,7 +101,7 @@ GEM
       thor (~> 1.0)
     padrino-support (0.15.3)
     parslet (2.0.0)
-    pg (1.5.7)
+    pg (1.5.8)
     psych (5.1.2)
       stringio
     puma (5.6.8)

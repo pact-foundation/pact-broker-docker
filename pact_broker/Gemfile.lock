@@ -157,7 +157,7 @@ GEM
       base64
       i18n (>= 0.4.0)
       multi_json
-    webrick (1.8.1)
+    webrick (1.8.2)
     wisper (2.0.1)
     zeitwerk (2.6.18)
 

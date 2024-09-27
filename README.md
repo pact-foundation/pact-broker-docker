@@ -213,6 +213,29 @@ If you are running the Docker image behind an ALB with an idle timeout, you may 
 
 You will also want to make use of the [Heartbeat URL](#heartbeat-url)
 
+## Running on AWS serverless
+
+### Gitlab AWS CDK
+
+The following implementation is community provided & supported by [@learnautomatedtesting](https://github.com/learnautomatedtesting)
+
+Leverage GitLab & AWK CDK to publish and deploy a serverless framework of the Pact Broker and postgres database
+
+**Pre-Requisites**
+
+* AWS account with proper access
+* AWS CLI and AWS CDK installed
+* Docker installed for local container image management
+* Basic understanding of Docker, AWS ECS, and networking
+
+**Solution**
+
+* Amazon ECS with an ALB: Hosts both the Pact Broker and PostgreSQL in containers, with one click on your AWS environment (public ALB for demo purposes)
+  * https://gitlab.com/learnautomatedtesting/servicevirtualizationandpact/
+* API Examples Provider, two static results once deployed via AWS CDK with an expected verifier and wrong output
+  * https://gitlab.com/learnautomatedtesting/pactexample 
+
+
 ## Using different environment variable names
 
 If you are running your Docker container in a managed environment, you may not be able to control the names of the environment variables that are set by that software.

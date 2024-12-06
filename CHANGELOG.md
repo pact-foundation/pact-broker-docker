@@ -1,3 +1,11 @@
+<a name="2.124.0-pactbroker2.112.0"></a>
+### 2.124.0-pactbroker2.112.0 (2024-12-06)
+
+#### Bug Fixes
+
+* **audit**
+  * skip cve-2024-21510 (#217)	 ([596a7d4](/../../commit/596a7d4))
+
 <a name="2.123.0-pactbroker2.112.0"></a>
 ### 2.123.0-pactbroker2.112.0 (2024-09-30)
 

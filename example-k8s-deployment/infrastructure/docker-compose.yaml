@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   stackup-base:
-    image: realestate/stackup:1.7.1
+    image: realestate/stackup:1.8.1
     working_dir: /app
     volumes:
       - ".:/app"

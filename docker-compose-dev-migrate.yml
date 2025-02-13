@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres:12
+    image: postgres:17
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
     # ports:

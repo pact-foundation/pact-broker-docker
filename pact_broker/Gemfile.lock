@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    anyway_config (2.7.0)
+    anyway_config (2.7.1)
       ruby-next-core (~> 1.0)
     as-notifications (1.0.2)
     awesome_print (1.9.2)
@@ -29,7 +29,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.1)
       zeitwerk (~> 2.6)
-    dry-schema (1.14.0)
+    dry-schema (1.14.1)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 1.0, >= 1.0.1)
       dry-core (~> 1.1)
@@ -114,13 +114,13 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.11)
+    rack (2.2.12)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
     rainbow (3.1.1)
     rake (13.2.1)
-    redcarpet (3.6.0)
+    redcarpet (3.6.1)
     reform (2.6.2)
       disposable (>= 0.5.0, < 1.0.0)
       representable (>= 3.1.1, < 4)
@@ -142,7 +142,7 @@ GEM
     semantic_logger (4.16.1)
       concurrent-ruby (~> 1.0)
     semver2 (3.4.2)
-    sequel (5.89.0)
+    sequel (5.90.0)
       bigdecimal
     sinatra (3.2.0)
       mustermann (~> 3.0)
@@ -153,7 +153,7 @@ GEM
       mini_portile2 (~> 2.8.0)
     string_pattern (2.3.0)
       regexp_parser (~> 2.5, >= 2.5.0)
-    stringio (3.1.2)
+    stringio (3.1.5)
     sucker_punch (3.2.0)
       concurrent-ruby (~> 1.0)
     table_print (1.5.7)
@@ -169,7 +169,7 @@ GEM
       multi_json
     webrick (1.9.1)
     wisper (2.0.1)
-    zeitwerk (2.7.1)
+    zeitwerk (2.7.2)
 
 PLATFORMS
   ruby

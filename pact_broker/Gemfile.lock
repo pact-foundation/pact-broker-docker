@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/pact-foundation/pact_broker
-  revision: 18f571c8ca2fe18aabe40466256c0e2a61288f5b
-  branch: master
+  revision: 7758a8bc51ed9c606d470423a87a24e8e8d2b8c3
+  tag: v2.113.2
   specs:
     pact_broker (2.113.2)
       anyway_config (~> 2.1)

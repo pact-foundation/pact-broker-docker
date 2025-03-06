@@ -2,7 +2,7 @@ version: "3"
 
 services:
   pact-broker:
-    # image: pactfoundation/pact-broker:2.127.0-pactbroker2.113.2
+    # image: pactfoundation/pact-broker:2.128.0-pactbroker2.114.0
     build: .
     ports:
       - "9292:9292"

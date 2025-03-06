@@ -78,7 +78,7 @@ GEM
       jsonpath (~> 1.0)
       rainbow (~> 3.1.1)
       string_pattern (~> 2.0)
-    pact_broker (2.113.2)
+    pact_broker (2.114.0)
       anyway_config (~> 2.1)
       dry-validation (~> 1.8)
       haml (~> 5.0)

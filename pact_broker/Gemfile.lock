@@ -125,7 +125,7 @@ GEM
     rackup (2.2.1)
       rack (>= 3)
     rainbow (3.1.1)
-    rake (13.2.1)
+    rake (13.3.0)
     redcarpet (3.6.1)
     reform (2.6.2)
       disposable (>= 0.5.0, < 1.0.0)
@@ -187,7 +187,7 @@ DEPENDENCIES
   padrino-core (>= 0.16.0.pre3)
   pg (~> 1.5)
   puma (~> 6.0)
-  rake (~> 13.0)
+  rake (~> 13.3)
   sinatra (~> 4.0)
   sqlite3 (~> 2.0)
 

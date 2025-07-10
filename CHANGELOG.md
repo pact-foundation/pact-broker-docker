@@ -1,3 +1,11 @@
+<a name="2.132.0-pactbroker2.116.0"></a>
+### 2.132.0-pactbroker2.116.0 (2025-07-09)
+
+#### Bug Fixes
+
+* **deps**
+  * add pact-support to gemfile, as released gem is using git	 ([05a253a](/../../commit/05a253a))
+
 <a name="2.131.0-pactbroker2.115.0"></a>
 ### 2.131.0-pactbroker2.115.0 (2025-06-05)
 

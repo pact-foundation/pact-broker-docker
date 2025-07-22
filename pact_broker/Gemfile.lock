@@ -166,7 +166,7 @@ GEM
       concurrent-ruby (~> 1.0)
     table_print (1.5.7)
     temple (0.10.3)
-    thor (1.3.2)
+    thor (1.4.0)
     tilt (2.6.1)
     trailblazer-option (0.1.2)
     uber (0.1.0)

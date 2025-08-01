@@ -71,11 +71,10 @@ GEM
     nokogiri (1.18.9)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    pact-support (1.21.3)
+    pact-support (1.21.2)
       awesome_print (~> 1.9)
-      diff-lcs (~> 1.6)
+      diff-lcs (~> 1.5)
       expgen (~> 0.1)
-      json (~> 2.12.2)
       jsonpath (~> 1.0)
       rainbow (~> 3.1.1)
       string_pattern (~> 2.0)
@@ -183,13 +182,12 @@ PLATFORMS
 
 DEPENDENCIES
   mysql2 (~> 0.3)
-  pact-support
+  pact-support (~> 1.2, = 1.21.2)
   pact_broker
   padrino-core (>= 0.16.0.pre3)
   pg (~> 1.5)
   puma (~> 6.0)
   rake (~> 13.0)
-  sinatra (~> 4.0)
   sqlite3 (~> 2.7)
 
 BUNDLED WITH

@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-gem "pact_broker"
-gem "pg", "~>1.5"
-gem "puma", "~> 6.0"
-gem "mysql2", "~>0.3"
-gem "sqlite3", "~>2.7", force_ruby_platform: true
-gem "rake", "~> 13.0"
-gem "padrino-core", ">= 0.16.0.pre3"
-gem "sinatra", "~> 4.0"
-gem "pact-support"
+gem 'mysql2', '~>0.3'
+gem 'pact_broker'
+gem 'pact-support', '~>1.2', '1.21.2'
+gem 'padrino-core', '>= 0.16.0.pre3'
+gem 'pg', '~>1.5'
+gem 'puma', '~> 6.0'
+gem 'rake', '~> 13.0'
+gem 'sqlite3', '~>2.7', force_ruby_platform: true

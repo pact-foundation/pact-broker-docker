@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem "pact_broker"
 gem "pg", "~>1.5"
-gem "puma", "~> 7.0"
+gem "puma", "~> 7.1"
 gem "mysql2", "~>0.3"
 gem "sqlite3", "~>2.7", force_ruby_platform: true
 gem "rake", "~> 13.0"

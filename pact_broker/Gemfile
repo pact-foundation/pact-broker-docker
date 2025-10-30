@@ -7,5 +7,5 @@ gem "mysql2", "~>0.3"
 gem "sqlite3", "~>2.7", force_ruby_platform: true
 gem "rake", "~> 13.0"
 gem "padrino-core", ">= 0.16.0.pre3"
-gem "sinatra", "~> 4.0"
+gem "sinatra", "~> 4.2"
 gem "pact-support"

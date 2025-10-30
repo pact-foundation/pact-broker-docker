@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres:17
+    image: postgres:18
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
     environment:

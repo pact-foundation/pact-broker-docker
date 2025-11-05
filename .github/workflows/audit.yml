@@ -20,6 +20,10 @@ jobs:
       TAG: latest
     steps:
       - uses: actions/checkout@v5
+      - name: Manual Trivy Setup
+        uses: aquasecurity/setup-trivy@v0.2.4
+        with:
+          cache: true
       - name: Audit Docker image for amd64
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: ./script/release-workflow/audit.sh

@@ -1,3 +1,11 @@
+<a name="2.135.0-pactbroker2.117.1"></a>
+### 2.135.0-pactbroker2.117.1 (2025-11-05)
+
+#### Features
+
+* **deps**
+  * ruby 3.3.10 / alpine 3.21 / supercronic 0.2.39	 ([bc44a7e](/../../commit/bc44a7e))
+
 <a name="2.134.1-pactbroker2.117.1"></a>
 ### 2.134.1-pactbroker2.117.1 (2025-11-02)
 

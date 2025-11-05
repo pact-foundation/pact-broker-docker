@@ -1,4 +1,4 @@
-FROM ruby:3.3.6-alpine3.20 AS base
+FROM ruby:3.3.10-alpine3.21 AS base
 
 # 1. Install target specfic dependencies
 # - gcompat required for arm/arm64 (otherwise nokogiri breaks when viewing network graph)
@@ -10,7 +10,7 @@ FROM base AS base-arm64
 ENV SUPERCRONIC_SHA1SUM=5ef4ccc3d43f12d0f6c3763758bc37cc4e5af76e
 RUN apk add --update --no-cache gcompat
 FROM base AS base-arm
-ENV SUPERCRONIC_SHA1SUM=9375e13dab716bab9f325de4a9145b482145f5e7
+ENV SUPERCRONIC_SHA1SUM=8c3dbef8175e3f579baefe4e55978f2a27cb76b5
 RUN apk add --update --no-cache gcompat
 
 # Supercronic - use base-$TARGETARCH to select correct base image SUPERCRONIC_SHA1SUM
@@ -40,7 +40,7 @@ WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > BUNDLER_VERSION
 RUN set -ex && \
-  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql14-dev sqlite-dev git && \
+  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql15-dev sqlite-dev git yaml-dev && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
   bundle config set deployment 'true' && \

@@ -165,7 +165,7 @@ GEM
       rack-protection (= 4.2.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sqlite3 (2.7.4)
+    sqlite3 (2.8.0)
       mini_portile2 (~> 2.8.0)
     string_pattern (2.3.0)
       regexp_parser (~> 2.5, >= 2.5.0)
@@ -196,7 +196,7 @@ DEPENDENCIES
   pg (~> 1.5)
   puma (~> 7.0)
   rake (~> 13.0)
-  sqlite3 (~> 2.7)
+  sqlite3 (~> 2.8)
 
 BUNDLED WITH
    2.5.22

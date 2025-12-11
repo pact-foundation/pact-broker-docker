@@ -40,7 +40,7 @@ WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > BUNDLER_VERSION
 RUN set -ex && \
-  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql15-dev sqlite-dev git yaml-dev && \
+  apk add --update --no-cache make gcc libc-dev mariadb-dev postgresql16-dev sqlite-dev git yaml-dev && \
   apk upgrade && \
   gem install bundler -v $(cat BUNDLER_VERSION) && \
   bundle config set deployment 'true' && \

@@ -1,3 +1,10 @@
+<a name="2.136.0-pactbroker2.117.1"></a>
+### 2.136.0-pactbroker2.117.1 (2025-12-10)
+
+#### Features
+
+* Update to ruby:3.3.10-alpine3.23 to fix CVEs	 ([59010d4](/../../commit/59010d4))
+
 <a name="2.135.0-pactbroker2.117.1"></a>
 ### 2.135.0-pactbroker2.117.1 (2025-11-05)
 

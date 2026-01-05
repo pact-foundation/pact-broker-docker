@@ -115,7 +115,7 @@ GEM
       thor (~> 1.0)
     padrino-support (0.16.0.pre3)
     parslet (2.0.0)
-    pg (1.6.2)
+    pg (1.6.3)
     psych (5.2.6)
       date
       stringio
@@ -193,7 +193,7 @@ DEPENDENCIES
   mysql2 (~> 0.3)
   pact_broker
   padrino-core (>= 0.16.0.pre3)
-  pg (~> 1.5)
+  pg (~> 1.6)
   puma (~> 7.0)
   rake (~> 13.0)
   sqlite3 (~> 2.7)

@@ -19,7 +19,7 @@ jobs:
     env:
       TAG: latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Manual Trivy Setup
         uses: aquasecurity/setup-trivy@v0.2.4
         with:

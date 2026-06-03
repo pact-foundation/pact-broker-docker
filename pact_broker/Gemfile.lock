@@ -193,7 +193,7 @@ DEPENDENCIES
   pact_broker
   padrino-core (>= 0.16.0.pre3)
   pg (~> 1.5)
-  puma (~> 7.0)
+  puma (~> 7.2)
   rake (~> 13.0)
   sqlite3 (~> 2.7)
 

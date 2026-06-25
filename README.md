@@ -335,6 +335,8 @@ docker pull pactfoundation/pact-broker
 
 Alternatively, block `static.scarf.sh` at the network level (or disable image loading in your browser when viewing this README) to disable the README impression pixel.
 
+For more information, see [docs.pact.io/telemetry](https://docs.pact.io/telemetry).
+
 [docker]: https://docs.docker.com/install/
 [pact-broker]: https://github.com/pact-foundation/pact_broker
 [pact-broker-docker]: https://hub.docker.com/r/pactfoundation/pact-broker/

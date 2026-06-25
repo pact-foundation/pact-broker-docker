@@ -17,7 +17,7 @@ This repository contains a Dockerized version of the [Pact Broker][pact-broker].
 [![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![size: arm](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-broker)
 
-<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=f0adca49-1631-4f0b-8914-366ea390b5c8" />
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=f0adca49-1631-4f0b-8914-366ea390b5c8&page=README.md" />
 
 ## In a hurry?
 

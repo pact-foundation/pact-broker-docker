@@ -1,3 +1,10 @@
+<a name="unreleased"></a>
+### Unreleased
+
+#### Features
+
+* add Scarf analytics pixel to README and document telemetry / opt-out
+
 <a name="2.139.0-pactbroker2.119.0"></a>
 ### 2.139.0-pactbroker2.119.0 (2026-06-17)
 

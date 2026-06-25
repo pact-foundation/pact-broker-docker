@@ -17,6 +17,8 @@ This repository contains a Dockerized version of the [Pact Broker][pact-broker].
 [![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![size: arm](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-broker)
 
+<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=f0adca49-1631-4f0b-8914-366ea390b5c8&page=README.md" />
+
 ## In a hurry?
 
 If you want to try out a Pact Broker that can be accessed by all your teams, without having to fill in requisition forms and wait for 3 months, you can get a free trial at <a href="https://pactflow.io/?utm_source=github&utm_campaign=pact_foundation_pact_broker_docker">pactflow.io</a>. Built by a group of core Pact maintainers, PactFlow is a fork of the OSS Pact Broker with extra goodies like an improved UI, user and team management, secrets, field level verification results and federated login. It's also fully supported, and that means when something goes wrong, *someone else* gets woken up in the middle of the afternoon to fix it...
@@ -36,7 +38,7 @@ Multi-platform images are available
 - `--platform=linux/arm64`
 
   ```sh
-  docker run --rm -it --entrypoint /bin/sh pactfoundation/pact-broker:latest -c 'uname -sm'
+  docker run --rm -it --entrypoint /bin/sh docker.pactflow.io/pactfoundation/pact-broker:latest -c 'uname -sm'
   ```
 
 ## Prerequisites
@@ -276,7 +278,7 @@ docker run --rm \
     -e PACT_BROKER_DATABASE_URL=<url> \
     -e PACT_BROKER_MIGRATION_TARGET=<target> \
     --entrypoint db-migrate \
-    pactfoundation/pact-broker
+    docker.pactflow.io/pactfoundation/pact-broker
 ```
 
 To get the current version of the database run:
@@ -285,7 +287,7 @@ To get the current version of the database run:
 docker run --rm \
     -e PACT_BROKER_DATABASE_URL=<url> \
     --entrypoint db-version \
-    pactfoundation/pact-broker
+    docker.pactflow.io/pactfoundation/pact-broker
 ```
 # Vulnerability scanning
 
@@ -318,6 +320,18 @@ Until May 2023, the versioning scheme used the `M.m.p` from the Pact Broker gem,
 # Troubleshooting
 
 See the [Troubleshooting][troubleshooting] page on the docs site.
+
+## Anonymized analytics
+
+`pactfoundation/pact-broker` uses [Scarf](https://scarf.sh/) to collect [anonymized download analytics](https://about.scarf.sh/about). These analytics help support the maintainers of this image and ONLY run when you pull the image through the Scarf gateway (the pull commands shown throughout this README). To opt out, pull the image directly from Docker Hub:
+
+```sh
+docker pull pactfoundation/pact-broker
+```
+
+Alternatively, block `static.scarf.sh` at the network level (or disable image loading in your browser when viewing this README) to disable the README impression pixel.
+
+For more information, see [docs.pact.io/telemetry](https://docs.pact.io/telemetry).
 
 [docker]: https://docs.docker.com/install/
 [pact-broker]: https://github.com/pact-foundation/pact_broker

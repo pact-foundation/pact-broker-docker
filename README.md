@@ -323,11 +323,7 @@ See the [Troubleshooting][troubleshooting] page on the docs site.
 
 ## Anonymized analytics
 
-`pactfoundation/pact-broker` uses [Scarf](https://scarf.sh/) to collect anonymized analytics about how the image is being used.
-
-When you pull through the Scarf gateway (the pull commands shown throughout this README), Scarf records [**system and OS statistics, company information, and downloads by versions/tags**](https://docs.scarf.sh/packages/) — derived from your Docker client's User-Agent and an ASN lookup on your IP at request time. When you view this README on github.com or Docker Hub, a [1x1 pixel](https://docs.scarf.sh/web-traffic/) records a coarse-grained impression with country and organisation attribution. **No IP address is stored, no cookies are set, and no other personally identifiable information is retained.**
-
-To opt out of pull-event analytics, pull the image directly from Docker Hub:
+`pactfoundation/pact-broker` uses [Scarf](https://scarf.sh/) to collect [anonymized download analytics](https://about.scarf.sh/about). These analytics help support the maintainers of this image and ONLY run when you pull the image through the Scarf gateway (the pull commands shown throughout this README). To opt out, pull the image directly from Docker Hub:
 
 ```sh
 docker pull pactfoundation/pact-broker

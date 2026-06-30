@@ -33,6 +33,15 @@ PactBroker::DB::CleanTask.new do | task |
     task.version_deletion_limit = env('PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT').to_i
   end
 
+  if env('PACT_BROKER_DATABASE_CLEAN_KEEP_BRANCH_SELECTORS')
+    require 'json'
+    task.keep_branch_selectors = JSON.parse(env('PACT_BROKER_DATABASE_CLEAN_KEEP_BRANCH_SELECTORS'))
+  end
+
+  if env('PACT_BROKER_DATABASE_CLEAN_BRANCH_DELETION_LIMIT')
+    task.branch_deletion_limit = env('PACT_BROKER_DATABASE_CLEAN_BRANCH_DELETION_LIMIT').to_i
+  end
+
   if env('PACT_BROKER_DATABASE_CLEAN_DRY_RUN')
     task.dry_run = env('PACT_BROKER_DATABASE_CLEAN_DRY_RUN') == 'true'
   end

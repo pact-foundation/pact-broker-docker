@@ -15,6 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, ubuntu-24.04-arm ]
+        distro: [ alpine, debian ]
     runs-on: ${{ matrix.os }}
     env:
       TAG: latest
@@ -24,6 +25,11 @@ jobs:
         uses: aquasecurity/setup-trivy@v0.3.1
         with:
           cache: true
+      - name: Set environment variables
+        run: |
+          if [ "${{ matrix.distro }}" = "debian" ]; then
+            echo "IS_DEBIAN=1" >> $GITHUB_ENV
+          fi
       - name: Audit Docker image for amd64
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: ./script/release-workflow/audit.sh

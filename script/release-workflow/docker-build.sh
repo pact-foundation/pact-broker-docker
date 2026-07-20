@@ -9,7 +9,7 @@ DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"
 for arch in $ARCHES; do 
     docker buildx build \
     --platform linux/$arch \
-    --build-arg VERSION=${TAG} \
+    --build-arg VERSION="${TAG:-dev}" \
     --output type=docker \
     --tag ${DOCKER_IMAGE_ORG_AND_NAME}:latest-${arch} \
     .

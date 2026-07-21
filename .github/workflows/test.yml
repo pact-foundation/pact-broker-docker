@@ -12,12 +12,22 @@ on:
 jobs:
   test:
     runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ alpine, debian ]
+
     steps:
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
       - run: "bundle install"
       - run: "bundle exec rake"
 
+      - name: Set environment variables
+        run: |
+          if [ "${{ matrix.distro }}" = "debian" ]; then
+            echo "IS_DEBIAN=1" >> $GITHUB_ENV
+          fi
       - name: Setup Docker builder
         run: ./script/release-workflow/docker-prepare.sh
 

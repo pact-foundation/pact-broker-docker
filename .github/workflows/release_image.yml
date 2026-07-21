@@ -40,6 +40,10 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ alpine, debian ]
 
     steps:
       - uses: actions/checkout@v6
@@ -56,6 +60,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set environment variables
+        run: |
+          if [ "${{ matrix.distro }}" = "debian" ]; then
+            echo "IS_DEBIAN=1" >> $GITHUB_ENV
+          fi
 
       - name: Release image
         run: script/release-workflow/run.sh

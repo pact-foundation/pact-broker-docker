@@ -1,3 +1,10 @@
+<a name="2.141.0-pactbroker2.119.0"></a>
+### 2.141.0-pactbroker2.119.0 (2026-07-20)
+
+#### Features
+
+* add scarf analytics	 ([2fc2e22](/../../commit/2fc2e22))
+
 <a name="2.140.0-pactbroker2.119.0"></a>
 ### 2.140.0-pactbroker2.119.0 (2026-07-16)
 

@@ -21,6 +21,11 @@ FROM base-$TARGETARCH AS pb-dev
 ARG TARGETARCH
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.47/supercronic-linux-${TARGETARCH} \
     SUPERCRONIC=supercronic-linux-${TARGETARCH}
+
+# Scarf analytics - version/platform reported by the entrypoint on startup
+ARG VERSION=dev
+ENV PACT_BROKER_DOCKER_VERSION=${VERSION} \
+    PACT_BROKER_DOCKER_PLATFORM=linux-${TARGETARCH}
 RUN wget "$SUPERCRONIC_URL" \
  && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
  && chmod +x "$SUPERCRONIC" \

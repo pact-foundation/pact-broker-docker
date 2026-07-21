@@ -323,13 +323,18 @@ See the [Troubleshooting][troubleshooting] page on the docs site.
 
 ## Anonymized analytics
 
-`pactfoundation/pact-broker` uses [Scarf](https://scarf.sh/) to collect [anonymized download analytics](https://about.scarf.sh/about). These analytics help support the maintainers of this image and ONLY run when you pull the image through the Scarf gateway (the pull commands shown throughout this README). To opt out, pull the image directly from Docker Hub:
+`pactfoundation/pact-broker` uses [Scarf](https://scarf.sh/) to collect anonymized analytics that help support the maintainers of this image. Two things are tracked, independently of one another:
+
+* A README impression pixel, served from `static.scarf.sh`.
+* A lightweight, anonymous ping (image version + platform) sent by the container's entrypoint on every startup.
+
+To opt out of the startup ping, set either `PACT_DO_NOT_TRACK` or `SCARF_NO_ANALYTICS` to any non-empty value when running the container:
 
 ```sh
-docker pull pactfoundation/pact-broker
+docker run --rm -e PACT_DO_NOT_TRACK=1 pactfoundation/pact-broker
 ```
 
-Alternatively, block `static.scarf.sh` at the network level (or disable image loading in your browser when viewing this README) to disable the README impression pixel.
+To opt out of the README impression pixel, block `static.scarf.sh` at the network level, or disable image loading in your browser when viewing this README.
 
 For more information, see [docs.pact.io/telemetry](https://docs.pact.io/telemetry).
 

@@ -3,6 +3,7 @@
 set -e
 
 : "${TAG:?TAG must be provided}"
+: "${IS_DEBIAN:=}"
 DEBIAN=${IS_DEBIAN:+"-debian"}
 
 docker_compose_files=$(find . -name "docker-compose-test*.yml")

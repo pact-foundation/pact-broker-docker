@@ -1,3 +1,11 @@
+<a name="2.142.0-pactbroker2.120.0"></a>
+### 2.142.0-pactbroker2.120.0 (2026-07-27)
+
+#### Features
+
+* **deps**
+  * update to anyway_config (2.8.1), concurrent-ruby (1.3.8), csv (3.3.6), hana (1.3.7), json (2.21.1), json_schemer (2.5.0), hana (~> 1.3), regexp_parser (~> 2.0), simpleidn (~> 0.2), pact-support (1.21.7), pact_broker (2.120.0), json (>= 2.19.9), json_schemer (~> 2.5), pact-support (~> 1.21), redcarpet (~> 3.5), webmachine (~> 2.0), ruby-next-core (1.2.1), simpleidn (0.2.3)	 ([d8f2883](/../../commit/d8f2883))
+
 <a name="2.141.0-pactbroker2.119.0"></a>
 ### 2.141.0-pactbroker2.119.0 (2026-07-20)
 

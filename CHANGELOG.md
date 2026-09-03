@@ -1,38 +1,38 @@
 <a name="2.142.0-pactbroker2.120.0"></a>
-### 2.142.0-pactbroker2.120.0 (2026-07-27)
+## 2.142.0-pactbroker2.120.0 (2026-07-27)
 
-#### Features
+### Features
 
 * **deps**
   * update to anyway_config (2.8.1), concurrent-ruby (1.3.8), csv (3.3.6), hana (1.3.7), json (2.21.1), json_schemer (2.5.0), hana (~> 1.3), regexp_parser (~> 2.0), simpleidn (~> 0.2), pact-support (1.21.7), pact_broker (2.120.0), json (>= 2.19.9), json_schemer (~> 2.5), pact-support (~> 1.21), redcarpet (~> 3.5), webmachine (~> 2.0), ruby-next-core (1.2.1), simpleidn (0.2.3)	 ([d8f2883](/../../commit/d8f2883))
 
 <a name="2.141.0-pactbroker2.119.0"></a>
-### 2.141.0-pactbroker2.119.0 (2026-07-20)
+## 2.141.0-pactbroker2.119.0 (2026-07-20)
 
-#### Features
+### Features
 
 * add scarf analytics	 ([2fc2e22](/../../commit/2fc2e22))
 
 <a name="2.140.0-pactbroker2.119.0"></a>
-### 2.140.0-pactbroker2.119.0 (2026-07-16)
+## 2.140.0-pactbroker2.119.0 (2026-07-16)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.120.0	 ([deaafd6](/../../commit/deaafd6))
 
 <a name="2.139.0-pactbroker2.119.0"></a>
-### 2.139.0-pactbroker2.119.0 (2026-06-17)
+## 2.139.0-pactbroker2.119.0 (2026-06-17)
 
 <a name="2.138.0-pactbroker2.119.0"></a>
-### 2.138.0-pactbroker2.119.0 (2026-04-17)
+## 2.138.0-pactbroker2.119.0 (2026-04-17)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.119.0	 ([776961d](/../../commit/776961d))
 
-#### Bug Fixes
+### Bug Fixes
 
 * Update Trivy setup action version to v0.2.6	 ([22c2f06](/../../commit/22c2f06))
 * pin postgres to version 17 to avoid data directory incompatibility	 ([dd1a22d](/../../commit/dd1a22d))
@@ -42,81 +42,81 @@
   * bundle update	 ([7db8e86](/../../commit/7db8e86))
 
 <a name="2.137.0-pactbroker2.118.0"></a>
-### 2.137.0-pactbroker2.118.0 (2026-01-06)
+## 2.137.0-pactbroker2.118.0 (2026-01-06)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.118.0	 ([7deef7a](/../../commit/7deef7a))
 
 <a name="2.136.0-pactbroker2.117.1"></a>
-### 2.136.0-pactbroker2.117.1 (2025-12-10)
+## 2.136.0-pactbroker2.117.1 (2025-12-10)
 
-#### Features
+### Features
 
 * Update to ruby:3.3.10-alpine3.23 to fix CVEs	 ([59010d4](/../../commit/59010d4))
 
 <a name="2.135.0-pactbroker2.117.1"></a>
-### 2.135.0-pactbroker2.117.1 (2025-11-05)
+## 2.135.0-pactbroker2.117.1 (2025-11-05)
 
-#### Features
+### Features
 
 * **deps**
   * ruby 3.3.10 / alpine 3.21 / supercronic 0.2.39	 ([bc44a7e](/../../commit/bc44a7e))
 
 <a name="2.134.1-pactbroker2.117.1"></a>
-### 2.134.1-pactbroker2.117.1 (2025-11-02)
+## 2.134.1-pactbroker2.117.1 (2025-11-02)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.117.1	 ([09e615f](/../../commit/09e615f))
 
 <a name="2.134.0-pactbroker2.117.0"></a>
-### 2.134.0-pactbroker2.117.0 (2025-10-30)
+## 2.134.0-pactbroker2.117.0 (2025-10-30)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.117.0	 ([5b7f644](/../../commit/5b7f644))
 
 <a name="2.133.0-pactbroker2.116.0"></a>
-### 2.133.0-pactbroker2.116.0 (2025-07-24)
+## 2.133.0-pactbroker2.116.0 (2025-07-24)
 
 <a name="2.132.0-pactbroker2.116.0"></a>
-### 2.132.0-pactbroker2.116.0 (2025-07-09)
+## 2.132.0-pactbroker2.116.0 (2025-07-09)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * add pact-support to gemfile, as released gem is using git	 ([05a253a](/../../commit/05a253a))
 
 <a name="2.131.0-pactbroker2.115.0"></a>
-### 2.131.0-pactbroker2.115.0 (2025-06-05)
+## 2.131.0-pactbroker2.115.0 (2025-06-05)
 
 <a name="2.130.0-pactbroker2.115.0"></a>
-### 2.130.0-pactbroker2.115.0 (2025-04-10)
+## 2.130.0-pactbroker2.115.0 (2025-04-10)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.115.0	 ([9c74838](/../../commit/9c74838))
 
 <a name="2.129.0-pactbroker2.114.0"></a>
-### 2.129.0-pactbroker2.114.0 (2025-03-11)
+## 2.129.0-pactbroker2.114.0 (2025-03-11)
 
 <a name="2.128.0-pactbroker2.114.0"></a>
-### 2.128.0-pactbroker2.114.0 (2025-03-06)
+## 2.128.0-pactbroker2.114.0 (2025-03-06)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.114.0	 ([79f3f46](/../../commit/79f3f46))
 
 <a name="2.127.0-pactbroker2.113.2"></a>
-### 2.127.0-pactbroker2.113.2 (2025-03-06)
+## 2.127.0-pactbroker2.113.2 (2025-03-06)
 
-#### Features
+### Features
 
 * upgrade to rack 3 (#241)	 ([4668ab5](/../../commit/4668ab5))
 
@@ -124,47 +124,47 @@
   * update pact_broker gem to version 2.113.1	 ([c0065fb](/../../commit/c0065fb))
 
 <a name="2.126.0-pactbroker2.113.0"></a>
-### 2.126.0-pactbroker2.113.0 (2025-02-13)
+## 2.126.0-pactbroker2.113.0 (2025-02-13)
 
 <a name="2.125.0-pactbroker2.113.0"></a>
-### 2.125.0-pactbroker2.113.0 (2025-02-13)
+## 2.125.0-pactbroker2.113.0 (2025-02-13)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.113.0	 ([e683bb2](/../../commit/e683bb2))
 
 <a name="2.124.0-pactbroker2.112.0"></a>
-### 2.124.0-pactbroker2.112.0 (2024-12-06)
+## 2.124.0-pactbroker2.112.0 (2024-12-06)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **audit**
   * skip cve-2024-21510 (#217)	 ([596a7d4](/../../commit/596a7d4))
 
 <a name="2.123.0-pactbroker2.112.0"></a>
-### 2.123.0-pactbroker2.112.0 (2024-09-30)
+## 2.123.0-pactbroker2.112.0 (2024-09-30)
 
 <a name="2.122.0-pactbroker2.112.0"></a>
-### 2.122.0-pactbroker2.112.0 (2024-09-17)
+## 2.122.0-pactbroker2.112.0 (2024-09-17)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.112.0	 ([e8771f1](/../../commit/e8771f1))
 
 <a name="2.121.0-pactbroker2.111.0"></a>
-### 2.121.0-pactbroker2.111.0 (2024-08-12)
+## 2.121.0-pactbroker2.111.0 (2024-08-12)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.111.0	 ([16efe89](/../../commit/16efe89))
 
 <a name="2.120.0-pactbroker2.110.0"></a>
-### 2.120.0-pactbroker2.110.0 (2024-06-25)
+## 2.120.0-pactbroker2.110.0 (2024-06-25)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * update supercronic to v0.2.30	 ([d9f5969](/../../commit/d9f5969))
@@ -173,9 +173,9 @@
   * docker-compose possibly causing issues	 ([2a63a60](/../../commit/2a63a60))
 
 <a name="2.119.1-pactbroker2.110.0"></a>
-### 2.119.1-pactbroker2.110.0 (2024-05-20)
+## 2.119.1-pactbroker2.110.0 (2024-05-20)
 
-#### Features
+### Features
 
 * **deps**
   * update nokogiri gem to version 1.16.5	 ([2596879](/../../commit/2596879))
@@ -183,25 +183,25 @@
 * Add OCI image annotations	 ([e32aae2](/../../commit/e32aae2))
 
 <a name="2.119.0-pactbroker2.110.0"></a>
-### 2.119.0-pactbroker2.110.0 (2024-05-10)
+## 2.119.0-pactbroker2.110.0 (2024-05-10)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.110.0	 ([a9b6c13](/../../commit/a9b6c13))
 
 <a name="2.118.1-pactbroker2.109.1"></a>
-### 2.118.1-pactbroker2.109.1 (2024-03-05)
+## 2.118.1-pactbroker2.109.1 (2024-03-05)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **tests**
   * update docker-compose sed to use correct tag	 ([89b5fa3](/../../commit/89b5fa3))
 
 <a name="2.118.0-pactbroker2.109.1"></a>
-### 2.118.0-pactbroker2.109.1 (2024-02-26)
+## 2.118.0-pactbroker2.109.1 (2024-02-26)
 
-#### Features
+### Features
 
 * **deps**
   * update rack to 2.2.8.1	 ([615abcb](/../../commit/615abcb))
@@ -210,7 +210,7 @@
 * release multi-arch images under main tags	 ([eb23705](/../../commit/eb23705))
 * bind to IPv6 'any' as well as IPv4 'any' (#170)	 ([992aa59](/../../commit/992aa59))
 
-#### Bug Fixes
+### Bug Fixes
 
 * **ci**
   * ghcr workflow POSIX sh, string replacement is undefined	 ([f0acc31](/../../commit/f0acc31))
@@ -219,81 +219,81 @@
 * ghcr release workflow had missing arg	 ([8457eb0](/../../commit/8457eb0))
 
 <a name="2.117.1-pactbroker2.109.1"></a>
-### 2.117.1-pactbroker2.109.1 (2024-02-21)
+## 2.117.1-pactbroker2.109.1 (2024-02-21)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.109.1	 ([4a0834c](/../../commit/4a0834c))
 
 <a name="2.117.0-pactbroker2.109.0"></a>
-### 2.117.0-pactbroker2.109.0 (2024-02-06)
+## 2.117.0-pactbroker2.109.0 (2024-02-06)
 
-#### Bug Fixes
+### Bug Fixes
 
 * force_ruby_platform for sqlite gem to build natively fixes #148	 ([c08fae9](/../../commit/c08fae9))
 
 <a name="2.116.0-pactbroker2.109.0"></a>
-### 2.116.0-pactbroker2.109.0 (2024-02-05)
+## 2.116.0-pactbroker2.109.0 (2024-02-05)
 
 <a name="2.115.0-pactbroker2.108.0"></a>
-### 2.115.0-pactbroker2.108.0 (2024-02-05)
+## 2.115.0-pactbroker2.108.0 (2024-02-05)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.109.0	 ([d597298](/../../commit/d597298))
 
-#### Bug Fixes
+### Bug Fixes
 
 * pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities (#159)	 ([d1cef48](/../../commit/d1cef48))
 
 <a name="2.114.0-pactbroker2.108.0"></a>
-### 2.114.0-pactbroker2.108.0 (2024-01-05)
+## 2.114.0-pactbroker2.108.0 (2024-01-05)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.108.0	 ([c85ea9c](/../../commit/c85ea9c))
 
 <a name="2.113.0-pactbroker2.107.1"></a>
-### 2.113.0-pactbroker2.107.1 (2023-09-12)
+## 2.113.0-pactbroker2.107.1 (2023-09-12)
 
-#### Features
+### Features
 
 * update clean shell script to fail if any of the commands fail	 ([adbf9af](/../../commit/adbf9af))
 
 <a name="2.112.0-pactbroker2.107.1"></a>
-### 2.112.0-pactbroker2.107.1 (2023-08-21)
+## 2.112.0-pactbroker2.107.1 (2023-08-21)
 
-#### Bug Fixes
+### Bug Fixes
 
 * pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities	 ([76db139](/../../commit/76db139))
 
 <a name="2.111.0-pactbroker2.107.1"></a>
-### 2.111.0-pactbroker2.107.1 (2023-08-08)
+## 2.111.0-pactbroker2.107.1 (2023-08-08)
 
-#### Features
+### Features
 
 * **deps**
   * update to anyway_config (2.5.1), dry-configurable (1.1.0), dry-core (1.0.1), dry-schema (1.13.2), i18n (1.14.1), mini_portile2 (2.8.4), nokogiri (1.15.3), mini_portile2 (~> 2.8.2), racc (1.7.1), rack (2.2.8), sanitize (6.0.2), semantic_logger (4.14.0), sequel (5.71.0), sqlite3 (1.6.3), stringio (3.0.7), temple (0.10.2), thor (1.2.2), tilt (2.2.0), zeitwerk (2.6.11)	 ([f8db2a2](/../../commit/f8db2a2))
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * bump puma from 5.6.5 to 5.6.6	 ([de0b934](/../../commit/de0b934))
 
 <a name="2.110.0-pactbroker2.107.1"></a>
-### 2.110.0-pactbroker2.107.1 (2023-05-24)
+## 2.110.0-pactbroker2.107.1 (2023-05-24)
 
-#### Features
+### Features
 
 * Multi manifest build - arm64/arm (new) + amd64 (current) (#123)	 ([14987e3](/../../commit/14987e3))
 
 <a name="2.109.0-pactbroker2.107.1"></a>
-### 2.109.0-pactbroker2.107.1 (2023-05-03)
+## 2.109.0-pactbroker2.107.1 (2023-05-03)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.107.1	 ([7789f4a](/../../commit/7789f4a))
@@ -301,9 +301,9 @@
 * update base image to ruby 3.2.1-alpine3.17 (#133)	 ([46071dd](/../../commit/46071dd))
 
 <a name="2.107.0.1"></a>
-### 2.107.0.1 (2023-03-16)
+## 2.107.0.1 (2023-03-16)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * bump ruby from 2.7.6-alpine3.16 to 2.7.7-alpine3.16 (#113)	 ([a9fea7d](/../../commit/a9fea7d))
@@ -311,24 +311,24 @@
   * bump rack from 2.2.6.2 to 2.2.6.3 in /pact_broker (#115)	 ([62a6aab](/../../commit/62a6aab))
 
 <a name="2.107.0.0"></a>
-### 2.107.0.0 (2023-03-02)
+## 2.107.0.0 (2023-03-02)
 
-#### Features
+### Features
 
 * **deps**
   * update gems	 ([7ea15fe](/../../commit/7ea15fe))
 
 <a name="2.106.0.1"></a>
-### 2.106.0.1 (2023-02-04)
+## 2.106.0.1 (2023-02-04)
 
-#### Features
+### Features
 
 * update ruby from version 2.7.6 to 2.7.7	 ([1882f4f](/../../commit/1882f4f))
 
 <a name="2.106.0.0"></a>
-### 2.106.0.0 (2023-02-04)
+## 2.106.0.0 (2023-02-04)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.106.0	 ([d779496](/../../commit/d779496))
@@ -337,93 +337,93 @@
 * upgrade base image to ruby:2.7.6-alpine3.16 to fix security issues	 ([226f592](/../../commit/226f592))
 
 <a name="2.105.0.1"></a>
-### 2.105.0.1 (2022-11-03)
+## 2.105.0.1 (2022-11-03)
 
 <a name="2.105.0.0"></a>
-### 2.105.0.0 (2022-10-19)
+## 2.105.0.0 (2022-10-19)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.105.0	 ([b10f67f](/../../commit/b10f67f))
 
 <a name="2.104.0.0"></a>
-### 2.104.0.0 (2022-09-17)
+## 2.104.0.0 (2022-09-17)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.104.0	 ([ce019e5](/../../commit/ce019e5))
 
 <a name="2.103.0.0"></a>
-### 2.103.0.0 (2022-09-16)
+## 2.103.0.0 (2022-09-16)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.103.0	 ([973c2c6](/../../commit/973c2c6))
 
 <a name="2.102.2.0"></a>
-### 2.102.2.0 (2022-07-14)
+## 2.102.2.0 (2022-07-14)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.102.2	 ([259ffd1](/../../commit/259ffd1))
 
 <a name="2.102.1.0"></a>
-### 2.102.1.0 (2022-07-08)
+## 2.102.1.0 (2022-07-08)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.102.1	 ([bbe1ff9](/../../commit/bbe1ff9))
 
 <a name="2.101.0.1"></a>
-### 2.101.0.1 (2022-06-28)
+## 2.101.0.1 (2022-06-28)
 
-#### Bug Fixes
+### Bug Fixes
 
 * upgrade base image from ruby:2.7.5-alpine3.13 to ruby:2.7.6-alpine3.15 (#83)	 ([d25262f](/../../commit/d25262f))
 
   BREAKING CHANGE: Docker 19 is no longer supported for the Pact Broker Docker image as alpine3.14 and later require Docker 20.10.0 or later. See https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2 for more information.
 
 <a name="2.101.0.0"></a>
-### 2.101.0.0 (2022-06-13)
+## 2.101.0.0 (2022-06-13)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.101.0	 ([88ac7a4](/../../commit/88ac7a4))
 
 <a name="2.100.0.1"></a>
-### 2.100.0.1 (2022-05-31)
+## 2.100.0.1 (2022-05-31)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * bump rack from 2.2.3 to 2.2.3.1 in /pact_broker (#80)	 ([12c86ed](/../../commit/12c86ed))
 
 <a name="2.100.0.0"></a>
-### 2.100.0.0 (2022-05-20)
+## 2.100.0.0 (2022-05-20)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.100.0	 ([9a26928](/../../commit/9a26928))
 
 <a name="2.99.0.0"></a>
-### 2.99.0.0 (2022-05-16)
+## 2.99.0.0 (2022-05-16)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.99.0	 ([6b45755](/../../commit/6b45755))
 
 <a name="2.98.0.1"></a>
-### 2.98.0.1 (2022-05-13)
+## 2.98.0.1 (2022-05-13)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * upgrade gems	 ([0fca8c2](/../../commit/0fca8c2))
@@ -431,121 +431,121 @@
 * pact_broker/Gemfile.lock to reduce vulnerabilities (#79)	 ([4d8da07](/../../commit/4d8da07))
 
 <a name="2.98.0.0"></a>
-### 2.98.0.0 (2022-03-29)
+## 2.98.0.0 (2022-03-29)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.98.0	 ([37b0467](/../../commit/37b0467))
 
 <a name="2.97.0.0"></a>
-### 2.97.0.0 (2022-03-29)
+## 2.97.0.0 (2022-03-29)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.97.0	 ([16a3401](/../../commit/16a3401))
 
 <a name="2.96.0.0"></a>
-### 2.96.0.0 (2022-03-21)
+## 2.96.0.0 (2022-03-21)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.96.0	 ([d005931](/../../commit/d005931))
 
 <a name="2.95.1.0"></a>
-### 2.95.1.0 (2022-03-21)
+## 2.95.1.0 (2022-03-21)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.95.1	 ([1cdc395](/../../commit/1cdc395))
 
 <a name="2.95.0.0"></a>
-### 2.95.0.0 (2022-03-16)
+## 2.95.0.0 (2022-03-16)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.95.0	 ([1b4be63](/../../commit/1b4be63))
 
 <a name="2.94.0.0"></a>
-### 2.94.0.0 (2022-02-21)
+## 2.94.0.0 (2022-02-21)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.94.0	 ([6ecdf46](/../../commit/6ecdf46))
 
 <a name="2.93.4.0"></a>
-### 2.93.4.0 (2022-02-20)
+## 2.93.4.0 (2022-02-20)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.93.4	 ([6b6ed21](/../../commit/6b6ed21))
 
 <a name="2.93.3.1"></a>
-### 2.93.3.1 (2022-02-13)
+## 2.93.3.1 (2022-02-13)
 
-#### Bug Fixes
+### Bug Fixes
 
 * pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities (#75)	 ([5f87277](/../../commit/5f87277))
 
 <a name="2.93.3.0"></a>
-### 2.93.3.0 (2022-02-10)
+## 2.93.3.0 (2022-02-10)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.93.3	 ([646b861](/../../commit/646b861))
   * update base image to ruby 2.7.5 and bundler to 2.3.6	 ([873a8f7](/../../commit/873a8f7))
 
 <a name="2.93.2.0"></a>
-### 2.93.2.0 (2021-12-23)
+## 2.93.2.0 (2021-12-23)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.93.2	 ([eeabb74](/../../commit/eeabb74))
 
 <a name="2.93.1.0"></a>
-### 2.93.1.0 (2021-12-21)
+## 2.93.1.0 (2021-12-21)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.93.1	 ([026a9a3](/../../commit/026a9a3))
 
 <a name="2.93.0.0"></a>
-### 2.93.0.0 (2021-12-07)
+## 2.93.0.0 (2021-12-07)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.93.0	 ([368225b](/../../commit/368225b))
 
 <a name="2.92.0.0"></a>
-### 2.92.0.0 (2021-11-27)
+## 2.92.0.0 (2021-11-27)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.92.0	 ([0ed4c14](/../../commit/0ed4c14))
 
 <a name="2.91.0.0"></a>
-### 2.91.0.0 (2021-11-15)
+## 2.91.0.0 (2021-11-15)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.91.0	 ([24b41bc](/../../commit/24b41bc))
 
 <a name="2.90.0.0"></a>
-### 2.90.0.0 (2021-11-12)
+## 2.90.0.0 (2021-11-12)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.90.0	 ([fc9c4c4](/../../commit/fc9c4c4))
@@ -553,7 +553,7 @@
 * remove keep selector env var and use the default keep selectors from the Pact Broker task	 ([6c901c5](/../../commit/6c901c5))
 * update default clean keep selectors to include currently deployed and released versions	 ([b4b25cd](/../../commit/b4b25cd))
 
-#### Bug Fixes
+### Bug Fixes
 
 * update to rdoc 6.3.2 for CVE-2021-31799	 ([1e055db](/../../commit/1e055db))
 
@@ -561,9 +561,9 @@
   * update i18n to 1.8.11	 ([22188c2](/../../commit/22188c2))
 
 <a name="2.89.1.0"></a>
-### 2.89.1.0 (2021-10-27)
+## 2.89.1.0 (2021-10-27)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.89.1	 ([644f1b8](/../../commit/644f1b8))
@@ -571,297 +571,297 @@
 * add example K8s deployment configurations (#68)	 ([dd441ef](/../../commit/dd441ef))
 
 <a name="2.89.0.0"></a>
-### 2.89.0.0 (2021-10-15)
+## 2.89.0.0 (2021-10-15)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.89.0	 ([102687b](/../../commit/102687b))
 
 <a name="2.88.0.2"></a>
-### 2.88.0.2 (2021-10-13)
+## 2.88.0.2 (2021-10-13)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * bump puma from 5.5.0 to 5.5.1 in /pact_broker (#67)	 ([4a626c3](/../../commit/4a626c3))
 
 <a name="2.88.0.1"></a>
-### 2.88.0.1 (2021-10-12)
+## 2.88.0.1 (2021-10-12)
 
-#### Bug Fixes
+### Bug Fixes
 
 * update bundler to 2.2.10	 ([22e8866](/../../commit/22e8866))
 
 <a name="2.88.0.0"></a>
-### 2.88.0.0 (2021-10-11)
+## 2.88.0.0 (2021-10-11)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.88.0	 ([13c2940](/../../commit/13c2940))
 
 <a name="2.87.0.2"></a>
-### 2.87.0.2 (2021-10-08)
+## 2.87.0.2 (2021-10-08)
 
-#### Bug Fixes
+### Bug Fixes
 
 * fix clean task logger configuration	 ([9a68393](/../../commit/9a68393))
 
 <a name="2.87.0.1"></a>
-### 2.87.0.1 (2021-10-08)
+## 2.87.0.1 (2021-10-08)
 
-#### Features
+### Features
 
 * add support for anyway config (#57)	 ([ee2f93d](/../../commit/ee2f93d))
 
 <a name="2.87.0.0"></a>
-### 2.87.0.0 (2021-10-05)
+## 2.87.0.0 (2021-10-05)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.87.0	 ([1ed1908](/../../commit/1ed1908))
 
 <a name="2.86.0.1"></a>
-### 2.86.0.1 (2021-09-28)
+## 2.86.0.1 (2021-09-28)
 
-#### Bug Fixes
+### Bug Fixes
 
 * **deps**
   * bump nokogiri from 1.12.4 to 1.12.5	 ([f4d3086](/../../commit/f4d3086))
 
 <a name="2.86.0.0"></a>
-### 2.86.0.0 (2021-09-17)
+## 2.86.0.0 (2021-09-17)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.86.0	 ([ca5071d](/../../commit/ca5071d))
 
 <a name="2.85.1.0"></a>
-### 2.85.1.0 (2021-09-14)
+## 2.85.1.0 (2021-09-14)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.85.1	 ([d0c56b1](/../../commit/d0c56b1))
 
 <a name="2.85.0.0"></a>
-### 2.85.0.0 (2021-09-14)
+## 2.85.0.0 (2021-09-14)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.85.0	 ([fe77fe3](/../../commit/fe77fe3))
 
 <a name="2.84.0.0"></a>
-### 2.84.0.0 (2021-09-10)
+## 2.84.0.0 (2021-09-10)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.84.0	 ([ba453fe](/../../commit/ba453fe))
 
 <a name="2.83.0.3"></a>
-### 2.83.0.3 (2021-09-09)
+## 2.83.0.3 (2021-09-09)
 
-#### Bug Fixes
+### Bug Fixes
 
 * revert upgrade from ruby:2.6.7-alpine to ruby:2.6.8-alpine	 ([a8cd1d5](/../../commit/a8cd1d5))
 
 <a name="2.83.0.2"></a>
-### 2.83.0.2 (2021-09-09)
+## 2.83.0.2 (2021-09-09)
 
-#### Features
+### Features
 
 * upgrade from ruby:2.6.7-alpine to ruby:2.6.8-alpine	 ([8d02b8f](/../../commit/8d02b8f))
 
 <a name="2.83.0.1"></a>
-### 2.83.0.1 (2021-09-09)
+## 2.83.0.1 (2021-09-09)
 
-#### Bug Fixes
+### Bug Fixes
 
 * try reverting to ruby:2.6.7-alpine to see if it fixes https://github.com/pact-foundation/pact-broker-docker/issues/62	 ([a8154d1](/../../commit/a8154d1))
 * Dockerfile-bundle-base to reduce vulnerabilities (#61)	 ([a3a04d3](/../../commit/a3a04d3))
 
 <a name="2.83.0.0"></a>
-### 2.83.0.0 (2021-08-30)
+## 2.83.0.0 (2021-08-30)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.83.0	 ([875c113](/../../commit/875c113))
 
 <a name="2.81.0.2"></a>
-### 2.81.0.2 (2021-08-30)
+## 2.81.0.2 (2021-08-30)
 
-#### Bug Fixes
+### Bug Fixes
 
 * fix configuration logging	 ([a69d9ac](/../../commit/a69d9ac))
 * Dockerfile to reduce vulnerabilities (#59)	 ([f6257d2](/../../commit/f6257d2))
 * update default cron schedule (#58)	 ([745d97d](/../../commit/745d97d))
 
 <a name="2.81.0.1"></a>
-### 2.81.0.1 (2021-07-17)
+## 2.81.0.1 (2021-07-17)
 
 <a name="2.81.0.0"></a>
-### 2.81.0.0 (2021-07-17)
+## 2.81.0.0 (2021-07-17)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.81.0	 ([954be71](/../../commit/954be71))
 
-#### Bug Fixes
+### Bug Fixes
 
 * Dockerfile-bundle-base to reduce vulnerabilities (#55)	 ([5940657](/../../commit/5940657))
 
 <a name="2.80.0.1"></a>
-### 2.80.0.1 (2021-07-09)
+## 2.80.0.1 (2021-07-09)
 
-#### Bug Fixes
+### Bug Fixes
 
 * Dockerfile-package-base to reduce vulnerabilities (#56)	 ([96499bf](/../../commit/96499bf))
 
 <a name="2.80.0.0"></a>
-### 2.80.0.0 (2021-07-06)
+## 2.80.0.0 (2021-07-06)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.80.0	 ([53affe3](/../../commit/53affe3))
 
-#### Bug Fixes
+### Bug Fixes
 
 * update base docker image	 ([cb43417](/../../commit/cb43417))
 
 <a name="2.79.1.2"></a>
-### 2.79.1.2 (2021-05-25)
+## 2.79.1.2 (2021-05-25)
 
-#### Features
+### Features
 
 * **deps**
   * Update puma to 5.3.1 (#48)	 ([3b31b26](/../../commit/3b31b26))
 
-#### Bug Fixes
+### Bug Fixes
 
 * Dockerfile-bundle-base to reduce vulnerabilities (#47)	 ([9f706a6](/../../commit/9f706a6))
 * pact_broker/Gemfile & pact_broker/Gemfile.lock to reduce vulnerabilities (#46)	 ([893bb12](/../../commit/893bb12))
 
 <a name="2.79.1.1"></a>
-### 2.79.1.1 (2021-04-20)
+## 2.79.1.1 (2021-04-20)
 
-#### Bug Fixes
+### Bug Fixes
 
 * correct path to clean script	 ([1b6ee75](/../../commit/1b6ee75))
 * Dockerfile-package-base to reduce vulnerabilities (#44)	 ([5279abb](/../../commit/5279abb))
 
 <a name="2.79.1.0"></a>
-### 2.79.1.0 (2021-03-28)
+## 2.79.1.0 (2021-03-28)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.79.1	 ([c1a80ae](/../../commit/c1a80ae))
 
 <a name="2.79.0.1"></a>
-### 2.79.0.1 (2021-03-11)
+## 2.79.0.1 (2021-03-11)
 
-#### Features
+### Features
 
 * officially release clean feature	 ([7cdb493](/../../commit/7cdb493))
 
 <a name="2.79.0.0"></a>
-### 2.79.0.0 (2021-02-25)
+## 2.79.0.0 (2021-02-25)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.79.0	 ([489edc9](/../../commit/489edc9))
 
 <a name="2.78.1.1"></a>
-### 2.78.1.1 (2021-02-22)
+## 2.78.1.1 (2021-02-22)
 
-#### Features
+### Features
 
 * 38 add docker environment variable PACT_BROKER_WEBHOOK_HTTP_CODE_SUCCESS (#39)	 ([00b6c46](/../../commit/00b6c46))
 
 <a name="2.78.1.0"></a>
-### 2.78.1.0 (2021-02-18)
+## 2.78.1.0 (2021-02-18)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.78.1	 ([746b927](/../../commit/746b927))
 
 <a name="2.78.0.0"></a>
-### 2.78.0.0 (2021-02-17)
+## 2.78.0.0 (2021-02-17)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.78.0	 ([23f2aa9](/../../commit/23f2aa9))
   * update pact_broker gem to version 2.77.0	 ([bde97e3](/../../commit/bde97e3))
 
 <a name="2.76.2.1"></a>
-### 2.76.2.1 (2021-02-01)
+## 2.76.2.1 (2021-02-01)
 
-#### Features
+### Features
 
 * add support for PACT_BROKER_WEBHOOK_RETRY_SCHEDULE environment variable	 ([536a61b](/../../commit/536a61b))
 
 <a name="2.76.2.0"></a>
-### 2.76.2.0 (2021-01-29)
+## 2.76.2.0 (2021-01-29)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.76.2	 ([3f52c00](/../../commit/3f52c00))
 
 <a name="2.76.1.2"></a>
-### 2.76.1.2 (2021-01-29)
+## 2.76.1.2 (2021-01-29)
 
-#### Features
+### Features
 
 * create custom entrypoint to perform rollback	 ([b67f3d6](/../../commit/b67f3d6))
 
 <a name="2.76.1.0"></a>
-### 2.76.1.0 (2021-01-27)
+## 2.76.1.0 (2021-01-27)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.76.1	 ([0839ba6](/../../commit/0839ba6))
 
 <a name="2.76.0.0"></a>
-### 2.76.0.0 (2021-01-21)
+## 2.76.0.0 (2021-01-21)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.76.0	 ([835d709](/../../commit/835d709))
 
 <a name="2.75.0.0"></a>
-### 2.75.0.0 (2021-01-20)
+## 2.75.0.0 (2021-01-20)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.75.0	 ([6a531d6](/../../commit/6a531d6))
 
 <a name="2.74.1.0"></a>
-### 2.74.1.0 (2021-01-04)
+## 2.74.1.0 (2021-01-04)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.74.1	 ([be457b7](/../../commit/be457b7))
 
 <a name="2.73.0.0"></a>
-### 2.73.0.0 (2020-12-16)
+## 2.73.0.0 (2020-12-16)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.73.0	 ([2ecc2f8](/../../commit/2ecc2f8))
@@ -869,26 +869,26 @@
 * allow database retries to be configured so application waits for database to be available on startup	 ([3c36a27](/../../commit/3c36a27))
 
 <a name="2.72.0.3"></a>
-### 2.72.0.3 (2020-12-04)
+## 2.72.0.3 (2020-12-04)
 
-#### Features
+### Features
 
 * ensure supercronic only loads the crontab once when the entrypoint is called multiple times during startup	 ([4e217ef](/../../commit/4e217ef))
 
 <a name="2.72.0.2"></a>
-### 2.72.0.2 (2020-12-02)
+## 2.72.0.2 (2020-12-02)
 
 <a name="2.72.0.1"></a>
-### 2.72.0.1 (2020-12-02)
+## 2.72.0.1 (2020-12-02)
 
-#### Features
+### Features
 
 * beta - allow data cleaning tasks to be configured by environment variables	 ([5896360](/../../commit/5896360))
 
 <a name="2.72.0.0"></a>
-### 2.72.0.0 (2020-12-02)
+## 2.72.0.0 (2020-12-02)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.72.0	 ([8d6a622](/../../commit/8d6a622))
@@ -896,65 +896,65 @@
 * support scheduled cleaning of old data (beta)	 ([d9f1651](/../../commit/d9f1651))
 
 <a name="2.71.0.0"></a>
-### 2.71.0.0 (2020-11-28)
+## 2.71.0.0 (2020-11-28)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.71.0	 ([496f2b5](/../../commit/496f2b5))
 
 <a name="2.70.0.0"></a>
-### 2.70.0.0 (2020-11-28)
+## 2.70.0.0 (2020-11-28)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.70.0	 ([904b95c](/../../commit/904b95c))
 
 <a name="2.69.0.0"></a>
-### 2.69.0.0 (2020-11-24)
+## 2.69.0.0 (2020-11-24)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.69.0	 ([b887f60](/../../commit/b887f60))
 
 <a name="2.68.1.0"></a>
-### 2.68.1.0 (2020-10-25)
+## 2.68.1.0 (2020-10-25)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.68.1), rspec-expectations (3.9.3), rspec-support (3.9.4)	 ([b9ec3c1](/../../commit/b9ec3c1))
 
 <a name="2.68.0.0"></a>
-### 2.68.0.0 (2020-10-23)
+## 2.68.0.0 (2020-10-23)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.68.0), semantic_logger (4.7.3)	 ([9734287](/../../commit/9734287))
 
 <a name="2.67.0.0"></a>
-### 2.67.0.0 (2020-10-15)
+## 2.67.0.0 (2020-10-15)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.67.0), sequel (5.37.0), tins (1.26.0)	 ([6f4494c](/../../commit/6f4494c))
 
 <a name="2.66.0.0"></a>
-### 2.66.0.0 (2020-10-01)
+## 2.66.0.0 (2020-10-01)
 
-#### Features
+### Features
 
 * **deps**
   * update to haml (5.2.0), pact_broker (2.66.0), rspec-core (3.9.3), webrick (1.6.1)	 ([e425ba0](/../../commit/e425ba0))
 
 <a name="2.65.0.0"></a>
-### 2.65.0.0 (2020-09-25)
+## 2.65.0.0 (2020-09-25)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.65.0)	 ([7e61052](/../../commit/7e61052))
@@ -962,124 +962,124 @@
 * allow missing migration files (allow older images to run against newer database versions)	 ([5750928](/../../commit/5750928))
 
 <a name="2.64.0.0"></a>
-### 2.64.0.0 (2020-09-25)
+## 2.64.0.0 (2020-09-25)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.64.0)	 ([c93c7eb](/../../commit/c93c7eb))
 
 <a name="2.63.0.0"></a>
-### 2.63.0.0 (2020-09-25)
+## 2.63.0.0 (2020-09-25)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.63.0)	 ([14ad82a](/../../commit/14ad82a))
 
 <a name="2.62.0.0"></a>
-### 2.62.0.0 (2020-09-24)
+## 2.62.0.0 (2020-09-24)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.62.0)	 ([30558e9](/../../commit/30558e9))
 
 <a name="2.61.0.0"></a>
-### 2.61.0.0 (2020-09-17)
+## 2.61.0.0 (2020-09-17)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.61.0)	 ([c78d985](/../../commit/c78d985))
 
 <a name="2.60.1.0"></a>
-### 2.60.1.0 (2020-09-09)
+## 2.60.1.0 (2020-09-09)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.60.1)	 ([2c3e79d](/../../commit/2c3e79d))
 
 <a name="2.60.0.0"></a>
-### 2.60.0.0 (2020-09-08)
+## 2.60.0.0 (2020-09-08)
 
-#### Features
+### Features
 
 * **deps**
   * update to concurrent-ruby (1.1.7), pact_broker (2.60.0), rack-protection (2.1.0), sequel (5.36.0), sinatra (2.1.0), rack (~> 2.2), rack-protection (= 2.1.0)	 ([de35c40](/../../commit/de35c40))
 
 <a name="2.59.2.0"></a>
-### 2.59.2.0 (2020-08-07)
+## 2.59.2.0 (2020-08-07)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.59.2), semantic_logger (4.7.2)	 ([5cf922b](/../../commit/5cf922b))
 
 <a name="2.59.1.0"></a>
-### 2.59.1.0 (2020-08-04)
+## 2.59.1.0 (2020-08-04)
 
-#### Features
+### Features
 
 * **deps**
   * update to pact_broker (2.59.1), sequel (5.35.0)	 ([820d9ff](/../../commit/820d9ff))
 
 <a name="2.59.0.0"></a>
-### 2.59.0.0 (2020-07-31)
+## 2.59.0.0 (2020-07-31)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.59.0	 ([6badee6](/../../commit/6badee6))
 
 <a name="2.58.3.0"></a>
-### 2.58.3.0 (2020-07-25)
+## 2.58.3.0 (2020-07-25)
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.58.3	 ([ff4efe0](/../../commit/ff4efe0))
 
 <a name="2.58.2.4"></a>
-### 2.58.2.4 (2020-07-24)
+## 2.58.2.4 (2020-07-24)
 
 
-#### Features
+### Features
 
 * **deps**
   * upgrade to rack 13.0	 ([aa858cc](/../../commit/aa858cc))
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * remove webrick 1.4.2 due to vulnerabilities	 ([bbd4c21](/../../commit/bbd4c21))
 
 
 <a name="2.58.2.3"></a>
-### 2.58.2.3 (2020-07-20)
+## 2.58.2.3 (2020-07-20)
 
 
-#### Features
+### Features
 
 * **deps**
   * update pact_broker gem to version 2.58.2	 ([3639d32](/../../commit/3639d32))
 
 
 <a name="2.58.0.1"></a>
-### 2.58.0.1 (2020-07-11)
+## 2.58.0.1 (2020-07-11)
 
 
-#### Features
+### Features
 
 * allow database pool max connections and timeout to be configured via environment variables	 ([2c88f67](/../../commit/2c88f67))
 
 
 <a name="2.58.0.0"></a>
-### 2.58.0.0 (2020-06-26)
+## 2.58.0.0 (2020-06-26)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.58.0	 ([c479285](/../../commit/c479285))
@@ -1088,38 +1088,38 @@
 
 
 <a name="2.57.0.1"></a>
-### 2.57.0.1 (2020-06-25)
+## 2.57.0.1 (2020-06-25)
 
 
-#### Features
+### Features
 
 * allow the env var used to set the port to be called a different name to support running on Heroku	 ([f626662](/../../commit/f626662))
 
 
 <a name="2.57.0.0"></a>
-### 2.57.0.0 (2020-06-16)
+## 2.57.0.0 (2020-06-16)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.57.0	 ([0d7dabf](/../../commit/0d7dabf))
 
 
 <a name="2.56.1.1"></a>
-### 2.56.1.1 (2020-06-05)
+## 2.56.1.1 (2020-06-05)
 
 
-#### Features
+### Features
 
 * allow POST access to the 'pacts for verification' endpoint for the read only user (#22)	 ([fcc3f97](/../../commit/fcc3f97))
 
 
 <a name="2.56.1.0"></a>
-### 2.56.1.0 (2020-06-01)
+## 2.56.1.0 (2020-06-01)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.56.1	 ([d0ad957](/../../commit/d0ad957))
@@ -1127,39 +1127,39 @@
 
 
 <a name="2.55.0.0"></a>
-### 2.55.0.0 (2020-05-22)
+## 2.55.0.0 (2020-05-22)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.55.0	 ([4c90b6c](/../../commit/4c90b6c))
 
 
 <a name="2.54.0.0"></a>
-### 2.54.0.0 (2020-05-13)
+## 2.54.0.0 (2020-05-13)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.54.0	 ([eafa1c3](/../../commit/eafa1c3))
 
 
 <a name="2.52.2.0"></a>
-### 2.52.2.0 (2020-05-12)
+## 2.52.2.0 (2020-05-12)
 
 
-#### Features
+### Features
 
 * change tag format from M.m.p-RELEASE to M.m.p.RELEASE	 ([719a948](/../../commit/719a948))
 
 
 <a name="2.52.2-2"></a>
-### 2.52.2-2 (2020-05-06)
+## 2.52.2-2 (2020-05-06)
 
 
-#### Features
+### Features
 
 * allow Pact Broker to run on Heroku	 ([f4dc1f1](/../../commit/f4dc1f1))
 * allow Pact Broker to run on Heroku	 ([bf006c7](/../../commit/bf006c7))
@@ -1169,79 +1169,79 @@
 
 
 <a name="2.52.2-1"></a>
-### 2.52.2-1 (2020-04-16)
+## 2.52.2-1 (2020-04-16)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.51.2   ([f0dbf78](/../../commit/f0dbf78))
 
 <a name="2.51.0-1"></a>
-### 2.51.0-1 (2020-03-11)
+## 2.51.0-1 (2020-03-11)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.51.0	 ([c2b06c7](/../../commit/c2b06c7))
 
 
 <a name="2.50.1-1"></a>
-### 2.50.1-1 (2020-02-27)
+## 2.50.1-1 (2020-02-27)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.50.1	 ([9233b36](/../../commit/9233b36))
 
 
 <a name="2.50.0-1"></a>
-### 2.50.0-1 (2020-02-27)
+## 2.50.0-1 (2020-02-27)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.50.0	 ([02e69fa](/../../commit/02e69fa))
 
 
 <a name="2.49.0-1"></a>
-### 2.49.0-1 (2020-02-13)
+## 2.49.0-1 (2020-02-13)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.49.0	 ([b55a11a](/../../commit/b55a11a))
 
 
 <a name="2.48.0-1"></a>
-### 2.48.0-1 (2020-02-08)
+## 2.48.0-1 (2020-02-08)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.48.0	 ([d56a658](/../../commit/d56a658))
 
 
 <a name="2.47.1-1"></a>
-### 2.47.1-1 (2020-02-04)
+## 2.47.1-1 (2020-02-04)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.47.1	 ([5ad5116](/../../commit/5ad5116))
 
 
 <a name="2.46.0-1"></a>
-### 2.46.0-1 (2020-01-30)
+## 2.46.0-1 (2020-01-30)
 
 
-#### Features
+### Features
 
 * support setting the application base URL using environment variable PACT_BROKER_BASE_URL	 ([2c6fc3b](/../../commit/2c6fc3b))
 
@@ -1250,40 +1250,40 @@
 
 
 <a name="2.45.0-1"></a>
-### 2.45.0-1 (2020-01-30)
+## 2.45.0-1 (2020-01-30)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.45.0	 ([cd0237f](/../../commit/cd0237f))
 
 
 <a name="2.44.0-1"></a>
-### 2.44.0-1 (2020-01-28)
+## 2.44.0-1 (2020-01-28)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.44.0	 ([a0a4eda](/../../commit/a0a4eda))
 
 
 <a name="2.43.0-1"></a>
-### 2.43.0-1 (2020-01-06)
+## 2.43.0-1 (2020-01-06)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.42.0	 ([bf233e6](/../../commit/bf233e6))
 
 
 <a name="2.40.0-2"></a>
-### 2.40.0-2 (2019-12-05)
+## 2.40.0-2 (2019-12-05)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version	 ([2a6992c](/../../commit/2a6992c))
@@ -1294,50 +1294,50 @@
 
 
 <a name="2.40.0-1"></a>
-### 2.40.0-1 (2019-10-26)
+## 2.40.0-1 (2019-10-26)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.40.0	 ([26c213c](/../../commit/26c213c))
 
 
 <a name="2.39.0-1"></a>
-### 2.39.0-1 (2019-10-22)
+## 2.39.0-1 (2019-10-22)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.39.0	 ([168a861](/../../commit/168a861))
 
 
 <a name="2.38.1-3"></a>
-### 2.38.1-3 (2019-10-11)
+## 2.38.1-3 (2019-10-11)
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * remove accidentally committed line	 ([260d30d](/../../commit/260d30d))
 * require PACT_BROKER_ALLOW_PUBLIC_READ to be set to true to enable public read access	 ([7922864](/../../commit/7922864))
 
 
 <a name="2.38.1-2"></a>
-### 2.38.1-2 (2019-10-07)
+## 2.38.1-2 (2019-10-07)
 
 
-#### Features
+### Features
 
 * allow public access to matrix badge	 ([18a7f0e](/../../commit/18a7f0e))
 * if write credentials are specified, but not read credentials, then allow public read access	 ([f95db01](/../../commit/f95db01))
 
 
 <a name="2.38.1-1"></a>
-### 2.38.1-1 (2019-09-23)
+## 2.38.1-1 (2019-09-23)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.38.1	 ([bec5538](/../../commit/bec5538))
@@ -1346,30 +1346,30 @@
 
 
 <a name="2.37.0-1"></a>
-### 2.37.0-1 (2019-09-02)
+## 2.37.0-1 (2019-09-02)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.37.0	 ([9d42132](/../../commit/9d42132))
 
 
 <a name="2.36.1-1"></a>
-### 2.36.1-1 (2019-08-30)
+## 2.36.1-1 (2019-08-30)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.36.0	 ([2270e8e](/../../commit/2270e8e))
 
 
 <a name="2.34.0-1"></a>
-### 2.34.0-1 (2019-06-27)
+## 2.34.0-1 (2019-06-27)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.34.0	 ([f09e8f7](/../../commit/f09e8f7))
@@ -1378,19 +1378,19 @@
 
 
 <a name="2.32.0-2"></a>
-### 2.32.0-2 (2019-05-30)
+## 2.32.0-2 (2019-05-30)
 
 
-#### Features
+### Features
 
 * allow Pact Broker application port to be configured via an environment variable	 ([11e4ced](/../../commit/11e4ced))
 
 
 <a name="2.32.0-1"></a>
-### 2.32.0-1 (2019-05-30)
+## 2.32.0-1 (2019-05-30)
 
 
-#### Features
+### Features
 
 * **gems**
   * upgrade	 ([21dd25e](/../../commit/21dd25e))
@@ -1399,26 +1399,26 @@
 * ensure all of the logging goes to stdout	 ([5bb0ff4](/../../commit/5bb0ff4))
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * Dockerfile command syntax (#86)	 ([ca05b9d](/../../commit/ca05b9d))
 
 
 <a name="2.29.0-1"></a>
-### 2.29.0-1 (2019-03-25)
+## 2.29.0-1 (2019-03-25)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.29.0	 ([11212b4](/../../commit/11212b4))
 
 
 <a name="2.27.6-3"></a>
-### 2.27.6-3 (2019-03-25)
+## 2.27.6-3 (2019-03-25)
 
 
-#### Features
+### Features
 
 * **gems**
   * update	 ([e02f0d8](/../../commit/e02f0d8))
@@ -1427,50 +1427,50 @@
 
 
 <a name="2.27.6-2"></a>
-### 2.27.6-2 (2019-01-15)
+## 2.27.6-2 (2019-01-15)
 
 
-#### Features
+### Features
 
 * set default ruby to stop rvm warnings	 ([80dae57](/../../commit/80dae57))
 * update OS in Docker image	 ([ba682f1](/../../commit/ba682f1))
 
 
 <a name="2.27.6-1"></a>
-### 2.27.6-1 (2018-11-23)
+## 2.27.6-1 (2018-11-23)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.27.6	 ([30ae16e](/../../commit/30ae16e))
 
 
 <a name="2.27.5-1"></a>
-### 2.27.5-1 (2018-11-15)
+## 2.27.5-1 (2018-11-15)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.27.5	 ([b83a1f5](/../../commit/b83a1f5))
 
 
 <a name="2.27.4-1"></a>
-### 2.27.4-1 (2018-11-15)
+## 2.27.4-1 (2018-11-15)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.27.4	 ([3fbc243](/../../commit/3fbc243))
 
 
 <a name="2.27.3-2"></a>
-### 2.27.3-2 (2018-11-07)
+## 2.27.3-2 (2018-11-07)
 
 
-#### Features
+### Features
 
 * upgrade to latest phusion/passenger-ruby vers for security fixes (#80)	 ([2107dc6](/../../commit/2107dc6))
 
@@ -1479,22 +1479,22 @@
 
 
 <a name="2.27.2-2"></a>
-### 2.27.2-2 (2018-10-29)
+## 2.27.2-2 (2018-10-29)
 
-#### Features
+### Features
 
 * reduce Docker image size from 906 to 769 MB  ([81f56da](/../../commit/81f56da))
 
-#### Bug Fixes
+### Bug Fixes
 
 * ensure PACT_BROKER_DISABLE_SSL_VERIFICATION env var is passed through to the application	 ([e802a6e](/../../commit/e802a6e))
 
 
 <a name="2.27.2-1"></a>
-### 2.27.2-1 (2018-10-03)
+## 2.27.2-1 (2018-10-03)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.27.2	 ([1836c1d](/../../commit/1836c1d))
@@ -1503,40 +1503,40 @@
 
 
 <a name="2.27.0-1"></a>
-### 2.27.0-1 (2018-09-07)
+## 2.27.0-1 (2018-09-07)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.27.0	 ([f961d13](/../../commit/f961d13))
 
 
 <a name="2.26.1-1"></a>
-### 2.26.1-1 (2018-09-07)
+## 2.26.1-1 (2018-09-07)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.26.1	 ([d986e67](/../../commit/d986e67))
 
 
 <a name="2.26.0-1"></a>
-### 2.26.0-1 (2018-08-23)
+## 2.26.0-1 (2018-08-23)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.26.0	 ([0c7d74f](/../../commit/0c7d74f))
 
 
 <a name="2.25.0-1"></a>
-### 2.25.0-1 (2018-08-10)
+## 2.25.0-1 (2018-08-10)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.25.0	 ([1fc0c34](/../../commit/1fc0c34))
@@ -1545,98 +1545,98 @@
 
 
 <a name="2.24.0-1"></a>
-### 2.24.0-1 (2018-07-08)
+## 2.24.0-1 (2018-07-08)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.24.0	 ([6327428](/../../commit/6327428))
 
 
 <a name="2.23.4-1"></a>
-### 2.23.4-1 (2018-07-04)
+## 2.23.4-1 (2018-07-04)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.23.4	 ([5eb4ba2](/../../commit/5eb4ba2))
 
 
 <a name="2.23.3-1"></a>
-### 2.23.3-1 (2018-06-27)
+## 2.23.3-1 (2018-06-27)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.23.3	 ([84d36df](/../../commit/84d36df))
 
 
 <a name="2.23.2-1"></a>
-### 2.23.2-1 (2018-06-25)
+## 2.23.2-1 (2018-06-25)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.23.2	 ([493a9e5](/../../commit/493a9e5))
 
 
 <a name="2.23.1-1"></a>
-### 2.23.1-1 (2018-06-23)
+## 2.23.1-1 (2018-06-23)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.23.1	 ([181cd8b](/../../commit/181cd8b))
 
 
 <a name="2.23.0-1"></a>
-### 2.23.0-1 (2018-06-21)
+## 2.23.0-1 (2018-06-21)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.23.0	 ([6b78cf3](/../../commit/6b78cf3))
 
 
 <a name="2.22.0-2"></a>
-### 2.22.0-2 (2018-06-14)
+## 2.22.0-2 (2018-06-14)
 
 
-#### Features
+### Features
 
 * change version ordering to order by date by default	 ([9e6fca7](/../../commit/9e6fca7))
 
 
 <a name="2.22.0-1"></a>
-### 2.22.0-1 (2018-06-11)
+## 2.22.0-1 (2018-06-11)
 
 
-#### Features
+### Features
 
 * expose webhook whitelist configuration as environment variables	 ([219cda4](/../../commit/219cda4))
 
 
 <a name="2.20.0-1"></a>
-### 2.20.0-1 (2018-06-08)
+## 2.20.0-1 (2018-06-08)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.20.0	 ([7d8212d](/../../commit/7d8212d))
 
 
 <a name="2.19.2-1"></a>
-### 2.19.2-1 (2018-05-29)
+## 2.19.2-1 (2018-05-29)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.19.2	 ([bf996ee](/../../commit/bf996ee))
@@ -1644,50 +1644,50 @@
 
 
 <a name="2.19.1-1"></a>
-### 2.19.1-1 (2018-05-18)
+## 2.19.1-1 (2018-05-18)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.19.1	 ([30a8da0](/../../commit/30a8da0))
 
 
 <a name="2.19.0-1"></a>
-### 2.19.0-1 (2018-05-10)
+## 2.19.0-1 (2018-05-10)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.19.0	 ([80708fe](/../../commit/80708fe))
 
 
 <a name="2.18.0-2"></a>
-### 2.18.0-2 (2018-04-05)
+## 2.18.0-2 (2018-04-05)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.18.0	 ([d1cdd51](/../../commit/d1cdd51))
 
 
 <a name="2.18.0-1"></a>
-### 2.18.0-1 (2018-04-05)
+## 2.18.0-1 (2018-04-05)
 
 
-#### Features
+### Features
 
 * **gems**
   * add rake tasks and update pact_broker gem to version 2.18.0	 ([6b83c67](/../../commit/6b83c67))
 
 
 <a name="2.17.1-1"></a>
-### 2.17.1-1 (2018-03-30)
+## 2.17.1-1 (2018-03-30)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.17.1	 ([31848b5](/../../commit/31848b5))
@@ -1695,64 +1695,64 @@
 
 
 <a name="2.16.1-3"></a>
-### 2.16.1-3 (2018-03-13)
+## 2.16.1-3 (2018-03-13)
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * correct code for allowing public access to heartbeat url	 ([2b342d5](/../../commit/2b342d5))
 
 
 <a name="2.16.1-2"></a>
-### 2.16.1-2 (2018-03-12)
+## 2.16.1-2 (2018-03-12)
 
 
-#### Features
+### Features
 
 * allow public access to the heartbeat URL to be configured via an environment variable	 ([a3d8fb8](/../../commit/a3d8fb8))
 
 
 <a name="2.16.1-1"></a>
-### 2.16.1-1 (2018-03-08)
+## 2.16.1-1 (2018-03-08)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.16.1	 ([c85d7cc](/../../commit/c85d7cc))
 
 
 <a name="2.16.0-1"></a>
-### 2.16.0-1 (2018-03-08)
+## 2.16.0-1 (2018-03-08)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.16.0	 ([c4427dd](/../../commit/c4427dd))
 
 
-#### Bug Fixes
+### Bug Fixes
 
 * **healthcheck**
   * fix healthcheck to avoid warnings. Fixes pact-foundation/pact_broker/issues/199	 ([01f52d3](/../../commit/01f52d3))
 
 
 <a name="2.15.0-2"></a>
-### 2.15.0-2 (2018-02-26)
+## 2.15.0-2 (2018-02-26)
 
 
-#### Features
+### Features
 
 * **env**
   * allow lowercase env vars for http requests	 ([3f4cde2](/../../commit/3f4cde2))
 
 
 <a name="2.15.0-1"></a>
-### 2.15.0-1 (2018-02-26)
+## 2.15.0-1 (2018-02-26)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.15.0	 ([b7669ae](/../../commit/b7669ae))
@@ -1762,10 +1762,10 @@
 
 
 <a name="2.14.0-1"></a>
-### 2.14.0-1 (2018-02-15)
+## 2.14.0-1 (2018-02-15)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.14.0	 ([b81c815](/../../commit/b81c815))
@@ -1775,60 +1775,60 @@
 
 
 <a name="2.13.1-1"></a>
-### 2.13.1-1 (2018-01-12)
+## 2.13.1-1 (2018-01-12)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.13.1	 ([637b827](/../../commit/637b827))
 
 
 <a name="2.13.0-1"></a>
-### 2.13.0-1 (2018-01-12)
+## 2.13.0-1 (2018-01-12)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.13.0	 ([28c8096](/../../commit/28c8096))
 
 
 <a name="2.12.0-1"></a>
-### 2.12.0-1 (2017-12-19)
+## 2.12.0-1 (2017-12-19)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.12.0	 ([e48c20f](/../../commit/e48c20f))
 
 
 <a name="2.11.0-1"></a>
-### 2.11.0-1 (2017-11-11)
+## 2.11.0-1 (2017-11-11)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.11.0	 ([bec541a](/../../commit/bec541a))
 
 
 <a name="2.9.0-1"></a>
-### 2.9.0-1 (2017-11-09)
+## 2.9.0-1 (2017-11-09)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.9.0	 ([43a58b1](/../../commit/43a58b1))
 
 
 <a name="2.6.0-3"></a>
-### 2.6.0-3 (2017-11-03)
+## 2.6.0-3 (2017-11-03)
 
 
-#### Features
+### Features
 
 * allow configuration to be loaded from database	 ([d373f48](/../../commit/d373f48))
 
@@ -1837,10 +1837,10 @@
 
 
 <a name="2.8.0.beta.4-1"></a>
-### 2.8.0.beta.4-1 (2017-11-03)
+## 2.8.0.beta.4-1 (2017-11-03)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.8.0.beta.4	 ([78f0a3b](/../../commit/78f0a3b))
@@ -1848,41 +1848,41 @@
 
 
 <a name="2.7.0.beta.3-1"></a>
-### 2.7.0.beta.3-1 (2017-11-01)
+## 2.7.0.beta.3-1 (2017-11-01)
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.7.0.beta.3	 ([fa6574d](/../../commit/fa6574d))
 
 <a name="2.7.0.beta.2-2"></a>
-### 2.7.0.beta.2-2 (2017-11-01)
+## 2.7.0.beta.2-2 (2017-11-01)
 
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.7.0.beta.2   ([02b08e6](/../../commit/02b08e6))
 
 <a name="2.7.0.beta.2-1"></a>
-### 2.7.0.beta.2-1 (2017-10-31)
+## 2.7.0.beta.2-1 (2017-10-31)
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to version 2.7.0.beta.2	 ([305f899](/../../commit/305f899))
 
 <a name="2.6.0-2"></a>
-### 2.6.0-2 (2017-10-13)
+## 2.6.0-2 (2017-10-13)
 
-#### Features
+### Features
 
 * allow log level to be configured via PACT_BROKER_LOG_LEVEL	 ([a1b77aa](/../../commit/a1b77aa))
 
 <a name="2.6.0-1"></a>
-### 2.6.0-1 (2017-10-06)
+## 2.6.0-1 (2017-10-06)
 
-#### Features
+### Features
 
 * **gems**
   * update pact_broker gem to 2.6.0	 ([25b7dff](/../../commit/25b7dff))
@@ -1892,7 +1892,7 @@
 * **upgrade**
   * upgrade to pact_broker 2.0.4	 ([ad314e0](/../../commit/ad314e0))
 
-#### Bug Fixes
+### Bug Fixes
 
 * database disconnect error when service not accessed frequently	 ([d146382](/../../commit/d146382))
 

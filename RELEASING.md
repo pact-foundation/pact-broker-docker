@@ -2,21 +2,66 @@
 
 Please read the [versioning](/#versioning) section of the README file before continuing.
 
-The semantic version part of the tag is stored in the `VERSION` file at the root of the repository.
+The semantic version part of the Docker tag is stored in the `VERSION` file at
+the root of the repository. The full tag is `${VERSION}-pactbroker${GEM_VERSION}`,
+where the gem version comes from `pact_broker/Gemfile.lock`.
 
-## Automatic releases of the Docker image triggered by the release of the pact_broker gem
+## One-time prerequisite
 
-When the pact_broker gem is released by the Github Action in its repository, the `repository_dispatch` action of the `pact-broker-docker` repository will be invoked with the type `gem-released`, and the release details (name, version, increment).
+`prepare` computes the next version from the conventional commits since the
+last `v*` tag. This repository's existing tags are of the form `2.98.0.0`, not
+`v2.98.0.0`, so before the first release under this process, create and push a
+`v<current VERSION>` tag on `master` (today that is `v2.142.0`) to give
+git-cliff a starting point:
 
-This causes the `update_gems.yml` workflow to be run. At the end of the workflow, it will trigger a release by invokeing the `repository_dispatch` action with type `release-triggered`, passing in the increment.
+    git tag v2.142.0 master && git push origin v2.142.0
 
-Note: sometimes bundler cannot find the newly released gem straight away, and the job needs to be re-run via the UI.
+Push it as someone whose access clears any tag protection rule. Until this tag
+exists, `prepare` finds nothing releasable and prints "nothing to do" on every
+run, silently.
 
-## Manually releasing the Docker image
+Releases are made by merging a pull request.
 
-* On the Github Actions page, select `Release Docker image`
-* Select `Run workflow`
-* To release a minor version change, do not set any inputs - just click `Run workflow`. This should be the normal process if you've done some changes to the Docker image.
-* To release a non-minor version change, select the increment you want, and click `Run workflow`.
-* To set a custom version number (not sure of the usecase for this, but just in case...), set both the version AND the increment and click `Run workflow`.
-* To do a completely custom tag, just set the "Custom Docker image tag" and click `Run workflow`. If you do this, the VERSION file will NOT be updated. It is for testing purposes only.
+Every push to `master` updates a draft pull request from the
+`release/pact-broker-docker` branch. It contains the next version, computed from
+the conventional commits since the last tag, the changelog entry for it, and the
+updated image references in the `docker-compose*.yml` files.
+
+To release:
+
+1. Open the draft `chore: release vX.Y.Z` pull request and check the changelog.
+   Opening it already builds and tests both the alpine and debian images
+   against the release commit — that runs on push to the branch, not on
+   marking the PR ready for review.
+2. Mark it ready for review once the checks pass.
+3. Merge it. The tag `vX.Y.Z` is pushed, which publishes both images to Docker
+   Hub and GHCR and creates the GitHub release.
+
+## Releases triggered by a pact_broker gem release
+
+When the `pact_broker` gem is released, its workflow dispatches `gem-released`
+here. That opens a `deps/pact_broker` pull request updating
+`pact_broker/Gemfile.lock`, with auto-merge enabled. Once branch protection is
+satisfied it merges, which updates the release pull request above.
+
+## Seeing what the next release would contain
+
+    ruby script/release.rb prepare --dry-run
+
+This writes the new version, changelog and compose references into the working
+tree and prints the entry. Discard the changes with
+`git checkout -- VERSION CHANGELOG.md docker-compose*.yml`.
+
+## Pushing a non-production image
+
+Set `TAG` and run the release scripts locally. The `VERSION` file is not
+updated and no git tag is created, and the image is not pushed to `latest`
+unless you also set `PUSH_TO_LATEST=true`.
+
+`docker-push.sh` reads `GITHUB_SERVER_URL`, `GITHUB_REPOSITORY` and
+`GITHUB_SHA` for image annotations, so set them too when running outside
+Actions:
+
+    TAG=my-test-tag DOCKER_REPOSITORY=my-org \
+      GITHUB_SERVER_URL=https://github.com GITHUB_REPOSITORY=my-org/pact-broker-docker GITHUB_SHA=$(git rev-parse HEAD) \
+      script/release-workflow/run.sh

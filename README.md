@@ -8,7 +8,7 @@ This repository contains a Dockerized version of the [Pact Broker][pact-broker].
 
 [![Build and test](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/test.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/test.yml)
 [![Audit](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/audit.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/audit.yml)
-[![Release](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release_image.yml)
+[![Release](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release.yml/badge.svg)](https://github.com/pact-foundation/pact-broker-docker/actions/workflows/release.yml)
 
 [![pulls](https://badgen.net/docker/pulls/pactfoundation/pact-broker?icon=docker&label=pulls)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![stars](https://badgen.net/docker/stars/pactfoundation/pact-broker?icon=docker&label=stars)](https://hub.docker.com/r/pactfoundation/pact-broker)
@@ -301,18 +301,16 @@ The Docker image tag uses a semantic-like versioning scheme (Docker tags don't s
 
 The major version will be bumped for:
 
-  * Major increments of the Pact Broker gem
   * Major increments of the base image that contain backwards incompatible changes (eg. dropping support for Docker 19)
   * Any other backwards incompatible changes made for any reason (eg. environment variable mappings, entrypoints, tasks, supported auth)
 
 The minor version will be bumped for:
 
-  * Minor increments of the Pact Broker gem
+  * Every Pact Broker gem release, one minor per release regardless of the gem's own increment
   * Additional non-breaking functionality added to the Docker image
 
 The patch version will be bumped for:
 
-  * Patch increments of the Pact Broker gem
   * Other fixes to the Docker image
 
 Until May 2023, the versioning scheme used the `M.m.p` from the Pact Broker gem, with an additional `RELEASE` number at the end (eg. `2.107.0.1`). This scheme was replace by the current scheme because it was unable to semantically convey changes made to the Docker image that were unrelated to a Pact Broker gem version change (eg. alpine upgrades).

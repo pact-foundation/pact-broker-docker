@@ -11,75 +11,79 @@ on:
         default: pact_broker
         required: false
       released_gem_version:
-        description: The version of the game that was released
-        required: false
-      released_gem_version_increment:
-        description: "The version increment"
-        required: false
-        default: ""
-        type: choice
-        options:
-          - ""
-          - patch
-          - minor
-          - major
-          - pre
+        description: The version of the gem that was released
+        required: true
+
+permissions:
+  contents: read
 
 env:
   RELEASED_GEM_NAME: '${{ github.event.client_payload.name }}${{ github.event.inputs.released_gem_name }}'
   RELEASED_GEM_VERSION: '${{ github.event.client_payload.version }}${{ github.event.inputs.released_gem_version }}'
+  BRANCH: deps/pact_broker
 
 jobs:
   update:
+    name: Open gem update PR
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v7
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1  # v3.2.0
+        with:
+          app-id: ${{ vars.PACT_FOUNDATION_BOT_APP_ID }}
+          private-key: ${{ secrets.PACT_FOUNDATION_BOT_PRIVATE_KEY }}
 
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - uses: ruby/setup-ruby@89f90524b88a01fe6e0b732220432cc6142926af  # v1.313.0
         with:
           working-directory: pact_broker
 
-      - name: Configure git
+      - name: Configure git identity
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global push.default current
+          git config user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
+          git config user.email "$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq '.id')+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com"
 
       - name: Update gems
         run: script/update-gems-workflow/update-gems.sh
 
       - name: Detect changes
-        run: script/update-gems-workflow/detect-changes.sh
-
-      - name: Unit tests
+        id: changes
         run: |
-          bundle install
-          bundle exec rake spec
+          if git diff --quiet pact_broker/Gemfile.lock; then
+            echo "No gems updated."
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Login to Docker Hub
-        run: script/release-workflow/docker-login.sh
+      - name: Open the pull request
+        if: steps.changes.outputs.updated == 'true'
         env:
-          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          title="feat(deps): update ${RELEASED_GEM_NAME} gem to ${RELEASED_GEM_VERSION}"
+          body="Released by [pact_broker](https://github.com/pact-foundation/pact_broker/releases/tag/v${RELEASED_GEM_VERSION}). Merging this updates the release PR for the Docker images."
+          git checkout -B "$BRANCH"
+          git add pact_broker/Gemfile.lock
+          git commit -m "$title"
+          git push --force origin "$BRANCH"
 
-      - name: Build Docker image
-        run: docker build -t pactfoundation/pact-broker:latest .
+          number=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')
+          if [ -z "$number" ] || [ "$number" = "null" ]; then
+            gh pr create --base master --head "$BRANCH" --title "$title" --body "$body"
+          else
+            gh pr edit "$number" --title "$title" --body "$body"
+          fi
 
-      - name: Integration tests
-        run: script/test.sh
-        env:
-          TAG: latest
-
-      - name: Git commit and push
-        run: script/update-gems-workflow/git-commit-and-push-gemfile.sh
-
-      - name: Vulnerability scan
-        run: script/scan.sh pactfoundation/pact-broker:latest
-
-      - name: Trigger release
-        uses: peter-evans/repository-dispatch@v4
-        with:
-          token: ${{ secrets.GHTOKENFORPBDOCKERRELEASE }}
-          event-type: release-triggered
-          client-payload: '{"increment": "${{ github.event.client_payload.increment }}${{ github.event.inputs.released_gem_version_increment }}"}'
+          # Auto-merge hands the decision to branch protection: it merges on
+          # green if that is all the rules require, and waits for an approval
+          # if they require one. It errors when the PR has no pending checks
+          # and is already mergeable, so fall back to a direct merge then.
+          gh pr merge --auto --squash "$BRANCH" || gh pr merge --squash "$BRANCH"

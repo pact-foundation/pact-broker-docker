@@ -1,6 +1,6 @@
-FROM powerman/dockerize
+FROM powerman/dockerize:0.25.2
 
 RUN apk add --no-cache openssl curl bash
 
-ADD test.sh /home/test.sh
-ADD foo-bar.json /home/foo-bar.json
+COPY test.sh /home/test.sh
+COPY foo-bar.json /home/foo-bar.json

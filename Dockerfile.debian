@@ -9,6 +9,7 @@ ENV SUPERCRONIC_SHA1SUM=dcc8535b46bd9752fbbe177fddd7f6f0451da9a4
 
 # Supercronic - use base-$TARGETARCH to select correct base image SUPERCRONIC_SHA1SUM
 ARG TARGETARCH
+# hadolint ignore=DL3006  # the tag comes from TARGETARCH
 FROM base-$TARGETARCH AS pb-dev
 
 # Install Supercronic

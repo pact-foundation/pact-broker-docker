@@ -31,9 +31,17 @@ tag_pattern = 'v[0-9]+\.[0-9]+\.[0-9]+'
 
 commit_preprocessors = [
   { pattern = '\((\w+\s)?#([0-9]+)\)', replace = "([#${2}](https://github.com/pact-foundation/pact-broker-docker/issues/${2}))" },
+  # The gem version is what the image ships, so point the entry at the notes
+  # for that release rather than at the lockfile bump.
+  { pattern = 'update dependency pact_broker to v([0-9]+\.[0-9]+\.[0-9]+)', replace = "update the pact_broker gem to [${1}](https://github.com/pact-foundation/pact_broker/releases/tag/v${1})" },
 ]
 
 commit_parsers = [
+  # Dependency bumps are noise, except the ones that change what the image
+  # ships or serves: the pact_broker gem, puma, the ruby/alpine/debian base and
+  # postgres. Ruby is matched by phrasing rather than by name, so the
+  # `ruby/setup-ruby` action and the `concurrent-ruby` gem stay noise.
+  { group = "<!-- 02 -->📦 Dependencies", message = '(?i)^(feat|chore|fix)\(deps.*?\).*(\b(pact_broker|puma|alpine|debian|postgres)|pact-broker [0-9]|dependency ruby|ruby docker tag|ruby[ :][0-9]|ruby[ .-]?versions?)' },
   { message = "^(chore|fix)\\(deps.*\\)", skip = true },
   { group = "<!-- 00 -->🚀 Features", message = "^feat" },
   { group = "<!-- 01 -->🐛 Bug Fixes", message = "^fix" },

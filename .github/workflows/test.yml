@@ -7,10 +7,46 @@ on:
   pull_request:
     branches:
       - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+      # Draft pull requests run only the cheap checks, so the full suite has to
+      # be triggered when one is marked ready
+      - ready_for_review
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
+  complete:
+    name: Test completion check
+    if: always()
+
+    permissions:
+      contents: none
+
+    runs-on: ubuntu-latest
+    needs:
+      - test
+
+    steps:
+      - name: Failed
+        run: exit 1
+        if: >-
+          contains(needs.*.result, 'failure')
+          || contains(needs.*.result, 'cancelled')
+          || contains(needs.*.result, 'skipped')
+
   test:
+    # Skipped on draft pull requests: the completion check then fails, which is
+    # correct, as a draft is not mergeable
+    if: github.event.pull_request.draft != true
     runs-on: "ubuntu-latest"
     strategy:
       fail-fast: false
@@ -18,7 +54,7 @@ jobs:
         distro: [ alpine, debian ]
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - uses: ruby/setup-ruby@v1
       - run: "bundle install"
       - run: "bundle exec rake"
@@ -44,3 +80,4 @@ jobs:
         run: script/test.sh
         env:
           TAG: latest-amd64
+

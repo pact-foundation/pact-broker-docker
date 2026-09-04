@@ -6,19 +6,11 @@ The semantic version part of the Docker tag is stored in the `VERSION` file at
 the root of the repository. The full tag is `${VERSION}-pactbroker${GEM_VERSION}`,
 where the gem version comes from `pact_broker/Gemfile.lock`.
 
-## One-time prerequisite
-
-`prepare` computes the next version from the conventional commits since the
-last `v*` tag. This repository's existing tags are of the form `2.98.0.0`, not
-`v2.98.0.0`, so before the first release under this process, create and push a
-`v<current VERSION>` tag on `master` (today that is `v2.142.0`) to give
-git-cliff a starting point:
-
-    git tag v2.142.0 master && git push origin v2.142.0
-
-Push it as someone whose access clears any tag protection rule. Until this tag
-exists, `prepare` finds nothing releasable and prints "nothing to do" on every
-run, silently.
+Releases are tagged `vX.Y.Z` with the semantic part alone. Releases up to
+2.142.0 were tagged with the full image tag, `2.142.0-pactbroker2.120.0`, and
+those tags remain; git-cliff reads the `-pactbroker<gem>` suffix as a semver
+prerelease and cannot bump it, which is why the suffix now lives only in the
+image tag.
 
 Releases are made by merging a pull request.
 

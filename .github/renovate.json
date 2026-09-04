@@ -1,20 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:best-practices"
   ],
   "packageRules": [
     {
       "description": "The pact_broker gem is what the image ships, so release it as a feature as soon as it is published, with no cool-off period.",
-      "matchManagers": ["bundler"],
-      "matchPackageNames": ["pact_broker"],
+      "matchManagers": [
+        "bundler"
+      ],
+      "matchPackageNames": [
+        "pact_broker"
+      ],
       "semanticCommitType": "feat",
       "minimumReleaseAge": null,
       "internalChecksFilter": "none",
       "prCreation": "immediate",
       "automerge": true,
       "automergeType": "pr",
-      "schedule": ["at any time"]
+      "schedule": [
+        "at any time"
+      ]
     }
   ]
 }

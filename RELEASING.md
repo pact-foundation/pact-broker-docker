@@ -39,10 +39,9 @@ To release:
 
 ## Releases triggered by a pact_broker gem release
 
-When the `pact_broker` gem is released, its workflow dispatches `gem-released`
-here. That opens a `deps/pact_broker` pull request updating
-`pact_broker/Gemfile.lock`, with auto-merge enabled. Once branch protection is
-satisfied it merges, which updates the release pull request above.
+Renovate opens the `pact_broker/Gemfile.lock` update, immediately and with no
+cool-off period, and auto-merges it. Merging updates the release pull request
+above.
 
 ## Seeing what the next release would contain
 

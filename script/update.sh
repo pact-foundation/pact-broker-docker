@@ -15,4 +15,4 @@ docker build -t pactfoundation/pact_broker:latest .
 script/spec.sh
 script/test.sh
 git add pact_broker
-git commit -m "feat(gems): update pact_broker gem to version $(gem_version_from_gemfile_lock)"
+git commit -m "feat(deps): update dependency pact_broker to v$(gem_version_from_gemfile_lock)"

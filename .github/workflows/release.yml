@@ -1,3 +1,4 @@
+---
 name: Release
 
 on:
@@ -5,7 +6,7 @@ on:
     branches:
       - master
     tags:
-      - 'v*'
+      - v*
   pull_request:
     branches:
       - master
@@ -100,7 +101,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [alpine, debian]
+        distro:
+          - alpine
+          - debian
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:

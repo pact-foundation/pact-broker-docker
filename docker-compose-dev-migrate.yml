@@ -1,4 +1,5 @@
-version: "3"
+---
+version: '3'
 
 services:
   postgres:
@@ -18,19 +19,20 @@ services:
   pact-broker:
     build: .
     ports:
-      - "9393:9393"
+      - 9393:9393
     depends_on:
       - postgres
     environment:
       PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: PORT
       PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: DATABASE_URL
-      DATABASE_URL: "postgres://postgres:password@postgres/postgres"
-      PACT_BROKER_DATABASE_BETA_CLEAN_ENABLED: "true"
-      PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE: "* * * * *"
-      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: "false"
-      PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: "500"
+      DATABASE_URL: postgres://postgres:password@postgres/postgres
+      PACT_BROKER_DATABASE_BETA_CLEAN_ENABLED: 'true'
+      PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE: '* * * * *'
+      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: 'false'
+      PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: '500'
       # Keep all prod versions, AND the latest version for every pacticipant/tag, and all versions less than 30 days old
-      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true, "tag": true}, {"max_age": 30}]'
+      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true, "tag": true}, {"max_age":
+        30}]'
       # PACT_BROKER_DATABASE_USERNAME: postgres
       # PACT_BROKER_DATABASE_PASSWORD: password
       # PACT_BROKER_DATABASE_HOST: postgres
@@ -39,17 +41,17 @@ services:
       PORT: '9393'
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG
-      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "10"
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: '10'
 
   db-migrate:
     build: .
     depends_on:
       - postgres
     environment:
-      PACT_BROKER_DATABASE_URL: "postgres://postgres:password@postgres/postgres"
+      PACT_BROKER_DATABASE_URL: postgres://postgres:password@postgres/postgres
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG
-      PACT_BROKER_MIGRATION_TARGET: "20200922"
+      PACT_BROKER_MIGRATION_TARGET: '20200922'
     entrypoint: db-migrate
 
   db-version:
@@ -57,7 +59,7 @@ services:
     depends_on:
       - postgres
     environment:
-      PACT_BROKER_DATABASE_URL: "postgres://postgres:password@postgres/postgres"
+      PACT_BROKER_DATABASE_URL: postgres://postgres:password@postgres/postgres
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_SQL_LOG_LEVEL: DEBUG
     entrypoint: db-version

@@ -1,0 +1,11 @@
+[global]
+exclude = ["CHANGELOG.md"]
+disable = [
+  # The docs are written as unwrapped prose, and carry long docker commands and
+  # URLs that cannot be wrapped.
+  "MD013",
+  # Shell examples are written with a `$` prompt and no output.
+  "MD014",
+  # The badges and the analytics pixel are raw HTML.
+  "MD033",
+]

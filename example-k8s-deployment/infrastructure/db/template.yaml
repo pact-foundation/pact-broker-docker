@@ -135,4 +135,3 @@ Resources:
       Tags:
         - Key: uuid
           Value: !Ref Uuid
-

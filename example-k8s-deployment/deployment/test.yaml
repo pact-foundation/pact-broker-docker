@@ -1,8 +1,9 @@
+---
 ingress:
   hosts:
     - pact-broker.payments.foo-test.com
 
-iamRole: 'arn:aws:iam::[test aws account]:role/pact-broker'
+iamRole: arn:aws:iam::[test aws account]:role/pact-broker
 
 extraEnvMap:
   PACT_ENVIRONMENT: Test

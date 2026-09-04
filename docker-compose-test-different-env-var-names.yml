@@ -1,4 +1,5 @@
-version: "3"
+---
+version: '3'
 
 services:
   postgres:
@@ -11,16 +12,16 @@ services:
       POSTGRES_DB: postgres
 
   pact-broker:
-    image: "pactfoundation/pact-broker:latest"
+    image: pactfoundation/pact-broker:latest
     depends_on:
       - postgres
     environment:
       PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: CUSTOM_PORT
-      CUSTOM_PORT: "9393"
+      CUSTOM_PORT: '9393'
       PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: CUSTOM_DATABASE_URL
-      CUSTOM_DATABASE_URL: "postgres://postgres:postgres@postgres/postgres"
+      CUSTOM_DATABASE_URL: postgres://postgres:postgres@postgres/postgres
       PACT_BROKER_LOG_LEVEL: INFO
-      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "10"
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: '10'
 
   sut:
     build:
@@ -30,5 +31,5 @@ services:
     working_dir: /home
     environment:
       TEST_URL: http://pact-broker:9393
-      PACT_BROKER_PORT: "9393"
+      PACT_BROKER_PORT: '9393'
     entrypoint: dockerize -wait http://pact-broker:9393/diagnostic/status/heartbeat -timeout 20s /home/test.sh

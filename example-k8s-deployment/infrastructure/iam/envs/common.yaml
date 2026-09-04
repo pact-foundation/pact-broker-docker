@@ -1,4 +1,5 @@
-k8sNamespace: "foobar"
+---
+k8sNamespace: foobar
 kotahiUuid: 123
 # name to the service account, this has to match app-name used for k8s service account
 serviceAccount: pact-broker

@@ -1,3 +1,4 @@
+---
 name: Test
 
 on:
@@ -47,17 +48,19 @@ jobs:
     # Skipped on draft pull requests: the completion check then fails, which is
     # correct, as a draft is not mergeable
     if: github.event.pull_request.draft != true
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        distro: [ alpine, debian ]
+        distro:
+          - alpine
+          - debian
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
       - uses: ruby/setup-ruby@v1
-      - run: "bundle install"
-      - run: "bundle exec rake"
+      - run: bundle install
+      - run: bundle exec rake
 
       - name: Set environment variables
         run: |
@@ -74,10 +77,9 @@ jobs:
         if: ${{ env.ACT }}
         name: Install `docker-compose` for use with https://github.com/nektos/act
         with:
-          version: '2.15.1'
+          version: 2.15.1
 
       - name: Integration tests
         run: script/test.sh
         env:
           TAG: latest-amd64
-

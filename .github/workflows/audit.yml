@@ -1,3 +1,4 @@
+---
 name: Audit
 
 on:
@@ -6,7 +7,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: 0 0 * * 4 # Midnight Wednesday
+    - cron: 0 0 * * 4  # Midnight Wednesday
 
 jobs:
   audit:
@@ -14,8 +15,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, ubuntu-24.04-arm ]
-        distro: [ alpine, debian ]
+        os:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+        distro:
+          - alpine
+          - debian
     runs-on: ${{ matrix.os }}
     env:
       TAG: latest

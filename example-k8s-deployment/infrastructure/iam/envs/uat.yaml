@@ -1,2 +1,3 @@
-K8sIdpString: "123"
-ssmKmsKey: "arn:aws:kms:us-west-2:123:key/123"
+---
+K8sIdpString: '123'
+ssmKmsKey: arn:aws:kms:us-west-2:123:key/123

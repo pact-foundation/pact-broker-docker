@@ -1,11 +1,12 @@
-version: "3.7"
+---
+version: '3.7'
 
 services:
   stackup-base:
     image: realestate/stackup:1.9.0
     working_dir: /app
     volumes:
-      - ".:/app"
+      - .:/app
     entrypoint: stackup
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}

@@ -1,6 +1,6 @@
 FROM ruby:3.4.10-alpine3.24 AS base
 
-# 1. Install target specfic dependencies
+# 1. Install target specific dependencies
 # - gcompat required for arm/arm64 (otherwise nokogiri breaks when viewing network graph)
 #   - https://github.com/sparklemotion/nokogiri/issues/2414
 # 2. Supercronic - setup sha1sum for each supported architecture

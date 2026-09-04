@@ -29,7 +29,7 @@ class Release
   end
 
   def self.write_version(version, path = VERSION_FILE)
-    File.write(path, version)
+    File.write(path, "#{version}\n")
   end
 
   # MARK: Version computation

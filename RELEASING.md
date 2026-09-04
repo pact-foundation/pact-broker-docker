@@ -43,6 +43,10 @@ Renovate opens the `pact_broker/Gemfile.lock` update, immediately and with no
 cool-off period, and auto-merges it. Merging updates the release pull request
 above.
 
+The changelog skips dependency bumps, except the ones that change what the
+image ships or serves: the `pact_broker` gem, whose entry links to that gem's
+GitHub release, puma, the ruby/alpine/debian base and postgres.
+
 ## Seeing what the next release would contain
 
     ruby script/release.rb prepare --dry-run

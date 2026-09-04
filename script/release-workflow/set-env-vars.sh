@@ -12,7 +12,8 @@ set -e
 
 export DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"
 if [ -n "${DOCKER_TARGET_PLATFORM:-}" ]; then
-  export ARCH=$(echo "$DOCKER_TARGET_PLATFORM" | sed 's/linux\///' | sed 's/\/v.*//')
+  ARCH=$(echo "$DOCKER_TARGET_PLATFORM" | sed 's/linux\///' | sed 's/\/v.*//')
+  export ARCH
   export ARCHES=$ARCH
 else
   export ARCHES='amd64 arm64 arm'
@@ -30,10 +31,13 @@ if [ -z "${TAG:-}" ]; then
   : "${PUSH_TO_LATEST:=true}"
   export PUSH_TO_LATEST
 
-  export VERSION=$(cat VERSION)
-  export PACT_BROKER_VERSION=$(grep "pact_broker (" pact_broker/Gemfile.lock | awk -F '[()]' '{print $2}')
+  VERSION=$(cat VERSION)
+  export VERSION
+  PACT_BROKER_VERSION=$(grep "pact_broker (" pact_broker/Gemfile.lock | awk -F '[()]' '{print $2}')
+  export PACT_BROKER_VERSION
   export TAG="$VERSION-pactbroker${PACT_BROKER_VERSION}"
-  export MAJOR_TAG="$(echo $VERSION | cut -d'.' -f1)"
+  MAJOR_TAG=$(echo "$VERSION" | cut -d'.' -f1)
+  export MAJOR_TAG
 
   echo "VERSION=$VERSION"
   echo "PACT_BROKER_VERSION=$PACT_BROKER_VERSION"

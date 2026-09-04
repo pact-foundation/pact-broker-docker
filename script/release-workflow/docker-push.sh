@@ -19,7 +19,7 @@ push_ghcr() {
   docker buildx build --platform=linux/amd64,linux/arm64,linux/arm \
     --build-arg VERSION=${TAG} \
     --output=type=image,push=true \
-    -t ghcr.io/$(echo $DOCKER_IMAGE_ORG_AND_NAME | sed 's/pactfoundation/pact-foundation/g'):$1 \
+    -t "ghcr.io/$(echo "$DOCKER_IMAGE_ORG_AND_NAME" | sed 's/pactfoundation/pact-foundation/g')":$1 \
     -f Dockerfile${IS_DEBIAN:+.debian} .
 }
 

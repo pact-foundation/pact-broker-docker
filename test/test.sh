@@ -5,11 +5,11 @@ set -e
 
 # echo fn that outputs to stderr http://stackoverflow.com/a/2990533/511069
 echoerr() {
-  cat <<< "$@" 1>&2;
+  cat <<<"$@" 1>&2
 }
 
 # print error and exit
-die () {
+die() {
   echoerr "ERROR: $0: $1"
   # if $2 is defined AND NOT EMPTY, use $2; otherwise, set to "150"
   errnum=${2-115}
@@ -45,7 +45,7 @@ fi
 
 TEST_URL="http://pact-broker:${PACT_BROKER_PORT}"
 
-curl -v -XPUT  \
+curl -v -XPUT \
   -u ${PACT_BROKER_BASIC_AUTH_USERNAME}:${PACT_BROKER_BASIC_AUTH_PASSWORD} \
   -H "Content-Type: application/json" \
   -d@/home/foo-bar.json \

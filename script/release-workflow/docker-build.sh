@@ -7,8 +7,8 @@ set -euo >/dev/null
 ARCHES=${ARCHES:-'amd64'}
 : "${IS_DEBIAN:=}"
 DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"
-for arch in $ARCHES; do 
-    docker buildx build \
+for arch in $ARCHES; do
+  docker buildx build \
     --platform linux/$arch \
     --build-arg VERSION="${TAG:-dev}" \
     --output type=docker \

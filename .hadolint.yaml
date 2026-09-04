@@ -1,0 +1,10 @@
+---
+failure-threshold: warning
+
+ignored:
+  # Alpine and Debian package versions are not pinned: the base image moves with
+  # Renovate, and a pinned package version stops resolving as soon as it does.
+  - DL3008
+  - DL3018
+  # The images run busybox sh, which has no `pipefail`.
+  - DL4006

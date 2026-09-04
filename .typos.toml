@@ -1,0 +1,6 @@
+#:schema https://raw.githubusercontent.com/crate-ci/typos/refs/heads/master/config.schema.json
+
+[files]
+# The generated changelog is full of abbreviated commit hashes that read as
+# misspellings.
+extend-exclude = ["CHANGELOG.md"]

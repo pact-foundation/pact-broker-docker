@@ -15,6 +15,7 @@ RUN apk add --update --no-cache gcompat
 
 # Supercronic - use base-$TARGETARCH to select correct base image SUPERCRONIC_SHA1SUM
 ARG TARGETARCH
+# hadolint ignore=DL3006  # the tag comes from TARGETARCH
 FROM base-$TARGETARCH AS pb-dev
 
 # Install Supercronic

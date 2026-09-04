@@ -21,6 +21,19 @@
       "schedule": [
         "at any time"
       ]
+    },
+    {
+      "description": "docker-compose.yml keeps a persistent volume mounted at /var/lib/postgresql/data, and Postgres 18 changed the layout of that directory, so an existing volume fails to start. Hold this file on Postgres 17 until the compose file stops reusing the old data directory.",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "postgres"
+      ],
+      "matchFileNames": [
+        "docker-compose.yml"
+      ],
+      "allowedVersions": "<18"
     }
   ]
 }

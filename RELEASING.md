@@ -27,7 +27,7 @@ To release:
    marking the PR ready for review.
 2. Mark it ready for review once the checks pass.
 3. Merge it. The tag `vX.Y.Z` is pushed, which publishes both images to Docker
-   Hub and GHCR and creates the GitHub release.
+   Hub and GHCR, creates the GitHub release, and notifies docs.pact.io.
 
 ## Releases triggered by a pact_broker gem release
 

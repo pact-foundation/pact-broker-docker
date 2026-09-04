@@ -1,28 +1,30 @@
+# Running the Pact Broker with PostgreSQL
+
 The best way is to run postgresql via docker as well.
 
 ## Running Postgresql via Docker
 
 1. Start the PostgreSQL container via:
 
-  ```console
+   ```console
     $ docker run --name pactbroker-db -e POSTGRES_PASSWORD=ThePostgresPassword -e POSTGRES_USER=admin -e PGDATA=/var/lib/postgresql/data/pgdata -v /var/lib/postgresql/data:/var/lib/postgresql/data -d postgres
-  ```
+   ```
 
-  Change ThePostgresPassword as required.
+   Change ThePostgresPassword as required.
 
 2. Connect to the container and execute psql via:
 
-  ```console
+   ```console
     $ docker run -it --link pactbroker-db:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U admin'
-  ```
+   ```
 
-  Run the follow SQL configuration scripts:
+   Run the follow SQL configuration scripts:
 
-  ```sql
-  CREATE USER pactbrokeruser WITH PASSWORD 'TheUserPassword';
-  CREATE DATABASE pactbroker WITH OWNER pactbrokeruser;
-  GRANT ALL PRIVILEGES ON DATABASE pactbroker TO pactbrokeruser;
-  ```
+   ```sql
+   CREATE USER pactbrokeruser WITH PASSWORD 'TheUserPassword';
+   CREATE DATABASE pactbroker WITH OWNER pactbrokeruser;
+   GRANT ALL PRIVILEGES ON DATABASE pactbroker TO pactbrokeruser;
+   ```
 
 3. Start the PactBroker container via:
 
@@ -53,29 +55,35 @@ pg_ctl start
 
 ### Enable remote connections
 
-Instructions from: http://www.thegeekstuff.com/2014/02/enable-remote-postgresql-connection/
+Instructions from: <http://www.thegeekstuff.com/2014/02/enable-remote-postgresql-connection/>
 
-    $ vim /usr/local/var/postgres/pg_hba.conf
+```text
+$ vim /usr/local/var/postgres/pg_hba.conf
+```
 
 Replace `127.0.0.1/32` rule with:
 
-```
+```text
 host    all             all             0.0.0.0/0            trust
 ```
 
-    $ vim /usr/local/var/postgres/postgresql.conf
+```text
+$ vim /usr/local/var/postgres/postgresql.conf
+```
 
 Insert:
 
-```
+```text
 listen_addresses = '*'
 ```
 
-    $ pg_ctl restart
+```text
+$ pg_ctl restart
+```
 
 ### Setup DB
 
-```
+```text
 $ psql postgres
 > create database pact_broker;
 > CREATE USER pact_broker WITH PASSWORD 'pact_broker';
@@ -91,4 +99,3 @@ export PACT_BROKER_DATABASE_NAME=pact_broker
 export PACT_BROKER_DATABASE_HOST=192.168.0.XXX
 psql postgresql://${PACT_BROKER_DATABASE_USERNAME}:${PACT_BROKER_DATABASE_PASSWORD}@${PACT_BROKER_DATABASE_HOST}/${PACT_BROKER_DATABASE_NAME}
 ```
-

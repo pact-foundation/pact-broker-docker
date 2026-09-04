@@ -1,3 +1,50 @@
+## [2.142.1] _2026-09-04_
+
+### 🐛 Bug Fixes
+
+-   _(shell)_ Clear the shellcheck warnings
+-   _(docker)_ Clear the hadolint findings
+-   _(release)_ Write VERSION with a trailing newline
+
+### 📦 Dependencies
+
+-   _(deps)_ Update the pact_broker gem to [2.121.0](https://github.com/pact-foundation/pact_broker/releases/tag/v2.121.0)
+
+### 🎨 Styling
+
+-   Format the shell scripts with shfmt
+-   End every file with a single newline
+-   Format the yaml with yamlfix
+
+### 📚 Documentation
+
+-   Describe the pull request release process
+-   _(releasing)_ Explain the tag scheme rather than the bootstrap step
+-   Clear the markdown lint findings
+-   Correct the spelling in the prose and comments
+
+### 📦 Other
+
+-   Remove unused triage board workflow
+
+### 🛠️ Miscellaneous Tasks
+
+-   Align changelog heading levels with git-cliff's
+-   Add git-cliff config and the release script
+-   Move the git half of the release out of the shell scripts
+-   _(ci)_ Release images by merging a pull request
+-   _(ci)_ Open a pull request for the pact_broker gem bump
+-   _(ci)_ Let Renovate open the pact_broker gem update
+-   Keep image-shipped dependency bumps in the changelog
+-   _(ci)_ Use best-practices renovate config
+-   _(ci)_ Cleanup unused github workflows
+-   _(ci)_ Notify docs.pact.io on release rather than on every push
+-   _(ci)_ Run the full test suite only on ready pull requests
+-   Declare the indentation style in an editorconfig
+-   _(script)_ Match the shebangs to how the scripts are run
+-   Lint the repository with prek
+-   _(ci)_ Keep pg 17 in one docker compose
+
 <a name="2.142.0-pactbroker2.120.0"></a>
 ## 2.142.0-pactbroker2.120.0 (2026-07-27)
 

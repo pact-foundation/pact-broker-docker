@@ -15,7 +15,7 @@ services:
       - ${PWD}/docker/pg-dump.sql:/tmp/pg-dump.sql
 
   pact-broker:
-    image: pactfoundation/pact-broker:2.113.0-pactbroker2.107.1@sha256:f43692590707513ed59993de3e5d3b2c5408a0eb59a28d41e0f063800ec7e8a3
+    image: pactfoundation/pact-broker:2.142.1-pactbroker2.121.0
     ports:
       - 9393:9393
     depends_on:

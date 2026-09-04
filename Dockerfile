@@ -1,4 +1,4 @@
-FROM ruby:3.4.10-alpine3.24 AS base
+FROM ruby:3.4.10-alpine3.24@sha256:c5a5064d190055633011c03aa800170cc36945ff3afb5f6c915329f92d6f1e00 AS base
 
 # 1. Install target specific dependencies
 # - gcompat required for arm/arm64 (otherwise nokogiri breaks when viewing network graph)

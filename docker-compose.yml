@@ -3,7 +3,7 @@ version: '3'
 
 services:
   postgres:
-    image: postgres:17
+    image: postgres:17@sha256:67f41722b7a8cbdb868a44a4995c846eddfdc2973bccb291ce937dce88ad5675
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
     volumes:
@@ -14,7 +14,7 @@ services:
       POSTGRES_DB: postgres
 
   pact-broker:
-    image: pactfoundation/pact-broker:2.137.0-pactbroker2.118.0
+    image: pactfoundation/pact-broker:2.137.0-pactbroker2.118.0@sha256:02e4cb14d565bd88817248724c1476041276188100111409fef0c506e19ad4b3
     ports:
       - 9292:9292
     depends_on:
@@ -38,7 +38,7 @@ services:
   # one might use a reverse proxy in front of the broker,
   # and includes the use of a self-signed TLS certificate
   nginx:
-    image: nginx:alpine
+    image: nginx:1.31.5-alpine@sha256:72ba65eb42c10344912a84ff42408db7d34f2feb642204570ab8fc5ffd29f1d3
     depends_on:
       - pact-broker
     volumes:

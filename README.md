@@ -2,7 +2,7 @@
 
 This repository contains a Dockerized version of the [Pact Broker][pact-broker]. You can pull the `pactfoundation/pact-broker` image from [Dockerhub][pact-broker-docker]. If you're viewing these docs on Dockerhub, here is a link to the [github repository][github].
 
-> Note: On 3 May 2023, the format of the docker tag changed from starting with the Pact Broker gem version (`2.107.0.1`), to ending with the Pact Broker gem version (`2.107.1-pactbroker2.107.1`). Read about the new versioning scheme [here](#versioning).
+> Note: On 3 May 2023, the format of the docker tag changed from starting with the Pact Broker gem version (`2.107.0.1`), to ending with the Pact Broker gem version (`2.107.1-pactbroker2.107.1`). Read about [the new versioning scheme](#versioning).
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/pact-foundation/pact-msw-adapter/graphs/commit-activity)
 
@@ -33,9 +33,9 @@ All the environment variables used for `dius/pact-broker` are compatible with `p
 
 Multi-platform images are available
 
-- `--platform=linux/amd64`
-- `--platform=linux/arm/v7`
-- `--platform=linux/arm64`
+* `--platform=linux/amd64`
+* `--platform=linux/arm/v7`
+* `--platform=linux/arm64`
 
   ```sh
   docker run --rm -it --entrypoint /bin/sh docker.pactflow.io/pactfoundation/pact-broker:latest -c 'uname -sm'
@@ -49,13 +49,13 @@ Multi-platform images are available
 
 1. [Install Docker][docker] with Docker Engine 20.10.0 or later. **NOTE: Docker 19 is no longer supported by Docker, and the Pact Broker image will not run on it as the base image requires 20.10.0 or later.**
 2. Create a Postgres database (Postgres 9.6 or later).
-2. Setup the Pact Broker connection to the database using the environment variables described below.
+3. Setup the Pact Broker connection to the database using the environment variables described below.
 
 ### Create the database
 
 On an instance of Postgres version 10 or later, connect as a user with administrator privileges and run:
 
-```
+```sql
 CREATE DATABASE pact_broker;
 CREATE ROLE pact_broker WITH LOGIN PASSWORD 'CHANGE_ME';
 GRANT ALL PRIVILEGES ON DATABASE pact_broker TO pact_broker;
@@ -80,7 +80,6 @@ For investigations/spikes you can use SQlite. It is not supported as a productio
 * `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writeable by the application process, recommended to use `/tmp`)
 
   OR
-
 * `PACT_BROKER_DATABASE_URL="sqlite:////tmp/pact_broker.sqlte3"`
 
 See the [database section](https://docs.pact.io/pact_broker/configuration/settings/#database) of the Pact Broker configuration docs for all the database configuration options available.
@@ -103,7 +102,7 @@ Note that the [verification status badges][badges] are not protected by basic au
 
 The heartbeat is available at `/diagnostic/status/heartbeat`. No database connection will be made during the execution of this endpoint.
 
-If you have enabled basic auth, and you are running the Pact Broker within an AWS autoscaling group or similar and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`. 
+If you have enabled basic auth, and you are running the Pact Broker within an AWS autoscaling group or similar and you need to make a heartbeat URL publicly available, set `PACT_BROKER_PUBLIC_HEARTBEAT=true`.
 
 ## Using SSL
 
@@ -131,7 +130,7 @@ Documentation for the Pact Broker application itself can be found in the Pact Br
 
 ## Automatic data clean up
 
-Performance can degrade when too much data accumulates in the Pact Broker. To read about the automatic data clean up feature, please see the [Maintenance](https://docs.pact.io/pact_broker/administration/maintenance) page of the Pact Broker documentation. 
+Performance can degrade when too much data accumulates in the Pact Broker. To read about the automatic data clean up feature, please see the [Maintenance](https://docs.pact.io/pact_broker/administration/maintenance) page of the Pact Broker documentation.
 
 You will need version `2.79.1.1` or later of the pactfoundation/pact-broker Docker image for this feature.
 
@@ -143,7 +142,7 @@ If you have exactly one Pact Broker container running at a time, you can configu
 * `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE`: set to a cron schedule that will run when your Broker is under the least operational load. Default is 2:15am - `15 2 * * *`
 * `PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT`: The maximum number of records to delete at a time for each of the categories listed in the [Categories of removable data](https://docs.pact.io/pact_broker/administration/maintenance#categories-of-removable-data). Defaults to `500`.
 * `PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE`: The maximum number of days to keep "overwritten" data as described in the [Categories of removable data](https://docs.pact.io/pact_broker/administration/maintenance#categories-of-removable-data)
-* `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`:  a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "branch": true}, { "max_age": 90 }, { "deployed" : true }, { "released" : true }]` (remember to escape the quotes if necessary in your configuration files/console).
+* `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`: a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "branch": true}, { "max_age": 90 }, { "deployed" : true }, { "released" : true }]` (remember to escape the quotes if necessary in your configuration files/console).
 * `PACT_BROKER_DATABASE_CLEAN_DRY_RUN`: defaults to `false`. Set to `true` to see the output of what *would* have been deleted if the task had run. This is helpful when experimenting with or fine tuning the clean feature. As nothing is deleted when in dry-run mode, the same output will be printed in the logs each time the task runs.
 
 ### Running the clean task from an external source
@@ -152,7 +151,7 @@ If you are running more than one Pact Broker Docker container at a time for the 
 
 You can see a working example in the [docker-compose-clean.yml](./docker-compose-clean.yml) file. To run the example locally, run:
 
-```
+```sh
 docker compose -f docker-compose-clean.yml up pact-broker
 
 # in another console
@@ -181,7 +180,7 @@ curl -v http://localhost # you can visit in your browser too!
 curl -v -k https://localhost:8443
 ```
 
-_NOTE: this image should be modified before using in Production, in particular, the use of hard-coded credentials_
+> **NOTE:** this image should be modified before using in Production, in particular, the use of hard-coded credentials
 
 ## Running with Openshift
 
@@ -213,7 +212,7 @@ There is a community supported project that provides a [Pact Broker Helm Chart](
 
 If you are running the Docker image behind an ALB with an idle timeout, you may need to set the Puma persistent timeout using the `PACT_BROKER_PUMA_PERSISTENT_TIMEOUT` environment variable. See [issue 26](https://github.com/pact-foundation/pact-broker-docker/issues/26) for details.
 
-You will also want to make use of the [Heartbeat URL](#heartbeat-url)
+You will also want to make use of the [Heartbeat URL](#heartbeathealthcheck-url)
 
 ## Running on AWS serverless
 
@@ -223,20 +222,19 @@ The following implementation is community provided & supported by [@learnautomat
 
 Leverage GitLab & AWK CDK to publish and deploy a serverless framework of the Pact Broker and postgres database
 
-**Pre-Requisites**
+#### Pre-Requisites
 
 * AWS account with proper access
 * AWS CLI and AWS CDK installed
 * Docker installed for local container image management
 * Basic understanding of Docker, AWS ECS, and networking
 
-**Solution**
+#### Solution
 
 * Amazon ECS with an ALB: Hosts both the Pact Broker and PostgreSQL in containers, with one click on your AWS environment (public ALB for demo purposes)
-  * https://gitlab.com/learnautomatedtesting/servicevirtualizationandpact/
+  * <https://gitlab.com/learnautomatedtesting/servicevirtualizationandpact/>
 * API Examples Provider, two static results once deployed via AWS CDK with an expected verifier and wrong output
-  * https://gitlab.com/learnautomatedtesting/pactexample 
-
+  * <https://gitlab.com/learnautomatedtesting/pactexample>
 
 ## Using different environment variable names
 
@@ -257,7 +255,7 @@ PACT_BROKER_APPLICATION_PORT=5000
 
 To allow the URL of the database to be set by a different environment variable, set `PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME` to the name of your chosen variable, and then set that variable. eg.
 
-```
+```sh
 PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME=DATABASE_URL
 DATABASE_URL=...
 ```
@@ -269,9 +267,9 @@ The Pact Broker auto migrates on startup, and will always do so in a way that is
 You can use a custom entrypoint to the Pact Broker Docker image to perform a rollback. A rollback would be required if you needed to downgrade your Pact Broker image. The db-migrate entrypoint is support in versions 2.76.1.1 and later.
 To perform the rollback, you must use at minimum the version of the Docker image that performed the migrations in the first place. You can always use the latest image to rollback.
 
-To work out which migration to rollback to, select the tag of the Pact Broker gem version you want at https://github.com/pact-foundation/pact_broker and then look in the `db/migrations` directory. Find the very last migration in the directory, and take the numbers at the start of the file name. This is your "target".
+To work out which migration to rollback to, select the tag of the Pact Broker gem version you want at <https://github.com/pact-foundation/pact_broker> and then look in the `db/migrations` directory. Find the very last migration in the directory, and take the numbers at the start of the file name. This is your "target".
 
-```
+```sh
 # You can use the PACT_BROKER_DATABASE_URL or the separate environment variables as listed in the Getting Started section.
 
 docker run --rm \
@@ -283,43 +281,44 @@ docker run --rm \
 
 To get the current version of the database run:
 
-```
+```sh
 docker run --rm \
     -e PACT_BROKER_DATABASE_URL=<url> \
     --entrypoint db-version \
     docker.pactflow.io/pactfoundation/pact-broker
 ```
-# Vulnerability scanning
+
+## Vulnerability scanning
 
 * We use bundler audit on the underlying Pact Broker [codebase](https://github.com/pact-foundation/pact_broker/blob/master/.github/workflows/test.yml)
 * We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/master/script/release-workflow/run.sh)
 * We also use Renovate
 
-# Versioning
+## Versioning
 
 The Docker image tag uses a semantic-like versioning scheme (Docker tags don't support the `+` symbol, so we cannot implement a strict semantic version). The format of the tag is `M.m.p-pactbroker<pact_broker_version>` eg. `2.109.0-pactbroker2.107.1`. The `M.m.p` (eg. `2.109.0`) is the semantic part of the tag number, while the `-pactbroker<pact_broker_version>` suffix is purely informational.
 
 The major version will be bumped for:
 
-  * Major increments of the base image that contain backwards incompatible changes (eg. dropping support for Docker 19)
-  * Any other backwards incompatible changes made for any reason (eg. environment variable mappings, entrypoints, tasks, supported auth)
+* Major increments of the base image that contain backwards incompatible changes (eg. dropping support for Docker 19)
+* Any other backwards incompatible changes made for any reason (eg. environment variable mappings, entrypoints, tasks, supported auth)
 
 The minor version will be bumped for:
 
-  * Every Pact Broker gem release, one minor per release regardless of the gem's own increment
-  * Additional non-breaking functionality added to the Docker image
+* Every Pact Broker gem release, one minor per release regardless of the gem's own increment
+* Additional non-breaking functionality added to the Docker image
 
 The patch version will be bumped for:
 
-  * Other fixes to the Docker image
+* Other fixes to the Docker image
 
 Until May 2023, the versioning scheme used the `M.m.p` from the Pact Broker gem, with an additional `RELEASE` number at the end (eg. `2.107.0.1`). This scheme was replace by the current scheme because it was unable to semantically convey changes made to the Docker image that were unrelated to a Pact Broker gem version change (eg. alpine upgrades).
 
-# Troubleshooting
+## Troubleshooting
 
 See the [Troubleshooting][troubleshooting] page on the docs site.
 
-## Anonymized analytics
+### Anonymized analytics
 
 `pactfoundation/pact-broker` uses [Scarf](https://scarf.sh/) to collect anonymized analytics that help support the maintainers of this image. Two things are tracked, independently of one another:
 
@@ -343,9 +342,7 @@ For more information, see [docs.pact.io/telemetry](https://docs.pact.io/telemetr
 [badges]: https://docs.pact.io/pact_broker/advanced_topics/provider_verification_badges
 [troubleshooting]: https://github.com/pact-foundation/pact-broker-docker/wiki/Troubleshooting
 [postgres]: https://github.com/pact-foundation/pact-broker-docker/blob/master/POSTGRESQL.md
-[test-script]: https://github.com/pact-foundation/pact-broker-docker/blob/master/script/test.sh
 [docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
 [pact-broker-docs]: https://docs.pact.io/pact_broker/
 [reverse-proxy]: https://docs.pact.io/pact_broker/configuration#running-the-broker-behind-a-reverse-proxy
-[webhook-whitelist]: https://docs.pact.io/pact_broker/configuration#webhook-whitelists
 [github]: https://github.com/pact-foundation/pact-broker-docker

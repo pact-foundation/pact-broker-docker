@@ -5,7 +5,6 @@
 - Deploy infrastructure {IAM+DB} using tooling included for each AWS environment such as Test, UAT, Prod. Code is in `infrastructure` folder
 - Then deploy k8s using Helm. This example doesn't impose opinion on how Helm is being run. Code is in `deployment` folder
 
-
 ## Assumptions
 
 - K8s cluster is based on EKS

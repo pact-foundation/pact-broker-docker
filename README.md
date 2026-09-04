@@ -27,7 +27,7 @@ If you want to try out a Pact Broker that can be accessed by all your teams, wit
 
 The `pactfoundation/pact-broker` image is a forked version of the `dius/pact-broker` image. It is smaller (as it runs on Alpine Linux with Puma instead of the larger Passenger Phusion base image), and does not need root permissions.
 
-All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permisisons cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Ngnix in front of it (see the [docker-compose](https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml) file for an example).
+All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permissions cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Nginx in front of it (see the [docker-compose](https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml) file for an example).
 
 ## Platforms
 
@@ -77,7 +77,7 @@ Adapter can be 'postgres' (recommended) or 'sqlite' (non production use only).
 For investigations/spikes you can use SQlite. It is not supported as a production database, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
 
 * `PACT_BROKER_DATABASE_ADAPTER="sqlite"`
-* `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writeable by the application process, recommended to use `/tmp`)
+* `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writable by the application process, recommended to use `/tmp`)
 
   OR
 * `PACT_BROKER_DATABASE_URL="sqlite:////tmp/pact_broker.sqlte3"`
@@ -88,7 +88,7 @@ See the [database section](https://docs.pact.io/pact_broker/configuration/settin
 
 * The application makes use of the Puma application server.
 * Apart from creating a database no further preparation is required.
-* The image does not need root privileges to run, however, the root filesystem (or at least, the /tmp directory) must be writeable for Puma to temporarily store files when processing large requests. See this [issue](https://github.com/pact-foundation/pact-js/issues/583#issuecomment-777728677).
+* The image does not need root privileges to run, however, the root filesystem (or at least, the /tmp directory) must be writable for Puma to temporarily store files when processing large requests. See this [issue](https://github.com/pact-foundation/pact-js/issues/583#issuecomment-777728677).
 
 ## Authentication
 

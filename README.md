@@ -147,6 +147,8 @@ If you have exactly one Pact Broker container running at a time, you can enable 
 * `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`: a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "branch": true}, { "max_age": 90 }, { "deployed" : true }, { "released" : true }]` (remember to escape the quotes if necessary in your configuration files/console).
 * `PACT_BROKER_DATABASE_CLEAN_DRY_RUN`: defaults to `false`. Set to `true` to see the output of what *would* have been deleted if the task had run. This is helpful when experimenting with or fine tuning the clean feature. As nothing is deleted when in dry-run mode, the same output will be printed in the logs each time the task runs.
 
+[docker-compose-test-clean.yml](./docker-compose-test-clean.yml) is a working example, and is exercised by the integration suite.
+
 ### Running the clean task from an external source
 
 If you are running more than one Pact Broker Docker container at a time for the same database, then you will end up with two clean up tasks fighting with each other to delete the data. In this situation, it is best to run the clean task from an external location at a regular interval. To do this, run an instance of the pact-broker docker image with the entrypoint `clean`, the same database connection credentials as the application, and the same environment variables described in the section above *except the PACT_BROKER_DATABASE_CLEAN_ENABLED and PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE* vars.

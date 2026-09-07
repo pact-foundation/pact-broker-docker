@@ -6,5 +6,6 @@ ignored:
   # Renovate, and a pinned package version stops resolving as soon as it does.
   - DL3008
   - DL3018
-  # The images run busybox sh, which has no `pipefail`.
+  # Every stage runs `sh`: busybox ash on Alpine, dash on Debian. Neither has
+  # `pipefail`.
   - DL4006

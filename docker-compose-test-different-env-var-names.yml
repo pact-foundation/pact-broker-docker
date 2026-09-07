@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: postgres
 
   pact-broker:
-    image: pactfoundation/pact-broker:latest@sha256:b584200e9f153bf5896930d006c89b0ebf45df57d96aa08f7c7f16bc8b0343d4
+    image: pactfoundation/pact-broker:latest@sha256:6f09517847c451ba27e5f0cf2f893038c329d13381be2e451bed0c3e2f36bbe5
     depends_on:
       - postgres
     environment:

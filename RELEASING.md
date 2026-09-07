@@ -49,14 +49,12 @@ tree and prints the entry. Discard the changes with
 
 ## Pushing a non-production image
 
-Set `TAG` and run the release scripts locally. The `VERSION` file is not
-updated and no git tag is created, and the image is not pushed to `latest`
-unless you also set `PUSH_TO_LATEST=true`.
+The pipeline publishes from a tag alone. There is no script for a one-off push;
+build and push it by hand:
 
-`docker-push.sh` reads `GITHUB_SERVER_URL`, `GITHUB_REPOSITORY` and
-`GITHUB_SHA` for image annotations, so set them too when running outside
-Actions:
+    docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+      --target runtime --build-arg DISTRO=alpine --build-arg VERSION=my-test-tag \
+      --output type=image,push=true \
+      --tag my-org/pact-broker:my-test-tag -f Dockerfile .
 
-    TAG=my-test-tag DOCKER_REPOSITORY=my-org \
-      GITHUB_SERVER_URL=https://github.com GITHUB_REPOSITORY=my-org/pact-broker-docker GITHUB_SHA=$(git rev-parse HEAD) \
-      script/release-workflow/run.sh
+Nothing writes `VERSION`, no git tag is created, and `latest` does not move.

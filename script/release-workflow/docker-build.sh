@@ -2,8 +2,8 @@
 
 set -euo >/dev/null
 
-## This will allow for local use for testing or scanning with trivy (multi-manifest builds cannot be imported)
-## we will build a multi-manifest build during ./docker-push.sh
+## Builds a single-platform image into the local image store, for testing and
+## for scanning with trivy, neither of which can take a multi-platform index.
 ARCHES=${ARCHES:-'amd64'}
 : "${IS_DEBIAN:=}"
 DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"

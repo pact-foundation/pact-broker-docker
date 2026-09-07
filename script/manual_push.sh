@@ -7,6 +7,6 @@ IMAGE_NAME="pactfoundation/pact-broker"
 TAG=$(script/next-docker-tag.sh)
 
 docker pull ${IMAGE_NAME}
-docker build -t ${IMAGE_NAME}:${TAG} .
+docker build --target runtime -t ${IMAGE_NAME}:${TAG} .
 # docker tag ${IMAGE_NAME}:${TAG} ${IMAGE_NAME}:latest
 docker push ${IMAGE_NAME}:${TAG}

@@ -73,8 +73,6 @@ GEM
     multi_json (1.21.1)
     mustermann (3.1.1)
     mutex_m (0.3.0)
-    mysql2 (0.5.7)
-      bigdecimal
     nio4r (2.7.5)
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
@@ -196,7 +194,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mysql2 (~> 0.3)
   pact_broker
   padrino-core (>= 0.16.0.pre3)
   pg (~> 1.5)

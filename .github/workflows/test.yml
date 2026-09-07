@@ -96,7 +96,7 @@ jobs:
           version: 2.15.1
 
       - name: Integration tests
-        run: script/test.sh
+        run: script/test-clean-tree.sh
         env:
           TAG: latest-amd64
 

@@ -1,0 +1,35 @@
+---
+services:
+  postgres:
+    image: postgres:18@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280
+    healthcheck:
+      test: psql postgres --command "select 1" -U postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+  pact-broker:
+    image: ${PACT_BROKER_IMAGE:-pactfoundation/pact-broker:latest}
+    depends_on:
+      - postgres
+    environment:
+      PACT_BROKER_PORT: '9292'
+      PACT_BROKER_DATABASE_URL: postgres://postgres:postgres@postgres/postgres
+      PACT_BROKER_LOG_LEVEL: INFO
+      PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: '10'
+      PACT_BROKER_DATABASE_CLEAN_ENABLED: 'true'
+      PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE: '* * * * *'
+      PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: '500'
+      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: 'false'
+      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true}]'
+
+  sut:
+    build:
+      context: test
+    depends_on:
+      - pact-broker
+    working_dir: /home
+    environment:
+      TEST_URL: http://pact-broker:9292
+    entrypoint: dockerize -wait http://pact-broker:9292/diagnostic/status/heartbeat -timeout 30s /home/clean-test.sh

@@ -13,6 +13,7 @@ echo "Testing ${PACT_BROKER_IMAGE}"
 cleanup() {
   docker compose -f docker-compose-tests.yml rm -fv || true
   docker compose -f docker-compose-test-different-env-var-names.yml rm -fv || true
+  docker compose -f docker-compose-test-clean.yml rm -fv || true
 }
 trap cleanup EXIT
 
@@ -31,3 +32,6 @@ unset PACT_BROKER_BASIC_AUTH_PASSWORD
 unset PACT_BROKER_PUBLIC_HEARTBEAT
 
 docker compose -f docker-compose-test-different-env-var-names.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+
+docker compose -f docker-compose-test-clean.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+docker compose -f docker-compose-test-clean.yml rm -fv || true

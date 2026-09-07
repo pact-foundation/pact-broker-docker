@@ -1,0 +1,107 @@
+---
+name: Staleness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 2 * * 1  # Monday, after the Thursday audit has had a weekend
+
+permissions:
+  contents: read
+
+jobs:
+  detect:
+    name: Detect a stale published image (${{ matrix.distro }}, ${{ matrix.platform }})
+    # pactfoundation/pact-broker:latest and :latest-debian are each manifest
+    # lists. Without a platform, Trivy resolves only the leg matching the
+    # runner (amd64), silently skipping staleness that landed on arm64 or
+    # arm/v7 alone. Alpine and Debian track different upstream package sets
+    # on different cadences, so a debian-only advisory could sit indefinitely
+    # while alpine looks clean — both distros are scanned explicitly, the
+    # same six-way cross product release.yml's build matrix already uses.
+    # This job builds nothing, so doubling the legs is cheap.
+    strategy:
+      fail-fast: false
+      matrix:
+        distro:
+          - alpine
+          - debian
+        platform:
+          - linux/amd64
+          - linux/arm64
+          - linux/arm/v7
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+
+      - uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567  # v0.3.1
+        with:
+          cache: true
+
+      # This is the complement of the release-PR gate in test.yml, which
+      # scans a freshly built image and blocks the release if it has
+      # findings. This scans the published image, for both distros, and by
+      # failing a leg signals that a release should open. A fixable advisory
+      # therefore fails here and passes that gate, because the fresh build
+      # carries the fix. If one ever failed both, a rebuild is not picking up
+      # the fix — a real defect, so this fails rather than retrying.
+      - name: Scan the published image
+        env:
+          DEBIAN: ${{ matrix.distro == 'debian' && '-debian' || '' }}
+        run: ./script/scan-image.sh "pactfoundation/pact-broker:latest${DEBIAN}" "${{ matrix.platform }}"
+
+  propose:
+    name: Open a release PR
+    needs: detect
+    # A matrix job's outputs only surface one leg's value, so staleness on
+    # any distro/platform combination is read from the job's own conclusion
+    # instead.
+    if: always() && needs.detect.result == 'failure'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1  # v3.2.0
+        with:
+          app-id: ${{ vars.PACT_FOUNDATION_BOT_APP_ID }}
+          private-key: ${{ secrets.PACT_FOUNDATION_BOT_PRIVATE_KEY }}
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Configure git identity
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          git config user.name "${{ steps.app-token.outputs.app-slug }}[bot]"
+          git config user.email "$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq '.id')+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com"
+
+      - name: Install git-cliff
+        uses: taiki-e/install-action@84f5ac3124727fb3d284d4d22ee9ab3654fd09a6  # v2.87.7
+        with:
+          tool: git-cliff
+
+      # cliff.toml skips ^(chore|fix)\(deps.*\) outright, and a preprocessor
+      # there only rescues dependency bumps that mention pact_broker, puma,
+      # alpine, debian, postgres or ruby by retyping them to feat(deps. A
+      # rebuild commit mentions none of those, so scope(deps) would be
+      # silently skipped and produce no release. security is outside the
+      # skip rule, yields a patch bump, and files under Bug Fixes.
+      - name: Record the rebuild reason
+        run: |
+          git commit --allow-empty -F - <<'MSG'
+          fix(security): rebuild for patched operating system packages
+
+          The published image carries advisories that have fixes available
+          upstream. Nothing in this repository changed; a rebuild picks up the
+          patched packages.
+          MSG
+
+      - name: Update release PR
+        # The App token, not GITHUB_TOKEN: it can push the release branch under
+        # branch protection, and pull requests it opens trigger workflows
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: ruby script/release.rb prepare

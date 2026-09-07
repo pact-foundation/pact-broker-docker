@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-docker build -t=pactfoundation/pact-broker .
+docker build --target runtime -t=pactfoundation/pact-broker .

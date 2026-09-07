@@ -1,0 +1,7 @@
+---
+# Every entry needs a statement and an expired_at. An advisory that cannot be
+# given both does not belong here - it belongs in a fix.
+#
+# Unfixed OS advisories are handled by --ignore-unfixed in scan-image.sh, not by
+# this file. Do not add them here.
+vulnerabilities: []

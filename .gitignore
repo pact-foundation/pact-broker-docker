@@ -7,3 +7,4 @@ pact_broker/.bundle
 tmp
 .data
 docker/pg-dump.sql
+/trivy-results.sarif

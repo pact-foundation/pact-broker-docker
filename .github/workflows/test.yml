@@ -92,7 +92,7 @@ jobs:
         if: github.head_ref == 'release/pact-broker-docker'
         run: |
           . ./script/release-workflow/set-env-vars.sh
-          ./script/release-workflow/image-scan.sh
+          ./script/scan-image.sh "${DOCKER_IMAGE_ORG_AND_NAME}:latest-${ARCH}${IS_DEBIAN:+-debian}"
 
       - uses: KengoTODA/actions-setup-docker-compose@f39674ee3a0f309c94ecf9c442e2cfde74a3f764  # v1.2.6
         if: ${{ env.ACT }}

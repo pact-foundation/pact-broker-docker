@@ -291,7 +291,7 @@ docker run --rm \
 ## Vulnerability scanning
 
 * We use bundler audit on the underlying Pact Broker [codebase](https://github.com/pact-foundation/pact_broker/blob/master/.github/workflows/test.yml)
-* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/script/release-workflow/run.sh)
+* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/.github/workflows/release.yml), against the exact digest that is published, and weekly in our [audit workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/.github/workflows/audit.yml)
 * We also use Renovate
 
 ## Versioning

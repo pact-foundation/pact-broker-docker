@@ -25,8 +25,6 @@ export IS_DEBIAN=$IS_DEBIAN
 export DEBIAN=${IS_DEBIAN:+"-debian"}
 echo "IS_DEBIAN=$IS_DEBIAN"
 
-# docker-push.sh reads this under `set -u`, and it is no longer supplied by a
-# workflow input.
 if [ -z "${TAG:-}" ]; then
   : "${PUSH_TO_LATEST:=true}"
   export PUSH_TO_LATEST

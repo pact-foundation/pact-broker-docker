@@ -68,8 +68,8 @@ jobs:
           if [ "${{ matrix.distro }}" = "debian" ]; then
             echo "IS_DEBIAN=1" >> $GITHUB_ENV
           fi
-      - name: Setup Docker builder
-        run: ./script/release-workflow/docker-prepare.sh
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e  # v4.3.0
 
       - name: Build Docker image for single platform
         run: ./script/release-workflow/docker-build.sh

@@ -11,37 +11,65 @@ on:
 
 jobs:
   audit:
-    name: 👮 audit
+    name: 👮 audit (${{ matrix.distro }}, ${{ matrix.platform }})
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - ubuntu-24.04-arm
-        distro:
-          - alpine
-          - debian
-    runs-on: ${{ matrix.os }}
-    env:
-      TAG: latest
+        include:
+          - {distro: alpine, platform: linux/amd64, runner: ubuntu-latest}
+          - {distro: alpine, platform: linux/arm64, runner: ubuntu-24.04-arm}
+          # No arm/v7 runner exists, so this leg is emulated wherever it runs.
+          - {distro: alpine, platform: linux/arm/v7, runner: ubuntu-latest}
+          - {distro: debian, platform: linux/amd64, runner: ubuntu-latest}
+          - {distro: debian, platform: linux/arm64, runner: ubuntu-24.04-arm}
+          - {distro: debian, platform: linux/arm/v7, runner: ubuntu-latest}
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
-      - name: Manual Trivy Setup
-        uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567  # v0.3.1
+
+      - name: Set up QEMU
+        if: contains(matrix.platform, 'arm/v7')
+        uses: docker/setup-qemu-action@1f40c72289eff860ee54a304f1438e3cff362e0a  # v4.3.0
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e  # v4.3.0
+
+      - uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567  # v0.3.1
         with:
           cache: true
-      - name: Set environment variables
+
+      # test.yml only runs this contract check on linux/amd64 (PLATFORM
+      # defaults there), so this is the only per-platform contract
+      # verification for arm64 and arm/v7 in the repository — it is not
+      # redundant with the build below despite sharing target and args.
+      - name: Verify the image contract
         run: |
-          if [ "${{ matrix.distro }}" = "debian" ]; then
-            echo "IS_DEBIAN=1" >> $GITHUB_ENV
-          fi
-      - name: Audit Docker image for amd64
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: ./script/release-workflow/audit.sh
-        env:
-          DOCKER_TARGET_PLATFORM: linux/amd64
-      - name: Audit Docker image for arm64
-        if: ${{ matrix.os == 'ubuntu-24.04-arm' }}
-        run: ./script/release-workflow/audit.sh
-        env:
-          DOCKER_TARGET_PLATFORM: linux/arm64
+          docker buildx build \
+            --platform "${{ matrix.platform }}" \
+            --build-arg DISTRO="${{ matrix.distro }}" \
+            --target contract \
+            --output type=cacheonly \
+            -f Dockerfile .
+
+      - name: Build image for scanning
+        run: |
+          docker buildx build \
+            --platform "${{ matrix.platform }}" \
+            --build-arg DISTRO="${{ matrix.distro }}" \
+            --target runtime \
+            --output type=docker \
+            --tag audit-target:local \
+            -f Dockerfile .
+
+      - name: Scan
+        run: ./script/scan-image.sh audit-target:local
+
+      - name: Upload results to code scanning
+        if: always() && hashFiles('trivy-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938  # v4.37.9
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy-${{ matrix.distro }}-${{ matrix.platform }}

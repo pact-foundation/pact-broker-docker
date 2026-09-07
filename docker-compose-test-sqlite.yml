@@ -1,0 +1,22 @@
+---
+services:
+  pact-broker:
+    image: ${PACT_BROKER_IMAGE:-pactfoundation/pact-broker:latest}
+    environment:
+      PACT_BROKER_PORT: '9292'
+      PACT_BROKER_DATABASE_ADAPTER: sqlite
+      PACT_BROKER_DATABASE_NAME: /tmp/pact_broker.sqlite3
+      PACT_BROKER_LOG_LEVEL: INFO
+
+  sut:
+    build:
+      context: test
+    depends_on:
+      - pact-broker
+    working_dir: /home
+    environment:
+      TEST_URL: http://pact-broker:9292
+      PACT_BROKER_PORT: '9292'
+      PACT_BROKER_BASIC_AUTH_USERNAME: ''
+      PACT_BROKER_BASIC_AUTH_PASSWORD: ''
+    entrypoint: dockerize -wait http://pact-broker:9292/diagnostic/status/heartbeat -timeout 30s /home/test.sh

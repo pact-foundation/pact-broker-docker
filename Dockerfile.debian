@@ -34,8 +34,10 @@ RUN set -ex && \
 WORKDIR $HOME
 COPY pact_broker/Gemfile pact_broker/Gemfile.lock $HOME/
 RUN cat Gemfile.lock | grep -A1 "BUNDLED WITH" | tail -n1 | awk '{print $1}' > BUNDLER_VERSION
+# hadolint ignore=DL3005  # the base image ships security updates behind its own release cadence
 RUN set -ex && \
   apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get upgrade -y && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   dnsutils \
   g++ \

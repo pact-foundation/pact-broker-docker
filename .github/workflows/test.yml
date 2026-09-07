@@ -74,6 +74,21 @@ jobs:
       - name: Build Docker image for single platform
         run: ./script/release-workflow/docker-build.sh
 
+      # Scanned on the release pull request alone, so a new CVE blocks the
+      # release rather than the publish job that runs after the tag is pushed.
+      # Skipped steps leave the job green, which the completion check needs.
+      - name: Manual Trivy Setup
+        if: github.head_ref == 'release/pact-broker-docker'
+        uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567  # v0.3.1
+        with:
+          cache: true
+
+      - name: Audit Docker image
+        if: github.head_ref == 'release/pact-broker-docker'
+        run: |
+          . ./script/release-workflow/set-env-vars.sh
+          ./script/release-workflow/image-scan.sh
+
       - uses: KengoTODA/actions-setup-docker-compose@f39674ee3a0f309c94ecf9c442e2cfde74a3f764  # v1.2.6
         if: ${{ env.ACT }}
         name: Install `docker-compose` for use with https://github.com/nektos/act

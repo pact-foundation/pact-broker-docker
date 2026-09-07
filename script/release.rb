@@ -14,7 +14,7 @@ ENV["RUST_LOG"] ||= "error"
 # Requires git, gh and git-cliff on PATH. Runnable locally as well as in CI.
 class Release
   RELEASE_BRANCH = "release/pact-broker-docker"
-  BASE_BRANCH    = "master"
+  BASE_BRANCH    = "main"
   VERSION_FILE   = "VERSION"
   LOCKFILE       = "pact_broker/Gemfile.lock"
   TAG_PREFIX     = "v"

@@ -5,7 +5,7 @@ set -e
 . script/docker-functions
 . script/functions
 
-git pull origin master
+git pull origin main
 
 docker_build_bundle_base
 bundle_update_on_docker $1

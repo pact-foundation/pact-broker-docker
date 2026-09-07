@@ -4,7 +4,9 @@ version: '3'
 services:
   pact-broker:
     # image: pactfoundation/pact-broker:2.143.0-pactbroker2.121.0
-    build: .
+    build:
+      context: .
+      target: runtime
     ports:
       - 9292:9292
     environment:

@@ -25,7 +25,9 @@ services:
       PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: '5'
 
   clean:
-    build: .
+    build:
+      context: .
+      target: runtime
     depends_on:
       - postgres
     environment:

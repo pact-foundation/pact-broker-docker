@@ -17,7 +17,9 @@ services:
       - ${PWD}/docker/pg-dump.sql:/tmp/pg-dump.sql
 
   pact-broker:
-    build: .
+    build:
+      context: .
+      target: runtime
     ports:
       - 9393:9393
     depends_on:
@@ -44,7 +46,9 @@ services:
       PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: '10'
 
   db-migrate:
-    build: .
+    build:
+      context: .
+      target: runtime
     depends_on:
       - postgres
     environment:
@@ -55,7 +59,9 @@ services:
     entrypoint: db-migrate
 
   db-version:
-    build: .
+    build:
+      context: .
+      target: runtime
     depends_on:
       - postgres
     environment:

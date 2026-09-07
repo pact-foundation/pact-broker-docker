@@ -74,11 +74,10 @@ jobs:
       - name: Build Docker image for single platform
         run: ./script/release-workflow/docker-build.sh
 
-      # Dockerfile.debian is a separate single-stage file with no contract
-      # target, so the assertions run on the alpine leg alone.
       - name: Assert the runtime image carries no build tooling
-        if: matrix.distro == 'alpine'
         run: ./script/test-image-contract.sh
+        env:
+          DISTRO: ${{ matrix.distro }}
 
       # Scanned on the release pull request alone, so a new CVE blocks the
       # release rather than the publish job that runs after the tag is pushed.

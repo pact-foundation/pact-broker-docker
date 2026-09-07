@@ -182,5 +182,7 @@ bundle exec puma --version
 # The clean scheduler needs fugit, and fugit needs the zoneinfo database that
 # Alpine does not ship by default.
 bundle exec ruby -e 'require "fugit"; Fugit::Cron.parse("15 2 * * *") or abort("cron parse failed")'
+# resolv ships as a default gem; the bundle must supersede it to clear CVE-2026-80212.
+bundle exec ruby -e 'require "resolv"; v = Gem.loaded_specs.fetch("resolv").version; abort("resolv #{v} is older than 0.7.2") if v < Gem::Version.new("0.7.2")'
 echo "PASS: runtime image carries no build tooling"
 EOT

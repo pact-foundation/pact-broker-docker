@@ -1,37 +1,21 @@
 FROM ruby:3.4.10-alpine3.24@sha256:c5a5064d190055633011c03aa800170cc36945ff3afb5f6c915329f92d6f1e00 AS base
 
-# 1. Install target specific dependencies
-# - gcompat required for arm/arm64 (otherwise nokogiri breaks when viewing network graph)
-#   - https://github.com/sparklemotion/nokogiri/issues/2414
-# 2. Supercronic - setup sha1sum for each supported architecture
-FROM base AS base-amd64
-ENV SUPERCRONIC_SHA1SUM=712d2ece75da6f6e530192a151488578153e4e96
-FROM base AS base-arm64
-ENV SUPERCRONIC_SHA1SUM=93323899ddca3f1198f1796a4bf4418ed1e7982e
-RUN apk add --update --no-cache gcompat
-FROM base AS base-arm
-ENV SUPERCRONIC_SHA1SUM=dcc8535b46bd9752fbbe177fddd7f6f0451da9a4
-RUN apk add --update --no-cache gcompat
+# gcompat is a musl compatibility shim. nokogiri needs it on arm and arm64,
+# where the network graph breaks without it
+# (https://github.com/sparklemotion/nokogiri/issues/2414). It is installed on
+# every architecture so the build has no architecture-conditional branch.
+#
+# tzdata supplies the zoneinfo database. Alpine ships none, and the clean
+# scheduler's `require "fugit"` fails outright without it.
+RUN apk add --update --no-cache gcompat tzdata
 
-# Supercronic - use base-$TARGETARCH to select correct base image SUPERCRONIC_SHA1SUM
-ARG TARGETARCH
-# hadolint ignore=DL3006  # the tag comes from TARGETARCH
-FROM base-$TARGETARCH AS pb-dev
-
-# Install Supercronic
-ARG TARGETARCH
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.47/supercronic-linux-${TARGETARCH} \
-    SUPERCRONIC=supercronic-linux-${TARGETARCH}
+FROM base AS pb-dev
 
 # Scarf analytics - version/platform reported by the entrypoint on startup
+ARG TARGETARCH
 ARG VERSION=dev
 ENV PACT_BROKER_DOCKER_VERSION=${VERSION} \
     PACT_BROKER_DOCKER_PLATFORM=linux-${TARGETARCH}
-RUN wget "$SUPERCRONIC_URL" \
- && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
- && chmod +x "$SUPERCRONIC" \
- && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
- && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
 
 # Installation path
 ENV HOME=/pact_broker

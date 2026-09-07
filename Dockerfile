@@ -162,20 +162,22 @@ if [ -e /pact_broker/crontab ]; then
   exit 1
 fi
 
+# The package list is captured first so that a failing query aborts the stage.
+# Piping the query straight into grep would report grep's status, and a base
+# with no package manager would read as "no -dev packages installed".
 if command -v apk >/dev/null 2>&1; then
-  if apk info 2>/dev/null | grep -q -- '-dev$'; then
-    echo "FAIL: -dev packages present:" >&2
-    apk info | grep -- '-dev$' >&2
-    exit 1
-  fi
+  packages="$(apk info)"
+elif command -v dpkg-query >/dev/null 2>&1; then
+  packages="$(dpkg-query -W -f='${Package}\n')"
+else
+  echo "FAIL: no package query tool, cannot enumerate installed packages" >&2
+  exit 1
 fi
 
-if command -v dpkg-query >/dev/null 2>&1; then
-  if dpkg-query -W -f='${Package}\n' 2>/dev/null | grep -q -- '-dev$'; then
-    echo "FAIL: -dev packages present:" >&2
-    dpkg-query -W -f='${Package}\n' | grep -- '-dev$' >&2
-    exit 1
-  fi
+if printf '%s\n' "$packages" | grep -q -- '-dev$'; then
+  echo "FAIL: -dev packages present:" >&2
+  printf '%s\n' "$packages" | grep -- '-dev$' >&2
+  exit 1
 fi
 
 bundle exec puma --version
@@ -186,3 +188,7 @@ bundle exec ruby -e 'require "fugit"; Fugit::Cron.parse("15 2 * * *") or abort("
 bundle exec ruby -e 'require "resolv"; v = Gem.loaded_specs.fetch("resolv").version; abort("resolv #{v} is older than 0.7.2") if v < Gem::Version.new("0.7.2")'
 echo "PASS: runtime image carries no build tooling"
 EOT
+
+# The contract stage is last in the file, so a plain `docker build .` lands here.
+# Restoring the runtime user keeps that default image unprivileged.
+USER ruby

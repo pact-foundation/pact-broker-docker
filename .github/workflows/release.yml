@@ -4,12 +4,12 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - v*
   pull_request:
     branches:
-      - master
+      - main
     types:
       - closed
 
@@ -23,7 +23,7 @@ concurrency:
 jobs:
   prepare:
     name: Update release PR
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Generate GitHub App token

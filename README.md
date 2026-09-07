@@ -27,7 +27,7 @@ If you want to try out a Pact Broker that can be accessed by all your teams, wit
 
 The `pactfoundation/pact-broker` image is a forked version of the `dius/pact-broker` image. It is smaller (as it runs on Alpine Linux with Puma instead of the larger Passenger Phusion base image), and does not need root permissions.
 
-All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permissions cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Nginx in front of it (see the [docker-compose](https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml) file for an example).
+All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permissions cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Nginx in front of it (see the [docker-compose](https://github.com/pact-foundation/pact-broker-docker/blob/main/docker-compose.yml) file for an example).
 
 ## Platforms
 
@@ -291,7 +291,7 @@ docker run --rm \
 ## Vulnerability scanning
 
 * We use bundler audit on the underlying Pact Broker [codebase](https://github.com/pact-foundation/pact_broker/blob/master/.github/workflows/test.yml)
-* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/master/script/release-workflow/run.sh)
+* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/script/release-workflow/run.sh)
 * We also use Renovate
 
 ## Versioning
@@ -341,8 +341,8 @@ For more information, see [docs.pact.io/telemetry](https://docs.pact.io/telemetr
 [pact-broker-openshift]: https://github.com/jaimeniswonger/pact-broker-openshift
 [badges]: https://docs.pact.io/pact_broker/advanced_topics/provider_verification_badges
 [troubleshooting]: https://github.com/pact-foundation/pact-broker-docker/wiki/Troubleshooting
-[postgres]: https://github.com/pact-foundation/pact-broker-docker/blob/master/POSTGRESQL.md
-[docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/master/docker-compose.yml
+[postgres]: https://github.com/pact-foundation/pact-broker-docker/blob/main/POSTGRESQL.md
+[docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/main/docker-compose.yml
 [pact-broker-docs]: https://docs.pact.io/pact_broker/
 [reverse-proxy]: https://docs.pact.io/pact_broker/configuration#running-the-broker-behind-a-reverse-proxy
 [github]: https://github.com/pact-foundation/pact-broker-docker

@@ -14,7 +14,7 @@ image tag.
 
 Releases are made by merging a pull request.
 
-Every push to `master` updates a draft pull request from the
+Every push to `main` updates a draft pull request from the
 `release/pact-broker-docker` branch. It contains the next version, computed from
 the conventional commits since the last tag, the changelog entry for it, and the
 updated image references in the `docker-compose*.yml` files.

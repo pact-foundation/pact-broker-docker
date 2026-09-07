@@ -1,26 +1,6 @@
 FROM ruby:3.4.10@sha256:2e9cf64044599b1c5ea7dd7c48bac0858633e6413065aa4beebbbf448e11e18f AS base
 
-FROM base AS base-amd64
-ENV SUPERCRONIC_SHA1SUM=712d2ece75da6f6e530192a151488578153e4e96
-FROM base AS base-arm64
-ENV SUPERCRONIC_SHA1SUM=93323899ddca3f1198f1796a4bf4418ed1e7982e
-FROM base AS base-arm
-ENV SUPERCRONIC_SHA1SUM=dcc8535b46bd9752fbbe177fddd7f6f0451da9a4
-
-# Supercronic - use base-$TARGETARCH to select correct base image SUPERCRONIC_SHA1SUM
-ARG TARGETARCH
-# hadolint ignore=DL3006  # the tag comes from TARGETARCH
-FROM base-$TARGETARCH AS pb-dev
-
-# Install Supercronic
-ARG TARGETARCH
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.47/supercronic-linux-${TARGETARCH} \
-    SUPERCRONIC=supercronic-linux-${TARGETARCH}
-RUN wget "$SUPERCRONIC_URL" \
- && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
- && chmod +x "$SUPERCRONIC" \
- && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
- && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+FROM base AS pb-dev
 
 # Installation path
 ENV HOME=/pact_broker

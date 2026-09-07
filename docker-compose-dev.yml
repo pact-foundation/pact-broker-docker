@@ -19,7 +19,9 @@ services:
       driver: none
 
   pact-broker:
-    build: .
+    build:
+      context: .
+      target: runtime
     ports:
       - 9292:9292
     depends_on:

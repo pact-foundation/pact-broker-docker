@@ -20,8 +20,11 @@ services:
 
   pact-broker-debian:
     build:
-      dockerfile: ./Dockerfile.debian
+      dockerfile: ./Dockerfile
       context: .
+      target: runtime
+      args:
+        DISTRO: debian
     ports:
       - 9292:9292
     depends_on:

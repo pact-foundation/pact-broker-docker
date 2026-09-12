@@ -68,11 +68,16 @@ jobs:
           if [ "${{ matrix.distro }}" = "debian" ]; then
             echo "IS_DEBIAN=1" >> $GITHUB_ENV
           fi
-      - name: Setup Docker builder
-        run: ./script/release-workflow/docker-prepare.sh
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e  # v4.3.0
 
       - name: Build Docker image for single platform
         run: ./script/release-workflow/docker-build.sh
+
+      - name: Assert the runtime image carries no build tooling
+        run: ./script/test-image-contract.sh
+        env:
+          DISTRO: ${{ matrix.distro }}
 
       # Scanned on the release pull request alone, so a new CVE blocks the
       # release rather than the publish job that runs after the tag is pushed.
@@ -87,7 +92,7 @@ jobs:
         if: github.head_ref == 'release/pact-broker-docker'
         run: |
           . ./script/release-workflow/set-env-vars.sh
-          ./script/release-workflow/image-scan.sh
+          ./script/scan-image.sh "${DOCKER_IMAGE_ORG_AND_NAME}:latest-${ARCH}${IS_DEBIAN:+-debian}"
 
       - uses: KengoTODA/actions-setup-docker-compose@f39674ee3a0f309c94ecf9c442e2cfde74a3f764  # v1.2.6
         if: ${{ env.ACT }}
@@ -96,7 +101,7 @@ jobs:
           version: 2.15.1
 
       - name: Integration tests
-        run: script/test.sh
+        run: script/test-clean-tree.sh
         env:
           TAG: latest-amd64
 

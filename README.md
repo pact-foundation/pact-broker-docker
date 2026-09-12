@@ -13,9 +13,11 @@ This repository contains a Dockerized version of the [Pact Broker][pact-broker].
 [![pulls](https://badgen.net/docker/pulls/pactfoundation/pact-broker?icon=docker&label=pulls)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![stars](https://badgen.net/docker/stars/pactfoundation/pact-broker?icon=docker&label=stars)](https://hub.docker.com/r/pactfoundation/pact-broker)
 
-[![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-broker)
-[![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
-[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-multi/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-broker)
+[![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-broker)
+[![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
+[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-broker/latest/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-broker)
+[![size: debian amd64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-debian/amd64?icon=docker&label=size%3Adebian-amd64)](https://hub.docker.com/r/pactfoundation/pact-broker)
+[![size: debian arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-debian/arm64?icon=docker&label=size%3Adebian-arm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
 
 <img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=f0adca49-1631-4f0b-8914-366ea390b5c8&page=README.md" />
 
@@ -72,9 +74,9 @@ You can either set the `PACT_BROKER_DATABASE_URL` in the format `driver://userna
 * `PACT_BROKER_DATABASE_NAME`
 * `PACT_BROKER_DATABASE_PORT` (optional, defaults to the default port for the specified adapter)
 
-Adapter can be 'postgres' (recommended) or 'sqlite' (non production use only).
+The supported adapters are `postgres` and `sqlite`. Use `postgres` for a running broker; `sqlite` is for quick-start and CI use only.
 
-For investigations/spikes you can use SQlite. It is not supported as a production database, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
+For investigations/spikes you can use SQlite. It is not supported for running a broker long term, as it does not support concurrent requests. Additionally, unless you mount it from an external volume, the database will be disposed of when the container shuts down.
 
 * `PACT_BROKER_DATABASE_ADAPTER="sqlite"`
 * `PACT_BROKER_DATABASE_NAME="/tmp/pact_broker.sqlite3"` (arbitrary file a directory which is writable by the application process, recommended to use `/tmp`)
@@ -136,14 +138,16 @@ You will need version `2.79.1.1` or later of the pactfoundation/pact-broker Dock
 
 ### Running the clean task on a cron schedule within the application container
 
-If you have exactly one Pact Broker container running at a time, you can configure cron on the container to run the clean up.
+If you have exactly one Pact Broker container running at a time, you can enable an in-process scheduler to run the clean up. The image does not contain a cron daemon; the schedule is parsed and run by a Ruby scheduler started by the entrypoint, so any other scheduled work you need must run outside the container.
 
 * `PACT_BROKER_DATABASE_CLEAN_ENABLED`: set to `true` to enable the clean. Default is `false`.
-* `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE`: set to a cron schedule that will run when your Broker is under the least operational load. Default is 2:15am - `15 2 * * *`
+* `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE`: set to a cron schedule that will run when your Broker is under the least operational load. Default is 2:15am - `15 2 * * *`. Five- and six-field expressions, ranges, steps and the `@yearly`/`@monthly`/`@weekly`/`@daily`/`@midnight`/`@hourly` descriptors are supported. A seven-field expression carrying a year, a `?` in the day-of-month or day-of-week field, a `W` in the day-of-month field, or an `L` in the day-of-week field, is rejected: the scheduler logs `Invalid cron schedule: ...` and exits, but the broker itself keeps serving requests, so the only sign of the problem is that log line and the clean no longer running.
 * `PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT`: The maximum number of records to delete at a time for each of the categories listed in the [Categories of removable data](https://docs.pact.io/pact_broker/administration/maintenance#categories-of-removable-data). Defaults to `500`.
 * `PACT_BROKER_DATABASE_CLEAN_OVERWRITTEN_DATA_MAX_AGE`: The maximum number of days to keep "overwritten" data as described in the [Categories of removable data](https://docs.pact.io/pact_broker/administration/maintenance#categories-of-removable-data)
 * `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`: a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "branch": true}, { "max_age": 90 }, { "deployed" : true }, { "released" : true }]` (remember to escape the quotes if necessary in your configuration files/console).
 * `PACT_BROKER_DATABASE_CLEAN_DRY_RUN`: defaults to `false`. Set to `true` to see the output of what *would* have been deleted if the task had run. This is helpful when experimenting with or fine tuning the clean feature. As nothing is deleted when in dry-run mode, the same output will be printed in the logs each time the task runs.
+
+[docker-compose-test-clean.yml](./docker-compose-test-clean.yml) is a working example, and is exercised by the integration suite.
 
 ### Running the clean task from an external source
 
@@ -157,10 +161,6 @@ docker compose -f docker-compose-clean.yml up pact-broker
 # in another console
 docker compose -f docker-compose-clean.yml up clean
 ```
-
-### Known issues with the data clean up task
-
-* When the pact-broker docker container gets restarted because of an internal error, another supercronic (the application that runs the cron task in the background) process seems to get started each time, leading to multiple clean tasks running at once. This issue has been noticed in local testing, but we do not know if it is likely to be an issue under normal production use. Please raise an issue if you are observing it. The mitigation for this is to run the clean from an external source as documented above.
 
 ## Running with Docker Compose
 
@@ -291,7 +291,7 @@ docker run --rm \
 ## Vulnerability scanning
 
 * We use bundler audit on the underlying Pact Broker [codebase](https://github.com/pact-foundation/pact_broker/blob/master/.github/workflows/test.yml)
-* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/script/release-workflow/run.sh)
+* We use trivy in our [release workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/.github/workflows/release.yml), against the exact digest that is published, and weekly in our [audit workflow](https://github.com/pact-foundation/pact-broker-docker/blob/main/.github/workflows/audit.yml)
 * We also use Renovate
 
 ## Versioning

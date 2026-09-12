@@ -73,7 +73,9 @@ hooks = [{ id = "rumdl" }]
 repo = "https://github.com/AleksaC/hadolint-py"
 rev = "v2.15.1"
 hooks = [
-  # The variant Dockerfiles are not recognised by filename alone.
+  # The upstream hook selects on `types: [dockerfile]`, which covers the two
+  # files here. The pattern also catches a suffixed variant name should one
+  # ever be added back.
   { id = "hadolint", files = "(?i)(^|/)Dockerfile([.-].*)?$" },
 ]
 

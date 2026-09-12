@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t pactfoundation/pact-broker:latest .
+docker build --target runtime -t pactfoundation/pact-broker:latest .

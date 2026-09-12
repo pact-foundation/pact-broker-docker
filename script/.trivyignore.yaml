@@ -1,0 +1,17 @@
+---
+# Every entry needs a statement and an expired_at. An advisory that cannot be
+# given both does not belong here - it belongs in a fix.
+#
+# Unfixed OS advisories are handled by --ignore-unfixed in scan-image.sh, not by
+# this file. Do not add them here.
+vulnerabilities:
+  - id: CVE-2026-80212
+    statement: >-
+      Reported against Ruby's default gemspec at
+      /usr/local/lib/ruby/gems/3.4.0/specifications/default/resolv-0.7.1.gemspec,
+      which ships with the base image and cannot be uninstalled. The
+      application never loads it: every entry point runs under Bundler, which
+      resolves "resolv" to the vendored 0.7.2 pinned in pact_broker/Gemfile,
+      and Dockerfile:187 asserts that version at build time. Clears once the
+      base image ships Ruby with a default resolv >= 0.7.2.
+    expired_at: 2027-03-07

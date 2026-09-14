@@ -19,6 +19,7 @@ cleanup() {
   docker compose -p pact-broker-env-var-names -f test/compose/env-var-names/compose.yml rm -fv || true
   docker compose -p pact-broker-clean -f test/compose/clean/compose.yml rm -fv || true
   docker compose -p pact-broker-sqlite -f test/compose/sqlite/compose.yml rm -fv || true
+  docker compose -p pact-broker-shutdown -f test/compose/clean/compose.yml rm -fsv || true
 }
 trap cleanup EXIT
 
@@ -43,3 +44,5 @@ docker compose -p pact-broker-clean -f test/compose/clean/compose.yml rm -fv || 
 
 docker compose -p pact-broker-sqlite -f test/compose/sqlite/compose.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
 docker compose -p pact-broker-sqlite -f test/compose/sqlite/compose.yml rm -fv || true
+
+./script/test-shutdown.sh

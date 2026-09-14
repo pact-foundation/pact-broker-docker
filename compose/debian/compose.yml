@@ -1,0 +1,15 @@
+---
+# The dev stack, built from the Debian variant of the image.
+services:
+  postgres:
+    extends:
+      file: ../dev/compose.yml
+      service: postgres
+
+  pact-broker:
+    extends:
+      file: ../dev/compose.yml
+      service: pact-broker
+    build:
+      args:
+        DISTRO: debian

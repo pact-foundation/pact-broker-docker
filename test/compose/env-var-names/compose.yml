@@ -14,22 +14,20 @@ services:
     depends_on:
       - postgres
     environment:
-      PACT_BROKER_PORT: '9292'
-      PACT_BROKER_DATABASE_URL: postgres://postgres:postgres@postgres/postgres
+      PACT_BROKER_PORT_ENVIRONMENT_VARIABLE_NAME: CUSTOM_PORT
+      CUSTOM_PORT: '9393'
+      PACT_BROKER_DATABASE_URL_ENVIRONMENT_VARIABLE_NAME: CUSTOM_DATABASE_URL
+      CUSTOM_DATABASE_URL: postgres://postgres:postgres@postgres/postgres
       PACT_BROKER_LOG_LEVEL: INFO
       PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: '10'
-      PACT_BROKER_DATABASE_CLEAN_ENABLED: 'true'
-      PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE: '* * * * *'
-      PACT_BROKER_DATABASE_CLEAN_DELETION_LIMIT: '500'
-      PACT_BROKER_DATABASE_CLEAN_DRY_RUN: 'false'
-      PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS: '[{"latest": true}]'
 
   sut:
     build:
-      context: test
+      context: ../..
     depends_on:
       - pact-broker
     working_dir: /home
     environment:
-      TEST_URL: http://pact-broker:9292
-    entrypoint: dockerize -wait http://pact-broker:9292/diagnostic/status/heartbeat -timeout 30s /home/clean-test.sh
+      TEST_URL: http://pact-broker:9393
+      PACT_BROKER_PORT: '9393'
+    entrypoint: dockerize -wait http://pact-broker:9393/diagnostic/status/heartbeat -timeout 20s /home/test.sh

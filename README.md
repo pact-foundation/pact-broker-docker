@@ -29,7 +29,7 @@ If you want to try out a Pact Broker that can be accessed by all your teams, wit
 
 The `pactfoundation/pact-broker` image is a forked version of the `dius/pact-broker` image. It is smaller (as it runs on Alpine Linux with Puma instead of the larger Passenger Phusion base image), and does not need root permissions.
 
-All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permissions cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Nginx in front of it (see the [docker-compose](https://github.com/pact-foundation/pact-broker-docker/blob/main/docker-compose.yml) file for an example).
+All the environment variables used for `dius/pact-broker` are compatible with `pactfoundation/pact-broker`. The only breaking change is that the default port has changed from `80` to `9292` (because a user without root permissions cannot bind to a port under 1024). If you wish to expose port 80 (or 443) you can deploy Nginx in front of it (see the [compose.yml](https://github.com/pact-foundation/pact-broker-docker/blob/main/compose.yml) file for an example).
 
 ## Platforms
 
@@ -147,19 +147,19 @@ If you have exactly one Pact Broker container running at a time, you can enable 
 * `PACT_BROKER_DATABASE_CLEAN_KEEP_VERSION_SELECTORS`: a JSON string containing a list of the "keep" selectors described in [Configuring the keep selectors](https://docs.pact.io/pact_broker/administration/maintenance#configuring-the-keep-selectors) e.g `[{"latest": true, "branch": true}, { "max_age": 90 }, { "deployed" : true }, { "released" : true }]` (remember to escape the quotes if necessary in your configuration files/console).
 * `PACT_BROKER_DATABASE_CLEAN_DRY_RUN`: defaults to `false`. Set to `true` to see the output of what *would* have been deleted if the task had run. This is helpful when experimenting with or fine tuning the clean feature. As nothing is deleted when in dry-run mode, the same output will be printed in the logs each time the task runs.
 
-[docker-compose-test-clean.yml](./docker-compose-test-clean.yml) is a working example, and is exercised by the integration suite.
+[test/compose/clean/compose.yml](./test/compose/clean/compose.yml) is a working example, and is exercised by the integration suite.
 
 ### Running the clean task from an external source
 
 If you are running more than one Pact Broker Docker container at a time for the same database, then you will end up with two clean up tasks fighting with each other to delete the data. In this situation, it is best to run the clean task from an external location at a regular interval. To do this, run an instance of the pact-broker docker image with the entrypoint `clean`, the same database connection credentials as the application, and the same environment variables described in the section above *except the PACT_BROKER_DATABASE_CLEAN_ENABLED and PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE* vars.
 
-You can see a working example in the [docker-compose-clean.yml](./docker-compose-clean.yml) file. To run the example locally, run:
+You can see a working example in [compose/clean/compose.yml](./compose/clean/compose.yml). To run the example locally, run:
 
 ```sh
-docker compose -f docker-compose-clean.yml up pact-broker
+docker compose -f compose/clean/compose.yml up pact-broker
 
 # in another console
-docker compose -f docker-compose-clean.yml up clean
+docker compose -f compose/clean/compose.yml up clean
 ```
 
 ## Running with Docker Compose
@@ -167,7 +167,7 @@ docker compose -f docker-compose-clean.yml up clean
 For a quick start with the Pact Broker and Postgres, we have an example
 [Docker Compose][docker-compose] setup you can use:
 
-1. Modify the `docker-compose.yml` file as required.
+1. Modify the `compose.yml` file as required.
 2. Run `docker compose build` to build the pact_broker container locally.
 3. Run `docker compose up` to get a running Pact Broker and a clean Postgres database.
 
@@ -342,7 +342,7 @@ For more information, see [docs.pact.io/telemetry](https://docs.pact.io/telemetr
 [badges]: https://docs.pact.io/pact_broker/advanced_topics/provider_verification_badges
 [troubleshooting]: https://github.com/pact-foundation/pact-broker-docker/wiki/Troubleshooting
 [postgres]: https://github.com/pact-foundation/pact-broker-docker/blob/main/POSTGRESQL.md
-[docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/main/docker-compose.yml
+[docker-compose]: https://github.com/pact-foundation/pact-broker-docker/blob/main/compose.yml
 [pact-broker-docs]: https://docs.pact.io/pact_broker/
 [reverse-proxy]: https://docs.pact.io/pact_broker/configuration#running-the-broker-behind-a-reverse-proxy
 [github]: https://github.com/pact-foundation/pact-broker-docker

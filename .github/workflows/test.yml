@@ -89,6 +89,12 @@ jobs:
           . ./script/release-workflow/set-env-vars.sh
           ./script/scan-image.sh "${DOCKER_IMAGE_ORG_AND_NAME}:latest-${ARCH}${TAG_SUFFIX}"
 
+      - name: Verify the scan tiers produce SARIF
+        if: github.head_ref == 'release/pact-broker-docker'
+        run: |
+          . ./script/release-workflow/set-env-vars.sh
+          ./script/test-scan-tiers.sh "${DOCKER_IMAGE_ORG_AND_NAME}:latest-${ARCH}${TAG_SUFFIX}"
+
       - uses: KengoTODA/actions-setup-docker-compose@f39674ee3a0f309c94ecf9c442e2cfde74a3f764  # v1.2.6
         if: ${{ env.ACT }}
         name: Install `docker-compose` for use with https://github.com/nektos/act
@@ -96,9 +102,18 @@ jobs:
           version: 2.15.1
 
       - name: Integration tests
-        run: script/test-clean-tree.sh
+        run: script/test.sh
         env:
           TAG: latest-amd64
+
+      # The image under test reaches the compose files through
+      # PACT_BROKER_IMAGE; a suite that edits them instead fails here.
+      - name: Assert the suite left the checkout clean
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain >&2
+            exit 1
+          fi
 
   prek:
     name: prek

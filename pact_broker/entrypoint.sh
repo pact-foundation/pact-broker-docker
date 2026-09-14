@@ -33,3 +33,11 @@ puma_pid=$!
 wait "${puma_pid}"
 # `wait` returns as soon as the trap fires, so wait again for the real exit.
 wait "${puma_pid}"
+
+# PID 1 exiting tears down the namespace, so the scheduler is waited on too
+# or a clean in flight at shutdown is SIGKILLed mid-transaction. Waited twice
+# for the same reason as Puma: a signal landing here returns the first wait.
+if [ -n "${scheduler_pid:-}" ]; then
+  wait "${scheduler_pid}"
+  wait "${scheduler_pid}"
+fi

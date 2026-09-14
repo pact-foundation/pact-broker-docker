@@ -47,8 +47,10 @@ jobs:
       # the fix — a real defect, so this fails rather than retrying.
       - name: Scan the published image
         env:
-          DEBIAN: ${{ matrix.distro == 'debian' && '-debian' || '' }}
-        run: ./script/scan-image.sh "pactfoundation/pact-broker:latest${DEBIAN}" "${{ matrix.platform }}"
+          DISTRO: ${{ matrix.distro }}
+        run: |
+          . ./script/distro.sh
+          ./script/scan-image.sh "pactfoundation/pact-broker:latest${TAG_SUFFIX}" "${{ matrix.platform }}"
 
   propose:
     name: Open a release PR

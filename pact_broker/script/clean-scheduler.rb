@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Runs the database clean on a cron schedule. Replaces supercronic: the same
-# background-process topology, without a vendored Go binary.
+# Runs the database clean on a cron schedule, as a sibling of Puma under the
+# entrypoint.
 
 require "fugit"
 
@@ -28,10 +28,16 @@ abort("Invalid cron schedule: #{schedule.inspect}") if cron.nil?
 clean_pgid = nil
 terminating = false
 
+# A trapped signal does not cut `sleep` short: the handler runs and the sleep
+# resumes. The handler writes to this pipe instead, and the wait below is a
+# select on it, which returns the moment the byte lands.
+wake_reader, wake_writer = IO.pipe
+
 %w[TERM INT].each do |signal|
   Signal.trap(signal) do
     terminating = true
     signal_clean(signal, clean_pgid) if clean_pgid
+    wake_writer.write_nonblock("x", exception: false)
   end
 end
 
@@ -40,7 +46,7 @@ puts "Creating schedule #{schedule} to clean database"
 until terminating
   now = Time.now
   delay = cron.next_time(now).to_t - now
-  sleep(delay) if delay.positive?
+  IO.select([wake_reader], nil, nil, delay) if delay.positive?
   break if terminating
 
   puts "Running database clean"

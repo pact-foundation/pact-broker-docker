@@ -17,7 +17,7 @@ Releases are made by merging a pull request.
 Every push to `main` updates a draft pull request from the
 `release/pact-broker-docker` branch. It contains the next version, computed from
 the conventional commits since the last tag, the changelog entry for it, and the
-updated image references in the `docker-compose*.yml` files.
+updated image references in `compose.yml` and `compose/*/compose.yml`.
 
 To release:
 
@@ -45,7 +45,7 @@ GitHub release, puma, the ruby/alpine/debian base and postgres.
 
 This writes the new version, changelog and compose references into the working
 tree and prints the entry. Discard the changes with
-`git checkout -- VERSION CHANGELOG.md docker-compose*.yml`.
+`git checkout -- VERSION CHANGELOG.md compose.yml compose`.
 
 ## Pushing a non-production image
 

@@ -11,35 +11,35 @@ export PACT_BROKER_IMAGE
 echo "Testing ${PACT_BROKER_IMAGE}"
 
 # Every compose file gets its own Compose project name. Without this they all
-# default to the directory name and share one project, so Compose can reuse a
-# still-running container (e.g. postgres) from a previous suite instead of
-# starting fresh, leaking state between suites.
+# default to their directory name, so Compose can reuse a still-running
+# container (e.g. postgres) from a previous suite instead of starting fresh,
+# leaking state between suites.
 cleanup() {
-  docker compose -p pact-broker-tests -f docker-compose-tests.yml rm -fv || true
-  docker compose -p pact-broker-env-var-names -f docker-compose-test-different-env-var-names.yml rm -fv || true
-  docker compose -p pact-broker-clean -f docker-compose-test-clean.yml rm -fv || true
-  docker compose -p pact-broker-sqlite -f docker-compose-test-sqlite.yml rm -fv || true
+  docker compose -p pact-broker-tests -f test/compose/postgres/compose.yml rm -fv || true
+  docker compose -p pact-broker-env-var-names -f test/compose/env-var-names/compose.yml rm -fv || true
+  docker compose -p pact-broker-clean -f test/compose/clean/compose.yml rm -fv || true
+  docker compose -p pact-broker-sqlite -f test/compose/sqlite/compose.yml rm -fv || true
 }
 trap cleanup EXIT
 
 cleanup
 
-docker compose -p pact-broker-tests -f docker-compose-tests.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+docker compose -p pact-broker-tests -f test/compose/postgres/compose.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
 cleanup
 
 export PACT_BROKER_BASIC_AUTH_USERNAME=foo
 export PACT_BROKER_BASIC_AUTH_PASSWORD=bar
 export PACT_BROKER_PUBLIC_HEARTBEAT=true
-docker compose -p pact-broker-tests -f docker-compose-tests.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+docker compose -p pact-broker-tests -f test/compose/postgres/compose.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
 
 unset PACT_BROKER_BASIC_AUTH_USERNAME
 unset PACT_BROKER_BASIC_AUTH_PASSWORD
 unset PACT_BROKER_PUBLIC_HEARTBEAT
 
-docker compose -p pact-broker-env-var-names -f docker-compose-test-different-env-var-names.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+docker compose -p pact-broker-env-var-names -f test/compose/env-var-names/compose.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
 
-docker compose -p pact-broker-clean -f docker-compose-test-clean.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
-docker compose -p pact-broker-clean -f docker-compose-test-clean.yml rm -fv || true
+docker compose -p pact-broker-clean -f test/compose/clean/compose.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+docker compose -p pact-broker-clean -f test/compose/clean/compose.yml rm -fv || true
 
-docker compose -p pact-broker-sqlite -f docker-compose-test-sqlite.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
-docker compose -p pact-broker-sqlite -f docker-compose-test-sqlite.yml rm -fv || true
+docker compose -p pact-broker-sqlite -f test/compose/sqlite/compose.yml up --build --abort-on-container-exit --exit-code-from sut --remove-orphans
+docker compose -p pact-broker-sqlite -f test/compose/sqlite/compose.yml rm -fv || true

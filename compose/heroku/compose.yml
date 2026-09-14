@@ -3,8 +3,6 @@
 # by allowing the PORT and DATABASE_URL environment variables to be used instead of
 # PACT_BROKER_PORT and PACT_BROKER_DATABASE_URL.
 
-version: '3'
-
 services:
   postgres:
     image: postgres:18@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280

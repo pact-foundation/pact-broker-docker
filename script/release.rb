@@ -59,10 +59,10 @@ class Release
 
   # MARK: Compose files
 
-  # The test compose files are excluded: script/test.sh rewrites their image
-  # references to the tag under test on every run.
+  # The example stacks. The test stacks under test/compose take their image
+  # from PACT_BROKER_IMAGE and carry no release reference.
   def self.compose_files
-    Dir.glob("./docker-compose*.yml").reject { |path| path.include?("test") }.sort
+    Dir.glob(["./compose.yml", "./compose/*/compose.yml"]).sort
   end
 
   # Handles both `image: "pactfoundation/pact-broker:TAG"` and the unquoted

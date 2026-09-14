@@ -10,7 +10,7 @@ services:
 
   sut:
     build:
-      context: test
+      context: ../..
     depends_on:
       - pact-broker
     working_dir: /home

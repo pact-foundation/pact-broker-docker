@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   postgres:
     image: postgres:18@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280
@@ -13,18 +11,15 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
     volumes:
-      - ${PWD}/docker/postgres-entrypoint.sh:/docker-entrypoint-initdb.d/init-db.sh
-      - ${PWD}/docker/pg-dump.sql:/tmp/pg-dump.sql
+      - ../../docker/postgres-entrypoint.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ../../docker/pg-dump.sql:/tmp/pg-dump.sql
     logging:
       driver: none
 
-  pact-broker-debian:
+  pact-broker:
     build:
-      dockerfile: ./Dockerfile
-      context: .
+      context: ../..
       target: runtime
-      args:
-        DISTRO: debian
     ports:
       - 9292:9292
     depends_on:
@@ -53,4 +48,4 @@ services:
       # PACT_BROKER_SQL_LOG_LEVEL: NONE
       # PACT_BROKER_DATABASE_CONNECT_MAX_RETRIES: "5"
     volumes:
-      - ./docker/config/pact_broker.yml:/tmp/pact_broker.yml
+      - ../../docker/config/pact_broker.yml:/tmp/pact_broker.yml

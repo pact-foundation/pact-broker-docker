@@ -21,7 +21,15 @@ ${COMPOSE} up -d pact-broker
 
 echo "Waiting for the broker to serve its heartbeat"
 attempts=0
-until ${COMPOSE} exec -T pact-broker wget -q -O /dev/null http://127.0.0.1:9292/diagnostic/status/heartbeat; do
+# Ruby is the one HTTP client both distros ship: the Debian runtime has neither
+# wget nor curl.
+heartbeat() {
+  ${COMPOSE} exec -T pact-broker ruby -rnet/http -e \
+    'exit Net::HTTP.get_response(URI("http://127.0.0.1:9292/diagnostic/status/heartbeat")).is_a?(Net::HTTPSuccess)' \
+    2>/dev/null
+}
+
+until heartbeat; do
   attempts=$((attempts + 1))
   if [ "${attempts}" -ge 60 ]; then
     echo "FAIL: broker did not start" >&2

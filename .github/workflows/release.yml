@@ -187,6 +187,8 @@ jobs:
 
       # The bytes scanned are the bytes pushed. A failure here fails this leg,
       # which fails `merge`, so no manifest list points at an unscanned image.
+      # The SARIF this writes is not uploaded: code scanning is fed by
+      # audit.yml, which scans every published platform on its own schedule.
       - name: Scan the pushed digest
         run: >-
           ./script/scan-image.sh

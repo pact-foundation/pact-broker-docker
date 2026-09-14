@@ -3,10 +3,9 @@
 set -e
 
 : "${TAG:?TAG must be provided}"
-: "${IS_DEBIAN:=}"
-DEBIAN=${IS_DEBIAN:+"-debian"}
+. ./script/distro.sh
 
-PACT_BROKER_IMAGE="pactfoundation/pact-broker:${TAG}${DEBIAN}"
+PACT_BROKER_IMAGE="pactfoundation/pact-broker:${TAG}${TAG_SUFFIX}"
 export PACT_BROKER_IMAGE
 echo "Testing ${PACT_BROKER_IMAGE}"
 

@@ -10,20 +10,16 @@
 
 set -e
 
+. ./script/distro.sh
+echo "DISTRO=$DISTRO"
+
 export DOCKER_IMAGE_ORG_AND_NAME="${DOCKER_REPOSITORY:-pactfoundation}/pact-broker"
 if [ -n "${DOCKER_TARGET_PLATFORM:-}" ]; then
   ARCH=$(echo "$DOCKER_TARGET_PLATFORM" | sed 's/linux\///' | sed 's/\/v.*//')
-  export ARCH
-  export ARCHES=$ARCH
 else
-  export ARCHES='amd64 arm64 arm'
-  export ARCH=amd64
+  ARCH=amd64
 fi
-
-: "${IS_DEBIAN:=}"
-export IS_DEBIAN=$IS_DEBIAN
-export DEBIAN=${IS_DEBIAN:+"-debian"}
-echo "IS_DEBIAN=$IS_DEBIAN"
+export ARCH
 
 if [ -z "${TAG:-}" ]; then
   : "${PUSH_TO_LATEST:=true}"

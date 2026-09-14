@@ -124,7 +124,7 @@ jobs:
 
       - name: Derive the release tags and image names
         env:
-          IS_DEBIAN: ${{ matrix.distro == 'debian' && '1' || '' }}
+          DISTRO: ${{ matrix.distro }}
         run: |
           . ./script/release-workflow/set-env-vars.sh
           {
@@ -253,7 +253,7 @@ jobs:
 
       - name: Assemble the manifest lists
         env:
-          IS_DEBIAN: ${{ matrix.distro == 'debian' && '1' || '' }}
+          DISTRO: ${{ matrix.distro }}
         run: |
           . ./script/release-workflow/set-env-vars.sh
           ghcr_image="ghcr.io/$(echo "${DOCKER_IMAGE_ORG_AND_NAME}" | sed 's/pactfoundation/pact-foundation/')"
@@ -261,12 +261,12 @@ jobs:
           # MAJOR_TAG is derived from VERSION only on the release path. A
           # one-off push supplies TAG and leaves it unset, where an unguarded
           # expansion would ask for the tag `-debian`, or for no tag at all.
-          tags="${TAG}${DEBIAN}"
+          tags="${TAG}${TAG_SUFFIX}"
           if [ -n "${MAJOR_TAG:-}" ]; then
-            tags="${tags} ${MAJOR_TAG}${DEBIAN}"
+            tags="${tags} ${MAJOR_TAG}${TAG_SUFFIX}"
           fi
           if [ "${PUSH_TO_LATEST}" != "false" ]; then
-            tags="${tags} latest${DEBIAN}"
+            tags="${tags} latest${TAG_SUFFIX}"
           fi
 
           for image in "${DOCKER_IMAGE_ORG_AND_NAME}" "${ghcr_image}"; do
@@ -285,12 +285,12 @@ jobs:
 
       - name: Inspect the manifest lists
         env:
-          IS_DEBIAN: ${{ matrix.distro == 'debian' && '1' || '' }}
+          DISTRO: ${{ matrix.distro }}
         run: |
           . ./script/release-workflow/set-env-vars.sh
           ghcr_image="ghcr.io/$(echo "${DOCKER_IMAGE_ORG_AND_NAME}" | sed 's/pactfoundation/pact-foundation/')"
-          docker buildx imagetools inspect "${DOCKER_IMAGE_ORG_AND_NAME}:${TAG}${DEBIAN}"
-          docker buildx imagetools inspect "${ghcr_image}:${TAG}${DEBIAN}"
+          docker buildx imagetools inspect "${DOCKER_IMAGE_ORG_AND_NAME}:${TAG}${TAG_SUFFIX}"
+          docker buildx imagetools inspect "${ghcr_image}:${TAG}${TAG_SUFFIX}"
 
   github-release:
     name: Create GitHub release

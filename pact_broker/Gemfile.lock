@@ -55,7 +55,7 @@ GEM
       tzinfo
     expgen (0.1.1)
       parslet
-    fugit (1.13.0)
+    fugit (1.14.0)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
     haml (5.2.2)

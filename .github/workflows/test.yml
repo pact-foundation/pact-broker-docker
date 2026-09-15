@@ -146,3 +146,22 @@ jobs:
 
       - name: Run prek
         run: prek run --show-diff-on-failure --color=always --all-files
+
+  # `prek run --all-files` covers the pre-commit stage only. committed is a
+  # commit-msg hook, so without this job a disallowed type reaches main
+  # unnoticed and git-cliff files the entry under "Other" at release time.
+  #
+  # Deliberately absent from `complete`: a pull request may be squash-merged
+  # under a fresh message, so a bad commit on the branch is a warning, not a
+  # merge blocker.
+  commit-messages:
+    name: Check commit messages
+    if: github.event_name == 'pull_request'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: crate-ci/committed@faeed42f2e10c244533a01525f13c4d8b6ce383f  # v1.1.11

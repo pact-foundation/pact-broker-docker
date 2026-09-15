@@ -18,6 +18,10 @@ body = """
         -   {% if commit.scope %}_({{ commit.scope }})_ {% endif -%}
             {% if commit.breaking %}[**breaking**] {% endif -%}
             {{ commit.message | upper_first }}
+        {% if commit.breaking_description -%}
+            {{ "\n" }}{{ commit.breaking_description | replace(from="\n", to=" ") | indent(prefix="    ", first=true) }}
+            {% if not loop.last %}{{ "\n" }}{% endif -%}
+        {% endif -%}
     {% endfor %}
 {% endfor -%}
 """

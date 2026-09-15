@@ -15,7 +15,6 @@ This repository contains a Dockerized version of the [Pact Broker][pact-broker].
 
 [![size: amd64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest/amd64?icon=docker&label=size%3Aamd64)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![size: arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest/arm64?icon=docker&label=size%3Aarm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
-[![size: arm](https://badgen.net/docker/size/pactfoundation/pact-broker/latest/arm?icon=docker&label=size%3Aarm)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![size: debian amd64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-debian/amd64?icon=docker&label=size%3Adebian-amd64)](https://hub.docker.com/r/pactfoundation/pact-broker)
 [![size: debian arm64](https://badgen.net/docker/size/pactfoundation/pact-broker/latest-debian/arm64?icon=docker&label=size%3Adebian-arm64)](https://hub.docker.com/r/pactfoundation/pact-broker)
 
@@ -36,7 +35,6 @@ All the environment variables used for `dius/pact-broker` are compatible with `p
 Multi-platform images are available
 
 * `--platform=linux/amd64`
-* `--platform=linux/arm/v7`
 * `--platform=linux/arm64`
 
   ```sh

@@ -14,11 +14,11 @@ jobs:
     name: Detect a stale published image (${{ matrix.distro }}, ${{ matrix.platform }})
     # pactfoundation/pact-broker:latest and :latest-debian are each manifest
     # lists. Without a platform, Trivy resolves only the leg matching the
-    # runner (amd64), silently skipping staleness that landed on arm64 or
-    # arm/v7 alone. Alpine and Debian track different upstream package sets
+    # runner (amd64), silently skipping staleness that landed on arm64
+    # alone. Alpine and Debian track different upstream package sets
     # on different cadences, so a debian-only advisory could sit indefinitely
     # while alpine looks clean — both distros are scanned explicitly, the
-    # same six-way cross product release.yml's build matrix already uses.
+    # same four-way cross product release.yml's build matrix already uses.
     # This job builds nothing, so doubling the legs is cheap.
     strategy:
       fail-fast: false
@@ -29,7 +29,6 @@ jobs:
         platform:
           - linux/amd64
           - linux/arm64
-          - linux/arm/v7
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1

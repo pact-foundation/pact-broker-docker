@@ -52,7 +52,7 @@ tree and prints the entry. Discard the changes with
 The pipeline publishes from a tag alone. There is no script for a one-off push;
 build and push it by hand:
 
-    docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+    docker buildx build --platform linux/amd64,linux/arm64 \
       --target runtime --build-arg DISTRO=alpine --build-arg VERSION=my-test-tag \
       --output type=image,push=true \
       --tag my-org/pact-broker:my-test-tag -f Dockerfile .

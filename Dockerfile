@@ -4,7 +4,7 @@ ARG DISTRO=alpine
 
 # MARK: Alpine
 #
-# gcompat is a musl compatibility shim. nokogiri needs it on arm and arm64,
+# gcompat is a musl compatibility shim. nokogiri needs it on arm64,
 # where the network graph breaks without it
 # (https://github.com/sparklemotion/nokogiri/issues/2414). It is installed on
 # every architecture so the build has no architecture-conditional branch.

@@ -18,20 +18,14 @@ jobs:
         include:
           - {distro: alpine, platform: linux/amd64, runner: ubuntu-latest}
           - {distro: alpine, platform: linux/arm64, runner: ubuntu-24.04-arm}
-          - {distro: alpine, platform: linux/arm/v7, runner: ubuntu-latest}
           - {distro: debian, platform: linux/amd64, runner: ubuntu-latest}
           - {distro: debian, platform: linux/arm64, runner: ubuntu-24.04-arm}
-          - {distro: debian, platform: linux/arm/v7, runner: ubuntu-latest}
     runs-on: ${{ matrix.runner }}
     permissions:
       contents: read
       security-events: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
-
-      - name: Set up QEMU
-        if: contains(matrix.platform, 'arm/v7')
-        uses: docker/setup-qemu-action@1f40c72289eff860ee54a304f1438e3cff362e0a  # v4.3.0
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e  # v4.3.0
@@ -42,7 +36,7 @@ jobs:
 
       # test.yml only runs this contract check on linux/amd64 (PLATFORM
       # defaults there), so this is the only per-platform contract
-      # verification for arm64 and arm/v7 in the repository — it is not
+      # verification for arm64 in the repository — it is not
       # redundant with the build below despite sharing target and args.
       - name: Verify the image contract
         run: |

@@ -1,3 +1,64 @@
+## [3.0.0] _2026-09-17_
+
+### 🚀 Features
+
+-   _(docker)_ [**breaking**] Schedule the database clean in ruby instead of supercronic
+
+    `PACT_BROKER_DATABASE_CLEAN_CRON_SCHEDULE` is parsed by fugit. It does not support `?`, `W` and `L` cron syntax. The `supercronic` binary and `/pact_broker/crontab` have been removed.
+
+-   _(ci)_ Open a release PR when the published image goes stale
+-   [**breaking**] Drop the linux/arm/v7 image
+
+    `linux/arm/v7` images are no longer published. The `pactfoundation/pact-broker` manifest lists cover `linux/amd64` and `linux/arm64` only.
+
+### 🐛 Bug Fixes
+
+-   Reset compose state before the clean suite runs
+-   Assert clean survivor identity and isolate compose projects
+-   _(security)_ Scan in tiers from one pinned implementation
+-   _(security)_ Replace the ignore list with dated, justified entries
+-   _(ci)_ Audit every published platform and report to code scanning
+-   _(ci)_ Scan the artefact that ships, and build it natively
+-   _(docker)_ Stop the clean scheduler inside the grace period
+-   _(test)_ Probe the heartbeat with ruby so the shutdown test runs on debian
+
+### 📦 Dependencies
+
+-   _(deps)_ [**breaking**] Drop the mysql2 gem
+
+    `PACT_BROKER_DATABASE_ADAPTER=mysql2` no longer works. Migrate to postgres.
+
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to d0a6faa
+-   _(deps)_ Update the pact_broker gem to [2.121.1](https://github.com/pact-foundation/pact_broker/releases/tag/v2.121.1) ([#388](https://github.com/pact-foundation/pact-broker-docker/issues/388))
+
+### 🚜 Refactor
+
+-   _(docker)_ Split the alpine build into build and runtime stages
+-   _(docker)_ Build both distributions from one Dockerfile
+-   _(compose)_ Move the stacks into per-example directories
+-   _(ci)_ Name the distribution once as DISTRO
+
+### 📚 Documentation
+
+-   Describe the rebuilt image and drop stale references
+
+### 🧪 Testing
+
+-   Stop the integration suite rewriting tracked compose files
+-   Cover the scheduled database clean end to end
+-   Cover the sqlite quick-start adapter
+-   Assert `docker stop` ends inside its grace period
+-   _(docker)_ Pin the documented cron rejections in the contract stage
+
+### 🛠️ Miscellaneous Tasks
+
+-   _(docker)_ Delete the dev-only base image helpers
+-   Tighten the runtime contract and refresh the stale compose example
+-   _(ci)_ Run the scan-tier check and keep the clean-tree guard in the workflow
+-   _(ci)_ Check commit messages on pull requests
+-   Render breaking-change footers in the changelog
+-   _(ci)_ Run prek through its own action
+
 ## [2.143.0] _2026-09-07_
 
 ### 🐛 Bug Fixes

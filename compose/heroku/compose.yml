@@ -16,7 +16,7 @@ services:
       POSTGRES_DB: postgres
 
   pact-broker:
-    image: pactfoundation/pact-broker:3.0.0-pactbroker2.121.2
+    image: pactfoundation/pact-broker:3.0.0-pactbroker2.121.2@sha256:420341d4fbfb00a621c313f47e530ad75703f969bbc7520d0d72bc71bb53cef9
     ports:
       - 9393:9393
     depends_on:

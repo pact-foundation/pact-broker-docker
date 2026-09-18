@@ -1,3 +1,9 @@
+## [3.1.0] _2026-09-18_
+
+### 📦 Dependencies
+
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to 35c6bab
+
 ## [3.0.0] _2026-09-17_
 
 ### 🚀 Features

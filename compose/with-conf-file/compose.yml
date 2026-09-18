@@ -1,7 +1,7 @@
 ---
 services:
   pact-broker:
-    # image: pactfoundation/pact-broker:3.0.0-pactbroker2.121.2
+    # image: pactfoundation/pact-broker:3.1.0-pactbroker2.121.2
     build:
       context: ../..
       target: runtime

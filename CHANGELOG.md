@@ -1,3 +1,18 @@
+## [3.1.0] _2026-09-22_
+
+### 📦 Dependencies
+
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to 35c6bab
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to adad2ae
+-   _(deps)_ Update postgres:18 docker digest to 86c951e
+-   _(deps)_ Update postgres:17 docker digest to f4c66b8
+-   _(deps)_ Update ruby:3.4.10-alpine3.24 docker digest to 62e32b2
+-   _(deps)_ Update ruby:3.4.10-slim docker digest to b573616
+
+### 🛠️ Miscellaneous Tasks
+
+-   _(ci)_ Standardize renovate config
+
 ## [3.0.0] _2026-09-17_
 
 ### 🚀 Features

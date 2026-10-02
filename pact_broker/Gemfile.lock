@@ -125,7 +125,7 @@ GEM
       thor (~> 1.0)
     padrino-support (0.16.1)
     parslet (2.0.0)
-    pg (1.6.3)
+    pg (1.7.0)
     psych (5.5.0)
       date
       stringio

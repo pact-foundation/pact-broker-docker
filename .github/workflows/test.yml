@@ -95,7 +95,7 @@ jobs:
           . ./script/release-workflow/set-env-vars.sh
           ./script/test-scan-tiers.sh "${DOCKER_IMAGE_ORG_AND_NAME}:latest-${ARCH}${TAG_SUFFIX}"
 
-      - uses: KengoTODA/actions-setup-docker-compose@caf887cb5173b7ea66cce3c7db3b1e04974a53d4  # v1.2.8
+      - uses: KengoTODA/actions-setup-docker-compose@3365b3ff2fc7b4e5ffa2d9ddbb3c2bd73727d443  # v1.2.10
         if: ${{ env.ACT }}
         name: Install `docker-compose` for use with https://github.com/nektos/act
         with:

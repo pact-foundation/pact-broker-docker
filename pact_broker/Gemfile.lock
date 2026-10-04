@@ -110,7 +110,7 @@ GEM
       sinatra (~> 4)
       thor (~> 1.0)
     padrino-support (0.16.1)
-    pg (1.6.3)
+    pg (1.7.0)
     psych (5.5.0)
       date
       stringio

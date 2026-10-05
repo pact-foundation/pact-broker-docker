@@ -1,3 +1,27 @@
+## [3.1.0] _2026-10-05_
+
+### 🐛 Bug Fixes
+
+-   _(security)_ Rebuild for patched operating system packages
+
+### 📦 Dependencies
+
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to 35c6bab
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to adad2ae
+-   _(deps)_ Update postgres:18 docker digest to 86c951e
+-   _(deps)_ Update postgres:17 docker digest to f4c66b8
+-   _(deps)_ Update ruby:3.4.10-alpine3.24 docker digest to 62e32b2
+-   _(deps)_ Update ruby:3.4.10-slim docker digest to b573616
+-   _(deps)_ Update the pact_broker gem to [2.122.0](https://github.com/pact-foundation/pact_broker/releases/tag/v2.122.0)
+-   _(deps)_ Update dependency ruby to v3.4.11 ([#406](https://github.com/pact-foundation/pact-broker-docker/issues/406))
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to df221db ([#404](https://github.com/pact-foundation/pact-broker-docker/issues/404))
+-   _(deps)_ Update postgres:17 docker digest to d74eeac ([#407](https://github.com/pact-foundation/pact-broker-docker/issues/407))
+-   _(deps)_ Update postgres:18 docker digest to 5a5a84b
+
+### 🛠️ Miscellaneous Tasks
+
+-   _(ci)_ Standardize renovate config
+
 ## [3.0.0] _2026-09-17_
 
 ### 🚀 Features

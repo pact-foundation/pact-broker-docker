@@ -141,7 +141,7 @@ GEM
       uber (< 0.2.0)
     request_store (1.7.0)
       rack (>= 1.4)
-    resolv (0.8.0)
+    resolv (0.8.1)
     roar (1.2.0)
       representable (~> 3.1)
     ruby-next-core (1.2.1)

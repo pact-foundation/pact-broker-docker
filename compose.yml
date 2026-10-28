@@ -1,7 +1,7 @@
 ---
 services:
   postgres:
-    image: postgres:17@sha256:2d2b8998d31037bf721cfdf764d76ba74171b4fab3431b7f72c27c56ddbdf9e3
+    image: postgres:17@sha256:31ba9c94a03ada9988f2bb493a22a75eef3a185884533e5cdbcd498ea835b08f
     healthcheck:
       test: psql postgres --command "select 1" -U postgres
     volumes:

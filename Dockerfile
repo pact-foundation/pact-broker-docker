@@ -11,7 +11,7 @@ ARG DISTRO=alpine
 #
 # tzdata supplies the zoneinfo database. Alpine ships none, and the clean
 # scheduler's `require "fugit"` fails outright without it.
-FROM ruby:3.4.12-alpine3.24@sha256:6e0f1d1f4ea9cf824b7af56bd9bc838fac9333fb258492c7aa3e3df8959ec64c AS runtime-alpine
+FROM ruby:4.0.9-alpine3.24@sha256:8ad6909db16ad53b5dc90bb8cc157e5fdd89ba1172798316b95cfd2a61f14b1e AS runtime-alpine
 RUN <<'EOT' /bin/sh
 set -eu
 apk upgrade --no-cache
@@ -36,7 +36,7 @@ EOT
 # The slim base already carries tzdata, libsqlite3-0 and libyaml-0-2. The
 # runtime list names them anyway: apt is idempotent, and a dependency the image
 # relies on is worth stating.
-FROM ruby:3.4.12-slim@sha256:9833b550489549d20cd1b40746d1d1227db309d2667c70695e239c6a99a87d3f AS runtime-debian
+FROM ruby:4.0.9-slim@sha256:22cfdec4c490b9e7e4913527a126ddc34bf30cf5432711f70eb1aa4b3ac388a5 AS runtime-debian
 # The base image ships security updates behind its own release cadence, so the
 # upgrade runs here rather than in build-debian and reaches the shipped layer.
 RUN <<'EOT' /bin/sh

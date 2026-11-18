@@ -1,3 +1,43 @@
+## [3.1.0] _2026-11-18_
+
+### 🚀 Features
+
+-   Expose branch clean env vars in Rakefile and docs
+
+### 📦 Dependencies
+
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to 35c6bab
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to adad2ae
+-   _(deps)_ Update postgres:18 docker digest to 86c951e
+-   _(deps)_ Update postgres:17 docker digest to f4c66b8
+-   _(deps)_ Update ruby:3.4.10-alpine3.24 docker digest to 62e32b2
+-   _(deps)_ Update ruby:3.4.10-slim docker digest to b573616
+-   _(deps)_ Update the pact_broker gem to [2.122.0](https://github.com/pact-foundation/pact_broker/releases/tag/v2.122.0)
+-   _(deps)_ Update dependency ruby to v3.4.11 ([#406](https://github.com/pact-foundation/pact-broker-docker/issues/406))
+-   _(deps)_ Update nginx:1.31.6-alpine docker digest to df221db ([#404](https://github.com/pact-foundation/pact-broker-docker/issues/404))
+-   _(deps)_ Update postgres:17 docker digest to d74eeac ([#407](https://github.com/pact-foundation/pact-broker-docker/issues/407))
+-   _(deps)_ Update postgres:18 docker digest to 5a5a84b
+-   _(deps)_ Update postgres:17 docker digest to 2d2b899 ([#418](https://github.com/pact-foundation/pact-broker-docker/issues/418))
+-   _(deps)_ Update postgres:18 docker digest to 74935e7 ([#419](https://github.com/pact-foundation/pact-broker-docker/issues/419))
+-   _(deps)_ Update ruby:3.4.11-slim docker digest to c12225b
+-   _(deps)_ Update dependency ruby to v3.4.12
+-   _(deps)_ Update postgres:17 docker digest to 31ba9c9
+-   _(deps)_ Update postgres:18 docker digest to 979bccf
+-   _(deps)_ Update postgres:17 docker digest to 3b0cda9
+-   _(deps)_ Update postgres:18 docker digest to 3a42645 ([#446](https://github.com/pact-foundation/pact-broker-docker/issues/446))
+-   _(deps)_ Update ruby:3.4.12-slim docker digest to 9833b55
+-   _(deps)_ Update dependency puma to v7.2.3
+-   _(deps)_ Update the pact_broker gem to [2.124.0](https://github.com/pact-foundation/pact_broker/releases/tag/v2.124.0)
+-   _(deps)_ Update ruby:3.4.12-alpine3.24 docker digest to 68d6062
+-   _(deps)_ Update nginx:1.31.8-alpine docker digest to fed7e14
+-   _(deps)_ Update ruby:3.4.12-slim docker digest to 6568069
+-   _(deps)_ Update postgres:18 docker digest to 2ea8630
+-   _(deps)_ Update postgres:17 docker digest to 0d938e9
+
+### 🛠️ Miscellaneous Tasks
+
+-   _(ci)_ Standardize renovate config
+
 ## [3.0.0] _2026-09-17_
 
 ### 🚀 Features

@@ -1,3 +1,9 @@
+## [3.2.0] _2026-11-19_
+
+### 📦 Dependencies
+
+-   _(deps)_ Update dependency ruby to v3.4.13
+
 ## [3.1.0] _2026-11-18_
 
 ### 🚀 Features

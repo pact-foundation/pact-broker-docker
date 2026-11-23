@@ -1,3 +1,9 @@
+## [3.2.1] _2026-11-23_
+
+### 🐛 Bug Fixes
+
+-   _(security)_ Rebuild for patched operating system packages
+
 ## [3.2.0] _2026-11-19_
 
 ### 📦 Dependencies

@@ -36,7 +36,7 @@ EOT
 # The slim base already carries tzdata, libsqlite3-0 and libyaml-0-2. The
 # runtime list names them anyway: apt is idempotent, and a dependency the image
 # relies on is worth stating.
-FROM ruby:3.4.13-slim@sha256:03e203fab47d495a1d0046d10040db89367b361328ecd4af469f0433e2dd9ce1 AS runtime-debian
+FROM ruby:3.4.13-slim@sha256:f038b6952ce49d4d7bcbe2a6c194299f5c70b45fc6d9f9fec4798c4c0f61aed3 AS runtime-debian
 # The base image ships security updates behind its own release cadence, so the
 # upgrade runs here rather than in build-debian and reaches the shipped layer.
 RUN <<'EOT' /bin/sh
